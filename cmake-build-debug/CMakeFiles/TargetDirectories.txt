@@ -1,0 +1,3 @@
+/home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/cmake-build-debug/CMakeFiles/parsingBlockchain.dir
+/home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/cmake-build-debug/CMakeFiles/edit_cache.dir
