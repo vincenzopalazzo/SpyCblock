@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/vincenzo/Github/spyCblock/structure/block/block.cpp
-iostream
--
-regex
--
-block.h
-/home/vincenzo/Github/spyCblock/structure/block/block.h
-
 /home/vincenzo/Github/spyCblock/structure/block/block.h
 ostream
 -
@@ -55,6 +47,18 @@ cstdint
 -
 ../../type/DScript.h
 /home/vincenzo/Github/spyCblock/type/DScript.h
+
+/home/vincenzo/Github/spyCblock/test/RunTest.cpp
+fstream
+-
+gtest/gtest.h
+/home/vincenzo/Github/spyCblock/test/gtest/gtest.h
+glog/logging.h
+-
+../util/uint256.h
+/home/vincenzo/Github/spyCblock/util/uint256.h
+../structure/block/block.h
+/home/vincenzo/Github/spyCblock/structure/block/block.h
 
 /home/vincenzo/Github/spyCblock/type/DScript.h
 vector

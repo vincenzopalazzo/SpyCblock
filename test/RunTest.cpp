@@ -151,6 +151,33 @@ TEST(RunTest, unserialize_block)
 
 }
 
+/*Test Read all file dat*/
+TEST(RunTest, All_Read_file_dat){
+    ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    ofstream *outStream = new ofstream("test/file_test/file_test_readl_all_file_dat_uno.dat");
+    try {
+        if(stream->is_open()){
+            LOG(INFO) << "Stream is open";
+            int numbarBlock = 0;
+            while(!stream->eof()){
+                Block *block = new Block();
+                block->decode(*stream);
+                *outStream << block->toString();
+                //cout << block->toString();
+                delete block;
+                numbarBlock++;
+                LOG(INFO) << "Numbar block read now " << numbarBlock;
+            }
+            EXPECT_EQ(numbarBlock, 256);
+        }
+    }catch (out_of_range e){
+        LOG(FATAL) << "Exception generet: " << e.what();
+        FAIL();
+    }
+
+
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

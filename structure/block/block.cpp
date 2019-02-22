@@ -26,6 +26,7 @@ void Block::decode(std::ifstream &stream) {
         RawTransaction *transaction = new RawTransaction();
         transaction->decode(stream);
         rawTransactions.push_back(*transaction);
+        delete transaction;
     }
     LOG(INFO) << "End block read";
 }
