@@ -2,6 +2,7 @@
 // Created by https://github.com/vincenzopalazzo on 2/4/19.
 //
 
+#include <sstream>
 #include "DScript.h"
 #include "../util/serialize.h"
 
@@ -20,4 +21,20 @@ void DScript::decode(std::ifstream &stream) {
 
 const DVarInt &DScript::getScriptLenght() const {
     return scriptLenght;
+}
+
+string DScript::toString() {
+    stringstream stream;
+    stream << "Length script: " << this->scriptLenght.getValue() << endl;
+    stream << "Script: ";
+    for(int i = 0; i < script.size(); i++)
+    {
+        if(i == script.size() - 1)
+        {
+            stream << script.at(i) << endl;
+        }else{
+            stream << script.at(i);
+        }
+    }
+    return stream.str();
 }

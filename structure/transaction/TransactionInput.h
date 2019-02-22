@@ -1,17 +1,15 @@
 //
 // Created by https://github.com/vincenzopalazzo on 1/21/19.
 //
-
-#include <cstdint>
-#include "../../type/Outpoint.cpp"
-#include "../../type/DScript.cpp"
-
 #ifndef PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
 #define PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
 
-#endif //PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
 
-//TODO refactoring whit tipe bitcoin core
+#include <cstdint>
+#include "../../type/Outpoint.h"
+#include "../../type/DScript.h"
+
+using namespace std;
 /*
  * In the coindbase transaction, outpoint is standard, the hash id resiver si 0 and
  * the n is 2^32 - 1*/
@@ -21,6 +19,7 @@ private:
     OutPoint outpoint;
     DScript script;
     uint32_t sequences;
+
 public:
     const DScript &getScript() const;
 
@@ -30,5 +29,9 @@ public:
 
     void setOutpoint(const OutPoint &outpoint);
 
+    string toString();
+
     void decode(std::ifstream &stream);
 };
+
+#endif //PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H

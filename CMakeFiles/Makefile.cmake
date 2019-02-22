@@ -14,6 +14,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/CMakeCInformation.cmake"
   "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/CMakeCXXInformation.cmake"
   "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/CMakeCommonLanguageInclude.cmake"
+  "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/CMakeFindDependencyMacro.cmake"
   "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/CMakeGenericSystem.cmake"
   "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/CMakeInitializeConfigs.cmake"
   "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/CMakeLanguageInformation.cmake"
@@ -36,6 +37,14 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/Platform/Linux-GNU.cmake"
   "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/Platform/Linux.cmake"
   "/home/vincenzo/clion-2018.3.3/bin/cmake/linux/share/cmake-3.13/Modules/Platform/UnixPaths.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-config-version.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-config.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-targets-release.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/gflags/gflags-targets.cmake"
+  "/usr/local/lib/cmake/glog/glog-config-version.cmake"
+  "/usr/local/lib/cmake/glog/glog-config.cmake"
+  "/usr/local/lib/cmake/glog/glog-targets-noconfig.cmake"
+  "/usr/local/lib/cmake/glog/glog-targets.cmake"
   )
 
 # The corresponding makefile is:
@@ -52,5 +61,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/runTests.dir/DependInfo.cmake"
-  "CMakeFiles/parsingBlockchain.dir/DependInfo.cmake"
+  "CMakeFiles/spyCblock.dir/DependInfo.cmake"
   )

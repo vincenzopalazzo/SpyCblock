@@ -59,10 +59,10 @@ RM = /home/vincenzo/clion-2018.3.3/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain
+CMAKE_SOURCE_DIR = /home/vincenzo/Github/spyCblock
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain
+CMAKE_BINARY_DIR = /home/vincenzo/Github/spyCblock
 
 #=============================================================================
 # Target rules for target CMakeFiles/runTests.dir
@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBloc
 CMakeFiles/runTests.dir/all:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/depend
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/CMakeFiles --progress-num=12,13 "Built target runTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13 "Built target runTests"
 .PHONY : CMakeFiles/runTests.dir/all
 
 # Include target in all.
@@ -81,9 +81,9 @@ all: CMakeFiles/runTests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/runTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Github/spyCblock/CMakeFiles 13
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/runTests.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Github/spyCblock/CMakeFiles 0
 .PHONY : CMakeFiles/runTests.dir/rule
 
 # Convenience name for target.
@@ -102,39 +102,39 @@ clean: CMakeFiles/runTests.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/parsingBlockchain.dir
+# Target rules for target CMakeFiles/spyCblock.dir
 
 # All Build rule for target.
-CMakeFiles/parsingBlockchain.dir/all:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/depend
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target parsingBlockchain"
-.PHONY : CMakeFiles/parsingBlockchain.dir/all
+CMakeFiles/spyCblock.dir/all:
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/depend
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=14,15,16,17,18,19,20,21,22,23,24,25,26 "Built target spyCblock"
+.PHONY : CMakeFiles/spyCblock.dir/all
 
 # Include target in all.
-all: CMakeFiles/parsingBlockchain.dir/all
+all: CMakeFiles/spyCblock.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/parsingBlockchain.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/CMakeFiles 11
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/parsingBlockchain.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/CMakeFiles 0
-.PHONY : CMakeFiles/parsingBlockchain.dir/rule
+CMakeFiles/spyCblock.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Github/spyCblock/CMakeFiles 13
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/spyCblock.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Github/spyCblock/CMakeFiles 0
+.PHONY : CMakeFiles/spyCblock.dir/rule
 
 # Convenience name for target.
-parsingBlockchain: CMakeFiles/parsingBlockchain.dir/rule
+spyCblock: CMakeFiles/spyCblock.dir/rule
 
-.PHONY : parsingBlockchain
-
-# clean rule for target.
-CMakeFiles/parsingBlockchain.dir/clean:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/clean
-.PHONY : CMakeFiles/parsingBlockchain.dir/clean
+.PHONY : spyCblock
 
 # clean rule for target.
-clean: CMakeFiles/parsingBlockchain.dir/clean
+CMakeFiles/spyCblock.dir/clean:
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/clean
+.PHONY : CMakeFiles/spyCblock.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/spyCblock.dir/clean
 
 .PHONY : clean
 

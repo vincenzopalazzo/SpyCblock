@@ -48,10 +48,10 @@ RM = /home/vincenzo/clion-2018.3.3/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain
+CMAKE_SOURCE_DIR = /home/vincenzo/Github/spyCblock
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain
+CMAKE_BINARY_DIR = /home/vincenzo/Github/spyCblock
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -91,9 +91,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/CMakeFiles /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Github/spyCblock/CMakeFiles /home/vincenzo/Github/spyCblock/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/MEGA/Programmazione/Programmazione/parsingBlockchain/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Github/spyCblock/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -135,44 +135,74 @@ runTests/fast:
 .PHONY : runTests/fast
 
 #=============================================================================
-# Target rules for targets named parsingBlockchain
+# Target rules for targets named spyCblock
 
 # Build rule for target.
-parsingBlockchain: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 parsingBlockchain
-.PHONY : parsingBlockchain
+spyCblock: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 spyCblock
+.PHONY : spyCblock
 
 # fast build rule for target.
-parsingBlockchain/fast:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/build
-.PHONY : parsingBlockchain/fast
+spyCblock/fast:
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/build
+.PHONY : spyCblock/fast
 
-ParserBlock.o: ParserBlock.cpp.o
+ParserMain.o: ParserMain.cpp.o
 
-.PHONY : ParserBlock.o
+.PHONY : ParserMain.o
 
 # target to build an object file
-ParserBlock.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/ParserBlock.cpp.o
-.PHONY : ParserBlock.cpp.o
+ParserMain.cpp.o:
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/ParserMain.cpp.o
+.PHONY : ParserMain.cpp.o
 
-ParserBlock.i: ParserBlock.cpp.i
+ParserMain.i: ParserMain.cpp.i
 
-.PHONY : ParserBlock.i
+.PHONY : ParserMain.i
 
 # target to preprocess a source file
-ParserBlock.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/ParserBlock.cpp.i
-.PHONY : ParserBlock.cpp.i
+ParserMain.cpp.i:
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/ParserMain.cpp.i
+.PHONY : ParserMain.cpp.i
 
-ParserBlock.s: ParserBlock.cpp.s
+ParserMain.s: ParserMain.cpp.s
 
-.PHONY : ParserBlock.s
+.PHONY : ParserMain.s
 
 # target to generate assembly for a file
-ParserBlock.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/ParserBlock.cpp.s
-.PHONY : ParserBlock.cpp.s
+ParserMain.cpp.s:
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/ParserMain.cpp.s
+.PHONY : ParserMain.cpp.s
+
+core/SpyCBlock.o: core/SpyCBlock.cpp.o
+
+.PHONY : core/SpyCBlock.o
+
+# target to build an object file
+core/SpyCBlock.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.o
+.PHONY : core/SpyCBlock.cpp.o
+
+core/SpyCBlock.i: core/SpyCBlock.cpp.i
+
+.PHONY : core/SpyCBlock.i
+
+# target to preprocess a source file
+core/SpyCBlock.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/core/SpyCBlock.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.i
+.PHONY : core/SpyCBlock.cpp.i
+
+core/SpyCBlock.s: core/SpyCBlock.cpp.s
+
+.PHONY : core/SpyCBlock.s
+
+# target to generate assembly for a file
+core/SpyCBlock.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/core/SpyCBlock.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.s
+.PHONY : core/SpyCBlock.cpp.s
 
 structure/block/block.o: structure/block/block.cpp.o
 
@@ -180,7 +210,8 @@ structure/block/block.o: structure/block/block.cpp.o
 
 # target to build an object file
 structure/block/block.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/block/block.cpp.o
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/block/block.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/block/block.cpp.o
 .PHONY : structure/block/block.cpp.o
 
 structure/block/block.i: structure/block/block.cpp.i
@@ -189,7 +220,8 @@ structure/block/block.i: structure/block/block.cpp.i
 
 # target to preprocess a source file
 structure/block/block.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/block/block.cpp.i
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/block/block.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/block/block.cpp.i
 .PHONY : structure/block/block.cpp.i
 
 structure/block/block.s: structure/block/block.cpp.s
@@ -198,7 +230,8 @@ structure/block/block.s: structure/block/block.cpp.s
 
 # target to generate assembly for a file
 structure/block/block.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/block/block.cpp.s
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/block/block.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/block/block.cpp.s
 .PHONY : structure/block/block.cpp.s
 
 structure/block/blockHeader.o: structure/block/blockHeader.cpp.o
@@ -207,7 +240,8 @@ structure/block/blockHeader.o: structure/block/blockHeader.cpp.o
 
 # target to build an object file
 structure/block/blockHeader.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/block/blockHeader.cpp.o
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/block/blockHeader.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/block/blockHeader.cpp.o
 .PHONY : structure/block/blockHeader.cpp.o
 
 structure/block/blockHeader.i: structure/block/blockHeader.cpp.i
@@ -216,7 +250,8 @@ structure/block/blockHeader.i: structure/block/blockHeader.cpp.i
 
 # target to preprocess a source file
 structure/block/blockHeader.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/block/blockHeader.cpp.i
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/block/blockHeader.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/block/blockHeader.cpp.i
 .PHONY : structure/block/blockHeader.cpp.i
 
 structure/block/blockHeader.s: structure/block/blockHeader.cpp.s
@@ -225,7 +260,8 @@ structure/block/blockHeader.s: structure/block/blockHeader.cpp.s
 
 # target to generate assembly for a file
 structure/block/blockHeader.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/block/blockHeader.cpp.s
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/block/blockHeader.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/block/blockHeader.cpp.s
 .PHONY : structure/block/blockHeader.cpp.s
 
 structure/script/scriptCode.o: structure/script/scriptCode.cpp.o
@@ -234,7 +270,8 @@ structure/script/scriptCode.o: structure/script/scriptCode.cpp.o
 
 # target to build an object file
 structure/script/scriptCode.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/script/scriptCode.cpp.o
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/script/scriptCode.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/script/scriptCode.cpp.o
 .PHONY : structure/script/scriptCode.cpp.o
 
 structure/script/scriptCode.i: structure/script/scriptCode.cpp.i
@@ -243,7 +280,8 @@ structure/script/scriptCode.i: structure/script/scriptCode.cpp.i
 
 # target to preprocess a source file
 structure/script/scriptCode.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/script/scriptCode.cpp.i
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/script/scriptCode.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/script/scriptCode.cpp.i
 .PHONY : structure/script/scriptCode.cpp.i
 
 structure/script/scriptCode.s: structure/script/scriptCode.cpp.s
@@ -252,7 +290,8 @@ structure/script/scriptCode.s: structure/script/scriptCode.cpp.s
 
 # target to generate assembly for a file
 structure/script/scriptCode.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/script/scriptCode.cpp.s
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/script/scriptCode.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/script/scriptCode.cpp.s
 .PHONY : structure/script/scriptCode.cpp.s
 
 structure/transaction/RawTransaction.o: structure/transaction/RawTransaction.cpp.o
@@ -261,7 +300,8 @@ structure/transaction/RawTransaction.o: structure/transaction/RawTransaction.cpp
 
 # target to build an object file
 structure/transaction/RawTransaction.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/transaction/RawTransaction.cpp.o
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/RawTransaction.cpp.o
 .PHONY : structure/transaction/RawTransaction.cpp.o
 
 structure/transaction/RawTransaction.i: structure/transaction/RawTransaction.cpp.i
@@ -270,7 +310,8 @@ structure/transaction/RawTransaction.i: structure/transaction/RawTransaction.cpp
 
 # target to preprocess a source file
 structure/transaction/RawTransaction.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/transaction/RawTransaction.cpp.i
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/RawTransaction.cpp.i
 .PHONY : structure/transaction/RawTransaction.cpp.i
 
 structure/transaction/RawTransaction.s: structure/transaction/RawTransaction.cpp.s
@@ -279,7 +320,8 @@ structure/transaction/RawTransaction.s: structure/transaction/RawTransaction.cpp
 
 # target to generate assembly for a file
 structure/transaction/RawTransaction.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/transaction/RawTransaction.cpp.s
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/RawTransaction.cpp.s
 .PHONY : structure/transaction/RawTransaction.cpp.s
 
 structure/transaction/TransactionInput.o: structure/transaction/TransactionInput.cpp.o
@@ -288,7 +330,8 @@ structure/transaction/TransactionInput.o: structure/transaction/TransactionInput
 
 # target to build an object file
 structure/transaction/TransactionInput.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/transaction/TransactionInput.cpp.o
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/TransactionInput.cpp.o
 .PHONY : structure/transaction/TransactionInput.cpp.o
 
 structure/transaction/TransactionInput.i: structure/transaction/TransactionInput.cpp.i
@@ -297,7 +340,8 @@ structure/transaction/TransactionInput.i: structure/transaction/TransactionInput
 
 # target to preprocess a source file
 structure/transaction/TransactionInput.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/transaction/TransactionInput.cpp.i
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/TransactionInput.cpp.i
 .PHONY : structure/transaction/TransactionInput.cpp.i
 
 structure/transaction/TransactionInput.s: structure/transaction/TransactionInput.cpp.s
@@ -306,7 +350,8 @@ structure/transaction/TransactionInput.s: structure/transaction/TransactionInput
 
 # target to generate assembly for a file
 structure/transaction/TransactionInput.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/transaction/TransactionInput.cpp.s
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/TransactionInput.cpp.s
 .PHONY : structure/transaction/TransactionInput.cpp.s
 
 structure/transaction/TransactionOutput.o: structure/transaction/TransactionOutput.cpp.o
@@ -315,7 +360,8 @@ structure/transaction/TransactionOutput.o: structure/transaction/TransactionOutp
 
 # target to build an object file
 structure/transaction/TransactionOutput.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/transaction/TransactionOutput.cpp.o
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/TransactionOutput.cpp.o
 .PHONY : structure/transaction/TransactionOutput.cpp.o
 
 structure/transaction/TransactionOutput.i: structure/transaction/TransactionOutput.cpp.i
@@ -324,7 +370,8 @@ structure/transaction/TransactionOutput.i: structure/transaction/TransactionOutp
 
 # target to preprocess a source file
 structure/transaction/TransactionOutput.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/transaction/TransactionOutput.cpp.i
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/TransactionOutput.cpp.i
 .PHONY : structure/transaction/TransactionOutput.cpp.i
 
 structure/transaction/TransactionOutput.s: structure/transaction/TransactionOutput.cpp.s
@@ -333,7 +380,8 @@ structure/transaction/TransactionOutput.s: structure/transaction/TransactionOutp
 
 # target to generate assembly for a file
 structure/transaction/TransactionOutput.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/structure/transaction/TransactionOutput.cpp.s
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/TransactionOutput.cpp.s
 .PHONY : structure/transaction/TransactionOutput.cpp.s
 
 test/RunTest.o: test/RunTest.cpp.o
@@ -369,7 +417,8 @@ type/DScript.o: type/DScript.cpp.o
 
 # target to build an object file
 type/DScript.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/type/DScript.cpp.o
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DScript.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DScript.cpp.o
 .PHONY : type/DScript.cpp.o
 
 type/DScript.i: type/DScript.cpp.i
@@ -378,7 +427,8 @@ type/DScript.i: type/DScript.cpp.i
 
 # target to preprocess a source file
 type/DScript.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/type/DScript.cpp.i
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DScript.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DScript.cpp.i
 .PHONY : type/DScript.cpp.i
 
 type/DScript.s: type/DScript.cpp.s
@@ -387,7 +437,8 @@ type/DScript.s: type/DScript.cpp.s
 
 # target to generate assembly for a file
 type/DScript.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/type/DScript.cpp.s
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DScript.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DScript.cpp.s
 .PHONY : type/DScript.cpp.s
 
 type/DVarInt.o: type/DVarInt.cpp.o
@@ -396,7 +447,8 @@ type/DVarInt.o: type/DVarInt.cpp.o
 
 # target to build an object file
 type/DVarInt.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/type/DVarInt.cpp.o
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DVarInt.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o
 .PHONY : type/DVarInt.cpp.o
 
 type/DVarInt.i: type/DVarInt.cpp.i
@@ -405,7 +457,8 @@ type/DVarInt.i: type/DVarInt.cpp.i
 
 # target to preprocess a source file
 type/DVarInt.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/type/DVarInt.cpp.i
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DVarInt.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DVarInt.cpp.i
 .PHONY : type/DVarInt.cpp.i
 
 type/DVarInt.s: type/DVarInt.cpp.s
@@ -414,7 +467,8 @@ type/DVarInt.s: type/DVarInt.cpp.s
 
 # target to generate assembly for a file
 type/DVarInt.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/type/DVarInt.cpp.s
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DVarInt.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DVarInt.cpp.s
 .PHONY : type/DVarInt.cpp.s
 
 type/Outpoint.o: type/Outpoint.cpp.o
@@ -423,7 +477,8 @@ type/Outpoint.o: type/Outpoint.cpp.o
 
 # target to build an object file
 type/Outpoint.cpp.o:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/type/Outpoint.cpp.o
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/Outpoint.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o
 .PHONY : type/Outpoint.cpp.o
 
 type/Outpoint.i: type/Outpoint.cpp.i
@@ -432,7 +487,8 @@ type/Outpoint.i: type/Outpoint.cpp.i
 
 # target to preprocess a source file
 type/Outpoint.cpp.i:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/type/Outpoint.cpp.i
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/Outpoint.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/Outpoint.cpp.i
 .PHONY : type/Outpoint.cpp.i
 
 type/Outpoint.s: type/Outpoint.cpp.s
@@ -441,8 +497,39 @@ type/Outpoint.s: type/Outpoint.cpp.s
 
 # target to generate assembly for a file
 type/Outpoint.cpp.s:
-	$(MAKE) -f CMakeFiles/parsingBlockchain.dir/build.make CMakeFiles/parsingBlockchain.dir/type/Outpoint.cpp.s
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/Outpoint.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/Outpoint.cpp.s
 .PHONY : type/Outpoint.cpp.s
+
+util/uint256.o: util/uint256.cpp.o
+
+.PHONY : util/uint256.o
+
+# target to build an object file
+util/uint256.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/util/uint256.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/util/uint256.cpp.o
+.PHONY : util/uint256.cpp.o
+
+util/uint256.i: util/uint256.cpp.i
+
+.PHONY : util/uint256.i
+
+# target to preprocess a source file
+util/uint256.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/util/uint256.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/util/uint256.cpp.i
+.PHONY : util/uint256.cpp.i
+
+util/uint256.s: util/uint256.cpp.s
+
+.PHONY : util/uint256.s
+
+# target to generate assembly for a file
+util/uint256.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/util/uint256.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/util/uint256.cpp.s
+.PHONY : util/uint256.cpp.s
 
 # Help Target
 help:
@@ -454,10 +541,13 @@ help:
 	@echo "... test"
 	@echo "... rebuild_cache"
 	@echo "... runTests"
-	@echo "... parsingBlockchain"
-	@echo "... ParserBlock.o"
-	@echo "... ParserBlock.i"
-	@echo "... ParserBlock.s"
+	@echo "... spyCblock"
+	@echo "... ParserMain.o"
+	@echo "... ParserMain.i"
+	@echo "... ParserMain.s"
+	@echo "... core/SpyCBlock.o"
+	@echo "... core/SpyCBlock.i"
+	@echo "... core/SpyCBlock.s"
 	@echo "... structure/block/block.o"
 	@echo "... structure/block/block.i"
 	@echo "... structure/block/block.s"
@@ -488,6 +578,9 @@ help:
 	@echo "... type/Outpoint.o"
 	@echo "... type/Outpoint.i"
 	@echo "... type/Outpoint.s"
+	@echo "... util/uint256.o"
+	@echo "... util/uint256.i"
+	@echo "... util/uint256.s"
 .PHONY : help
 
 

@@ -2,6 +2,7 @@
 // Created by https://github.com/vincenzopalazzo on 1/24/19.
 //
 
+#include <sstream>
 #include "Outpoint.h"
 
 bool operator<(const OutPoint &a, const OutPoint &b) {
@@ -17,7 +18,10 @@ bool operator!=(const OutPoint &a, const OutPoint &b) {
 }
 
 std::string OutPoint::ToString() const {
-    return std::__cxx11::string();
+    stringstream stream;
+    stream << "Hash public key sender: " <<  this->hash.ToString() << endl;
+    stream << "N: " << this->n << endl;
+    return stream.str();
 }
 
 void OutPoint::SetNull() {

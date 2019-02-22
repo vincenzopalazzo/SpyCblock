@@ -1,12 +1,13 @@
 //
 // Created by https://github.com/vincenzopalazzo on 1/21/19.
 //
-#include "../../util/uint256.h"
-
 #ifndef PARSINGBLOCKCHAIN_BLOCKHEADER_H
 #define PARSINGBLOCKCHAIN_BLOCKHEADER_H
 
-#endif //PARSINGBLOCKCHAIN_BLOCKHEADER_H
+#include "../../util/uint256.h"
+#include <glog/logging.h>
+
+using namespace std;
 
 /**
  * The dimension blockheader is 80 bit
@@ -20,6 +21,8 @@ private:
     uint32_t time;
     uint32_t nBits; // this whats corrisponde
     uint32_t nonce;
+
+    string convertTimeStamp();
 
 public:
     virtual ~BlockHeader();
@@ -44,6 +47,10 @@ public:
 
     bool operator!=(const BlockHeader &rhs) const;
 
+    string toString();
+
     void unserialize(std::ifstream &stream);
 
 };
+
+#endif //PARSINGBLOCKCHAIN_BLOCKHEADER_H

@@ -5,10 +5,20 @@
 #ifndef SPYCBLOCK_SPYCBLOCK_H
 #define SPYCBLOCK_SPYCBLOCK_H
 
+#include <string>
 
-class SpyCBlock {
+using namespace std;
 
-};
+namespace spyCBlock {
 
+    class SpyCBlock {
+
+    public:
+        //TODO this method refactoring
+        void read(string pathBlockchain);
+
+    };
+
+}
 
 #endif //SPYCBLOCK_SPYCBLOCK_H

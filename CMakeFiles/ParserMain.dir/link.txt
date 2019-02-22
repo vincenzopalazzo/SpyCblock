@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/ParserMain.dir/ParserMain.cpp.o  -o ParserMain 

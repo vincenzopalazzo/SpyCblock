@@ -9,7 +9,9 @@
 #include <vector>
 #include <bits/stl_bvector.h>
 #include <fstream>
-#include "DVarInt.cpp"
+#include "DVarInt.h"
+
+using namespace std;
 
 class DScript{
 
@@ -22,6 +24,8 @@ public:
     const std::vector<unsigned char> &getScript() const;
 
     const DVarInt &getScriptLenght() const;
+
+    string toString();
 
     void decode(std::ifstream &stream);
 };

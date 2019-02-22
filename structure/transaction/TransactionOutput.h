@@ -22,6 +22,8 @@ public:
 
     const DScript &getScript() const;
 
+    string toString();
+
     void decode(ifstream &stream);
 
 };

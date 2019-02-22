@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vincenzo/Github/spyCblock/ParserMain.cpp
+core/SpyCBlock.h
+/home/vincenzo/Github/spyCblock/core/SpyCBlock.h
+
+/home/vincenzo/Github/spyCblock/core/SpyCBlock.h
+string
+-
+

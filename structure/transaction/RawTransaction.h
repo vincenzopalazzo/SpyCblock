@@ -1,15 +1,17 @@
 //
 // Created by https://github.com/vincenzopalazzo on 1/21/19.
 //
-#include <vector>
-#include "TransactionOutput.cpp"
-#include "TransactionInput.cpp"
+
 
 #ifndef PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 #define PARSINGBLOCKCHAIN_RAWTRANSACTION_H
-#endif //PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 
+#include <vector>
+#include "TransactionOutput.h"
+#include "TransactionInput.h"
+#include <glog/logging.h>
 
+using namespace std;
 
 class RawTransaction{
 /*TODO left a number o txOut and txInf*/
@@ -22,18 +24,22 @@ private:
     uint32_t lockTime;
 
 public:
-    const DVarInt &getNumberTxIn() const;
-
-    const DVarInt &getNumberTxOut() const;
 
     uint32_t getVersion() const;
 
-    const std::vector<TransactionInput> &getTxInd() const;
+    const DVarInt &getNumberTxIn() const;
 
+    const vector<TransactionInput> &getTxInd() const;
 
-    const std::vector<TransactionOutput> &getTxOut() const;
+    const DVarInt &getNumberTxOut() const;
+
+    const vector<TransactionOutput> &getTxOut() const;
 
     uint32_t getLockTime() const;
 
+    string toString();
+
     void decode(std::ifstream &stream);
 };
+
+#endif //PARSINGBLOCKCHAIN_RAWTRANSACTION_H

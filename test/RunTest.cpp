@@ -4,8 +4,47 @@
 #include <fstream>
 #include "gtest/gtest.h"
 #include <glog/logging.h>
-#include "../util/uint256.cpp"
-#include "../structure/block/block.cpp"
+#include "../util/uint256.h"
+#include "../structure/block/block.h"
+
+using namespace spyCBlock;
+
+//test metod toString
+TEST(RunTest, test_function_to_string)
+{
+    string in;
+    in = "-------- BLOCK --------- \n"
+             "Magic Numbar: d9b4bef9\n"
+             "Block Size: 285\n"
+             "---------- Block Header ---------- \n"
+             "Version: 1\n"
+             "Previous Block Header Hash: 0000000000000000000000000000000000000000000000000000000000000000\n"
+             "Merkle Root: 4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b\n"
+             "Time: 2009-01-03 18:15:05\n"
+             "nBits: 486604799\n"
+             "Nonce: 2083236893\n"
+             "Numbar Raw Transaction: 1\n"
+             "---------- Raw Transaction ----------\n"
+             "Version: 1\n"
+             "---------- Transaction Input ----------\n"
+             "Number Transaction In: 1\n"
+             "Hash public key sender: 0000000000000000000000000000000000000000000000000000000000000000\n"
+             "N: 4294967295\n"
+             "Length script: 77\n"
+             "Script: EThe Times 03/Jan/2009 Chancellor on brink of second bailout for banks\n"
+             "Sequences: 4294967295\n"
+             "---------- Transaction Output ----------\n"
+             "Number Transaction out: 1\n"
+             "N Value: 5000000000 satoshi\n"
+             "Length script: 67\n"
+             "Script: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"
+             "0";
+
+    ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    Block *block = new Block();
+    block->decode(*stream);
+    cout << block->toString();
+}
 
 /*Test new type uint256*/
 TEST(RunTest, type_uint256_test_block_header)

@@ -1,6 +1,9 @@
 //
 // Created by https://github.com/vincenzopalazzo on 1/21/19.
+//  The type is type bitcoin core implementation
 //
+#ifndef PARSINGBLOCKCHAIN_OUTPOINT_H
+#define PARSINGBLOCKCHAIN_OUTPOINT_H
 
 #include <cstdint>
 #include <stdint.h>
@@ -9,11 +12,7 @@
 #include "../util/serialize.h"
 #include "../util/uint256.h"
 
-#ifndef PARSINGBLOCKCHAIN_OUTPOINT_H
-#define PARSINGBLOCKCHAIN_OUTPOINT_H
-
-#endif //PARSINGBLOCKCHAIN_OUTPOINT_H
-
+using namespace std;
 
 static const int SERIALIZE_TRANSACTION_NO_WITNESS = 0x40000000;
 
@@ -60,3 +59,5 @@ public:
 
     std::string ToString() const;
 };
+
+#endif //PARSINGBLOCKCHAIN_OUTPOINT_H

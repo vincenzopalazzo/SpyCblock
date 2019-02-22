@@ -42,18 +42,9 @@ BlockHeader::BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint2
     this->nonce = nonce;
 }
 
-const uint256 &BlockHeader::getPreviousBlockHeaderHash() const {
-    return previousBlockHeaderHash;
-}
-
-const uint256 &BlockHeader::getMerkleRoot() const {
-    return merkleRoot;
-}
-
 BlockHeader::BlockHeader() {}
 
 BlockHeader::~BlockHeader() {
-
 }
 
 bool BlockHeader::operator==(const BlockHeader &rhs) const {
@@ -72,11 +63,45 @@ bool BlockHeader::operator!=(const BlockHeader &rhs) const {
 void BlockHeader::unserialize(std::ifstream &stream)
 {
     Unserialize(stream, version);
-    this->previousBlockHeaderHash.Unserialize(stream);
+    LOG(INFO) << "Version block header readed: " << version;
+   this->previousBlockHeaderHash.Unserialize(stream);
+    LOG(INFO) << "Privius block readed: " << previousBlockHeaderHash.ToString();
     this->merkleRoot.Unserialize(stream);
+    LOG(INFO) << "Merkler root readed: " << merkleRoot.ToString();
     Unserialize(stream, this->time);
+    LOG(INFO) << "Time stamp block readed: " << previousBlockHeaderHash.ToString();
     Unserialize(stream, this->nBits);
+    LOG(INFO) << "NBits block readed: " << previousBlockHeaderHash.ToString();
     Unserialize(stream, this->nonce);
+    LOG(INFO) << "Nonce block readed: " << previousBlockHeaderHash.ToString();
+}
+
+string BlockHeader::toString() {
+    stringstream stream;
+    stream << "---------- Block Header ---------- \n" << "Version: " << version << endl;
+    stream << "Previous Block Header Hash: " << previousBlockHeaderHash.GetHex() << endl;
+    stream << "Merkle Root: " << merkleRoot.GetHex() << endl;
+    stream << "Time: " << convertTimeStamp() << endl;
+    stream << "nBits: " << nBits << endl;
+    stream << "Nonce: " << nonce << endl;
+    return stream.str();
+}
+
+string BlockHeader::convertTimeStamp() {
+    char data[30];
+    time_t timeToValue = time;
+    tm *tmTime = gmtime(&timeToValue);
+    strftime (data,30,"%F %T", tmTime);
+    string dataString = string(data);
+    return dataString;
+}
+
+const uint256 &BlockHeader::getPreviousBlockHeaderHash() const {
+    return previousBlockHeaderHash;
+}
+
+const uint256 &BlockHeader::getMerkleRoot() const {
+    return merkleRoot;
 }
 
 
