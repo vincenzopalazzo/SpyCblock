@@ -29,6 +29,8 @@ public:
     OutPoint(): n(NULL_INDEX) { }
     OutPoint(const uint256& hashIn, uint32_t nIn): hash(hashIn), n(nIn) { }
 
+    virtual ~OutPoint();
+
     /*TODO this metod is not sicure*/
     const uint256 &getHash() const;
 

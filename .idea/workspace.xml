@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="spyCblock" targetName="runTests" />
       <config projectName="spyCblock" targetName="spyCblock" />
+      <config projectName="spyCblock" targetName="runTests" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -13,10 +13,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac8492fd-d34d-46b9-b368-7084899e1c55" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/test/RunTest.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/structure/block/block.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/structure/block/block.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/structure/block/blockHeader.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/structure/block/blockHeader.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/test/RunTest.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/test/RunTest.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/type/DScript.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/type/DScript.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/type/DVarInt.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/type/DVarInt.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/type/Outpoint.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/type/Outpoint.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/runTests.dir/util/uint256.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/runTests.dir/util/uint256.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParserMain.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ParserMain.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/runTests" beforeDir="false" afterPath="$PROJECT_DIR$/runTests" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/structure/block/block.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/structure/block/block.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/structure/transaction/RawTransaction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/structure/transaction/RawTransaction.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/structure/transaction/RawTransaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/structure/transaction/RawTransaction.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/RunTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/RunTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/file_test/file_bit_uno.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/file_test/file_test_readl_all_file_dat_uno.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/file_test/first_block_deserialize.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/file_test/header_block_file.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/type/DScript.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/type/DScript.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/type/DScript.h" beforeDir="false" afterPath="$PROJECT_DIR$/type/DScript.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/type/DVarInt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/type/DVarInt.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/type/DVarInt.h" beforeDir="false" afterPath="$PROJECT_DIR$/type/DVarInt.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/type/Outpoint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/type/Outpoint.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/type/Outpoint.h" beforeDir="false" afterPath="$PROJECT_DIR$/type/Outpoint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/uint256.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/util/uint256.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/uint256.h" beforeDir="false" afterPath="$PROJECT_DIR$/util/uint256.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/CMakeFiles/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,32 +54,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Default" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/structure/block/block.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-              <folding>
-                <element signature="e#68#87#0" expanded="true" />
-                <element signature="e#954#1519#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/RunTest.cpp">
+        <entry file="file://$PROJECT_DIR$/type/DScript.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="711">
-              <caret line="173" column="56" selection-start-line="173" selection-start-column="56" selection-end-line="173" selection-end-column="56" />
+            <state relative-caret-position="160">
+              <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
               <folding>
                 <element signature="e#67#85#0" expanded="true" />
-                <element signature="e#293#1885#0" />
-                <element signature="e#1958#2608#0" />
-                <element signature="e#2676#3094#0" />
-                <element signature="e#3129#3408#0" />
-                <element signature="e#3410#4547#0" />
-                <element signature="e#4580#6430#0" />
               </folding>
             </state>
           </provider>
@@ -75,28 +82,33 @@
       <list>
         <option value="$PROJECT_DIR$/test/TestToString.cpp" />
         <option value="$PROJECT_DIR$/structure/transaction/TransactionOutput.h" />
-        <option value="$PROJECT_DIR$/type/Outpoint.cpp" />
-        <option value="$PROJECT_DIR$/type/DScript.cpp" />
-        <option value="$PROJECT_DIR$/type/DScript.h" />
-        <option value="$PROJECT_DIR$/type/Outpoint.h" />
         <option value="$PROJECT_DIR$/structure/transaction/TransactionInput.h" />
         <option value="$PROJECT_DIR$/core/SpyCBlock.cpp" />
         <option value="$PROJECT_DIR$/core/SpyCBlock.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/structure/block/block.h" />
         <option value="$PROJECT_DIR$/structure/block/blockHeader.h" />
-        <option value="$PROJECT_DIR$/structure/block/blockHeader.cpp" />
-        <option value="$PROJECT_DIR$/structure/transaction/RawTransaction.h" />
-        <option value="$PROJECT_DIR$/ParserMain.cpp" />
         <option value="$PROJECT_DIR$/structure/transaction/TransactionInput.cpp" />
-        <option value="$PROJECT_DIR$/structure/transaction/RawTransaction.cpp" />
         <option value="$PROJECT_DIR$/structure/transaction/TransactionOutput.cpp" />
-        <option value="$PROJECT_DIR$/structure/block/block.cpp" />
+        <option value="$PROJECT_DIR$/ParserMain.cpp" />
+        <option value="$PROJECT_DIR$/log/UNKNOWN.INFO" />
         <option value="$PROJECT_DIR$/test/RunTest.cpp" />
+        <option value="$PROJECT_DIR$/util/uint256.h" />
+        <option value="$PROJECT_DIR$/structure/transaction/RawTransaction.h" />
+        <option value="$PROJECT_DIR$/type/DScript.h" />
+        <option value="$PROJECT_DIR$/type/DVarInt.h" />
+        <option value="$PROJECT_DIR$/type/DVarInt.cpp" />
+        <option value="$PROJECT_DIR$/type/Outpoint.h" />
+        <option value="$PROJECT_DIR$/util/uint256.cpp" />
+        <option value="$PROJECT_DIR$/structure/block/blockHeader.cpp" />
+        <option value="$PROJECT_DIR$/structure/transaction/RawTransaction.cpp" />
+        <option value="$PROJECT_DIR$/type/DScript.cpp" />
+        <option value="$PROJECT_DIR$/structure/block/block.cpp" />
+        <option value="$PROJECT_DIR$/type/Outpoint.cpp" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="28" />
     <option name="width" value="1920" />
     <option name="height" value="1052" />
@@ -116,18 +128,7 @@
             <path>
               <item name="spyCblock" type="b2602c69:ProjectViewProjectNode" />
               <item name="spyCblock" type="462c0819:PsiDirectoryNode" />
-              <item name="structure" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spyCblock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spyCblock" type="462c0819:PsiDirectoryNode" />
-              <item name="structure" type="462c0819:PsiDirectoryNode" />
-              <item name="block" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spyCblock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spyCblock" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="type" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -142,6 +143,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -154,20 +160,32 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Google Test.RunTest.All_Read_file_dat">
+  <component name="RunManager" selected="Google Test.All in runTests">
     <configuration name="All in runTests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" nameIsGenerated="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="spyCblock" TARGET_NAME="runTests" CONFIG_NAME="Default" RUN_TARGET_PROJECT_NAME="spyCblock" RUN_TARGET_NAME="runTests" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RunTest.All_Read_file_dat" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PROGRAM_PARAMS="--gtest_catch_exceptions=0" PASS_PARENT_ENVS_2="true" PROJECT_NAME="spyCblock" TARGET_NAME="runTests" RUN_TARGET_PROJECT_NAME="spyCblock" RUN_TARGET_NAME="runTests" TEST_CLASS="RunTest" TEST_METHOD="All_Read_file_dat" TEST_MODE="SUITE_TEST">
+    <configuration name="RunTest.All_Read_file_dat" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="spyCblock" TARGET_NAME="runTests" RUN_TARGET_PROJECT_NAME="spyCblock" RUN_TARGET_NAME="runTests" TEST_CLASS="RunTest" TEST_METHOD="All_Read_file_dat" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RunTest.test_function_to_string" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="spyCblock" TARGET_NAME="runTests" CONFIG_NAME="Default" RUN_TARGET_PROJECT_NAME="spyCblock" RUN_TARGET_NAME="runTests" TEST_CLASS="RunTest" TEST_METHOD="test_function_to_string" TEST_MODE="SUITE_TEST">
+    <configuration name="RunTest.All_Read_file_dat_error" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="spyCblock" TARGET_NAME="runTests" CONFIG_NAME="Default" RUN_TARGET_PROJECT_NAME="spyCblock" RUN_TARGET_NAME="runTests" TEST_CLASS="RunTest" TEST_METHOD="All_Read_file_dat_error" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RunTest.Compare_previus_block_hash" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="spyCblock" TARGET_NAME="runTests" RUN_TARGET_PROJECT_NAME="spyCblock" RUN_TARGET_NAME="runTests" TEST_CLASS="RunTest" TEST_METHOD="Compare_previus_block_hash" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RunTest.compare_previus_block_hash" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="spyCblock" TARGET_NAME="runTests" RUN_TARGET_PROJECT_NAME="spyCblock" RUN_TARGET_NAME="runTests" TEST_CLASS="RunTest" TEST_METHOD="compare_previus_block_hash" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -194,15 +212,19 @@
       <item itemvalue="Application.spyCblock" />
       <item itemvalue="Google Test.All in runTests" />
       <item itemvalue="Google Test.TestToString.test_function_to_string" />
-      <item itemvalue="Google Test.RunTest.test_function_to_string" />
       <item itemvalue="Google Test.RunTest.unserialize_block" />
       <item itemvalue="Google Test.RunTest.All_Read_file_dat" />
+      <item itemvalue="Google Test.RunTest.All_Read_file_dat_error" />
+      <item itemvalue="Google Test.RunTest.Compare_previus_block_hash" />
+      <item itemvalue="Google Test.RunTest.compare_previus_block_hash" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.RunTest.compare_previus_block_hash" />
+        <item itemvalue="Google Test.RunTest.Compare_previus_block_hash" />
         <item itemvalue="Google Test.RunTest.All_Read_file_dat" />
+        <item itemvalue="Google Test.RunTest.All_Read_file_dat_error" />
         <item itemvalue="Google Test.RunTest.unserialize_block" />
-        <item itemvalue="Google Test.RunTest.test_function_to_string" />
       </list>
     </recent_temporary>
   </component>
@@ -225,50 +247,62 @@
       <workItem from="1550829171303" duration="972000" />
       <workItem from="1550840017217" duration="6556000" />
       <workItem from="1550848351606" duration="4070000" />
+      <workItem from="1550863137782" duration="295000" />
+      <workItem from="1550916592158" duration="10344000" />
+      <workItem from="1550929251299" duration="5647000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RunTest_All_Read_file_dat - 2019.02.22 at 17h 30m 45s.xml">
-      <configuration name="RunTest.All_Read_file_dat" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="RunTest_compare_previus_block_hash - 2019.02.23 at 15h 25m 09s.xml">
+      <configuration name="RunTest.compare_previus_block_hash" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="RunTest_All_Read_file_dat - 2019.02.22 at 17h 31m 31s.xml">
-      <configuration name="RunTest.All_Read_file_dat" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="RunTest_compare_previus_block_hash - 2019.02.23 at 15h 26m 52s.xml">
+      <configuration name="RunTest.compare_previus_block_hash" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="RunTest_All_Read_file_dat - 2019.02.22 at 17h 40m 45s.xml">
-      <configuration name="RunTest.All_Read_file_dat" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="RunTest_compare_previus_block_hash - 2019.02.23 at 15h 27m 57s.xml">
+      <configuration name="RunTest.compare_previus_block_hash" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="RunTest_All_Read_file_dat - 2019.02.22 at 17h 41m 41s.xml">
-      <configuration name="RunTest.All_Read_file_dat" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="RunTest_compare_previus_block_hash - 2019.02.23 at 15h 28m 29s.xml">
+      <configuration name="RunTest.compare_previus_block_hash" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="RunTest_All_Read_file_dat - 2019.02.22 at 17h 42m 07s.xml">
-      <configuration name="RunTest.All_Read_file_dat" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="RunTest_compare_previus_block_hash - 2019.02.23 at 15h 28m 40s.xml">
+      <configuration name="RunTest.compare_previus_block_hash" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="RunTest_All_Read_file_dat - 2019.02.22 at 17h 43m 52s.xml">
-      <configuration name="RunTest.All_Read_file_dat" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="RunTest_compare_previus_block_hash - 2019.02.23 at 15h 29m 07s.xml">
+      <configuration name="RunTest.compare_previus_block_hash" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="RunTest_All_Read_file_dat - 2019.02.22 at 17h 45m 30s.xml">
-      <configuration name="RunTest.All_Read_file_dat" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="All_in_runTests - 2019.02.23 at 15h 30m 44s.xml">
+      <configuration name="All in runTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="RunTest_All_Read_file_dat - 2019.02.22 at 17h 46m 42s.xml">
-      <configuration name="RunTest.All_Read_file_dat" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="All_in_runTests - 2019.02.23 at 15h 32m 12s.xml">
+      <configuration name="All in runTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="RunTest_All_Read_file_dat - 2019.02.22 at 17h 48m 12s.xml">
-      <configuration name="RunTest.All_Read_file_dat" configurationId="CMakeGoogleTestRunConfigurationType" />
+    <history-entry file="All_in_runTests - 2019.02.23 at 15h 36m 09s.xml">
+      <configuration name="All in runTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_in_runTests - 2019.02.22 at 17h 48m 37s.xml">
+    <history-entry file="All_in_runTests - 2019.02.23 at 16h 30m 14s.xml">
       <configuration name="All in runTests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25612000" />
+    <option name="totallyTimeSpent" value="41898000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1920" height="1052" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.27267876" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.28228387" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="CMake" order="0" weight="0.32894737" />
       <window_info anchor="bottom" id="Terminal" order="1" />
@@ -277,12 +311,12 @@
       <window_info anchor="bottom" id="Messages" order="4" weight="0.43311402" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.63486844" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.83662283" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="bottom" id="TODO" order="12" weight="0.32894737" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -293,21 +327,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeFiles/spyCblock.dir/build.make">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="217" selection-start-line="217" selection-end-line="217" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeFiles/Makefile2">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="120" selection-start-line="120" selection-end-line="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/TestToString.cpp" />
     <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
@@ -319,56 +338,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="4334" column="1" lean-forward="true" selection-start-line="4334" selection-start-column="1" selection-end-line="4334" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/type/DScript.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="41" />
-          <folding>
-            <element signature="e#67#85#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/type/DScript.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/type/DVarInt.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#67#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/type/DVarInt.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/type/Outpoint.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-          <folding>
-            <element signature="e#68#86#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/type/Outpoint.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -394,57 +363,10 @@
         <state relative-caret-position="-345" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/structure/transaction/TransactionInput.h">
+    <entry file="file://$PROJECT_DIR$/core/SpyCBlock.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structure/transaction/TransactionOutput.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="18" />
-          <folding>
-            <element signature="e#162#180#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structure/block/blockHeader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
-          <folding>
-            <element signature="e#148#179#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structure/block/blockHeader.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
-          <folding>
-            <element signature="e#68#86#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structure/transaction/RawTransaction.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structure/block/block.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
-          <folding>
-            <element signature="e#137#155#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="115">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -455,13 +377,156 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/log/test-log.log19700101-010000.10163" />
+    <entry file="file://$PROJECT_DIR$/log/test-log.log19700101-010000.10055" />
+    <entry file="file://$PROJECT_DIR$/ParserMain.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding>
+            <element signature="e#67#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/test-log.log19700101-010000.10549" />
+    <entry file="file://$PROJECT_DIR$/log/UNKNOWN.INFO" />
+    <entry file="file://$PROJECT_DIR$/log/test-log.log19700101-010000.10615" />
+    <entry file="file://$PROJECT_DIR$/log/test-log.log19700101-010000.11779" />
+    <entry file="file://$PROJECT_DIR$/log/test-log.log20190223-122024.12020" />
+    <entry file="file://$PROJECT_DIR$/log/test-log.log20190223-122056.12064" />
+    <entry file="file://$PROJECT_DIR$/test/log/unserialize_block_test.log20190223-122408.12261" />
+    <entry file="file://$PROJECT_DIR$/test/log/All_Read_file_dat_test.log20190223-123248.12893" />
+    <entry file="file://$PROJECT_DIR$/test/file_test/file_test_readl_all_file_dat_uno.txt" />
+    <entry file="file://$PROJECT_DIR$/test/log/unserialize_block_test.log20190223-125507.14090">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/log/runTests.INFO">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/log/unserialize_block_test.log20190223-130619.15720">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/file_test/header_block_file.dat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/log/compare_previus_block_hash.log20190223-145659.7951">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/file_test/previus_hash_block_header.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5244" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/log/compare_previus_block_hash.log20190223-151708.9707">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3380">
+          <caret line="113634" selection-start-line="113634" selection-end-line="113635" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/log/compare_previus_block_hash.log20190223-151946.9910">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="113634" column="45" selection-start-line="113634" selection-start-column="45" selection-end-line="113634" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/log/compare_previus_block_hash.log20190223-152106.10008">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/transaction/RawTransaction.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/type/DScript.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+          <folding>
+            <element signature="e#141#158#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/type/DVarInt.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/type/Outpoint.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+          <folding>
+            <element signature="e#191#209#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/uint256.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/uint256.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/block/block.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="712">
+          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+          <folding>
+            <element signature="e#137#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/block/blockHeader.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-115">
+          <caret line="46" column="29" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+          <folding>
+            <element signature="e#68#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/block/blockHeader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding>
+            <element signature="e#148#179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/structure/transaction/TransactionInput.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
+        <state relative-caret-position="298">
           <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
           <folding>
             <element signature="e#68#86#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure/transaction/TransactionInput.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -475,56 +540,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/structure/transaction/TransactionOutput.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="18" />
+          <folding>
+            <element signature="e#162#180#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/structure/transaction/RawTransaction.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+        <state relative-caret-position="437">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding>
             <element signature="e#68#86#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ParserMain.cpp">
+    <entry file="file://$PROJECT_DIR$/type/DVarInt.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="66" />
+        <state relative-caret-position="665">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
           <folding>
-            <element signature="e#67#92#0" expanded="true" />
+            <element signature="e#67#83#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/SpyCBlock.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/structure/block/block.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+        <state relative-caret-position="136">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
           <folding>
             <element signature="e#68#87#0" expanded="true" />
-            <element signature="e#954#1519#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/type/Outpoint.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="e#68#86#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/RunTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="711">
-          <caret line="173" column="56" selection-start-line="173" selection-start-column="56" selection-end-line="173" selection-end-column="56" />
+        <state relative-caret-position="36">
+          <caret line="275" column="41" selection-start-line="275" selection-start-column="41" selection-end-line="275" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/serialize.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="96" column="41" selection-start-line="96" selection-start-column="41" selection-end-line="96" selection-end-column="41" />
+          <folding>
+            <element signature="e#2553#2570#0" expanded="true" />
+            <element signature="e#7130#7147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/type/DScript.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
           <folding>
             <element signature="e#67#85#0" expanded="true" />
-            <element signature="e#293#1885#0" />
-            <element signature="e#1958#2608#0" />
-            <element signature="e#2676#3094#0" />
-            <element signature="e#3129#3408#0" />
-            <element signature="e#3410#4547#0" />
-            <element signature="e#4580#6430#0" />
           </folding>
         </state>
       </provider>

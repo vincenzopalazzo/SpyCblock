@@ -21,6 +21,8 @@ private:
 
 public:
 
+    virtual ~DScript();
+
     const std::vector<unsigned char> &getScript() const;
 
     const DVarInt &getScriptLenght() const;

@@ -28,6 +28,8 @@ public:
 
     explicit base_blob(const std::vector<unsigned char>& vch);
 
+    virtual ~base_blob();
+
     bool IsNull() const
     {
         for (int i = 0; i < WIDTH; i++)

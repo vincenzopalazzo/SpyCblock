@@ -13,6 +13,8 @@ private:
     unsigned value;
 
 public:
+    virtual ~DVarInt();
+
     unsigned int getValue() const;
 
     void decode(std::ifstream &stream);

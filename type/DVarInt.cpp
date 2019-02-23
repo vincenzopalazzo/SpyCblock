@@ -39,3 +39,7 @@ void DVarInt::decode(std::ifstream &stream) {
     }
     this->value = -1;
 }
+
+DVarInt::~DVarInt() {
+
+}

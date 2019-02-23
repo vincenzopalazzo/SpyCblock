@@ -8,6 +8,13 @@
 
 using namespace spyCBlock;
 
+Block::~Block()
+{
+}
+
+Block::Block() {
+}
+
 
 void Block::decode(std::ifstream &stream) {
     Unserialize(stream, this->magicNum);
@@ -17,8 +24,8 @@ void Block::decode(std::ifstream &stream) {
     blockHeader.unserialize(stream);
     this->numbarRawTransaction.decode(stream);
     if (numbarRawTransaction.getValue() == -1) {
-        LOG(FATAL) << "Error numbarRaw Transaction = " << numbarRawTransaction.getValue();
-        //TODO segnalare errore
+        LOG_IF(FATAL, (numbarRawTransaction.getValue() == -1)) << "Error numbarRaw Transaction = " << numbarRawTransaction.getValue();
+        //TODO segnalare errore lanciando un eccezione
         return;
     }
     for (int i = 0; i < numbarRawTransaction.getValue(); i++) {
@@ -38,8 +45,8 @@ string Block::toString() {
     *stream << "Block Size: " << blocksize << endl;
     *stream << blockHeader.toString();
     *stream << "Numbar Raw Transaction: " << numbarRawTransaction.getValue() << endl;
-    for (int i = 0; i < numbarRawTransaction.getValue(); i++) {
-        *stream << this->rawTransactions.at(i).toString();
+    for (int i = 0; i < rawTransactions.size(); i++) {
+        *stream << this->rawTransactions.at(i).toString(); //TODO possible generated exception
     }
     string streamResult = stream->str();
     delete  stream;
@@ -49,13 +56,9 @@ string Block::toString() {
 string Block::convertMagicNumbar() {
     stringstream *stream = new stringstream();
     *stream << hex << magicNum;
-    return stream->str();
-}
-
-Block::~Block() {
-}
-
-Block::Block() {
+    string magicNumbarString = stream->str();
+    delete stream;
+    return magicNumbarString;
 }
 
 int32_t Block::getMagicNum() const {

@@ -47,3 +47,8 @@ const uint256 &OutPoint::getHash() const {
 uint32_t OutPoint::getN() const {
     return n;
 }
+
+OutPoint::~OutPoint()
+{
+
+}

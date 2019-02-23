@@ -25,6 +25,8 @@ private:
 
 public:
 
+    virtual ~RawTransaction();
+
     uint32_t getVersion() const;
 
     const DVarInt &getNumberTxIn() const;

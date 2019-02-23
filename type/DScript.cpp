@@ -24,17 +24,22 @@ const DVarInt &DScript::getScriptLenght() const {
 }
 
 string DScript::toString() {
-    stringstream stream;
-    stream << "Length script: " << this->scriptLenght.getValue() << endl;
-    stream << "Script: ";
+    stringstream *stream = new stringstream();
+    *stream << "Length script: " << this->scriptLenght.getValue() << endl;
+    *stream << "Script: ";
     for(int i = 0; i < script.size(); i++)
     {
         if(i == script.size() - 1)
         {
-            stream << script.at(i) << endl;
+            *stream << script.at(i) << endl;
         }else{
-            stream << script.at(i);
+            *stream << script.at(i);
         }
     }
-    return stream.str();
+    string result = stream->str();
+    delete stream;
+    return result;
+}
+
+DScript::~DScript() {
 }

@@ -10,7 +10,6 @@ using namespace spyCBlock;
 
 int main(int argc, char* argv[])
 {
-    InitGoogleLogging("Main Class");
     SpyCBlock *spyCBlock = new SpyCBlock();
     spyCBlock->read("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
     return 0;
