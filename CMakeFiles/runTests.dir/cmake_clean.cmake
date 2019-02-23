@@ -7,10 +7,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o"
   "CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o"
   "CMakeFiles/runTests.dir/structure/script/scriptCode.cpp.o"
-  "CMakeFiles/runTests.dir/type/Outpoint.cpp.o"
+  "CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o"
   "CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o"
-  "CMakeFiles/runTests.dir/type/DVarInt.cpp.o"
-  "CMakeFiles/runTests.dir/type/DScript.cpp.o"
+  "CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o"
+  "CMakeFiles/runTests.dir/structure/type/DScript.cpp.o"
   "runTests.pdb"
   "runTests"
 )

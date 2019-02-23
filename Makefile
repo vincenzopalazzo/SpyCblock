@@ -147,32 +147,32 @@ spyCblock/fast:
 	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/build
 .PHONY : spyCblock/fast
 
-ParserMain.o: ParserMain.cpp.o
+core/ParserMain.o: core/ParserMain.cpp.o
 
-.PHONY : ParserMain.o
+.PHONY : core/ParserMain.o
 
 # target to build an object file
-ParserMain.cpp.o:
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/ParserMain.cpp.o
-.PHONY : ParserMain.cpp.o
+core/ParserMain.cpp.o:
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/core/ParserMain.cpp.o
+.PHONY : core/ParserMain.cpp.o
 
-ParserMain.i: ParserMain.cpp.i
+core/ParserMain.i: core/ParserMain.cpp.i
 
-.PHONY : ParserMain.i
+.PHONY : core/ParserMain.i
 
 # target to preprocess a source file
-ParserMain.cpp.i:
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/ParserMain.cpp.i
-.PHONY : ParserMain.cpp.i
+core/ParserMain.cpp.i:
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/core/ParserMain.cpp.i
+.PHONY : core/ParserMain.cpp.i
 
-ParserMain.s: ParserMain.cpp.s
+core/ParserMain.s: core/ParserMain.cpp.s
 
-.PHONY : ParserMain.s
+.PHONY : core/ParserMain.s
 
 # target to generate assembly for a file
-ParserMain.cpp.s:
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/ParserMain.cpp.s
-.PHONY : ParserMain.cpp.s
+core/ParserMain.cpp.s:
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/core/ParserMain.cpp.s
+.PHONY : core/ParserMain.cpp.s
 
 core/SpyCBlock.o: core/SpyCBlock.cpp.o
 
@@ -384,6 +384,96 @@ structure/transaction/TransactionOutput.cpp.s:
 	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/transaction/TransactionOutput.cpp.s
 .PHONY : structure/transaction/TransactionOutput.cpp.s
 
+structure/type/DScript.o: structure/type/DScript.cpp.o
+
+.PHONY : structure/type/DScript.o
+
+# target to build an object file
+structure/type/DScript.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/type/DScript.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.o
+.PHONY : structure/type/DScript.cpp.o
+
+structure/type/DScript.i: structure/type/DScript.cpp.i
+
+.PHONY : structure/type/DScript.i
+
+# target to preprocess a source file
+structure/type/DScript.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/type/DScript.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.i
+.PHONY : structure/type/DScript.cpp.i
+
+structure/type/DScript.s: structure/type/DScript.cpp.s
+
+.PHONY : structure/type/DScript.s
+
+# target to generate assembly for a file
+structure/type/DScript.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/type/DScript.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.s
+.PHONY : structure/type/DScript.cpp.s
+
+structure/type/DVarInt.o: structure/type/DVarInt.cpp.o
+
+.PHONY : structure/type/DVarInt.o
+
+# target to build an object file
+structure/type/DVarInt.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.o
+.PHONY : structure/type/DVarInt.cpp.o
+
+structure/type/DVarInt.i: structure/type/DVarInt.cpp.i
+
+.PHONY : structure/type/DVarInt.i
+
+# target to preprocess a source file
+structure/type/DVarInt.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.i
+.PHONY : structure/type/DVarInt.cpp.i
+
+structure/type/DVarInt.s: structure/type/DVarInt.cpp.s
+
+.PHONY : structure/type/DVarInt.s
+
+# target to generate assembly for a file
+structure/type/DVarInt.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.s
+.PHONY : structure/type/DVarInt.cpp.s
+
+structure/type/Outpoint.o: structure/type/Outpoint.cpp.o
+
+.PHONY : structure/type/Outpoint.o
+
+# target to build an object file
+structure/type/Outpoint.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.o
+.PHONY : structure/type/Outpoint.cpp.o
+
+structure/type/Outpoint.i: structure/type/Outpoint.cpp.i
+
+.PHONY : structure/type/Outpoint.i
+
+# target to preprocess a source file
+structure/type/Outpoint.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.i
+.PHONY : structure/type/Outpoint.cpp.i
+
+structure/type/Outpoint.s: structure/type/Outpoint.cpp.s
+
+.PHONY : structure/type/Outpoint.s
+
+# target to generate assembly for a file
+structure/type/Outpoint.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.s
+.PHONY : structure/type/Outpoint.cpp.s
+
 test/RunTest.o: test/RunTest.cpp.o
 
 .PHONY : test/RunTest.o
@@ -410,96 +500,6 @@ test/RunTest.s: test/RunTest.cpp.s
 test/RunTest.cpp.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/RunTest.cpp.s
 .PHONY : test/RunTest.cpp.s
-
-type/DScript.o: type/DScript.cpp.o
-
-.PHONY : type/DScript.o
-
-# target to build an object file
-type/DScript.cpp.o:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DScript.cpp.o
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DScript.cpp.o
-.PHONY : type/DScript.cpp.o
-
-type/DScript.i: type/DScript.cpp.i
-
-.PHONY : type/DScript.i
-
-# target to preprocess a source file
-type/DScript.cpp.i:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DScript.cpp.i
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DScript.cpp.i
-.PHONY : type/DScript.cpp.i
-
-type/DScript.s: type/DScript.cpp.s
-
-.PHONY : type/DScript.s
-
-# target to generate assembly for a file
-type/DScript.cpp.s:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DScript.cpp.s
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DScript.cpp.s
-.PHONY : type/DScript.cpp.s
-
-type/DVarInt.o: type/DVarInt.cpp.o
-
-.PHONY : type/DVarInt.o
-
-# target to build an object file
-type/DVarInt.cpp.o:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DVarInt.cpp.o
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o
-.PHONY : type/DVarInt.cpp.o
-
-type/DVarInt.i: type/DVarInt.cpp.i
-
-.PHONY : type/DVarInt.i
-
-# target to preprocess a source file
-type/DVarInt.cpp.i:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DVarInt.cpp.i
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DVarInt.cpp.i
-.PHONY : type/DVarInt.cpp.i
-
-type/DVarInt.s: type/DVarInt.cpp.s
-
-.PHONY : type/DVarInt.s
-
-# target to generate assembly for a file
-type/DVarInt.cpp.s:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/DVarInt.cpp.s
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/DVarInt.cpp.s
-.PHONY : type/DVarInt.cpp.s
-
-type/Outpoint.o: type/Outpoint.cpp.o
-
-.PHONY : type/Outpoint.o
-
-# target to build an object file
-type/Outpoint.cpp.o:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/Outpoint.cpp.o
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o
-.PHONY : type/Outpoint.cpp.o
-
-type/Outpoint.i: type/Outpoint.cpp.i
-
-.PHONY : type/Outpoint.i
-
-# target to preprocess a source file
-type/Outpoint.cpp.i:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/Outpoint.cpp.i
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/Outpoint.cpp.i
-.PHONY : type/Outpoint.cpp.i
-
-type/Outpoint.s: type/Outpoint.cpp.s
-
-.PHONY : type/Outpoint.s
-
-# target to generate assembly for a file
-type/Outpoint.cpp.s:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/type/Outpoint.cpp.s
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/type/Outpoint.cpp.s
-.PHONY : type/Outpoint.cpp.s
 
 util/uint256.o: util/uint256.cpp.o
 
@@ -542,9 +542,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... runTests"
 	@echo "... spyCblock"
-	@echo "... ParserMain.o"
-	@echo "... ParserMain.i"
-	@echo "... ParserMain.s"
+	@echo "... core/ParserMain.o"
+	@echo "... core/ParserMain.i"
+	@echo "... core/ParserMain.s"
 	@echo "... core/SpyCBlock.o"
 	@echo "... core/SpyCBlock.i"
 	@echo "... core/SpyCBlock.s"
@@ -566,18 +566,18 @@ help:
 	@echo "... structure/transaction/TransactionOutput.o"
 	@echo "... structure/transaction/TransactionOutput.i"
 	@echo "... structure/transaction/TransactionOutput.s"
+	@echo "... structure/type/DScript.o"
+	@echo "... structure/type/DScript.i"
+	@echo "... structure/type/DScript.s"
+	@echo "... structure/type/DVarInt.o"
+	@echo "... structure/type/DVarInt.i"
+	@echo "... structure/type/DVarInt.s"
+	@echo "... structure/type/Outpoint.o"
+	@echo "... structure/type/Outpoint.i"
+	@echo "... structure/type/Outpoint.s"
 	@echo "... test/RunTest.o"
 	@echo "... test/RunTest.i"
 	@echo "... test/RunTest.s"
-	@echo "... type/DScript.o"
-	@echo "... type/DScript.i"
-	@echo "... type/DScript.s"
-	@echo "... type/DVarInt.o"
-	@echo "... type/DVarInt.i"
-	@echo "... type/DVarInt.s"
-	@echo "... type/Outpoint.o"
-	@echo "... type/Outpoint.i"
-	@echo "... type/Outpoint.s"
 	@echo "... util/uint256.o"
 	@echo "... util/uint256.i"
 	@echo "... util/uint256.s"

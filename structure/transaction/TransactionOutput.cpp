@@ -6,6 +6,8 @@
 #include "../../util/serialize.h"
 #include <glog/logging.h>
 
+using namespace spyCBlock;
+
 void TransactionOutput::decode(ifstream &stream) {
     Unserialize(stream, nValue);
     LOG(INFO) << "N value " << nValue;
@@ -25,6 +27,6 @@ const DScript &TransactionOutput::getScript() const {
 string TransactionOutput::toString() {
     stringstream stream;
     stream << "N Value: " << nValue << " satoshi" << endl;
-    stream << script.toString();
+    stream << script.getScriptString() << endl;
     return stream.str();
 }

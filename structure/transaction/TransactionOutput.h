@@ -7,26 +7,29 @@
 #define PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H
 
 #include <cstdint>
-#include "../../type/DScript.h"
+#include "../type/DScript.h"
 
 using namespace std;
 
-class TransactionOutput{
+namespace spyCBlock{
 
-private:
-    int64_t nValue;
-    DScript script;
+    class TransactionOutput{
 
-public:
-    int64_t getNValue() const;
+    private:
+        int64_t nValue;
+        DScript script;
 
-    const DScript &getScript() const;
+    public:
+        int64_t getNValue() const;
 
-    string toString();
+        const DScript &getScript() const;
 
-    void decode(ifstream &stream);
+        string toString();
 
-};
+        void decode(ifstream &stream);
+
+    };
+}
 #endif //PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H
 
 

@@ -11,10 +11,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/vincenzo/Github/spyCblock/structure/transaction/RawTransaction.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o"
   "/home/vincenzo/Github/spyCblock/structure/transaction/TransactionInput.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o"
   "/home/vincenzo/Github/spyCblock/structure/transaction/TransactionOutput.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o"
+  "/home/vincenzo/Github/spyCblock/structure/type/DScript.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/structure/type/DScript.cpp.o"
+  "/home/vincenzo/Github/spyCblock/structure/type/DVarInt.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o"
+  "/home/vincenzo/Github/spyCblock/structure/type/Outpoint.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o"
   "/home/vincenzo/Github/spyCblock/test/RunTest.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/test/RunTest.cpp.o"
-  "/home/vincenzo/Github/spyCblock/type/DScript.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/type/DScript.cpp.o"
-  "/home/vincenzo/Github/spyCblock/type/DVarInt.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/type/DVarInt.cpp.o"
-  "/home/vincenzo/Github/spyCblock/type/Outpoint.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/type/Outpoint.cpp.o"
   "/home/vincenzo/Github/spyCblock/util/uint256.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir/util/uint256.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

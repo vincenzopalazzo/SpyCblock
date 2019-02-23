@@ -6,32 +6,36 @@
 
 
 #include <cstdint>
-#include "../../type/Outpoint.h"
-#include "../../type/DScript.h"
+#include "../type/Outpoint.h"
+#include "../type/DScript.h"
 
 using namespace std;
 /*
  * In the coindbase transaction, outpoint is standard, the hash id resiver si 0 and
  * the n is 2^32 - 1*/
-class TransactionInput
-{
-private:
-    OutPoint outpoint;
-    DScript script;
-    uint32_t sequences;
 
-public:
-    const DScript &getScript() const;
+namespace spyCBlock{
 
-    uint32_t getSequences() const;
+    class TransactionInput
+    {
+    private:
+        OutPoint outpoint;
+        DScript script;
+        uint32_t sequences;
 
-    const OutPoint &getOutpoint() const;
+    public:
+        const DScript &getScript() const;
 
-    void setOutpoint(const OutPoint &outpoint);
+        uint32_t getSequences() const;
 
-    string toString();
+        const OutPoint &getOutpoint() const;
 
-    void decode(std::ifstream &stream);
-};
+        void setOutpoint(const OutPoint &outpoint);
+
+        string toString();
+
+        void decode(std::ifstream &stream);
+    };
+}
 
 #endif //PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H

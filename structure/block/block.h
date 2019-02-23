@@ -25,8 +25,6 @@ namespace spyCBlock {
         int32_t magicNum;
         int32_t blocksize;
         BlockHeader blockHeader;
-        /*TODO left a number of transaction a block*/
-        //TODO test, the number is a int32_t, rigth?
         DVarInt numbarRawTransaction;
         vector<RawTransaction> rawTransactions;
 

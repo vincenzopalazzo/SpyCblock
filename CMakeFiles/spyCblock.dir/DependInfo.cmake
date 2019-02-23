@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/vincenzo/Github/spyCblock/ParserMain.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/ParserMain.cpp.o"
+  "/home/vincenzo/Github/spyCblock/core/ParserMain.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/core/ParserMain.cpp.o"
   "/home/vincenzo/Github/spyCblock/core/SpyCBlock.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.o"
   "/home/vincenzo/Github/spyCblock/structure/block/block.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/structure/block/block.cpp.o"
   "/home/vincenzo/Github/spyCblock/structure/block/blockHeader.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/structure/block/blockHeader.cpp.o"
@@ -12,9 +12,9 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/vincenzo/Github/spyCblock/structure/transaction/RawTransaction.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/structure/transaction/RawTransaction.cpp.o"
   "/home/vincenzo/Github/spyCblock/structure/transaction/TransactionInput.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/structure/transaction/TransactionInput.cpp.o"
   "/home/vincenzo/Github/spyCblock/structure/transaction/TransactionOutput.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/structure/transaction/TransactionOutput.cpp.o"
-  "/home/vincenzo/Github/spyCblock/type/DScript.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/type/DScript.cpp.o"
-  "/home/vincenzo/Github/spyCblock/type/DVarInt.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o"
-  "/home/vincenzo/Github/spyCblock/type/Outpoint.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o"
+  "/home/vincenzo/Github/spyCblock/structure/type/DScript.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.o"
+  "/home/vincenzo/Github/spyCblock/structure/type/DVarInt.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.o"
+  "/home/vincenzo/Github/spyCblock/structure/type/Outpoint.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.o"
   "/home/vincenzo/Github/spyCblock/util/uint256.cpp" "/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir/util/uint256.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

@@ -6,7 +6,7 @@
 #include "TransactionInput.h"
 #include <glog/logging.h>
 
-
+using namespace spyCBlock;
 
 const OutPoint &TransactionInput::getOutpoint() const {
     return outpoint;
@@ -40,7 +40,7 @@ const DScript &TransactionInput::getScript() const {
 string TransactionInput::toString() {
     stringstream stream;
     stream << outpoint.ToString();
-    stream << script.toString();
+    stream << script.getScriptString() << endl;
     stream << "Sequences: " << sequences << endl;
     return stream.str();
 }

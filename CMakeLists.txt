@@ -15,15 +15,15 @@ find_package(glog 0.3.5 REQUIRED)
 add_executable(runTests test/RunTest.cpp util/uint256.cpp structure/block/block.cpp structure/block/blockHeader.cpp
         structure/transaction/RawTransaction.cpp structure/transaction/TransactionOutput.cpp
         structure/transaction/TransactionInput.cpp structure/script/scriptCode.cpp
-        type/Outpoint.cpp core/SpyCBlock.cpp type/DVarInt.cpp type/DScript.cpp type/Outpoint.cpp)
+        structure/type/Outpoint.cpp core/SpyCBlock.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp structure/type/Outpoint.cpp)
 
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 
 target_link_libraries(runTests glog::glog)
 
-add_executable(spyCblock ParserMain.cpp util/uint256.cpp structure/block/block.cpp structure/block/blockHeader.cpp
+add_executable(spyCblock core/ParserMain.cpp util/uint256.cpp structure/block/block.cpp structure/block/blockHeader.cpp
         structure/transaction/RawTransaction.cpp structure/transaction/TransactionOutput.cpp
         structure/transaction/TransactionInput.cpp structure/script/scriptCode.cpp
-        type/Outpoint.cpp core/SpyCBlock.cpp type/DVarInt.cpp type/DScript.cpp type/Outpoint.cpp)
+        structure/type/Outpoint.cpp core/SpyCBlock.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp structure/type/Outpoint.cpp)
 
 target_link_libraries(spyCblock glog::glog)

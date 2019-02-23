@@ -13,6 +13,7 @@ using namespace spyCBlock;
 //test metod toString
 TEST(RunTest, test_function_to_string) {
     string in;
+    FLAGS_logtostderr = false;
     in = "-------- BLOCK --------- \n"
          "Magic Numbar: d9b4bef9\n"
          "Block Size: 285\n"
@@ -43,7 +44,7 @@ TEST(RunTest, test_function_to_string) {
     ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
     Block *block = new Block();
     block->decode(*stream);
-    cout << block->toString();
+    LOG(INFO) << block->toString();
 }
 
 /*Test new type uint256*/
@@ -114,7 +115,7 @@ Lock Time:	 0
   */
 TEST(RunTest, unserialize_one_block) {
     FLAGS_minloglevel = 2;
-    google::SetLogDestination(google::GLOG_INFO, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
+    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
 
     Block *block = new Block();
 
@@ -158,7 +159,7 @@ TEST(RunTest, unserialize_one_block) {
 
 TEST(RunTest, unserialize_two_block) { //TODO stavi finendo questo blocco
     FLAGS_minloglevel = 2;
-    google::SetLogDestination(google::GLOG_INFO, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
+    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
 
     Block *block = new Block();
 
@@ -238,10 +239,10 @@ TEST(RunTest, unserialize_two_block) { //TODO stavi finendo questo blocco
 }
 
 /*Test Read all file dat*/
-TEST(RunTest, All_Read_file_dat) {
+TEST(RunTest, all_Read_file_dat) {
 
     FLAGS_minloglevel = 2;
-    google::SetLogDestination(google::GLOG_INFO, "/home/vincenzo/Github/spyCblock/test/log/All_Read_file_dat_test.log");
+    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/all_Read_file_dat_test_first.log");
 
     ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
     ofstream *outStream = new ofstream("test/file_test/file_test_readl_all_file_dat_uno.txt");
@@ -259,7 +260,7 @@ TEST(RunTest, All_Read_file_dat) {
                 numbarBlock++;
                 LOG(INFO) << "Numbar block read now " << numbarBlock;
             }
-            EXPECT_EQ(blocks->size(), 113632);
+            EXPECT_EQ(blocks->size(), 119973);
         }
     }
     catch (out_of_range oe) {
@@ -275,7 +276,7 @@ TEST(RunTest, All_Read_file_dat) {
 
 TEST(RunTest, compare_previus_block_hash) {
 
-    FLAGS_minloglevel = 0;
+    FLAGS_minloglevel = 1;
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_INFO, "/home/vincenzo/Github/spyCblock/test/log/compare_previus_block_hash.log");
 
@@ -291,7 +292,7 @@ TEST(RunTest, compare_previus_block_hash) {
         count++;
     }
     LOG(INFO) << "Hashs readted: " << count;
-    ASSERT_EQ(count, 113632);
+    ASSERT_EQ(count, 119973);
 
     ifstream *fileBlk = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
 
@@ -316,9 +317,11 @@ TEST(RunTest, compare_previus_block_hash) {
         FAIL() << "Exception generated: " << ore.what();
     }
 
-    EXPECT_EQ(coutBlockRead, 113632);
+    EXPECT_EQ(coutBlockRead, 119973);
 
 }
+
+//TODO add complete test for the another block, look in the file blkxxxx.dat in /teml in local pc
 
 int main(int argc, char **argv) {
     google::InitGoogleLogging(argv[0]);

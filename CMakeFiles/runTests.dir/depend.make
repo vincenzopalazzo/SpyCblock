@@ -8,9 +8,9 @@ CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: structure/block/blockHeader.h
 CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: structure/transaction/RawTransaction.h
 CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: structure/transaction/TransactionInput.h
 CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: structure/transaction/TransactionOutput.h
-CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: type/DScript.h
-CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: type/DVarInt.h
-CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: type/Outpoint.h
+CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: structure/type/DScript.h
+CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: structure/type/DVarInt.h
+CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: structure/type/Outpoint.h
 CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: util/amount.h
 CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: util/byteswap.h
 CMakeFiles/runTests.dir/core/SpyCBlock.cpp.o: util/common.h
@@ -30,9 +30,9 @@ CMakeFiles/runTests.dir/structure/block/block.cpp.o: structure/block/blockHeader
 CMakeFiles/runTests.dir/structure/block/block.cpp.o: structure/transaction/RawTransaction.h
 CMakeFiles/runTests.dir/structure/block/block.cpp.o: structure/transaction/TransactionInput.h
 CMakeFiles/runTests.dir/structure/block/block.cpp.o: structure/transaction/TransactionOutput.h
-CMakeFiles/runTests.dir/structure/block/block.cpp.o: type/DScript.h
-CMakeFiles/runTests.dir/structure/block/block.cpp.o: type/DVarInt.h
-CMakeFiles/runTests.dir/structure/block/block.cpp.o: type/Outpoint.h
+CMakeFiles/runTests.dir/structure/block/block.cpp.o: structure/type/DScript.h
+CMakeFiles/runTests.dir/structure/block/block.cpp.o: structure/type/DVarInt.h
+CMakeFiles/runTests.dir/structure/block/block.cpp.o: structure/type/Outpoint.h
 CMakeFiles/runTests.dir/structure/block/block.cpp.o: util/amount.h
 CMakeFiles/runTests.dir/structure/block/block.cpp.o: util/byteswap.h
 CMakeFiles/runTests.dir/structure/block/block.cpp.o: util/common.h
@@ -65,9 +65,9 @@ CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: structure/tr
 CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: structure/transaction/RawTransaction.h
 CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: structure/transaction/TransactionInput.h
 CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: structure/transaction/TransactionOutput.h
-CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: type/DScript.h
-CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: type/DVarInt.h
-CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: type/Outpoint.h
+CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: structure/type/DScript.h
+CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: structure/type/DVarInt.h
+CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: structure/type/Outpoint.h
 CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: util/amount.h
 CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: util/byteswap.h
 CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: util/common.h
@@ -83,9 +83,9 @@ CMakeFiles/runTests.dir/structure/transaction/RawTransaction.cpp.o: /usr/local/i
 
 CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: structure/transaction/TransactionInput.cpp
 CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: structure/transaction/TransactionInput.h
-CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: type/DScript.h
-CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: type/DVarInt.h
-CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: type/Outpoint.h
+CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: structure/type/DScript.h
+CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: structure/type/DVarInt.h
+CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: structure/type/Outpoint.h
 CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: util/amount.h
 CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: util/byteswap.h
 CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: util/common.h
@@ -101,8 +101,8 @@ CMakeFiles/runTests.dir/structure/transaction/TransactionInput.cpp.o: /usr/local
 
 CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: structure/transaction/TransactionOutput.cpp
 CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: structure/transaction/TransactionOutput.h
-CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: type/DScript.h
-CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: type/DVarInt.h
+CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: structure/type/DScript.h
+CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: structure/type/DVarInt.h
 CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: util/byteswap.h
 CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: util/endian.h
 CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: util/prevector.h
@@ -112,15 +112,50 @@ CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: /usr/loca
 CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: /usr/local/include/glog/logging.h
 CMakeFiles/runTests.dir/structure/transaction/TransactionOutput.cpp.o: /usr/local/include/glog/vlog_is_on.h
 
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: structure/type/DScript.cpp
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: structure/type/DScript.h
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: structure/type/DVarInt.h
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: util/byteswap.h
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: util/endian.h
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: util/prevector.h
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: util/serialize.h
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: util/span.h
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: /usr/local/include/glog/log_severity.h
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: /usr/local/include/glog/logging.h
+CMakeFiles/runTests.dir/structure/type/DScript.cpp.o: /usr/local/include/glog/vlog_is_on.h
+
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: structure/type/DVarInt.cpp
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: structure/type/DVarInt.h
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: util/byteswap.h
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: util/endian.h
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: util/prevector.h
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: util/serialize.h
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: util/span.h
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: /usr/local/include/glog/log_severity.h
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: /usr/local/include/glog/logging.h
+CMakeFiles/runTests.dir/structure/type/DVarInt.cpp.o: /usr/local/include/glog/vlog_is_on.h
+
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: structure/type/Outpoint.cpp
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: structure/type/Outpoint.h
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: util/amount.h
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: util/byteswap.h
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: util/common.h
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: util/endian.h
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: util/prevector.h
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: util/script.h
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: util/serialize.h
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: util/span.h
+CMakeFiles/runTests.dir/structure/type/Outpoint.cpp.o: util/uint256.h
+
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: structure/block/block.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: structure/block/blockHeader.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: structure/transaction/RawTransaction.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: structure/transaction/TransactionInput.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: structure/transaction/TransactionOutput.h
+CMakeFiles/runTests.dir/test/RunTest.cpp.o: structure/type/DScript.h
+CMakeFiles/runTests.dir/test/RunTest.cpp.o: structure/type/DVarInt.h
+CMakeFiles/runTests.dir/test/RunTest.cpp.o: structure/type/Outpoint.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: test/RunTest.cpp
-CMakeFiles/runTests.dir/test/RunTest.cpp.o: type/DScript.h
-CMakeFiles/runTests.dir/test/RunTest.cpp.o: type/DVarInt.h
-CMakeFiles/runTests.dir/test/RunTest.cpp.o: type/Outpoint.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: util/amount.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: util/byteswap.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: util/common.h
@@ -133,35 +168,6 @@ CMakeFiles/runTests.dir/test/RunTest.cpp.o: util/uint256.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: /usr/local/include/glog/log_severity.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: /usr/local/include/glog/logging.h
 CMakeFiles/runTests.dir/test/RunTest.cpp.o: /usr/local/include/glog/vlog_is_on.h
-
-CMakeFiles/runTests.dir/type/DScript.cpp.o: type/DScript.cpp
-CMakeFiles/runTests.dir/type/DScript.cpp.o: type/DScript.h
-CMakeFiles/runTests.dir/type/DScript.cpp.o: type/DVarInt.h
-CMakeFiles/runTests.dir/type/DScript.cpp.o: util/byteswap.h
-CMakeFiles/runTests.dir/type/DScript.cpp.o: util/endian.h
-CMakeFiles/runTests.dir/type/DScript.cpp.o: util/prevector.h
-CMakeFiles/runTests.dir/type/DScript.cpp.o: util/serialize.h
-CMakeFiles/runTests.dir/type/DScript.cpp.o: util/span.h
-
-CMakeFiles/runTests.dir/type/DVarInt.cpp.o: type/DVarInt.cpp
-CMakeFiles/runTests.dir/type/DVarInt.cpp.o: type/DVarInt.h
-CMakeFiles/runTests.dir/type/DVarInt.cpp.o: util/byteswap.h
-CMakeFiles/runTests.dir/type/DVarInt.cpp.o: util/endian.h
-CMakeFiles/runTests.dir/type/DVarInt.cpp.o: util/prevector.h
-CMakeFiles/runTests.dir/type/DVarInt.cpp.o: util/serialize.h
-CMakeFiles/runTests.dir/type/DVarInt.cpp.o: util/span.h
-
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: type/Outpoint.cpp
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: type/Outpoint.h
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: util/amount.h
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: util/byteswap.h
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: util/common.h
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: util/endian.h
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: util/prevector.h
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: util/script.h
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: util/serialize.h
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: util/span.h
-CMakeFiles/runTests.dir/type/Outpoint.cpp.o: util/uint256.h
 
 CMakeFiles/runTests.dir/util/uint256.cpp.o: util/attributes.h
 CMakeFiles/runTests.dir/util/uint256.cpp.o: util/strencodings.cpp

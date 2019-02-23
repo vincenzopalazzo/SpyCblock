@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/spyCblock.dir/ParserMain.cpp.o"
+  "CMakeFiles/spyCblock.dir/core/ParserMain.cpp.o"
   "CMakeFiles/spyCblock.dir/util/uint256.cpp.o"
   "CMakeFiles/spyCblock.dir/structure/block/block.cpp.o"
   "CMakeFiles/spyCblock.dir/structure/block/blockHeader.cpp.o"
@@ -7,10 +7,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/spyCblock.dir/structure/transaction/TransactionOutput.cpp.o"
   "CMakeFiles/spyCblock.dir/structure/transaction/TransactionInput.cpp.o"
   "CMakeFiles/spyCblock.dir/structure/script/scriptCode.cpp.o"
-  "CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o"
+  "CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.o"
   "CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.o"
-  "CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o"
-  "CMakeFiles/spyCblock.dir/type/DScript.cpp.o"
+  "CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.o"
+  "CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.o"
   "spyCblock.pdb"
   "spyCblock"
 )

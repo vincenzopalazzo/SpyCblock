@@ -57,18 +57,18 @@ include CMakeFiles/spyCblock.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/spyCblock.dir/flags.make
 
-CMakeFiles/spyCblock.dir/ParserMain.cpp.o: CMakeFiles/spyCblock.dir/flags.make
-CMakeFiles/spyCblock.dir/ParserMain.cpp.o: ParserMain.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/spyCblock.dir/ParserMain.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spyCblock.dir/ParserMain.cpp.o -c /home/vincenzo/Github/spyCblock/ParserMain.cpp
+CMakeFiles/spyCblock.dir/core/ParserMain.cpp.o: CMakeFiles/spyCblock.dir/flags.make
+CMakeFiles/spyCblock.dir/core/ParserMain.cpp.o: core/ParserMain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/spyCblock.dir/core/ParserMain.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spyCblock.dir/core/ParserMain.cpp.o -c /home/vincenzo/Github/spyCblock/core/ParserMain.cpp
 
-CMakeFiles/spyCblock.dir/ParserMain.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spyCblock.dir/ParserMain.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vincenzo/Github/spyCblock/ParserMain.cpp > CMakeFiles/spyCblock.dir/ParserMain.cpp.i
+CMakeFiles/spyCblock.dir/core/ParserMain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spyCblock.dir/core/ParserMain.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vincenzo/Github/spyCblock/core/ParserMain.cpp > CMakeFiles/spyCblock.dir/core/ParserMain.cpp.i
 
-CMakeFiles/spyCblock.dir/ParserMain.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/ParserMain.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/ParserMain.cpp -o CMakeFiles/spyCblock.dir/ParserMain.cpp.s
+CMakeFiles/spyCblock.dir/core/ParserMain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/core/ParserMain.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/core/ParserMain.cpp -o CMakeFiles/spyCblock.dir/core/ParserMain.cpp.s
 
 CMakeFiles/spyCblock.dir/util/uint256.cpp.o: CMakeFiles/spyCblock.dir/flags.make
 CMakeFiles/spyCblock.dir/util/uint256.cpp.o: util/uint256.cpp
@@ -161,18 +161,18 @@ CMakeFiles/spyCblock.dir/structure/script/scriptCode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/structure/script/scriptCode.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/structure/script/scriptCode.cpp -o CMakeFiles/spyCblock.dir/structure/script/scriptCode.cpp.s
 
-CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o: CMakeFiles/spyCblock.dir/flags.make
-CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o: type/Outpoint.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o -c /home/vincenzo/Github/spyCblock/type/Outpoint.cpp
+CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.o: CMakeFiles/spyCblock.dir/flags.make
+CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.o: structure/type/Outpoint.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.o -c /home/vincenzo/Github/spyCblock/structure/type/Outpoint.cpp
 
-CMakeFiles/spyCblock.dir/type/Outpoint.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spyCblock.dir/type/Outpoint.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vincenzo/Github/spyCblock/type/Outpoint.cpp > CMakeFiles/spyCblock.dir/type/Outpoint.cpp.i
+CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vincenzo/Github/spyCblock/structure/type/Outpoint.cpp > CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.i
 
-CMakeFiles/spyCblock.dir/type/Outpoint.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/type/Outpoint.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/type/Outpoint.cpp -o CMakeFiles/spyCblock.dir/type/Outpoint.cpp.s
+CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/structure/type/Outpoint.cpp -o CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.s
 
 CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.o: CMakeFiles/spyCblock.dir/flags.make
 CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.o: core/SpyCBlock.cpp
@@ -187,35 +187,35 @@ CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/core/SpyCBlock.cpp -o CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.s
 
-CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o: CMakeFiles/spyCblock.dir/flags.make
-CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o: type/DVarInt.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o -c /home/vincenzo/Github/spyCblock/type/DVarInt.cpp
+CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.o: CMakeFiles/spyCblock.dir/flags.make
+CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.o: structure/type/DVarInt.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.o -c /home/vincenzo/Github/spyCblock/structure/type/DVarInt.cpp
 
-CMakeFiles/spyCblock.dir/type/DVarInt.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spyCblock.dir/type/DVarInt.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vincenzo/Github/spyCblock/type/DVarInt.cpp > CMakeFiles/spyCblock.dir/type/DVarInt.cpp.i
+CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vincenzo/Github/spyCblock/structure/type/DVarInt.cpp > CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.i
 
-CMakeFiles/spyCblock.dir/type/DVarInt.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/type/DVarInt.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/type/DVarInt.cpp -o CMakeFiles/spyCblock.dir/type/DVarInt.cpp.s
+CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/structure/type/DVarInt.cpp -o CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.s
 
-CMakeFiles/spyCblock.dir/type/DScript.cpp.o: CMakeFiles/spyCblock.dir/flags.make
-CMakeFiles/spyCblock.dir/type/DScript.cpp.o: type/DScript.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/spyCblock.dir/type/DScript.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spyCblock.dir/type/DScript.cpp.o -c /home/vincenzo/Github/spyCblock/type/DScript.cpp
+CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.o: CMakeFiles/spyCblock.dir/flags.make
+CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.o: structure/type/DScript.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vincenzo/Github/spyCblock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.o -c /home/vincenzo/Github/spyCblock/structure/type/DScript.cpp
 
-CMakeFiles/spyCblock.dir/type/DScript.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spyCblock.dir/type/DScript.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vincenzo/Github/spyCblock/type/DScript.cpp > CMakeFiles/spyCblock.dir/type/DScript.cpp.i
+CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vincenzo/Github/spyCblock/structure/type/DScript.cpp > CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.i
 
-CMakeFiles/spyCblock.dir/type/DScript.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/type/DScript.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/type/DScript.cpp -o CMakeFiles/spyCblock.dir/type/DScript.cpp.s
+CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vincenzo/Github/spyCblock/structure/type/DScript.cpp -o CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.s
 
 # Object files for target spyCblock
 spyCblock_OBJECTS = \
-"CMakeFiles/spyCblock.dir/ParserMain.cpp.o" \
+"CMakeFiles/spyCblock.dir/core/ParserMain.cpp.o" \
 "CMakeFiles/spyCblock.dir/util/uint256.cpp.o" \
 "CMakeFiles/spyCblock.dir/structure/block/block.cpp.o" \
 "CMakeFiles/spyCblock.dir/structure/block/blockHeader.cpp.o" \
@@ -223,15 +223,15 @@ spyCblock_OBJECTS = \
 "CMakeFiles/spyCblock.dir/structure/transaction/TransactionOutput.cpp.o" \
 "CMakeFiles/spyCblock.dir/structure/transaction/TransactionInput.cpp.o" \
 "CMakeFiles/spyCblock.dir/structure/script/scriptCode.cpp.o" \
-"CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o" \
+"CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.o" \
 "CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.o" \
-"CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o" \
-"CMakeFiles/spyCblock.dir/type/DScript.cpp.o"
+"CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.o" \
+"CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.o"
 
 # External object files for target spyCblock
 spyCblock_EXTERNAL_OBJECTS =
 
-spyCblock: CMakeFiles/spyCblock.dir/ParserMain.cpp.o
+spyCblock: CMakeFiles/spyCblock.dir/core/ParserMain.cpp.o
 spyCblock: CMakeFiles/spyCblock.dir/util/uint256.cpp.o
 spyCblock: CMakeFiles/spyCblock.dir/structure/block/block.cpp.o
 spyCblock: CMakeFiles/spyCblock.dir/structure/block/blockHeader.cpp.o
@@ -239,10 +239,10 @@ spyCblock: CMakeFiles/spyCblock.dir/structure/transaction/RawTransaction.cpp.o
 spyCblock: CMakeFiles/spyCblock.dir/structure/transaction/TransactionOutput.cpp.o
 spyCblock: CMakeFiles/spyCblock.dir/structure/transaction/TransactionInput.cpp.o
 spyCblock: CMakeFiles/spyCblock.dir/structure/script/scriptCode.cpp.o
-spyCblock: CMakeFiles/spyCblock.dir/type/Outpoint.cpp.o
+spyCblock: CMakeFiles/spyCblock.dir/structure/type/Outpoint.cpp.o
 spyCblock: CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.o
-spyCblock: CMakeFiles/spyCblock.dir/type/DVarInt.cpp.o
-spyCblock: CMakeFiles/spyCblock.dir/type/DScript.cpp.o
+spyCblock: CMakeFiles/spyCblock.dir/structure/type/DVarInt.cpp.o
+spyCblock: CMakeFiles/spyCblock.dir/structure/type/DScript.cpp.o
 spyCblock: CMakeFiles/spyCblock.dir/build.make
 spyCblock: /usr/local/lib/libglog.a
 spyCblock: /usr/lib/x86_64-linux-gnu/libgflags.so.2.2.1

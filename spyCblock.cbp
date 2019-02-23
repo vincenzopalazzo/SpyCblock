@@ -128,7 +128,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/vincenzo/Github/spyCblock/ParserMain.cpp">
+		<Unit filename="/home/vincenzo/Github/spyCblock/core/ParserMain.cpp">
 			<Option target="spyCblock"/>
 		</Unit>
 		<Unit filename="/home/vincenzo/Github/spyCblock/core/SpyCBlock.cpp">
@@ -187,32 +187,32 @@
 			<Option target="runTests"/>
 			<Option target="spyCblock"/>
 		</Unit>
+		<Unit filename="/home/vincenzo/Github/spyCblock/structure/type/DScript.cpp">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/spyCblock/structure/type/DScript.h">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/spyCblock/structure/type/DVarInt.cpp">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/spyCblock/structure/type/DVarInt.h">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/spyCblock/structure/type/Outpoint.cpp">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/spyCblock/structure/type/Outpoint.h">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
 		<Unit filename="/home/vincenzo/Github/spyCblock/test/RunTest.cpp">
 			<Option target="runTests"/>
-		</Unit>
-		<Unit filename="/home/vincenzo/Github/spyCblock/type/DScript.cpp">
-			<Option target="runTests"/>
-			<Option target="spyCblock"/>
-		</Unit>
-		<Unit filename="/home/vincenzo/Github/spyCblock/type/DScript.h">
-			<Option target="runTests"/>
-			<Option target="spyCblock"/>
-		</Unit>
-		<Unit filename="/home/vincenzo/Github/spyCblock/type/DVarInt.cpp">
-			<Option target="runTests"/>
-			<Option target="spyCblock"/>
-		</Unit>
-		<Unit filename="/home/vincenzo/Github/spyCblock/type/DVarInt.h">
-			<Option target="runTests"/>
-			<Option target="spyCblock"/>
-		</Unit>
-		<Unit filename="/home/vincenzo/Github/spyCblock/type/Outpoint.cpp">
-			<Option target="runTests"/>
-			<Option target="spyCblock"/>
-		</Unit>
-		<Unit filename="/home/vincenzo/Github/spyCblock/type/Outpoint.h">
-			<Option target="runTests"/>
-			<Option target="spyCblock"/>
 		</Unit>
 		<Unit filename="/home/vincenzo/Github/spyCblock/util/uint256.cpp">
 			<Option target="runTests"/>

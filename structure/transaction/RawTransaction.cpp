@@ -7,6 +7,8 @@
 
 #include "RawTransaction.h"
 
+using namespace spyCBlock;
+
 void RawTransaction::decode(std::ifstream &stream) {
     Unserialize(stream, version);
     LOG(INFO) << "Version raw transaction " << version;
@@ -78,5 +80,5 @@ uint32_t RawTransaction::getLockTime() const {
 }
 
 RawTransaction::~RawTransaction() {
-
 }
+

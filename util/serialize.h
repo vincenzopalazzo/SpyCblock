@@ -386,6 +386,7 @@ void WriteVarInt(Stream& os, I n)
     } while(len--);
 }
 
+//TODO LOOK here
 template<typename Stream, VarIntMode Mode, typename I>
 I ReadVarInt(Stream& is)
 {

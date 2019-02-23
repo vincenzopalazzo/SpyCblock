@@ -10,38 +10,42 @@
 #include "TransactionOutput.h"
 #include "TransactionInput.h"
 #include <glog/logging.h>
+#include "../../util/serialize.h"
 
 using namespace std;
 
-class RawTransaction{
+namespace spyCBlock{
+
+    class RawTransaction{
 /*TODO left a number o txOut and txInf*/
-private:
-    uint32_t version;
-    DVarInt numberTxIn;
-    std::vector<TransactionInput> txInd; // che cosa cambia nella transazione coind base?
-    DVarInt numberTxOut;
-    std::vector<TransactionOutput> txOut;
-    uint32_t lockTime;
+    private:
+        uint32_t version;
+        DVarInt numberTxIn;
+        vector<TransactionInput> txInd; // che cosa cambia nella transazione coind base?
+        DVarInt numberTxOut;
+        vector<TransactionOutput> txOut;
+        uint32_t lockTime;
 
-public:
+    public:
 
-    virtual ~RawTransaction();
 
-    uint32_t getVersion() const;
+        virtual ~RawTransaction();
 
-    const DVarInt &getNumberTxIn() const;
+        uint32_t getVersion() const;
 
-    const vector<TransactionInput> &getTxInd() const;
+        const DVarInt & getNumberTxIn() const;
 
-    const DVarInt &getNumberTxOut() const;
+        const vector<TransactionInput> &getTxInd() const;
 
-    const vector<TransactionOutput> &getTxOut() const;
+        const DVarInt & getNumberTxOut() const;
 
-    uint32_t getLockTime() const;
+        const vector<TransactionOutput> &getTxOut() const;
 
-    string toString();
+        uint32_t getLockTime() const;
 
-    void decode(std::ifstream &stream);
-};
+        string toString();
 
+        void decode(std::ifstream &stream);
+    };
+}
 #endif //PARSINGBLOCKCHAIN_RAWTRANSACTION_H
