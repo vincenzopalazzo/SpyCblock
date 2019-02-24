@@ -1,7 +1,6 @@
 # SpyCblock
 ![Codacy Badge](https://img.shields.io/codacy/grade/13c697b9a6864ec8af152b5c7186bb3e.svg?style=for-the-badge)
 ![Build Status](https://img.shields.io/travis/com/vincenzopalazzo/SpyCblock.svg?style=for-the-badge)
-
 ![GitHub stars](https://img.shields.io/github/stars/vincenzopalazzo/SpyCblock.svg?style=for-the-badge)
 ![GitHub top language](https://img.shields.io/github/languages/top/vincenzopalazzo/SpyCblock.svg?style=for-the-badge)
 
