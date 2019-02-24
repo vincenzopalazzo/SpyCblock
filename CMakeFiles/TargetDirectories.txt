@@ -1,5 +1,0 @@
-/home/vincenzo/Github/spyCblock/CMakeFiles/edit_cache.dir
-/home/vincenzo/Github/spyCblock/CMakeFiles/test.dir
-/home/vincenzo/Github/spyCblock/CMakeFiles/rebuild_cache.dir
-/home/vincenzo/Github/spyCblock/CMakeFiles/runTests.dir
-/home/vincenzo/Github/spyCblock/CMakeFiles/spyCblock.dir
