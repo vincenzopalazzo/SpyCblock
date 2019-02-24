@@ -32,8 +32,6 @@ namespace spyCBlock {
 
     public:
 
-        Block();
-
         virtual ~Block();
 
         int32_t getMagicNum() const;

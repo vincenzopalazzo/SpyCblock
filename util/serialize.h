@@ -469,18 +469,22 @@ public:
 class CCompactSize
 {
 protected:
-    uint64_t &n;
+    uint64_t n;
 public:
-    explicit CCompactSize(uint64_t& nIn) : n(nIn) { }
+    CCompactSize(uint64_t nIn) : n(nIn) { }
 
     template<typename Stream>
     void Serialize(Stream &s) const {
-        WriteCompactSize<Stream>(s, n);
+        WriteCompactSize<Stream>(s, &n);
     }
 
     template<typename Stream>
     void Unserialize(Stream& s) {
         n = ReadCompactSize<Stream>(s);
+    }
+
+    uint64_t getN() const {
+        return n;
     }
 };
 

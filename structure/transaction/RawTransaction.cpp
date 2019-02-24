@@ -82,3 +82,4 @@ uint32_t RawTransaction::getLockTime() const {
 RawTransaction::~RawTransaction() {
 }
 
+

@@ -13,7 +13,7 @@
 #include "../../util/serialize.h"
 
 
-int32_t BlockHeader::getVersion() {
+int32_t BlockHeader::getVersion() const{
     return version;
 }
 

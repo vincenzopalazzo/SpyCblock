@@ -31,7 +31,7 @@ public:
 
     BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint256 merkleRoot, uint32_t time, uint32_t nBits, uint32_t nonce);
 
-    int32_t getVersion();
+    int32_t getVersion() const ;
 
     uint32_t getTime() const;
 

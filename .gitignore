@@ -4,6 +4,7 @@ test/log/*.*
 
 #file costruction ide
 CMakeFiles/
+cmake-build-debug/
 .idea/
 /CMakeCache.txt
 *.cmake

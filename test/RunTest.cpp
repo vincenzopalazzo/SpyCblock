@@ -44,6 +44,7 @@ TEST(RunTest, test_function_to_string) {
     ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
     Block *block = new Block();
     block->decode(*stream);
+    stream->close();
     LOG(INFO) << block->toString();
 }
 
@@ -80,6 +81,7 @@ TEST(RunTest, serialize_test_int) {
     std::ifstream fileOut("test/file_test/file_bit_uno.dat");
     int value;
     Unserialize(fileOut, value);
+    fileOut.close();
     EXPECT_EQ(value, 32);
 }
 
@@ -121,6 +123,7 @@ TEST(RunTest, unserialize_one_block) {
 
     std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
     block->decode(fileOut);
+    fileOut.close();
     std::stringstream hex_string;
     hex_string << std::hex << block->getMagicNum();
     EXPECT_EQ(hex_string.str(), "d9b4bef9");
@@ -201,6 +204,7 @@ TEST(RunTest, unserialize_two_block) {
 
     Block *block_two = new Block();
     block_two->decode(fileOut);
+    fileOut.close();
     std::stringstream hex_string_two;
     hex_string_two << std::hex << block_two->getMagicNum();
     EXPECT_EQ(hex_string.str(), "d9b4bef9");
@@ -241,11 +245,12 @@ TEST(RunTest, unserialize_two_block) {
 /*Test Read all file dat*/
 TEST(RunTest, all_Read_file_dat) {
 
-    FLAGS_minloglevel = 2;
-    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/all_Read_file_dat_test_first.log");
+    FLAGS_minloglevel = 1;
+    FLAGS_logtostderr = true;
+    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/spyCblock/test/log/all_Read_file_dat_test_first.log");
 
     ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
-    ofstream *outStream = new ofstream("test/file_test/file_test_readl_all_file_dat_uno.txt");
+    ofstream *outStream = new ofstream("/home/vincenzo/Github/spyCblock/test/file_test/file_test_readl_all_file_dat_uno.txt");
     vector<Block> *blocks = new vector<Block>();
     try {
         if (stream->is_open()) {
@@ -254,13 +259,20 @@ TEST(RunTest, all_Read_file_dat) {
             while (!stream->eof()) {
                 Block *block = new Block();
                 block->decode(*stream);
-                *outStream << block->toString();
-                blocks->push_back(*block);
-                delete block;
-                numbarBlock++;
-                LOG(INFO) << "Numbar block read now " << numbarBlock;
+                if(block->getBlockHeader().getVersion() == 0)
+                {
+                    LOG(WARNING) << "block is null -> " << block->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+                }else{
+                    *outStream << block->toString();
+                    blocks->push_back(*block);
+                    delete block;
+                    numbarBlock++;
+                    LOG(INFO) << "Numbar block read now " << numbarBlock;
+                }
             }
-            EXPECT_EQ(blocks->size(), 119973);
+            EXPECT_EQ(blocks->size(), 119973); //TODO qualcosa alla fine del blocco fa i capricci sono in realtà 19973
+        } else{
+            FAIL() << "File not open blk00000.dat";
         }
     }
     catch (out_of_range oe) {
@@ -277,22 +289,30 @@ TEST(RunTest, all_Read_file_dat) {
 TEST(RunTest, compare_previus_block_hash) {
 
     FLAGS_minloglevel = 1;
-    FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_INFO, "/home/vincenzo/Github/spyCblock/test/log/compare_previus_block_hash.log");
+    FLAGS_logtostderr = true;
+    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/spyCblock/test/log/compare_previus_block_hash.log");
 
-    ifstream *fileWhitHash = new ifstream("test/file_test/previus_hash_block_header.txt");
+    ifstream *fileWhitHash = new ifstream("/home/vincenzo/Github/spyCblock/test/file_test/previus_hash_block_header.txt");
+
     vector<string> *priviusHashs = new vector<string>();
-    int count = 0;
-    LOG_IF(FATAL, !fileWhitHash->is_open()) << "File previus_hash_block_header.txt not open";
+    if(!fileWhitHash->is_open())
+    {
+        FAIL() << "File previus_hash_block_header.txt not open";
+    }
     while (!fileWhitHash->eof()) {
         string readLine;
         *fileWhitHash >> readLine;
-        LOG(WARNING) << "I have read " << readLine;
-        priviusHashs->push_back(readLine);
-        count++;
+        LOG(INFO) << "I have read " << readLine;
+        if(readLine != ""){
+            priviusHashs->push_back(readLine);
+        } else{
+            LOG(WARNING) << "Line empty";
+        }
+
     }
-    LOG(INFO) << "Hashs readted: " << count;
-    ASSERT_EQ(count, 119973);
+    fileWhitHash->close();
+    LOG(INFO) << "Hashs readted: " << priviusHashs->size();
+    ASSERT_EQ(priviusHashs->size(), 119972);
 
     ifstream *fileBlk = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
 
@@ -305,8 +325,7 @@ TEST(RunTest, compare_previus_block_hash) {
             blockTested->decode(*fileBlk);
             LOG(INFO) << "Block hash previus readed " << blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
             LOG(INFO) << "Block hash previus awaited " << priviusHashs->at(coutBlockRead);
-            LOG_IF(FATAL, blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex() != priviusHashs->at(coutBlockRead)) << "Assertion fail at: " << coutBlockRead;
-            EXPECT_TRUE(blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex() == priviusHashs->at(coutBlockRead)) << "Assertion fail at: " << coutBlockRead;
+            ASSERT_EQ(blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex(),  priviusHashs->at(coutBlockRead)) << "Assertion fail at: " << coutBlockRead;
             coutBlockRead++;
             delete blockTested;
         }
@@ -316,8 +335,8 @@ TEST(RunTest, compare_previus_block_hash) {
         LOG(FATAL) << "Exception generated: " << ore.what();
         FAIL() << "Exception generated: " << ore.what();
     }
-
-    EXPECT_EQ(coutBlockRead, 119973);
+    // The block are 119973 but last is null
+    EXPECT_EQ(coutBlockRead, 119972);
 
 }
 

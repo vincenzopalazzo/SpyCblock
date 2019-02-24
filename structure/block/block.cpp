@@ -12,10 +12,6 @@ Block::~Block()
 {
 }
 
-Block::Block() {
-}
-
-
 void Block::decode(std::ifstream &stream) {
     Unserialize(stream, this->magicNum);
     LOG(INFO) << "Magic numbar readed: " << magicNum;

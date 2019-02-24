@@ -4,17 +4,19 @@
 
 #include <cmath>
 #include <glog/logging.h>
+#include <uv.h>
 #include "DVarInt.h"
 #include "../../util/serialize.h"
 
-int DVarInt::getValue() const {
+uint64_t DVarInt::getValue() const {
     return value;
 }
 
 /* TODO LOGGER THIS position*/
 //TODO LOOK LOG qualcosa non va come dovrebbe
 void DVarInt::decode(std::ifstream &stream) {
-    ReadCompactSize(stream); 
+    //value = ReadCompactSize(stream);
+    value = ReadCompactSize(stream);
     /*uint8_t size;
     Unserialize(stream, size);
     LOG(INFO) << "DVarInt test: size first test (8bit) -> " << size;
@@ -156,5 +158,5 @@ void DVarInt::decode(std::ifstream &stream) {
 
 
 DVarInt::~DVarInt() {
-
 }
+
