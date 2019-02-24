@@ -14,7 +14,8 @@ int DVarInt::getValue() const {
 /* TODO LOGGER THIS position*/
 //TODO LOOK LOG qualcosa non va come dovrebbe
 void DVarInt::decode(std::ifstream &stream) {
-    uint8_t size;
+    ReadCompactSize(stream); 
+    /*uint8_t size;
     Unserialize(stream, size);
     LOG(INFO) << "DVarInt test: size first test (8bit) -> " << size;
     if(size < 253){
@@ -43,7 +44,7 @@ void DVarInt::decode(std::ifstream &stream) {
         return;
     }
     this->value = -1;
-    LOG_IF(FATAL, value == -1) << "DVarInt crash :'(";
+    LOG_IF(FATAL, value == -1) << "DVarInt crash :'(";*/
 }
 
 //TODO last tentative

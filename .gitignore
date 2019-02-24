@@ -1,0 +1,9 @@
+#file log project
+log/*.*
+test/log/*.*
+
+#file costruction ide
+CMakeFiles/
+.idea/
+/CMakeCache.txt
+*.cmake

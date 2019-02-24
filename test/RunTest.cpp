@@ -157,7 +157,7 @@ TEST(RunTest, unserialize_one_block) {
 
 }
 
-TEST(RunTest, unserialize_two_block) { //TODO stavi finendo questo blocco
+TEST(RunTest, unserialize_two_block) {
     FLAGS_minloglevel = 2;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
 
