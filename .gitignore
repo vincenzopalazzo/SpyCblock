@@ -1,6 +1,7 @@
 #file log project
 log/*.*
 test/log/*.*
+test/file_test/*.*
 
 #file costruction ide
 CMakeFiles/
