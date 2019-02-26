@@ -14,6 +14,7 @@ void RawTransaction::decode(std::ifstream &stream) {
     LOG(INFO) << "Version raw transaction " << version;
     this->numberTxIn.decode(stream);
     LOG(INFO) << "Numbar transaction input in raw transaction " << numberTxIn.getValue();
+    txInd.clear();
     for(int i = 0; i < this->numberTxIn.getValue(); i++)
     {
         TransactionInput *transaction = new TransactionInput();
@@ -23,6 +24,7 @@ void RawTransaction::decode(std::ifstream &stream) {
     }
     this->numberTxOut.decode(stream);
     LOG(INFO) << "Numbar transaction output in raw transaction " << numberTxOut.getValue();
+    txOut.clear();
     for(int i = 0; i < numberTxOut.getValue(); i++)
     {
         TransactionOutput *transactionOutput = new TransactionOutput();

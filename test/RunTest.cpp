@@ -12,9 +12,8 @@ using namespace spyCBlock;
 
 //test metod toString
 TEST(RunTest, test_function_to_string) {
-    string in;
     FLAGS_logtostderr = false;
-    in = "-------- BLOCK --------- \n"
+    /* "-------- BLOCK --------- \n"
          "Magic Numbar: d9b4bef9\n"
          "Block Size: 285\n"
          "---------- Block Header ---------- \n"
@@ -39,13 +38,12 @@ TEST(RunTest, test_function_to_string) {
          "N Value: 5000000000 satoshi\n"
          "Length script: 67\n"
          "Script: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"
-         "0";
-
+         "0";*/
     ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
     Block *block = new Block();
     block->decode(*stream);
     stream->close();
-    LOG(INFO) << block->toString();
+    LOG(WARNING) << block->toString();
 }
 
 /*Test new type uint256*/
@@ -117,6 +115,7 @@ Lock Time:	 0
   */
 TEST(RunTest, unserialize_one_block) {
     FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
 
     Block *block = new Block();
@@ -147,7 +146,7 @@ TEST(RunTest, unserialize_one_block) {
     TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
     EXPECT_EQ(transactionInput.getOutpoint().getHash().GetHex(),
               "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295);
+    EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival at ffffff
     EXPECT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 77);
     EXPECT_EQ(transactionInput.getSequences(), 4294967295);
 
@@ -162,6 +161,7 @@ TEST(RunTest, unserialize_one_block) {
 
 TEST(RunTest, unserialize_two_block) {
     FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
 
     Block *block = new Block();
@@ -186,7 +186,7 @@ TEST(RunTest, unserialize_two_block) {
     RawTransaction rawTransaction = block->getRawTransactions().at(0);
     EXPECT_EQ(rawTransaction.getVersion(), 1);
     EXPECT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
-
+    EXPECT_EQ(rawTransaction.getTxInd().size(), 1);
     //Transaction Input
     TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
     EXPECT_EQ(transactionInput.getOutpoint().getHash().GetHex(),
@@ -197,6 +197,7 @@ TEST(RunTest, unserialize_two_block) {
 
     //Transaction Output
     EXPECT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
+    EXPECT_EQ(rawTransaction.getTxOut().size(), 1);
     TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
     EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
     EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
@@ -259,7 +260,7 @@ TEST(RunTest, all_Read_file_dat) {
             while (!stream->eof()) {
                 Block *block = new Block();
                 block->decode(*stream);
-                if(block->getBlockHeader().getVersion() == 0)
+                if(block->getBlockHeader().getVersion() == 0)//TODO dare un occhiata qui qualcosa non va con i numeri di blocchi
                 {
                     LOG(WARNING) << "block is null -> " << block->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
                 }else{
@@ -288,8 +289,8 @@ TEST(RunTest, all_Read_file_dat) {
 
 TEST(RunTest, compare_previus_block_hash) {
 
-    FLAGS_minloglevel = 1;
-    FLAGS_logtostderr = true;
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/spyCblock/test/log/compare_previus_block_hash.log");
 
     ifstream *fileWhitHash = new ifstream("/home/vincenzo/Github/spyCblock/test/file_test/previus_hash_block_header.txt");
@@ -341,6 +342,87 @@ TEST(RunTest, compare_previus_block_hash) {
 }
 
 //TODO add complete test for the another block, look in the file blkxxxx.dat in /teml in local pc
+
+TEST(RunTest, read_first_block_another_file_blk)
+{
+    //Init Log this test
+    FLAGS_logtostderr = false;
+    FLAGS_minloglevel = 1;
+    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/read_first_block_another_file_blk.log");
+
+    //Init data for start this test
+    ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+
+    Block *block = new Block();
+    block->decode(*stream);
+
+    //Init assertion on blockRead
+
+    /* ------ TEST BLOCK -----*/
+    stringstream *hexaNumbarMagic = new stringstream();
+    *hexaNumbarMagic << hex << block->getMagicNum();
+    ASSERT_EQ(hexaNumbarMagic->str(), "d9b4bef9");
+    delete hexaNumbarMagic;
+    ASSERT_EQ(block->getBlocksize(), 934444);
+
+    /* ------ TEST BLOCK HEADER-----*/
+    BlockHeader blockHeader = block->getBlockHeader();
+    ASSERT_EQ(blockHeader.getVersion(), 4);
+    ASSERT_EQ(blockHeader.getPreviousBlockHeaderHash().GetHex(), "0000000000000000037cc15769f72a8c7ea600975439e5a75f0c52534a4034ce");
+    ASSERT_EQ(blockHeader.getMerkleRoot().GetHex(), "fdd92740f2472da1be5359a0006205f900ec1ecafea8a37fe2ebccc0d4dab963");
+    ASSERT_EQ(blockHeader.getTime(), 1456115552);
+    ASSERT_EQ(blockHeader.getNBits(), 403093919);
+    ASSERT_EQ(blockHeader.getNonce(), 261426184);
+
+    /* ----------- TEST RAW TRANSACTION -------------*/
+    ASSERT_EQ(block->getNumbarRawTransaction().getValue(), 2461);
+    ASSERT_EQ(block->getRawTransactions().size(), 2461);
+    RawTransaction rawTransaction = block->getRawTransactions().at(0);
+    ASSERT_EQ(rawTransaction.getVersion(), 1);
+    ASSERT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
+    ASSERT_EQ(rawTransaction.getTxInd().size(), 1);
+    ASSERT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
+    ASSERT_EQ(rawTransaction.getLockTime(), 0);
+
+    /* ----------- TEST IN TRANSACTION -------------*/
+    ASSERT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
+    TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
+    ASSERT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
+    ASSERT_EQ(transactionInput.getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
+    ASSERT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 42);
+    ASSERT_EQ(transactionInput.getSequences(), 4294967295);
+
+    /* ----------- TEST OUT TRANSACTION -------------*/
+    ASSERT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
+    ASSERT_EQ(rawTransaction.getTxOut().size(), 1);
+    TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
+    ASSERT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 25);
+    ASSERT_EQ(transactionOutput.getNValue(), 2549850141); // satoshi
+
+    //TODO end first block in this file?
+
+
+}
+
+TEST(RunTest, countd_all_block_another_file_blk)
+{
+    //Init Log this test
+    FLAGS_logtostderr = false;
+    FLAGS_minloglevel = 1;
+    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/countd_all_block_another_file_blk.log");
+
+    //Init data for start this test
+    ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+    int count = 0;
+    while(!stream->eof())
+    {
+        Block *block = new Block();
+        block->decode(*stream);
+        delete block;
+        count++;
+    }
+    ASSERT_EQ(count, 155); // conta anche quello null
+}
 
 int main(int argc, char **argv) {
     google::InitGoogleLogging(argv[0]);

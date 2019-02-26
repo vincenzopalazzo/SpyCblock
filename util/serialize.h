@@ -421,14 +421,19 @@ protected:
 public:
     explicit CVarInt(I& nIn) : n(nIn) { }
 
+
+    I &getN() const {
+        return n;
+    }
+
     template<typename Stream>
     void Serialize(Stream &s) const {
         WriteVarInt<Stream,Mode,I>(s, n);
     }
 
     template<typename Stream>
-    void Unserialize(Stream& s) {
-        n = ReadVarInt<Stream,Mode,I>(s);
+    void Unserialize(Stream& s, I &value) {
+        value = ReadVarInt<Stream,Mode,I>(s);
     }
 };
 

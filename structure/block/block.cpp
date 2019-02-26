@@ -24,8 +24,9 @@ void Block::decode(std::ifstream &stream) {
         //TODO segnalare errore lanciando un eccezione
         return;
     }
+    rawTransactions.clear();
     for (int i = 0; i < numbarRawTransaction.getValue(); i++) {
-        rawTransactions.clear();
+        LOG(INFO) << "Readed raw transaction numbar << " + i;
         RawTransaction *transaction = new RawTransaction();
         transaction->decode(stream);
         rawTransactions.push_back(*transaction);

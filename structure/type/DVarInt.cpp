@@ -15,8 +15,12 @@ uint64_t DVarInt::getValue() const {
 /* TODO LOGGER THIS position*/
 //TODO LOOK LOG qualcosa non va come dovrebbe
 void DVarInt::decode(std::ifstream &stream) {
-    //value = ReadCompactSize(stream);
     value = ReadCompactSize(stream);
+    //value = ReadVarInt<std::ifstream, VarIntMode::DEFAULT , uint64_t>(stream);
+   /* uint64_t valueTmp;
+    CVarInt<VarIntMode::DEFAULT, uint64_t> variantInt(valueTmp);
+    variantInt.Unserialize(stream, value);
+    LOG(WARNING) << "Variant int read is: " << value;*/
     /*uint8_t size;
     Unserialize(stream, size);
     LOG(INFO) << "DVarInt test: size first test (8bit) -> " << size;
@@ -47,6 +51,35 @@ void DVarInt::decode(std::ifstream &stream) {
     }
     this->value = -1;
     LOG_IF(FATAL, value == -1) << "DVarInt crash :'(";*/
+/*
+    uint8_t chSize = ser_readdata8(stream);
+    uint64_t nSizeRet = 0;
+    if (chSize < 253)
+    {
+        nSizeRet = chSize;
+    }
+    else if (chSize == 253)
+    {
+        nSizeRet = ser_readdata16(stream);
+        if (nSizeRet < 253)
+            throw std::ios_base::failure("non-canonical ReadCompactSize()");
+    }
+    else if (chSize == 254)
+    {
+        nSizeRet = ser_readdata32(stream);
+        if (nSizeRet < 0x10000u)
+            throw std::ios_base::failure("non-canonical ReadCompactSize()");
+    }
+    else
+    {
+        nSizeRet = ser_readdata64(stream);
+        if (nSizeRet < 0x100000000ULL)
+            throw std::ios_base::failure("non-canonical ReadCompactSize()");
+    }
+    if (nSizeRet > (uint64_t)MAX_SIZE)
+        throw std::ios_base::failure("ReadCompactSize(): size too large");
+    value = nSizeRet;*/
+    LOG(INFO) << "Variant int read is: " << value;
 }
 
 //TODO last tentative
