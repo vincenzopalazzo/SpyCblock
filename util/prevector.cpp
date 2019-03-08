@@ -2,12 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <prevector.h>
-#include <serialize.h>
-#include <streams.h>
+#include "prevector.h"
+#include "serialize.h"
 #include <type_traits>
-
-#include <bench/bench.h>
 
 // GCC 4.8 is missing some C++11 type_traits,
 // https://www.gnu.org/software/gcc/gcc-5/changes.html
@@ -31,6 +28,7 @@ typedef unsigned char trivial_t;
 static_assert(IS_TRIVIALLY_CONSTRUCTIBLE<trivial_t>::value,
               "expected trivial_t to be trivially constructible");
 
+/*
 template <typename T>
 static void PrevectorDestructor(benchmark::State& state)
 {
@@ -111,3 +109,4 @@ PREVECTOR_TEST(Clear, 28300, 88600)
 PREVECTOR_TEST(Destructor, 28800, 88900)
 PREVECTOR_TEST(Resize, 28900, 90300)
 PREVECTOR_TEST(Deserialize, 6800, 52000)
+*/

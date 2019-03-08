@@ -24,18 +24,6 @@ std::string OutPoint::ToString() const {
     return stream.str();
 }
 
-void OutPoint::SetNull() {
-
-}
-
-bool OutPoint::IsNull() {
-    return false;
-}
-
-void OutPoint::setN(uint32_t n) {
-
-}
-
 void OutPoint::setHash(const uint256 &hash) {
     this->hash = hash;
 }

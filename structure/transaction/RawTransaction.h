@@ -17,7 +17,7 @@ using namespace std;
 namespace spyCBlock{
 
     class RawTransaction{
-/*TODO left a number o txOut and txInf*/
+
     private:
         uint32_t version;
         DVarInt numberTxIn;

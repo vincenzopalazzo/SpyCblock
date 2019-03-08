@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.9)
 project(spyCblock)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 # Locate GTest
 enable_testing()
@@ -15,7 +15,8 @@ find_package(glog 0.3.5 REQUIRED)
 add_executable(runTests test/RunTest.cpp util/uint256.cpp structure/block/block.cpp structure/block/blockHeader.cpp
         structure/transaction/RawTransaction.cpp structure/transaction/TransactionOutput.cpp
         structure/transaction/TransactionInput.cpp structure/script/scriptCode.cpp
-        structure/type/Outpoint.cpp core/SpyCBlock.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp structure/type/Outpoint.cpp)
+        structure/type/Outpoint.cpp core/SpyCBlock.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp
+        structure/type/Outpoint.cpp util/strencodings.cpp util/prevector.cpp)
 
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 
@@ -24,6 +25,8 @@ target_link_libraries(runTests glog::glog)
 add_executable(spyCblock core/ParserMain.cpp util/uint256.cpp structure/block/block.cpp structure/block/blockHeader.cpp
         structure/transaction/RawTransaction.cpp structure/transaction/TransactionOutput.cpp
         structure/transaction/TransactionInput.cpp structure/script/scriptCode.cpp
-        structure/type/Outpoint.cpp core/SpyCBlock.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp structure/type/Outpoint.cpp)
+        structure/type/Outpoint.cpp core/SpyCBlock.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp
+        structure/type/Outpoint.cpp util/strencodings.cpp util/prevector.cpp persistence/DAOException.cpp persistence/DAOBlockchain.cpp
+        persistence/IDAOBlockchain.h)
 
 target_link_libraries(spyCblock glog::glog)
