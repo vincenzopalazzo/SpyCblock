@@ -16,15 +16,14 @@ TEST(DAOBlockchainTest, test_dao_blockchain_give_file_data) {
     //Init logger
     FLAGS_minloglevel = 1;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_WARNING,
-                              "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blockchain_give_file_date.log");
+    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blockchain_give_file_date.log");
 
     DAOBlockchain *daoBlockchain = new DAOBlockchain(); //TODO using a interface
     try {
         vector<Block> allBlocks = daoBlockchain->loadBlocks("/home/vincenzo/tmp/bitcoin/block");
-        ASSERT_EQ(120128, allBlocks.size()); // are inclusind left block in the file blk
+        ASSERT_EQ(120127, allBlocks.size()); // are inclusind left block in the file blk
     }
-    catch (exception exception) {
+    catch (DAOException exception) {
         FAIL() << "Test fail for this cause" << exception.what();
     }
 }

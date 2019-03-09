@@ -6,9 +6,11 @@
 #include <glog/logging.h>
 #include "../util/uint256.h"
 #include "../structure/block/block.h"
+#include "../persistence/IDAOBlockchain.h"
+#include "../persistence/DAOBlockchain.h"
+#include "../persistence/DAOException.h"
 
 using namespace spyCBlock;
-
 
 //test metod toString
 TEST(RunTest, test_function_to_string) {
@@ -162,7 +164,7 @@ TEST(RunTest, unserialize_one_block) {
 TEST(RunTest, unserialize_two_block) {
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
+    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/pyCblock/test/log/unserialize_block_test.log");
 
     Block *block = new Block();
 
@@ -248,10 +250,10 @@ TEST(RunTest, all_Read_file_dat) {
 
     FLAGS_minloglevel = 1;
     FLAGS_logtostderr = true;
-    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/spyCblock/test/log/all_Read_file_dat_test_first.log");
+    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/SpyCblock/test/log/all_Read_file_dat_test_first.log");
 
     ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
-    ofstream *outStream = new ofstream("/home/vincenzo/Github/spyCblock/test/file_test/file_test_readl_all_file_dat_uno.txt");
+    ofstream *outStream = new ofstream("/home/vincenzo/Github/SpyCblock/test/file_test/file_test_readl_all_file_dat_uno.txt");
     vector<Block> *blocks = new vector<Block>();
     try {
         if (stream->is_open()) {
@@ -345,7 +347,7 @@ TEST(RunTest, read_first_block_another_file_blk)
     //Init Log this test
     FLAGS_logtostderr = false;
     FLAGS_minloglevel = 1;
-    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/read_first_block_another_file_blk.log");
+    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/SpyCblock/test/log/read_first_block_another_file_blk.log");
 
     //Init data for start this test
     ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
@@ -403,7 +405,7 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
     //Init Log this test
     FLAGS_logtostderr = false;
     FLAGS_minloglevel = 1;
-    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/read_two_consecutive_block_another_file_blk.log");
+    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/SpyCblock/test/log/read_two_consecutive_block_another_file_blk.log");
 
     //Init data for start this test
     ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
@@ -509,7 +511,7 @@ TEST(RunTest, countd_all_block_another_file_blk)
     //Init Log this test
     FLAGS_logtostderr = false;
     FLAGS_minloglevel = 1;
-    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/countd_all_block_another_file_blk.log");
+    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/SpyCblock/test/log/countd_all_block_another_file_blk.log");
 
     //Init data for start this test
     ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
@@ -528,7 +530,7 @@ TEST(RunTest, compare_previus_second_block_hash) {
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/spyCblock/test/log/compare_previus_second_block_hash.log");
+    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/SpyCblock/test/log/compare_previus_second_block_hash.log");
 
     ifstream *fileWhitHash = new ifstream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_second_block_header.txt");
 
@@ -575,6 +577,63 @@ TEST(RunTest, compare_previus_second_block_hash) {
     }
     EXPECT_EQ(coutBlockRead, 154);
 
+}
+
+TEST(RunTest, compare_previus_all_block_hash)
+{
+
+  //Init logger
+  FLAGS_minloglevel = 1;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::GLOG_INFO,  "/home/vincenzo/Github/SpyCblock/test/log/compare_previus_all_block_hash.log");
+
+    IDAOBlockchain *daoBlockchain = new DAOBlockchain();
+    try
+    {
+            vector<Block> blocks = daoBlockchain->loadBlocks("/home/vincenzo/tmp/bitcoin/block");
+            ASSERT_EQ(120127, blocks.size());
+
+            ifstream *stream = new ifstream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_second_block_header.txt");
+            LOG_IF(ERROR, !stream->is_open()) << "The file previus_hash_second_block_header.txt not opened";
+            int numbarBlock = 0;
+            while(!stream->eof())
+              {
+                  string previusBlockCalculate;
+                  *stream >> previusBlockCalculate;
+                  if(!previusBlockCalculate.empty())
+                    {
+                      LOG(INFO) << "The previus block calculate is: " << previusBlockCalculate;
+                      string previusBlockReaded = blocks.at(numbarBlock).getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+                      LOG(INFO) << "The previus block readed is: " << previusBlockCalculate;
+                      ASSERT_EQ(previusBlockCalculate, previusBlockReaded) << " the hash block are different at the "  << numbarBlock << " numbars blocks";
+                      numbarBlock++;
+                    }
+              }
+            stream->close();
+
+            ifstream *streamTwo = new ifstream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
+            LOG_IF(ERROR, !streamTwo->is_open()) << "The file previus_hash_block_header not is open";
+            while(!streamTwo->eof())
+              {
+                string previusBlockCalculate;
+                *streamTwo >> previusBlockCalculate;
+                if(!previusBlockCalculate.empty())
+                  {
+                    LOG(INFO) << "The previus block calculate is: " << previusBlockCalculate;
+                    string previusBlockReaded = blocks.at(numbarBlock).getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+                    LOG(INFO) << "The previus block readed is: " << previusBlockCalculate;
+                    ASSERT_EQ(previusBlockCalculate, previusBlockReaded) << " the hash block are different at the "  << numbarBlock << " numbars blocks";
+                    numbarBlock++;
+                  }
+              }
+            streamTwo->close();
+             delete stream;
+            delete streamTwo;
+    }
+    catch (DAOException daoException)
+    {
+          FAIL() << "The the fail for cause of this exception:  " << daoException.what();
+    }
 }
 
 int main(int argc, char **argv) {

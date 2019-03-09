@@ -6,7 +6,7 @@
 
 
 vector<spyCBlock::Block> spyCBlock::DAOBlockchain::loadBlocks(string path) {
-    if (path.empty() || &path == nullptr) {
+    if (path.empty()) {
         LOG(ERROR) << "The argument function is null";
         throw new DAOException("The argument function loadBlocks from DAOBlockchain is Empity");
     }
@@ -47,7 +47,15 @@ std::vector<spyCBlock::Block> *spyCBlock::DAOBlockchain::readBlock(fs::directory
         while (!stream->eof()) {
             Block *block = new Block();
             block->decode(*stream);
-            blocksFile->push_back(*block);
+            string previuHashBlock = block->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+            string genesiBlock = "0000000000000000000000000000000000000000000000000000000000000000";
+            if(isBlockGenesi(entry, block)){
+                LOG(WARNING) << "Finde genesy block";
+                blocksFile->push_back(*block);
+              }
+            if(previuHashBlock != genesiBlock){
+                 blocksFile->push_back(*block);
+              }
             delete block;
         }
         LOG(WARNING) << "Readed a " << blocksFile->size() << " files";
@@ -57,7 +65,8 @@ std::vector<spyCBlock::Block> *spyCBlock::DAOBlockchain::readBlock(fs::directory
     throw new DAOException("File not open");
 }
 
-bool spyCBlock::DAOBlockchain::isBlockFileBlk(fs::directory_entry entry) {
+bool spyCBlock::DAOBlockchain::isBlockFileBlk(fs::directory_entry entry)
+{
     string pathFile = entry.path();
     string tmpPathFile(pathFile);
     LOG(INFO) << "The path in string is: " << pathFile;
@@ -66,6 +75,23 @@ bool spyCBlock::DAOBlockchain::isBlockFileBlk(fs::directory_entry entry) {
     bool containsBlk = nameFile.find("blk") != string::npos;
     bool containsExstension = nameFile.find(".dat") != string::npos;
     return containsBlk && containsExstension;
+}
+
+bool spyCBlock::DAOBlockchain::isBlockGenesi(fs::directory_entry entry, spyCBlock::Block *genericBlock)
+ {
+     string pathFile = entry.path();
+     string tmpPathFile(pathFile);
+     LOG(INFO) << "The path in string is: " << pathFile;
+     string nameFile = tmpPathFile.substr(tmpPathFile.size() - 12, tmpPathFile.size());
+     LOG(INFO) << "The name file in path is " << nameFile;
+     string fileBlkWithBlockGenesi = "blk00000.dat";
+     if(nameFile == fileBlkWithBlockGenesi)
+       {
+           string serchingGenesiBlock = genericBlock->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+           string genesiBlock = "0000000000000000000000000000000000000000000000000000000000000000";
+           return serchingGenesiBlock == genesiBlock;
+       }
+  return false;
 }
 
 spyCBlock::DAOBlockchain::~DAOBlockchain() = default;

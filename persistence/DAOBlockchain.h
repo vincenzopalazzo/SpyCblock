@@ -17,9 +17,12 @@ namespace spyCBlock{
     class DAOBlockchain : public IDAOBlockchain{
 
     private:
+
         std::vector<spyCBlock::Block>* readBlock(fs::directory_entry entry);
 
         bool isBlockFileBlk(fs::directory_entry entry);
+
+        bool isBlockGenesi(fs::directory_entry entry, spyCBlock::Block* genericBlock);
 
     public:
         virtual ~DAOBlockchain();
