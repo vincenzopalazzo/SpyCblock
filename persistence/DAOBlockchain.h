@@ -5,15 +5,27 @@
 #ifndef SPYCBLOCK_DAOBLOCKCHAIN_H
 #define SPYCBLOCK_DAOBLOCKCHAIN_H
 
+#include<experimental/filesystem>
+
 #include "IDAOBlockchain.h"
 
 using namespace std;
+namespace fs = std::experimental::filesystem;
 
 namespace spyCBlock{
 
-    class DAOBlockchain : IDAOBlockchain{
+    class DAOBlockchain : public IDAOBlockchain{
+
+    private:
+        std::vector<spyCBlock::Block>* readBlock(fs::directory_entry entry);
+
+        bool isBlockFileBlk(fs::directory_entry entry);
 
     public:
+        virtual ~DAOBlockchain();
+
+        DAOBlockchain();
+
         vector<Block> loadBlocks(string path) override;
 
     };

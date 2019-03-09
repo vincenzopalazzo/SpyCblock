@@ -396,9 +396,6 @@ TEST(RunTest, read_first_block_another_file_blk)
     ASSERT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 25);
     ASSERT_EQ(transactionOutput.getNValue(), 2549850141); // satoshi
 
-    //TODO end first block in this file?
-
-
 }
 
 TEST(RunTest, read_two_consecutive_block_another_file_blk)
