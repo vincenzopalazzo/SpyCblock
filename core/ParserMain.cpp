@@ -16,5 +16,6 @@ int main(int argc, char* argv[])
 
     SpyCBlock *spyCBlock = new SpyCBlock();
     spyCBlock->read("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+    delete spyCBlock;
     return 0;
 }

@@ -6,6 +6,7 @@
 #include <glog/logging.h>
 #include "DScript.h"
 #include "../../util/serialize.h"
+#include "../../util/strencodings.h"
 
 using namespace spyCBlock;
 
@@ -26,7 +27,7 @@ void DScript::decode(std::ifstream &stream) {
     LOG(INFO) << "Dimension script: " << scriptLenght.getValue();
     stream.read(buffer, scriptLenght.getValue());
     scriptString = string(buffer);
-
+    LOG(INFO) << "The script is: " << scriptString;
 }
 
 const DVarInt &DScript::getScriptLenght() const {

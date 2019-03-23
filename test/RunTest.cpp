@@ -14,7 +14,7 @@ using namespace spyCBlock;
 
 //test metod toString
 TEST(RunTest, test_function_to_string) {
-    FLAGS_logtostderr = false;
+    FLAGS_logtostderr = true;
     /* "-------- BLOCK --------- \n"
          "Magic Numbar: d9b4bef9\n"
          "Block Size: 285\n"

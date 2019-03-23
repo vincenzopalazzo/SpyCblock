@@ -21,7 +21,7 @@ namespace spyCBlock{
     private:
         uint32_t version;
         DVarInt numberTxIn;
-        vector<TransactionInput> txInd; // che cosa cambia nella transazione coind base?
+        vector<TransactionInput> txInd; // TODO che cosa cambia nella transazione coind base?
         DVarInt numberTxOut;
         vector<TransactionOutput> txOut;
         uint32_t lockTime;

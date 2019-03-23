@@ -7,7 +7,6 @@
 
 
 #include <vector>
-#include <bits/stl_bvector.h>
 #include <fstream>
 #include "DVarInt.h"
 
