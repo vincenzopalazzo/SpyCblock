@@ -55,7 +55,7 @@ class Sha256Hash final {
 	public: bool operator!=(const Sha256Hash &other) const;
 
         /**
-          *Convert the hash calculate at the
+          *Convert the hash calculate in to string
           * @author https://github.com/vincenzopalazzo
          **/
         public: std::string ToString();

@@ -5,6 +5,11 @@
 #include "../util/sha256.h"
 #include "../util/common.h"
 #include <string.h>
+//Added vincent
+#include <sstream>
+#include <iomanip>
+#include <algorithm>
+//
 #include <atomic>
 #include <glog/logging.h>
 
@@ -725,4 +730,16 @@ void SHA256D64(unsigned char* out, const unsigned char* in, size_t blocks)
         in += 64;
         --blocks;
     }
+}
+
+std::string CSHA256::ToString()
+{
+  std::stringstream stream;
+  for(int i = 0; i < OUTPUT_SIZE; i++)
+  {
+      //int valueInt = static_cast<int>(s[i]);
+      //stream << std::hex << std::setw(2) << std::setfill('0') << s[i];
+      stream << std::hex << +s[i];
+  }
+  return stream.str();
 }

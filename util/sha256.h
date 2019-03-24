@@ -24,6 +24,8 @@ public:
     CSHA256& Write(const unsigned char* data, size_t len);
     void Finalize(unsigned char hash[OUTPUT_SIZE]);
     CSHA256& Reset();
+
+    std::string ToString();
 };
 
 /** Autodetect the best available SHA256 implementation.
