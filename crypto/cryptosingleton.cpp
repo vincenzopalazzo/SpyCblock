@@ -1,6 +1,5 @@
 #include <glog/logging.h>
 #include "cryptosingleton.h"
-#include "cryptopp/cryptlib.h"
 
 using namespace spyCBlock;
 

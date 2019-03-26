@@ -9,6 +9,7 @@
 #include "../persistence/IDAOBlockchain.h"
 #include "../persistence/DAOBlockchain.h"
 #include "../persistence/DAOException.h"
+#include "../util/strencodings.h"
 
 using namespace spyCBlock;
 
@@ -157,6 +158,7 @@ TEST(RunTest, unserialize_one_block) {
     TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
     EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
     EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
+    EXPECT_EQ(HexStr(transactionOutput.getScript().getScriptString()), "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
     EXPECT_EQ(rawTransaction.getLockTime(), 0);
 
 }

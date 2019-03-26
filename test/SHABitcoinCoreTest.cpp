@@ -15,6 +15,7 @@
 #include "../cryptobitcoin/Sha256.hpp"
 #include "../cryptobitcoin/Sha256Hash.hpp"
 #include "../cryptobitcoin/Utils.hpp"
+#include "../crypto/utilcrypto.h"
 
 //TODO temponary included
 #include "../cryptobitcoin/TestHelper.hpp"
@@ -104,15 +105,17 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypo
     string publicKeyScript = "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac";
     string lockTime = "00000000";
     stringstream stream;
-    //stream << version << previusBlock << marckleRoot << timeStamp << bit << nonce;
-    stream  << versionRawTransaction << output << scriptSing << sequences << cAmmount << publicKeyScript << lockTime;
+    stream << numberRawTransactions << versionRawTransaction << numbarTransactionInput << output << scriptLenght << scriptSing << sequences << numbarTransactionOutput << cAmmount << publicKeyScriptLenght << publicKeyScript << lockTime;
+    //stream  << versionRawTransaction << output << scriptSing << sequences << cAmmount << publicKeyScript << lockTime;
 
 
-    Bytes byte = asciiBytes(stream.str().c_str());
-    Sha256Hash shaHash = Sha256::getDoubleHash(byte.data(), byte.size());
+    string waitingString = stream.str();
+    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(waitingString);
 
-    LOG(INFO) << "The hash genesi transactions converting with double sha256: " << shaHash.ToString();
-    ASSERT_EQ(shaHash.ToString(), "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
+    Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
+
+    LOG(INFO) << "The hash genesi transactions converting with double sha256: " << shaHash.ToStringForProtocol();
+    ASSERT_EQ(shaHash.ToStringForProtocol(), "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
 
 }
 
@@ -134,12 +137,13 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_bitcoin_crypolibrary)
     //stream << version << previusBlock << marckleRoot << timeStamp << bit << nonce;
     stream  << version << previusBlock << merkleRoot << timeStamp << bit << nonce;
 
+    string waitingString = stream.str();
+    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(waitingString);
 
-    Bytes byte = asciiBytes(stream.str().c_str());
-    Sha256Hash shaHash = Sha256::getDoubleHash(byte.data(), byte.size());
+    Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
-    LOG(INFO) << "The hash genesi block converting with double sha256: " << shaHash.ToString();
-    ASSERT_EQ(shaHash.ToString(), "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
+    LOG(INFO) << "The hash genesi block converting with double sha256: " << shaHash.ToStringForProtocol();
+    ASSERT_EQ(shaHash.ToStringForProtocol(), "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
 
 
 }
@@ -155,7 +159,7 @@ TEST(hash_test, first_test_double_sha_bit_esample_block_bitcoin_crypolibrary)
     //Init logger
     FLAGS_minloglevel = 0;
     FLAGS_logtostderr = true;
-    google::SetLogDestination(google::GLOG_WARNING,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
+    google::SetLogDestination(google::GLOG_INFO,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_double_sha_bit_esample_block_bitcoin_crypolibrary.log");
 
     string version = "01000000";
     string previusBlock = "81cd02ab7e569e8bcd9317e2fe99f2de44d49ab2b8851ba4a308000000000000";
@@ -169,13 +173,17 @@ TEST(hash_test, first_test_double_sha_bit_esample_block_bitcoin_crypolibrary)
     stream  << version << previusBlock << merkleRoot << timeStamp << bit << nonce;
 
 
-    Bytes byte = asciiBytes(stream.str().c_str());
+    //Bytes byte = asciiBytes(stream.str().c_str());
     //Sha256Hash shaHash = Sha256::getDoubleHash(byte.data(), byte.size()); //method one
-    string strin = stream.str().c_str();
-    Sha256Hash shaHash = Sha256::getDoubleHash((const unsigned char*)strin.data(), strin.size()); //method two
+    //string strin = stream.str().c_str();
+    string value = stream.str();
+    //char* arrayByte = spyCBlock::UtilCrypto::ToHexIntoByte(value);
+    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(value);
 
-    LOG(INFO) << "The hash example documantation bitcoin block converting with double sha256: " << shaHash.ToString();
-    ASSERT_EQ(shaHash.ToString(), "00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d");
+    Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size()); //method two
+
+    LOG(INFO) << "The hash example documantation bitcoin block converting with double sha256: " << shaHash.ToStringForProtocol();
+    ASSERT_EQ(shaHash.ToStringForProtocol(), "00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d");
     // 6500f13bc254c59e9f3d77bd0b1999e686fadf7765ae2b59266d1d835b869083 //method one
     // 6500f13bc254c59e9f3d77bd0b1999e686fadf7765ae2b59266d1d835b869083 //method two
 }

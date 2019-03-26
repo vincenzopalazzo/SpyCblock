@@ -73,3 +73,36 @@ std::string Sha256Hash::ToString()
   hashResult = stream.str();
   return hashResult;
 }
+
+std::string Sha256Hash::ToStringForProtocol()
+{
+
+  //reverse array value
+  uint8_t clone_has_raw[HASH_LEN];
+
+  int position = 0;
+  for(int i = HASH_LEN - 1; i >= 0; i--)
+  {
+    clone_has_raw[position] = value[i];
+    position++;
+  }
+
+  std::string hashResult;
+  std::stringstream stream;
+  for(int i = 0; i < HASH_LEN; i++)
+  {
+
+    //stream << std::hex << static_cast<int>(value[i]); BUG
+
+      /*int valueInt = static_cast<int>(value[i]);
+      stream << std::hex << std::setw(2) << std::setfill('0') << valueInt;*/
+      //int valueInt = static_cast<int>(value[i]);
+
+      unsigned int valueInt = static_cast<unsigned int>(clone_has_raw[i]);
+      stream << std::hex << std::setfill('0')  << std::setprecision(2) << std::setw(2) << valueInt;
+
+  }
+
+  hashResult = stream.str();
+  return hashResult;
+}

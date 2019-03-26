@@ -59,5 +59,10 @@ class Sha256Hash final {
           * @author https://github.com/vincenzopalazzo
          **/
         public: std::string ToString();
+        /**
+          *Convert the hash calculate in to string
+          * @author https://github.com/vincenzopalazzo
+         **/
+        public: std::string ToStringForProtocol();
 	
 };
