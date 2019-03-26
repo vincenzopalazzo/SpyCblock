@@ -18,8 +18,8 @@ namespace spyCBlock{
 //TODO refactoring
     private:
         DVarInt scriptLenght;
-        std::vector<unsigned char> script; //Deprecated
         string scriptString;
+        string rawScriptString;
     public:
         const string &getScriptString() const;
 
@@ -28,7 +28,9 @@ namespace spyCBlock{
 
         virtual ~DScript();
 
-        const std::vector<unsigned char> &getScript() const;
+        const char* getScriptRaw() const;
+
+        const string &getRawScriptString() const;
 
         const DVarInt &getScriptLenght() const;
 

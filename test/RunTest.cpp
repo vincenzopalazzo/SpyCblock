@@ -15,7 +15,7 @@ using namespace spyCBlock;
 
 //test metod toString
 TEST(RunTest, test_function_to_string) {
-    FLAGS_logtostderr = true;
+    FLAGS_logtostderr = false;
     /* "-------- BLOCK --------- \n"
          "Magic Numbar: d9b4bef9\n"
          "Block Size: 285\n"
@@ -74,12 +74,12 @@ TEST(RunTest, type_out_point_tx_in_test) {
 }
 
 TEST(RunTest, serialize_test_int) {
-    std::ofstream fileIn("test/file_test/file_bit_uno.dat");
+    std::ofstream fileIn("/home/vincenzo/Github/spyCblock/test/file_test/file_bit_uno.dat");
     int value_in = 32;
     Serialize(fileIn, value_in);
     fileIn.close();
 
-    std::ifstream fileOut("test/file_test/file_bit_uno.dat");
+    std::ifstream fileOut("/home/vincenzo/Github/spyCblock/test/file_test/file_bit_uno.dat");
     int value;
     Unserialize(fileOut, value);
     fileOut.close();
@@ -151,6 +151,10 @@ TEST(RunTest, unserialize_one_block) {
               "0000000000000000000000000000000000000000000000000000000000000000");
     EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival at ffffff
     EXPECT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 77);
+    string data = "04ffff001d0104455468652054696d65732030332d4a616e2F32303039204368616E63656C6C6F72206F6E206272696E6B206F66207365636F6E64206261696C6F757420666F722062616E6B73";
+    transform(data.begin(), data.end(), data.begin(), ::tolower);
+    EXPECT_EQ(transactionInput.getScript().getRawScriptString(), data);
+                                                                //04ffff
     EXPECT_EQ(transactionInput.getSequences(), 4294967295);
 
     //Transaction Output
@@ -158,7 +162,9 @@ TEST(RunTest, unserialize_one_block) {
     TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
     EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
     EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
-    EXPECT_EQ(HexStr(transactionOutput.getScript().getScriptString()), "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
+    EXPECT_EQ(transactionOutput.getScript().getRawScriptString(),
+              "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
+             //4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac68c39c059c6100
     EXPECT_EQ(rawTransaction.getLockTime(), 0);
 
 }

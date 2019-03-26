@@ -10,10 +10,6 @@
 
 using namespace spyCBlock;
 
-const std::vector<unsigned char> &DScript::getScript() const {
-    return script;
-}
-
 void DScript::decode(std::ifstream &stream) {
     this->scriptLenght.decode(stream);
 /*    for(int i = 0; i < this->scriptLenght.getValue(); i++){
@@ -27,11 +23,10 @@ void DScript::decode(std::ifstream &stream) {
     LOG(INFO) << "Dimension script: " << scriptLenght.getValue();
     stream.read(buffer, scriptLenght.getValue());
     scriptString = string(buffer);
-    LOG(INFO) << "The script is: " << scriptString;
-}
-
-const DVarInt &DScript::getScriptLenght() const {
-    return scriptLenght;
+    //TODO for protocol bitcoin, look a toStrign transaction
+    //rawScriptString = HexStr(scriptString).substr(0, 24);
+    rawScriptString = HexStr(scriptString);
+    LOG(INFO) << "The hex script is: " << rawScriptString;
 }
 
 string DScript::toString() {
@@ -53,6 +48,15 @@ string DScript::toString() {
 }
 
 DScript::~DScript() {
+}
+
+const DVarInt &DScript::getScriptLenght() const {
+    return scriptLenght;
+}
+
+const string &DScript::getRawScriptString() const
+{
+  return rawScriptString;
 }
 
 const string &DScript::getScriptString() const {
