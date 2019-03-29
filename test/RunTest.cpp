@@ -149,12 +149,14 @@ TEST(RunTest, unserialize_one_block) {
     TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
     EXPECT_EQ(transactionInput.getOutpoint().getHash().GetHex(),
               "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival at ffffff
+    EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival at 0xffffff
     EXPECT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 77);
     string data = "04ffff001d0104455468652054696d65732030332d4a616e2F32303039204368616E63656C6C6F72206F6E206272696E6B206F66207365636F6E64206261696C6F757420666F722062616E6B73";
     transform(data.begin(), data.end(), data.begin(), ::tolower);
-    EXPECT_EQ(transactionInput.getScript().getRawScriptString(), data);
-                                                                //04ffff
+    //This is particular hash because the is the coindbase transaction
+    EXPECT_EQ(transactionInput.getScript().getRawScriptString().substr(0, transactionInput.getScript().getScriptLenght().getValue() * 2), data);
+                                                                //04ffff -> dovrebbe essere ffffffff
+    EXPECT_EQ(transactionInput.decodeIntoStringScriptSing(), data);
     EXPECT_EQ(transactionInput.getSequences(), 4294967295);
 
     //Transaction Output
@@ -162,9 +164,13 @@ TEST(RunTest, unserialize_one_block) {
     TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
     EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
     EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
-    EXPECT_EQ(transactionOutput.getScript().getRawScriptString(),
+    EXPECT_EQ(transactionOutput.getScript().getRawScriptString().substr(0, transactionOutput.getScript().getScriptLenght().getValue() * 2),
               "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
              //4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac68c39c059c6100
+    //Testing a pure script
+    EXPECT_EQ(transactionOutput.getScript().getRawScriptString().substr(2, (transactionOutput.getScript().getScriptLenght().getValue()) * 2),
+              "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f");
+             //04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5facac
     EXPECT_EQ(rawTransaction.getLockTime(), 0);
 
 }

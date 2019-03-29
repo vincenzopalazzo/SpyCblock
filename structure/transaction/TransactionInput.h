@@ -32,6 +32,8 @@ namespace spyCBlock{
 
         void setOutpoint(const OutPoint &outpoint);
 
+        string decodeIntoStringScriptSing();
+
         string toString();
 
         void decode(std::ifstream &stream);
