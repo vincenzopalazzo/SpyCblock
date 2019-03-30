@@ -462,6 +462,18 @@ public:
     {
         m_val = ser_readdata16be(s);
     }
+
+
+    /**
+     * @author https://github.com/vincenzopalazzo
+     * @brief toSerealizeForm
+     * @return string form serealize
+     */
+    std::string toSerealizeForm(){
+        std::string conversion;
+        conversion = std::to_string(htobe16(m_val));
+        return conversion;
+    }
 };
 
 class CCompactSize

@@ -18,6 +18,7 @@
 #include "../cryptobitcoin/Utils.hpp"
 #include "../crypto/utilcrypto.h"
 #include "../structure/block/block.h"
+#include "../persistence/serializationutil.h"
 
 //Includinf dfor convert string into hash byte
 //this is library for bitcoin crittografy library
@@ -196,15 +197,12 @@ TEST(hash_test, first_test_comparable_value_readed) {
     std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
     block->decode(fileOut);
     fileOut.close();
-    std::stringstream hex_string;
-    hex_string << std::hex << block->getMagicNum();
-    string version = to_string(block->getBlockHeader().getVersion());
-    EXPECT_EQ(version, "01000000");
-    EXPECT_EQ(block->getBlockHeader().getPreviousBlockHeaderHash().GetHex(), "81cd02ab7e569e8bcd9317e2fe99f2de44d49ab2b8851ba4a308000000000000");
-    EXPECT_EQ(block->getBlockHeader().getMerkleRoot().GetHex(), "e320b6c2fffc8d750423db8b1eb942ae710e951ed797f7affc8892b0f1fc122b");
-    EXPECT_EQ(to_string(block->getBlockHeader().getTime()), "c7f5d74d");
-    EXPECT_EQ(to_string(block->getBlockHeader().getNBits()), "f2b9441a");
-    EXPECT_EQ(to_string(block->getBlockHeader().getNonce()), "42a14695");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion()), "01000000");
+    EXPECT_EQ(block->getBlockHeader().getPreviousBlockHeaderHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(block->getBlockHeader().getMerkleRoot().GetHex(), "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime()), "c7f5d74d");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits()), "1d00ffff");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce()), "7c2bac1d");
 }
 
 TEST(hash_test, first_test_comparable_hash_value_readed) {
@@ -219,9 +217,9 @@ TEST(hash_test, first_test_comparable_hash_value_readed) {
     fileOut.close();
 
     stringstream stream;
-    stream  << to_string(block->getBlockHeader().getVersion()) << block->getBlockHeader().getPreviousBlockHeaderHash().GetHex()
-            << block->getBlockHeader().getMerkleRoot().GetHex() << to_string(block->getBlockHeader().getTime())
-            << to_string(block->getBlockHeader().getNBits()) << to_string(block->getBlockHeader().getNonce());
+    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion()) << block->getBlockHeader().getPreviousBlockHeaderHash().GetHex()
+            << block->getBlockHeader().getMerkleRoot().GetHex() << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime())
+            << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits()) << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce());
 
     string value = stream.str();
     vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(value);
@@ -229,7 +227,7 @@ TEST(hash_test, first_test_comparable_hash_value_readed) {
     Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size()); //method two
 
     LOG(INFO) << "The hash example documantation bitcoin block converting with double sha256: " << shaHash.ToStringForProtocol();
-    ASSERT_EQ(shaHash.ToStringForProtocol(), "00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d");
+    ASSERT_EQ(shaHash.ToStringForProtocol(), "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
 
 }
 
@@ -247,18 +245,18 @@ TEST(hash_test, first_test_comparable_transaction_value_readed) {
     RawTransaction raw = block->getRawTransactions().at(0);
 
     string version = to_string(raw.getVersion());
-    EXPECT_EQ(version, "01000000");
-    EXPECT_EQ(to_string(raw.getNumberTxIn().getValue()), "01000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion()), "01000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn().getValue()), "01000000");
     EXPECT_EQ(raw.getTxInd().at(0).getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000");
     EXPECT_EQ(to_string(raw.getTxInd().at(0).getOutpoint().getN()), "ffffffff");
-    EXPECT_EQ(HexStr(to_string(raw.getTxInd().at(0).getScript().getScriptLenght().getValue())), "4d");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getScript().getScriptLenght()), "4d");
     EXPECT_EQ(raw.getTxInd().at(0).getScript().getRawScriptString(), "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73");
-    EXPECT_EQ(to_string(raw.getTxInd().at(0).getSequences()), "ffffffff");
-    EXPECT_EQ(to_string(raw.getNumberTxOut().getValue()), "01");
-    EXPECT_EQ(HexStr(to_string(raw.getTxOut().at(0).getNValue())), "00f2052a01000000");
-    EXPECT_EQ(HexStr(to_string(raw.getTxOut().at(0).getScript().getScriptLenght().getValue())), "43");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getSequences()), "ffffffff");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut().getValue()), "01");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getNValue()), "00f2052a01000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght().getValue()), "43");
     EXPECT_EQ(raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() * 2), "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
-    EXPECT_EQ(to_string(raw.getLockTime()), "00000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getLockTime()), "00000000");
 }
 
 TEST(hash_test, first_test_comparable_transaction_hash_value_readed) {
@@ -275,9 +273,13 @@ TEST(hash_test, first_test_comparable_transaction_hash_value_readed) {
     RawTransaction raw = block->getRawTransactions().at(0);
 
     stringstream stream;
-    stream << raw.getVersion() << to_string(raw.getNumberTxIn().getValue()) << raw.getTxInd().at(0).getOutpoint().getHash().GetHex() << to_string(raw.getTxInd().at(0).getOutpoint().getN())
-           << HexStr(to_string(raw.getTxInd().at(0).getScript().getScriptLenght().getValue())) << to_string(raw.getTxInd().at(0).getSequences()) << to_string(raw.getNumberTxOut().getValue())
-           << to_string(raw.getTxOut().at(0).getNValue()) << HexStr(to_string(raw.getTxOut().at(0).getScript().getScriptLenght().getValue()))
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion()) << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn().getValue())
+           << raw.getTxInd().at(0).getOutpoint().getHash().GetHex() << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getOutpoint().getN())
+           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getScript().getScriptLenght())
+           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getSequences())
+           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut().getValue())
+           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getNValue())
+           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght())
            << raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() *2) << to_string(raw.getLockTime());
 
     string waitingString = stream.str();

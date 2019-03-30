@@ -1,7 +1,3 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/21/19.
-//
-
 #ifndef PARSINGBLOCKCHAIN_BLOCK_H
 #define PARSINGBLOCKCHAIN_BLOCK_H
 
@@ -13,9 +9,9 @@
 
 using namespace std;
 
-/*
- * Class Block
- * */
+/**
+ * @author https://github.com/vincenzopalazzo
+ */
 
 namespace spyCBlock {
 

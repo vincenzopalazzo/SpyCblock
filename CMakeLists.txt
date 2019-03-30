@@ -20,7 +20,8 @@ add_executable(runTests test/RunTest.cpp util/uint256.cpp structure/block/block.
         structure/type/Outpoint.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp
         structure/type/Outpoint.cpp util/strencodings.cpp util/prevector.cpp test/DAOBlockchainTest.cpp persistence/DAOBlockchain.cpp
         persistence/DAOException.cpp test/SHABitcoinCoreTest.cpp crypto/cryptosingleton.cpp
-        cryptobitcoin/Sha256.cpp cryptobitcoin/Sha256Hash.cpp cryptobitcoin/Utils.cpp crypto/utilcrypto.cpp)
+        cryptobitcoin/Sha256.cpp cryptobitcoin/Sha256Hash.cpp cryptobitcoin/Utils.cpp crypto/utilcrypto.cpp persistence/serializationutil.cpp
+        test/serealizationtest.cpp)
 
 add_executable(${PROJECT_NAME} core/ParserMain.cpp util/uint256.cpp structure/block/block.cpp structure/block/blockHeader.cpp
         structure/transaction/RawTransaction.cpp structure/transaction/TransactionOutput.cpp
@@ -28,7 +29,7 @@ add_executable(${PROJECT_NAME} core/ParserMain.cpp util/uint256.cpp structure/bl
         structure/type/Outpoint.cpp core/SpyCBlock.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp
         structure/type/Outpoint.cpp util/strencodings.cpp util/prevector.cpp persistence/DAOException.cpp persistence/DAOBlockchain.cpp
         persistence/DAOException.cpp crypto/cryptosingleton.cpp cryptobitcoin/Sha256.cpp cryptobitcoin/Sha256Hash.cpp
-        cryptobitcoin/Utils.cpp crypto/utilcrypto.cpp)
+        cryptobitcoin/Utils.cpp crypto/utilcrypto.cpp persistence/serializationutil.cpp)
 
 #using glog
 target_link_libraries(${PROJECT_NAME} glog::glog)
