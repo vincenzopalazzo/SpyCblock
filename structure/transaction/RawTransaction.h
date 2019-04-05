@@ -19,7 +19,7 @@ namespace spyCBlock{
     class RawTransaction{
 
     private:
-        uint32_t version;
+        int32_t version;
         DVarInt numberTxIn;
         vector<TransactionInput> txInd; // TODO che cosa cambia nella transazione coind base?
         DVarInt numberTxOut;
@@ -31,7 +31,7 @@ namespace spyCBlock{
 
         virtual ~RawTransaction();
 
-        uint32_t getVersion() const;
+        int32_t getVersion() const;
 
         const DVarInt & getNumberTxIn() const;
 

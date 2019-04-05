@@ -14,11 +14,8 @@
 using namespace spyCBlock;
 
 void SpyCBlock::read(string pathBlockchain) {
-    //ifstream *stream = new ifstream(pathBlockchain);
 
-    //ofstream *outStream = new ofstream("test/file_test/first_block_deserialize.txt");
-
-    IDAOBlockchain *dao = new DAOBlockchain();
+   /* IDAOBlockchain *dao = new DAOBlockchain();
     vector<Block> blocks;
     cout << "init Parsing on: " << pathBlockchain;
     try {
@@ -27,6 +24,19 @@ void SpyCBlock::read(string pathBlockchain) {
         LOG(ERROR) << "Exception obtained: " << daoe.what();
     }
 
+
+
     LOG(WARNING) << "Total block readed: " << blocks.size();
-    cout << "Finisch parsing, total block readed: " << blocks.size();
+    cout << "Finisch parsing, total block readed: " << blocks.size();*/
+
+  ifstream *stream = new ifstream(pathBlockchain);
+
+  ofstream *outStream = new ofstream("/home/vincenzo/Desktop/deserealize_file/blk00450.txt");
+
+  while (!stream->eof()) {
+    Block *block = new Block();
+    block->decode(*stream);
+    *outStream << block->toString();
+    delete block;
+  }
 }

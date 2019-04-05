@@ -19,10 +19,13 @@ void DScript::decode(std::ifstream &stream) {
     }*/
 
     //apport change TODO CONTINUE TEST
-    char *buffer = new char[scriptLenght.getValue()];
+    //char *buffer = new char[scriptLenght.getValue()];
+    char buffer[scriptLenght.getValue()];
     LOG(INFO) << "Dimension script: " << scriptLenght.getValue();
-    stream.read(buffer, scriptLenght.getValue());
-    scriptString = string(buffer);
+    stream.read(buffer, static_cast<long>(scriptLenght.getValue())); //TODO look this canged
+    //Unserialize(stream, buffer);
+    LOG_IF(ERROR, (sizeof (buffer) != scriptLenght.getValue())) << "Dimension script readed wrong";
+    scriptString = string(buffer, scriptLenght.getValue());
     //TODO for protocol bitcoin, look a toStrign transaction
     //rawScriptString = HexStr(scriptString).substr(0, 24);
     rawScriptString = HexStr(scriptString);
@@ -33,15 +36,6 @@ string DScript::toString() {
     stringstream *stream = new stringstream();
     *stream << "Length script: " << this->scriptLenght.getValue() << endl;
     *stream << "Script: " << scriptString;
-   /* for(int i = 0; i < script.size(); i++)
-    {
-        if(i == script.size() - 1)
-        {
-            *stream << script.at(i) << endl;
-        }else{
-            *stream << script.at(i);
-        }
-    }*/
     string result = stream->str();
     delete stream;
     return result;

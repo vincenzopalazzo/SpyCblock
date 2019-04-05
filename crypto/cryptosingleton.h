@@ -15,7 +15,7 @@ namespace spyCBlock {
     {
       public:
           static CryptoSingleton* getIstance();
-          string* getHash256(string* baseHash);
+          string getHash256(string baseHash);
 
       protected:
           CryptoSingleton();

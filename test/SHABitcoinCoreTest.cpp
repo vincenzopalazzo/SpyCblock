@@ -20,8 +20,8 @@
 #include "../structure/block/block.h"
 #include "../persistence/serializationutil.h"
 
-//Includinf dfor convert string into hash byte
-//this is library for bitcoin crittografy library
+//Included for convert string into hash byte for only testing
+//this is library is the bitcoin crittografy library
 #include "../cryptobitcoin/TestHelper.hpp"
 
 using namespace std;
@@ -68,10 +68,10 @@ TEST(hash_test, first_test_double_sha_not_on_bitcoin_crypolibrary)
 }
 
 /*
- * The hash bit genesi block block
+ * The hash bit genesi block
 01000000
-01000000
-0000000000000000000000000000000000000000000000000000000000
+01
+0000000000000000000000000000000000000000000000000000000000000000
 FFFFFFFF
 4D
 04FFFF001D0104455468652054696D65732030332F4A616E2F32303039204368616E63656C6C6F72206F6E206272696E6B206F66207365636F6E64206261696C6F757420666F722062616E6B73
@@ -81,6 +81,9 @@ FFFFFFFF
 43
 4104678AFDB0FE5548271967F1A67130B7105CD6A828E03909A67962E0EA1F61DEB649F6BC3F4CEF38C4F35504E51EC112DE5C384DF7BA0B8D578A4C702B6BF11D5FAC
 00000000
+
+//The hash complete "01000000010000000000000000000000000000000000000000000000000000000000000000FFFFFFFF4D04FFFF001D0104455468652054696D65732030332F4A616E2F32303039204368616E63656C6C6F72206F6E206272696E6B206F66207365636F6E64206261696C6F757420666F722062616E6B73FFFFFFFF0100F2052A01000000434104678AFDB0FE5548271967F1A67130B7105CD6A828E03909A67962E0EA1F61DEB649F6BC3F4CEF38C4F35504E51EC112DE5C384DF7BA0B8D578A4C702B6BF11D5FAC00000000";
+
 */
 
 TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypolibrary)
@@ -91,8 +94,8 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypo
     google::SetLogDestination(google::GLOG_WARNING,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
 
     string versionRawTransaction = "01000000";
-    string numbarTransactionInput = "01000000";
-    string output = "0000000000000000000000000000000000000000000000000000000000ffffffff";
+    string numbarTransactionInput = "01";
+    string output = "0000000000000000000000000000000000000000000000000000000000000000ffffffff";
     string scriptLenght = "4d";
     string scriptSing = "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73";
     string sequences = "ffffffff";
@@ -102,11 +105,8 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypo
     string publicKeyScript = "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac";
     string lockTime = "00000000";
 
-    //TODO refactorinf, this is unic method for create a string?
+    //TODO refactorinf, this is unique method for create a string?
     stringstream stream;
-
-    //The hash complete, font:
-    //stream << "01000000010000000000000000000000000000000000000000000000000000000000000000FFFFFFFF4D04FFFF001D0104455468652054696D65732030332F4A616E2F32303039204368616E63656C6C6F72206F6E206272696E6B206F66207365636F6E64206261696C6F757420666F722062616E6B73FFFFFFFF0100F2052A01000000434104678AFDB0FE5548271967F1A67130B7105CD6A828E03909A67962E0EA1F61DEB649F6BC3F4CEF38C4F35504E51EC112DE5C384DF7BA0B8D578A4C702B6BF11D5FAC00000000";
 
     //This is correct sequences for create a hash raw transaction
     stream << versionRawTransaction << numbarTransactionInput << output << scriptLenght << scriptSing
@@ -176,16 +176,15 @@ TEST(hash_test, first_test_double_sha_bit_esample_block_bitcoin_crypolibrary)
     string value = stream.str();
     vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(value);
 
-    Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size()); //method two
+    Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
     LOG(INFO) << "The hash example documantation bitcoin block converting with double sha256: " << shaHash.ToStringForProtocol();
     ASSERT_EQ(shaHash.ToStringForProtocol(), "00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d");
-    // 6500f13bc254c59e9f3d77bd0b1999e686fadf7765ae2b59266d1d835b869083 //method one
-    // 6500f13bc254c59e9f3d77bd0b1999e686fadf7765ae2b59266d1d835b869083 //method two
+    // 6500f13bc254c59e9f3d77bd0b1999e686fadf7765ae2b59266d1d835b869083
 }
 
 /*
-Test the value readed with parser
+  Test the value readed with parser
 */
 TEST(hash_test, first_test_comparable_value_readed) {
     FLAGS_minloglevel = 2;
@@ -198,11 +197,12 @@ TEST(hash_test, first_test_comparable_value_readed) {
     block->decode(fileOut);
     fileOut.close();
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion()), "01000000");
-    EXPECT_EQ(block->getBlockHeader().getPreviousBlockHeaderHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(block->getBlockHeader().getMerkleRoot().GetHex(), "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime()), "c7f5d74d");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits()), "1d00ffff");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce()), "7c2bac1d");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash()), "0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getMerkleRoot()), "3ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime()), "29ab5f49");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits()), "ffff001d");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce()), "1dac2b7c");
+
 }
 
 TEST(hash_test, first_test_comparable_hash_value_readed) {
@@ -216,15 +216,25 @@ TEST(hash_test, first_test_comparable_hash_value_readed) {
     block->decode(fileOut);
     fileOut.close();
 
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion()), "01000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash()), "0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getMerkleRoot()), "3ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime()), "29ab5f49");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits()), "ffff001d");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce()), "1dac2b7c");
+
     stringstream stream;
-    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion()) << block->getBlockHeader().getPreviousBlockHeaderHash().GetHex()
-            << block->getBlockHeader().getMerkleRoot().GetHex() << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime())
-            << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits()) << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce());
+    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion());
+    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash());
+    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getMerkleRoot());
+    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime());
+    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits());
+    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce());
 
     string value = stream.str();
     vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(value);
 
-    Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size()); //method two
+    Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
     LOG(INFO) << "The hash example documantation bitcoin block converting with double sha256: " << shaHash.ToStringForProtocol();
     ASSERT_EQ(shaHash.ToStringForProtocol(), "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
@@ -246,16 +256,18 @@ TEST(hash_test, first_test_comparable_transaction_value_readed) {
 
     string version = to_string(raw.getVersion());
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion()), "01000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn().getValue()), "01000000");
-    EXPECT_EQ(raw.getTxInd().at(0).getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(to_string(raw.getTxInd().at(0).getOutpoint().getN()), "ffffffff");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn()), "01");
+    EXPECT_EQ(raw.getTxInd().at(0).getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getOutpoint().getN()), "ffffffff");
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getScript().getScriptLenght()), "4d");
-    EXPECT_EQ(raw.getTxInd().at(0).getScript().getRawScriptString(), "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73");
+    EXPECT_EQ(raw.getTxInd().at(0).getScript().getRawScriptString(),
+              "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73");
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getSequences()), "ffffffff");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut().getValue()), "01");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut()), "01");
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getNValue()), "00f2052a01000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght().getValue()), "43");
-    EXPECT_EQ(raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() * 2), "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght()), "43");
+    EXPECT_EQ(raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() * 2),
+              "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getLockTime()), "00000000");
 }
 
@@ -273,14 +285,18 @@ TEST(hash_test, first_test_comparable_transaction_hash_value_readed) {
     RawTransaction raw = block->getRawTransactions().at(0);
 
     stringstream stream;
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion()) << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn().getValue())
-           << raw.getTxInd().at(0).getOutpoint().getHash().GetHex() << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getOutpoint().getN())
-           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getScript().getScriptLenght())
-           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getSequences())
-           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut().getValue())
-           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getNValue())
-           << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght())
-           << raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() *2) << to_string(raw.getLockTime());
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion());
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn());
+    stream << raw.getTxInd().at(0).getOutpoint().getHash().GetHex();
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getOutpoint().getN());
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getScript().getScriptLenght());
+    stream << raw.getTxInd().at(0).getScript().getRawScriptString().substr(0, raw.getTxInd().at(0).getScript().getScriptLenght().getValue() * 2);
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getSequences());
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut());
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getNValue());
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght());
+    stream << raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() * 2);
+    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getLockTime());
 
     string waitingString = stream.str();
 

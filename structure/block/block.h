@@ -47,6 +47,8 @@ namespace spyCBlock {
         string toString();
 
         void decode(std::ifstream &stream);
+
+        string serealize();
     };
 }
 

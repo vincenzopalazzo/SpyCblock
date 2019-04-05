@@ -91,13 +91,6 @@ std::string Sha256Hash::ToStringForProtocol()
   std::stringstream stream;
   for(int i = 0; i < HASH_LEN; i++)
   {
-
-    //stream << std::hex << static_cast<int>(value[i]); BUG
-
-      /*int valueInt = static_cast<int>(value[i]);
-      stream << std::hex << std::setw(2) << std::setfill('0') << valueInt;*/
-      //int valueInt = static_cast<int>(value[i]);
-
       unsigned int valueInt = static_cast<unsigned int>(clone_has_raw[i]);
       stream << std::hex << std::setfill('0')  << std::setprecision(2) << std::setw(2) << valueInt;
 

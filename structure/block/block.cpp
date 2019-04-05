@@ -35,6 +35,14 @@ void Block::decode(std::ifstream &stream) {
     LOG(INFO) << "End block read";
 }
 
+//TODO create serialization for for creare hash block
+string Block::serealize()
+{
+  stringstream stream;
+  stream << "";
+  return stream.str();
+}
+
 
 string Block::toString() {
     stringstream *stream = new stringstream();

@@ -12,10 +12,10 @@ int main(int argc, char* argv[])
 {
     google::InitGoogleLogging(argv[0]);
     FLAGS_minloglevel = 1;
-    FLAGS_logtostderr = true;
+    FLAGS_logtostderr = false;
 
     SpyCBlock *spyCBlock = new SpyCBlock();
-    spyCBlock->read("/home/vincenzo/tmp/bitcoin/block/");
+    spyCBlock->read("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
     delete spyCBlock;
 
     return 0;

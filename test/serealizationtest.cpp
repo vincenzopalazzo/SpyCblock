@@ -19,7 +19,7 @@ TEST(serealization_test, serealization_util_test_uint32)
   uint32_t nonce = 2083236893;
   //The conversion nonce use a big endian
   string nonceConversion = SerializationUtilSingleton::getInstance()->toSerealizeForm(nonce);
-  ASSERT_EQ(nonceConversion, "7c2bac1d");
+  ASSERT_EQ(nonceConversion, "1dac2b7c");
 }
 
 TEST(serealization_test, serealization_util_test_uint)
@@ -29,10 +29,6 @@ TEST(serealization_test, serealization_util_test_uint)
   google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_util_test_uint16.log");
 
   int32_t version = 1;
-  /*int32_t versionConverted = htole32(version);
-  stringstream stream;
-  stream.write((char*) &versionConverted, 4);*/
-
   //The conversion nonce use a lite endian
   string nonceConversion = SerializationUtilSingleton::getInstance()->toSerealizeForm(version);
   ASSERT_EQ(nonceConversion, "01000000");
@@ -42,7 +38,7 @@ TEST(serealization_test, serealization_util_test_to_read_file)
 {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = true;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_util_test_uint16.log");
+  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_util_test_to_read_file.log");
 
   Block *block = new Block();
 
@@ -62,11 +58,11 @@ TEST(serealization_test, serealization_util_test_to_read_file)
         block->getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght());
 
   EXPECT_EQ(lietEndiaConversionVersion, "01000000");
-  EXPECT_EQ(lietEndiaConversionTimeStamp, "495fab29");
-  EXPECT_EQ(lietEndiaConversionNbit, "1d00ffff");
-  EXPECT_EQ(lietEndiaConversionNonce, "7c2bac1d");
-  EXPECT_EQ(lietEndiaConversionNumTxIn, "01000000");
-  EXPECT_EQ(lietEndiaConversionNumTxOut, "010");
+  EXPECT_EQ(lietEndiaConversionTimeStamp, "29ab5f49");
+  EXPECT_EQ(lietEndiaConversionNbit, "ffff001d");
+  EXPECT_EQ(lietEndiaConversionNonce, "1dac2b7c");
+  EXPECT_EQ(lietEndiaConversionNumTxIn, "01");
+  EXPECT_EQ(lietEndiaConversionNumTxOut, "01");
   EXPECT_EQ(lietEndiaConversionNumScriptLenghtTxIn, "4d");
   EXPECT_EQ(lietEndiaConversionNumScriptLenghtTxOut, "43");
 }

@@ -57,7 +57,7 @@ string RawTransaction::toString() {
     return result;
 }
 
-uint32_t RawTransaction::getVersion() const {
+int32_t RawTransaction::getVersion() const {
     return version;
 }
 

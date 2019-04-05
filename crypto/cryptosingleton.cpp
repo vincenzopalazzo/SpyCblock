@@ -1,5 +1,8 @@
 #include <glog/logging.h>
 #include "cryptosingleton.h"
+#include "../crypto/utilcrypto.h"
+#include "../cryptobitcoin/Sha256Hash.hpp"
+#include "../cryptobitcoin/Sha256.hpp"
 
 using namespace spyCBlock;
 
@@ -14,15 +17,19 @@ CryptoSingleton *CryptoSingleton::getIstance()
   return CryptoSingleton::SINGLETON;
 }
 
-string* CryptoSingleton::getHash256(string *baseHash)
+//TODO testing this function.
+string CryptoSingleton::getHash256(string baseHash)
 {
-  if(baseHash == nullptr)
+  if(baseHash.length() <= 0)
   {
-    throw "Argument function getHash256 of CryptoSingleton is null";
+    throw "Argument function getHash256 of CryptoSingleton is not valid";
   }
-  LOG(WARNING) << "The baseHash is " << *baseHash;
+  LOG(WARNING) << "The baseHash is " << baseHash;
 
-  return nullptr;
+  vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(baseHash);
+  Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
+
+  return shaHash.ToStringForProtocol();
 }
 
 CryptoSingleton::CryptoSingleton() {

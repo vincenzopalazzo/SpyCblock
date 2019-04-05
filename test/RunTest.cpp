@@ -151,11 +151,11 @@ TEST(RunTest, unserialize_one_block) {
               "0000000000000000000000000000000000000000000000000000000000000000");
     EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival at 0xffffff
     EXPECT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 77);
-    string data = "04ffff001d0104455468652054696d65732030332d4a616e2F32303039204368616E63656C6C6F72206F6E206272696E6B206F66207365636F6E64206261696C6F757420666F722062616E6B73";
-    transform(data.begin(), data.end(), data.begin(), ::tolower);
-    //This is particular hash because the is the coindbase transaction
+    EXPECT_EQ(transactionInput.getScript().getScriptString().size(), 77);
+    string data = "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73";
+                 //04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73
     EXPECT_EQ(transactionInput.getScript().getRawScriptString().substr(0, transactionInput.getScript().getScriptLenght().getValue() * 2), data);
-                                                                //04ffff -> dovrebbe essere ffffffff
+
     EXPECT_EQ(transactionInput.decodeIntoStringScriptSing(), data);
     EXPECT_EQ(transactionInput.getSequences(), 4294967295);
 
@@ -164,11 +164,13 @@ TEST(RunTest, unserialize_one_block) {
     TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
     EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
     EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
-    EXPECT_EQ(transactionOutput.getScript().getRawScriptString().substr(0, transactionOutput.getScript().getScriptLenght().getValue() * 2),
+    //TODO the pure script not calculate with the substr(0, (transactionOutput.getScript().getScriptLenght().getValue()) * 2)
+    EXPECT_EQ(transactionOutput.getScript().getRawScriptString().substr(0, (transactionOutput.getScript().getScriptLenght().getValue()) * 2),
               "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
+    //TODO this lengh scritp contains the value opt code and this is wrong, wich I have minus two
              //4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac68c39c059c6100
     //Testing a pure script
-    EXPECT_EQ(transactionOutput.getScript().getRawScriptString().substr(2, (transactionOutput.getScript().getScriptLenght().getValue()) * 2),
+    EXPECT_EQ(transactionOutput.getScript().getRawScriptString().substr(2, (transactionOutput.getScript().getScriptLenght().getValue() - 2) * 2),
               "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f");
              //04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5facac
     EXPECT_EQ(rawTransaction.getLockTime(), 0);
@@ -553,7 +555,8 @@ TEST(RunTest, compare_previus_second_block_hash) {
     {
         FAIL() << "File previus_hash_block_header.txt not open";
     }
-    while (!fileWhitHash->eof()) {
+    while (!fileWhitHash->eof())
+    {
         string readLine;
         *fileWhitHash >> readLine;
         LOG(INFO) << "I have read " << readLine;
@@ -572,7 +575,8 @@ TEST(RunTest, compare_previus_second_block_hash) {
 
     LOG_IF(FATAL, !fileBlk->is_open()) << "File: blk00450 not open";
     int coutBlockRead = 0;
-    try {
+    try
+    {
         while(!fileBlk->eof() && coutBlockRead < priviusHashs->size())
         {
             Block *blockTested = new Block();
@@ -611,7 +615,7 @@ TEST(RunTest, compare_previus_all_block_hash)
             LOG_IF(ERROR, !stream->is_open()) << "The file previus_hash_second_block_header.txt not opened";
             int numbarBlock = 0;
             while(!stream->eof())
-              {
+            {
                   string previusBlockCalculate;
                   *stream >> previusBlockCalculate;
                   if(!previusBlockCalculate.empty())
@@ -628,7 +632,7 @@ TEST(RunTest, compare_previus_all_block_hash)
             ifstream *streamTwo = new ifstream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
             LOG_IF(ERROR, !streamTwo->is_open()) << "The file previus_hash_block_header not is open";
             while(!streamTwo->eof())
-              {
+            {
                 string previusBlockCalculate;
                 *streamTwo >> previusBlockCalculate;
                 if(!previusBlockCalculate.empty())
@@ -646,7 +650,7 @@ TEST(RunTest, compare_previus_all_block_hash)
     }
     catch (DAOException daoException)
     {
-          FAIL() << "The the fail for cause of this exception:  " << daoException.what();
+        FAIL() << "The the fail for cause of this exception:  " << daoException.what();
     }
 }
 

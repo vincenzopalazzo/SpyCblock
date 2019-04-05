@@ -18,7 +18,7 @@ private:
     int32_t version;
     uint256 previousBlockHeaderHash;
     uint256 merkleRoot;
-    uint32_t time;
+    int32_t time;
     uint32_t nBits; // this whats corrisponde
     uint32_t nonce;
 
