@@ -5,6 +5,7 @@
 #include <sstream>
 #include "TransactionInput.h"
 #include <glog/logging.h>
+#include "../../persistence/serializationutil.h"
 
 using namespace spyCBlock;
 
@@ -64,6 +65,17 @@ void TransactionInput::decode(std::ifstream &stream)
     LOG(INFO) << "Script Value" << script.toString();
     Unserialize(stream, this->sequences);
     LOG(INFO) << "Numbar sequences " << sequences;
+}
+
+string TransactionInput::toSerealizationForm()
+{
+  stringstream stream;
+  stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->outpoint.getHash())
+         << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->outpoint.getN())
+         << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getScript().getScriptLenght())
+         << this->script.getScriptToSerializationForm()
+         << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->sequences);
+  return stream.str();
 }
 
 uint32_t TransactionInput::getSequences() const {

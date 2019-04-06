@@ -6,6 +6,7 @@
 #include "../transaction/RawTransaction.h"
 #include "blockHeader.h"
 #include "spdlog/spdlog.h"
+#include "../../persistence/serializationutil.h"
 
 using namespace std;
 
@@ -48,7 +49,7 @@ namespace spyCBlock {
 
         void decode(std::ifstream &stream);
 
-        string serealize();
+        string toSerealizationForm();
     };
 }
 

@@ -6,8 +6,11 @@
 
 #include "../../util/uint256.h"
 #include <glog/logging.h>
+#include "../../util/serialize.h"
+//#include "../../persistence/serializationutil.h"
 
 using namespace std;
+//using namespace spyCBlock;
 
 /**
  * The dimension blockheader is 80 bit
@@ -50,6 +53,8 @@ public:
     string toString();
 
     void unserialize(std::ifstream &stream);
+
+    string toSerealizationForm();
 
 };
 

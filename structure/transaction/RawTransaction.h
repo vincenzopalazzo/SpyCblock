@@ -11,6 +11,7 @@
 #include "TransactionInput.h"
 #include <glog/logging.h>
 #include "../../util/serialize.h"
+//#include "../../persistence/serializationutil.h"
 
 using namespace std;
 
@@ -46,6 +47,8 @@ namespace spyCBlock{
         string toString();
 
         void decode(std::ifstream &stream);
+
+        string toSerealizationForm();
     };
 }
 #endif //PARSINGBLOCKCHAIN_RAWTRANSACTION_H

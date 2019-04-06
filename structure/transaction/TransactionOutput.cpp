@@ -5,6 +5,7 @@
 #include "TransactionOutput.h"
 #include "../../util/serialize.h"
 #include <glog/logging.h>
+#include "../../persistence/serializationutil.h"
 
 using namespace spyCBlock;
 
@@ -14,6 +15,15 @@ void TransactionOutput::decode(ifstream &stream) {
     script.decode(stream);
     LOG(INFO) << "Script Lenght: " << script.getScriptLenght().getValue();
     LOG(INFO) << "Script Value: " << script.toString();
+}
+
+string TransactionOutput::toSerealizationForm()
+{
+  stringstream stream;
+  stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nValue)
+         << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getScript().getScriptLenght())
+         << this->script.getScriptToSerializationForm();
+  return stream.str();
 }
 
 int64_t TransactionOutput::getNValue() const {

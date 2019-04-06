@@ -18,7 +18,6 @@
 #include "../cryptobitcoin/Utils.hpp"
 #include "../crypto/utilcrypto.h"
 #include "../structure/block/block.h"
-#include "../persistence/serializationutil.h"
 
 //Included for convert string into hash byte for only testing
 //this is library is the bitcoin crittografy library
@@ -272,6 +271,7 @@ TEST(hash_test, first_test_comparable_transaction_value_readed) {
 }
 
 TEST(hash_test, first_test_comparable_transaction_hash_value_readed) {
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/first_test_comparable_value_readed.log");
@@ -308,3 +308,48 @@ TEST(hash_test, first_test_comparable_transaction_hash_value_readed) {
     EXPECT_EQ(shaHash.ToStringForProtocol(), "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
 }
 
+TEST(serealization_test, hash_block_genesi_test_to_read_file)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_block_test_to_read_file.log");
+
+  Block *block = new Block();
+
+  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  block->decode(fileOut);
+  fileOut.close();
+
+  string serealizationFormBlock = block->toSerealizationForm();
+  vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(serealizationFormBlock);
+
+  Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
+
+  string expectedHash = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f";
+
+  ASSERT_EQ(shaHash.ToStringForProtocol(), expectedHash);
+}
+
+TEST(serealization_test, hash_transaction_genesi_block_test_to_read_file)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_transaction_genesi_block_test_to_read_file.log");
+
+  Block *block = new Block();
+
+  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  block->decode(fileOut);
+  fileOut.close();
+
+  RawTransaction rawTransaction = block->getRawTransactions().at(0);
+  string  serealizationFormTransaction = rawTransaction.toSerealizationForm();
+
+  vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(serealizationFormTransaction);
+
+  Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
+
+  string expectedHash = "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b";
+
+  ASSERT_EQ(shaHash.ToStringForProtocol(), expectedHash);
+}

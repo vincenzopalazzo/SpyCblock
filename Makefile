@@ -201,36 +201,6 @@ core/SpyCBlock.cpp.s:
 	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/core/SpyCBlock.cpp.s
 .PHONY : core/SpyCBlock.cpp.s
 
-crypto/DSha256.o: crypto/DSha256.cpp.o
-
-.PHONY : crypto/DSha256.o
-
-# target to build an object file
-crypto/DSha256.cpp.o:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/crypto/DSha256.cpp.o
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/crypto/DSha256.cpp.o
-.PHONY : crypto/DSha256.cpp.o
-
-crypto/DSha256.i: crypto/DSha256.cpp.i
-
-.PHONY : crypto/DSha256.i
-
-# target to preprocess a source file
-crypto/DSha256.cpp.i:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/crypto/DSha256.cpp.i
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/crypto/DSha256.cpp.i
-.PHONY : crypto/DSha256.cpp.i
-
-crypto/DSha256.s: crypto/DSha256.cpp.s
-
-.PHONY : crypto/DSha256.s
-
-# target to generate assembly for a file
-crypto/DSha256.cpp.s:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/crypto/DSha256.cpp.s
-	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/crypto/DSha256.cpp.s
-.PHONY : crypto/DSha256.cpp.s
-
 crypto/cryptosingleton.o: crypto/cryptosingleton.cpp.o
 
 .PHONY : crypto/cryptosingleton.o
@@ -260,6 +230,36 @@ crypto/cryptosingleton.cpp.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/crypto/cryptosingleton.cpp.s
 	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/crypto/cryptosingleton.cpp.s
 .PHONY : crypto/cryptosingleton.cpp.s
+
+crypto/utilcrypto.o: crypto/utilcrypto.cpp.o
+
+.PHONY : crypto/utilcrypto.o
+
+# target to build an object file
+crypto/utilcrypto.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/crypto/utilcrypto.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/crypto/utilcrypto.cpp.o
+.PHONY : crypto/utilcrypto.cpp.o
+
+crypto/utilcrypto.i: crypto/utilcrypto.cpp.i
+
+.PHONY : crypto/utilcrypto.i
+
+# target to preprocess a source file
+crypto/utilcrypto.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/crypto/utilcrypto.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/crypto/utilcrypto.cpp.i
+.PHONY : crypto/utilcrypto.cpp.i
+
+crypto/utilcrypto.s: crypto/utilcrypto.cpp.s
+
+.PHONY : crypto/utilcrypto.s
+
+# target to generate assembly for a file
+crypto/utilcrypto.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/crypto/utilcrypto.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/crypto/utilcrypto.cpp.s
+.PHONY : crypto/utilcrypto.cpp.s
 
 cryptobitcoin/Sha256.o: cryptobitcoin/Sha256.cpp.o
 
@@ -410,6 +410,36 @@ persistence/DAOException.cpp.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/persistence/DAOException.cpp.s
 	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/persistence/DAOException.cpp.s
 .PHONY : persistence/DAOException.cpp.s
+
+persistence/serializationutil.o: persistence/serializationutil.cpp.o
+
+.PHONY : persistence/serializationutil.o
+
+# target to build an object file
+persistence/serializationutil.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/persistence/serializationutil.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/persistence/serializationutil.cpp.o
+.PHONY : persistence/serializationutil.cpp.o
+
+persistence/serializationutil.i: persistence/serializationutil.cpp.i
+
+.PHONY : persistence/serializationutil.i
+
+# target to preprocess a source file
+persistence/serializationutil.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/persistence/serializationutil.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/persistence/serializationutil.cpp.i
+.PHONY : persistence/serializationutil.cpp.i
+
+persistence/serializationutil.s: persistence/serializationutil.cpp.s
+
+.PHONY : persistence/serializationutil.s
+
+# target to generate assembly for a file
+persistence/serializationutil.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/persistence/serializationutil.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/persistence/serializationutil.cpp.s
+.PHONY : persistence/serializationutil.cpp.s
 
 structure/block/block.o: structure/block/block.cpp.o
 
@@ -762,6 +792,33 @@ test/SHABitcoinCoreTest.cpp.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/SHABitcoinCoreTest.cpp.s
 .PHONY : test/SHABitcoinCoreTest.cpp.s
 
+test/serealizationtest.o: test/serealizationtest.cpp.o
+
+.PHONY : test/serealizationtest.o
+
+# target to build an object file
+test/serealizationtest.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/serealizationtest.cpp.o
+.PHONY : test/serealizationtest.cpp.o
+
+test/serealizationtest.i: test/serealizationtest.cpp.i
+
+.PHONY : test/serealizationtest.i
+
+# target to preprocess a source file
+test/serealizationtest.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/serealizationtest.cpp.i
+.PHONY : test/serealizationtest.cpp.i
+
+test/serealizationtest.s: test/serealizationtest.cpp.s
+
+.PHONY : test/serealizationtest.s
+
+# target to generate assembly for a file
+test/serealizationtest.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/serealizationtest.cpp.s
+.PHONY : test/serealizationtest.cpp.s
+
 util/prevector.o: util/prevector.cpp.o
 
 .PHONY : util/prevector.o
@@ -869,12 +926,12 @@ help:
 	@echo "... core/SpyCBlock.o"
 	@echo "... core/SpyCBlock.i"
 	@echo "... core/SpyCBlock.s"
-	@echo "... crypto/DSha256.o"
-	@echo "... crypto/DSha256.i"
-	@echo "... crypto/DSha256.s"
 	@echo "... crypto/cryptosingleton.o"
 	@echo "... crypto/cryptosingleton.i"
 	@echo "... crypto/cryptosingleton.s"
+	@echo "... crypto/utilcrypto.o"
+	@echo "... crypto/utilcrypto.i"
+	@echo "... crypto/utilcrypto.s"
 	@echo "... cryptobitcoin/Sha256.o"
 	@echo "... cryptobitcoin/Sha256.i"
 	@echo "... cryptobitcoin/Sha256.s"
@@ -890,6 +947,9 @@ help:
 	@echo "... persistence/DAOException.o"
 	@echo "... persistence/DAOException.i"
 	@echo "... persistence/DAOException.s"
+	@echo "... persistence/serializationutil.o"
+	@echo "... persistence/serializationutil.i"
+	@echo "... persistence/serializationutil.s"
 	@echo "... structure/block/block.o"
 	@echo "... structure/block/block.i"
 	@echo "... structure/block/block.s"
@@ -926,6 +986,9 @@ help:
 	@echo "... test/SHABitcoinCoreTest.o"
 	@echo "... test/SHABitcoinCoreTest.i"
 	@echo "... test/SHABitcoinCoreTest.s"
+	@echo "... test/serealizationtest.o"
+	@echo "... test/serealizationtest.i"
+	@echo "... test/serealizationtest.s"
 	@echo "... util/prevector.o"
 	@echo "... util/prevector.i"
 	@echo "... util/prevector.s"

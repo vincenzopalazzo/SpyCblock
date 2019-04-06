@@ -34,6 +34,8 @@ namespace spyCBlock{
 
         const DVarInt &getScriptLenght() const;
 
+        string getScriptToSerializationForm();
+
         string toString();
 
         void decode(std::ifstream &stream);

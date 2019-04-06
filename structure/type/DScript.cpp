@@ -45,7 +45,18 @@ DScript::~DScript() {
 }
 
 const DVarInt &DScript::getScriptLenght() const {
-    return scriptLenght;
+  return scriptLenght;
+}
+
+string DScript::getScriptToSerializationForm()
+{
+  if(rawScriptString.empty())
+  {
+      LOG(ERROR) << "The raw script is null";
+      //TODO create a exception genral for all parser
+      throw new exception();
+  }
+  return rawScriptString.substr(0, (this->scriptLenght.getValue() * 2));
 }
 
 const string &DScript::getRawScriptString() const

@@ -3,7 +3,6 @@
  */
 #include <gtest/gtest.h>
 #include <glog/logging.h>
-#include "../persistence/serializationutil.h"
 #include "../util/strencodings.h"
 #include "../structure/block/block.h"
 
@@ -65,4 +64,41 @@ TEST(serealization_test, serealization_util_test_to_read_file)
   EXPECT_EQ(lietEndiaConversionNumTxOut, "01");
   EXPECT_EQ(lietEndiaConversionNumScriptLenghtTxIn, "4d");
   EXPECT_EQ(lietEndiaConversionNumScriptLenghtTxOut, "43");
+}
+
+TEST(serealization_test, serealization_genesi_block_test_to_read_file)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_block_test_to_read_file.log");
+
+  Block *block = new Block();
+
+  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  block->decode(fileOut);
+  fileOut.close();
+
+  string serealizationFormBlock = block->toSerealizationForm();
+  string attendForm = "0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c";
+  transform(attendForm.begin(), attendForm.end(), attendForm.begin(), ::tolower);
+  ASSERT_EQ(serealizationFormBlock, attendForm);
+}
+
+TEST(serealization_test, serealization_transaction_genesi_block_test_to_read_file)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_transaction_genesi_block_test_to_read_file.log");
+
+  Block *block = new Block();
+
+  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  block->decode(fileOut);
+  fileOut.close();
+
+  RawTransaction rawTransaction = block->getRawTransactions().at(0);
+  string  serealizationFormTransaction = rawTransaction.toSerealizationForm();
+  string attendForm = "01000000010000000000000000000000000000000000000000000000000000000000000000FFFFFFFF4D04FFFF001D0104455468652054696D65732030332F4A616E2F32303039204368616E63656C6C6F72206F6E206272696E6B206F66207365636F6E64206261696C6F757420666F722062616E6B73FFFFFFFF0100F2052A01000000434104678AFDB0FE5548271967F1A67130B7105CD6A828E03909A67962E0EA1F61DEB649F6BC3F4CEF38C4F35504E51EC112DE5C384DF7BA0B8D578A4C702B6BF11D5FAC00000000";
+  transform(attendForm.begin(), attendForm.end(), attendForm.begin(), ::tolower);
+  ASSERT_EQ(serealizationFormTransaction, attendForm);
 }

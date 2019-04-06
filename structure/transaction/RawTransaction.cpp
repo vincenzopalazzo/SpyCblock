@@ -4,10 +4,35 @@
 
 #include <cstdint>
 #include <sstream>
-
 #include "RawTransaction.h"
+#include "../../persistence/serializationutil.h"
 
 using namespace spyCBlock;
+
+
+int32_t RawTransaction::getVersion() const {
+    return version;
+}
+
+const DVarInt &RawTransaction::getNumberTxIn() const {
+    return numberTxIn;
+}
+
+const vector<TransactionInput> &RawTransaction::getTxInd() const {
+    return txInd;
+}
+
+const DVarInt &RawTransaction::getNumberTxOut() const {
+    return numberTxOut;
+}
+
+const vector<TransactionOutput> &RawTransaction::getTxOut() const {
+    return txOut;
+}
+
+uint32_t RawTransaction::getLockTime() const {
+    return lockTime;
+}
 
 void RawTransaction::decode(std::ifstream &stream) {
     Unserialize(stream, version);
@@ -35,6 +60,24 @@ void RawTransaction::decode(std::ifstream &stream) {
     Unserialize(stream, this->lockTime);
 }
 
+string RawTransaction::toSerealizationForm()
+{
+  stringstream stream;
+  stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->version)
+         << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->numberTxIn);
+  for(int i = 0; i < numberTxIn.getValue(); i++)
+  {
+    stream << txInd.at(i).toSerealizationForm();
+  }
+  stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->numberTxOut);
+  for(int i = 0; i < numberTxOut.getValue(); i++)
+  {
+      stream << txOut.at(i).toSerealizationForm();
+  }
+  stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->lockTime);
+  return stream.str();
+}
+
 string RawTransaction::toString() {
     stringstream *stream = new stringstream();
     *stream << "---------- Raw Transaction ----------" << endl;
@@ -55,30 +98,6 @@ string RawTransaction::toString() {
     string result = stream->str();
     delete stream;
     return result;
-}
-
-int32_t RawTransaction::getVersion() const {
-    return version;
-}
-
-const DVarInt &RawTransaction::getNumberTxIn() const {
-    return numberTxIn;
-}
-
-const vector<TransactionInput> &RawTransaction::getTxInd() const {
-    return txInd;
-}
-
-const DVarInt &RawTransaction::getNumberTxOut() const {
-    return numberTxOut;
-}
-
-const vector<TransactionOutput> &RawTransaction::getTxOut() const {
-    return txOut;
-}
-
-uint32_t RawTransaction::getLockTime() const {
-    return lockTime;
 }
 
 RawTransaction::~RawTransaction() {

@@ -11,7 +11,6 @@
 
 using namespace std;
 
-
 /**
  * The attual unit type using a Bitocin core is for the numerical type using littele endian
  * and for not numerical numbar using a big endian

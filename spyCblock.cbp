@@ -137,19 +137,19 @@
 		<Unit filename="/home/vincenzo/Github/SpyCblock/core/SpyCBlock.h">
 			<Option target="spyCblock"/>
 		</Unit>
-		<Unit filename="/home/vincenzo/Github/SpyCblock/crypto/DSha256.cpp">
-			<Option target="runTests"/>
-			<Option target="spyCblock"/>
-		</Unit>
-		<Unit filename="/home/vincenzo/Github/SpyCblock/crypto/DSha256.h">
-			<Option target="runTests"/>
-			<Option target="spyCblock"/>
-		</Unit>
 		<Unit filename="/home/vincenzo/Github/SpyCblock/crypto/cryptosingleton.cpp">
 			<Option target="runTests"/>
 			<Option target="spyCblock"/>
 		</Unit>
 		<Unit filename="/home/vincenzo/Github/SpyCblock/crypto/cryptosingleton.h">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/SpyCblock/crypto/utilcrypto.cpp">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/SpyCblock/crypto/utilcrypto.h">
 			<Option target="runTests"/>
 			<Option target="spyCblock"/>
 		</Unit>
@@ -190,6 +190,14 @@
 			<Option target="spyCblock"/>
 		</Unit>
 		<Unit filename="/home/vincenzo/Github/SpyCblock/persistence/DAOException.h">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/SpyCblock/persistence/serializationutil.cpp">
+			<Option target="runTests"/>
+			<Option target="spyCblock"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/SpyCblock/persistence/serializationutil.h">
 			<Option target="runTests"/>
 			<Option target="spyCblock"/>
 		</Unit>
@@ -272,6 +280,9 @@
 			<Option target="runTests"/>
 		</Unit>
 		<Unit filename="/home/vincenzo/Github/SpyCblock/test/SHABitcoinCoreTest.cpp">
+			<Option target="runTests"/>
+		</Unit>
+		<Unit filename="/home/vincenzo/Github/SpyCblock/test/serealizationtest.cpp">
 			<Option target="runTests"/>
 		</Unit>
 		<Unit filename="/home/vincenzo/Github/SpyCblock/util/prevector.cpp">

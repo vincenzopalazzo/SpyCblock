@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include "../type/DScript.h"
+//#include "../../persistence/serializationutil.h"
 
 using namespace std;
 
@@ -27,6 +28,8 @@ namespace spyCBlock{
         string toString();
 
         void decode(ifstream &stream);
+
+        string toSerealizationForm();
 
     };
 }

@@ -10,8 +10,9 @@
 #include <locale>
 #include <cmath>
 #include "blockHeader.h"
-#include "../../util/serialize.h"
+#include "../../persistence/serializationutil.h"
 
+using namespace spyCBlock;
 
 int32_t BlockHeader::getVersion() const{
     return version;
@@ -74,6 +75,18 @@ void BlockHeader::unserialize(std::ifstream &stream)
     LOG(INFO) << "NBits block readed: " << previousBlockHeaderHash.ToString();
     Unserialize(stream, this->nonce);
     LOG(INFO) << "Nonce block readed: " << previousBlockHeaderHash.ToString();
+}
+
+string BlockHeader::toSerealizationForm()
+{
+  stringstream *stream = new stringstream();
+  *stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->version)
+          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getPreviousBlockHeaderHash())
+          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getMerkleRoot())
+          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->time)
+          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nBits)
+          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nonce);
+  return stream->str();
 }
 
 string BlockHeader::toString() {
