@@ -4,6 +4,8 @@
 #ifndef PARSINGBLOCKCHAIN_BLOCKHEADER_H
 #define PARSINGBLOCKCHAIN_BLOCKHEADER_H
 
+#include <nlohmann/json.hpp>
+
 #include "../../util/uint256.h"
 #include <glog/logging.h>
 #include "../../util/serialize.h"
@@ -11,6 +13,7 @@
 
 using namespace std;
 //using namespace spyCBlock;
+using namespace nlohmann;
 
 /**
  * The dimension blockheader is 80 bit
@@ -55,6 +58,8 @@ public:
     void unserialize(std::ifstream &stream);
 
     string toSerealizationForm();
+
+    json toJoson();
 
 };
 

@@ -26,6 +26,15 @@ string TransactionOutput::toSerealizationForm()
   return stream.str();
 }
 
+json TransactionOutput::toJson()
+{
+  return json::object({
+                        {"ammount", this->nValue},
+                        {"scriptLenght", this->script.getScriptLenght().getValue()},
+                        {"script", this->getScript().getRawScriptString()}
+                      });
+}
+
 int64_t TransactionOutput::getNValue() const {
     return nValue;
 }

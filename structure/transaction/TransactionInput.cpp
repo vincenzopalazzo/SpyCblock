@@ -78,6 +78,17 @@ string TransactionInput::toSerealizationForm()
   return stream.str();
 }
 
+json TransactionInput::toJson()
+{
+  return json::object({
+                        {"outputTxHash", this->outpoint.getHash().GetHex()},
+                        {"ammount", this->outpoint.getN()},
+                        {"scriptLenght", this->getScript().getScriptLenght().getValue()},
+                        {"script", this->getScript().getRawScriptString()},
+                        {"sequences", this->sequences}
+                      });
+}
+
 uint32_t TransactionInput::getSequences() const {
     return sequences;
 }

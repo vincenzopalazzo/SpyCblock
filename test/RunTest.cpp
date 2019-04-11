@@ -47,6 +47,8 @@ TEST(RunTest, test_function_to_string) {
     block->decode(*stream);
     stream->close();
     LOG(WARNING) << block->toString();
+    delete block;
+    delete stream;
 }
 
 /*Test new type uint256*/
@@ -61,6 +63,7 @@ TEST(RunTest, type_uint256_test_block_header) {
               "2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3");
     EXPECT_EQ(blockHeader->getPreviousBlockHeaderHash().GetHex(),
               "0000000000004df94b4488e034359e862725dc969c498b9678dc261c58a679dc");
+    delete blockHeader;
 }
 /*Test new type outpoint*/
 TEST(RunTest, type_out_point_tx_in_test) {
@@ -71,6 +74,10 @@ TEST(RunTest, type_out_point_tx_in_test) {
     outPoint->setHash(*tx_in_hash);
     tx->setOutpoint(*outPoint);
     EXPECT_EQ(tx->getOutpoint().getHash().GetHex(), "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16");
+
+    delete tx;
+    delete outPoint;
+    delete tx_in_hash;
 }
 
 TEST(RunTest, serialize_test_int) {
@@ -175,6 +182,8 @@ TEST(RunTest, unserialize_one_block) {
              //04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5facac
     EXPECT_EQ(rawTransaction.getLockTime(), 0);
 
+    delete block;
+
 }
 
 TEST(RunTest, unserialize_two_block) {
@@ -259,6 +268,9 @@ TEST(RunTest, unserialize_two_block) {
     EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
     EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
     EXPECT_EQ(rawTransaction.getLockTime(), 0);
+
+    delete block;
+    delete block_two;
 }
 
 /*Test Read all file dat*/
@@ -302,6 +314,12 @@ TEST(RunTest, all_Read_file_dat) {
         LOG(FATAL) << "Exception generet: " << fe.what();
         FAIL();
     }
+    LOG(WARNING) << "Memory occuped for list block readed " << (blocks->capacity() * sizeof(Block)) + blocks->size();
+    stream->close();
+    outStream->close();
+    delete stream;
+    delete outStream;
+    delete blocks;
 
 }/*Test Read all file dat error numbar file read*/
 
@@ -333,6 +351,9 @@ TEST(RunTest, compare_previus_block_hash) {
     LOG(INFO) << "Hashs readted: " << priviusHashs->size();
     ASSERT_EQ(priviusHashs->size(), 119972);
 
+    fileWhitHash->close();
+    delete fileWhitHash;
+
     ifstream *fileBlk = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
 
     LOG_IF(FATAL, !fileBlk->is_open()) << "File: blk00000 not open";
@@ -356,6 +377,9 @@ TEST(RunTest, compare_previus_block_hash) {
     }
     EXPECT_EQ(coutBlockRead, 119972);
 
+    fileBlk->close();
+    delete priviusHashs;
+    delete fileBlk;
 }
 
 TEST(RunTest, read_first_block_another_file_blk)
@@ -370,6 +394,8 @@ TEST(RunTest, read_first_block_another_file_blk)
 
     Block *block = new Block();
     block->decode(*stream);
+
+    stream->close();
 
     //Init assertion on blockRead
 
@@ -413,6 +439,9 @@ TEST(RunTest, read_first_block_another_file_blk)
     TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
     ASSERT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 25);
     ASSERT_EQ(transactionOutput.getNValue(), 2549850141); // satoshi
+
+    delete stream;
+    delete block;
 
 }
 
@@ -520,6 +549,11 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
     ASSERT_EQ(transactionOutputTwo.getScript().getScriptLenght().getValue(), 25);
     ASSERT_EQ(transactionOutputTwo.getNValue(), 2542408827); // satoshi
 
+    stream->close();
+    delete stream;
+    delete block;
+    delete blockTwo;
+
 }
 
 TEST(RunTest, countd_all_block_another_file_blk)
@@ -540,6 +574,10 @@ TEST(RunTest, countd_all_block_another_file_blk)
         count++;
     }
     ASSERT_EQ(count, 155); // conta anche quello null
+
+    stream->close();
+    delete stream;
+
 }
 
 TEST(RunTest, compare_previus_second_block_hash) {
@@ -571,6 +609,9 @@ TEST(RunTest, compare_previus_second_block_hash) {
     LOG(INFO) << "Hashs readted: " << priviusHashs->size();
     ASSERT_EQ(priviusHashs->size(), 154);
 
+    fileWhitHash->close();
+    delete fileWhitHash;
+
     ifstream *fileBlk = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
 
     LOG_IF(FATAL, !fileBlk->is_open()) << "File: blk00450 not open";
@@ -594,6 +635,10 @@ TEST(RunTest, compare_previus_second_block_hash) {
         FAIL() << "Exception generated: " << ore.what();
     }
     EXPECT_EQ(coutBlockRead, 154);
+
+    fileBlk->close();
+    delete fileBlk;
+    delete priviusHashs;
 
 }
 
@@ -645,13 +690,34 @@ TEST(RunTest, compare_previus_all_block_hash)
                   }
               }
             streamTwo->close();
-             delete stream;
+            delete stream;
             delete streamTwo;
     }
     catch (DAOException daoException)
     {
         FAIL() << "The the fail for cause of this exception:  " << daoException.what();
     }
+    delete daoBlockchain;
+}
+
+TEST(RunTest, compare_type_blocks_network)
+{
+  //Init Log this test
+  FLAGS_logtostderr = false;
+  FLAGS_minloglevel = 1;
+  google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/SpyCblock/test/log/read_two_consecutive_block_another_file_blk.log");
+
+  //Init data for start this test
+  ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+
+  Block *block = new Block();
+  block->decode(*stream);
+
+  EXPECT_EQ(spyCBlock::typeBlock::NETWORK_MAIN, block->getMagicNum());
+
+  stream->close();
+  delete stream;
+  delete block;
 }
 
 int main(int argc, char **argv) {

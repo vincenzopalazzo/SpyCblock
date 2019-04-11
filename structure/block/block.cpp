@@ -12,49 +12,6 @@ Block::~Block()
 {
 }
 
-void Block::decode(std::ifstream &stream) {
-    Unserialize(stream, this->magicNum);
-    LOG(INFO) << "Magic numbar readed: " << magicNum;
-    Unserialize(stream, this->blocksize);
-    LOG(INFO) << "Block sire readed: " << blocksize;
-    blockHeader.unserialize(stream);
-    this->numbarRawTransaction.decode(stream);
-    if (numbarRawTransaction.getValue() == -1) {
-        LOG_IF(FATAL, (numbarRawTransaction.getValue() == -1)) << "Error numbarRaw Transaction = " << numbarRawTransaction.getValue();
-        //TODO segnalare errore lanciando un eccezione
-        return;
-    }
-    rawTransactions.clear();
-    for (int i = 0; i < numbarRawTransaction.getValue(); i++) {
-        LOG(INFO) << "Readed raw transaction numbar << " + i;
-        RawTransaction *transaction = new RawTransaction();
-        transaction->decode(stream);
-        rawTransactions.push_back(*transaction);
-        delete transaction;
-    }
-    LOG(INFO) << "End block read";
-}
-
-string Block::toSerealizationForm()
-{
-  return blockHeader.toSerealizationForm();
-}
-
-
-string Block::toString() {
-    stringstream *stream = new stringstream();
-    *stream << "-------- BLOCK --------- \n" << "Magic Numbar: " << convertMagicNumbar() << endl;
-    *stream << "Block Size: " << blocksize << endl;
-    *stream << blockHeader.toString();
-    *stream << "Numbar Raw Transaction: " << numbarRawTransaction.getValue() << endl;
-    for (int i = 0; i < rawTransactions.size(); i++) {
-        *stream << this->rawTransactions.at(i).toString(); //TODO possible generated exception
-    }
-    string streamResult = stream->str();
-    delete  stream;
-    return streamResult;
-}
-
 string Block::convertMagicNumbar() {
     stringstream *stream = new stringstream();
     *stream << hex << magicNum;
@@ -93,4 +50,79 @@ bool Block::operator!=(const Block &rhs) const {
     return !(rhs == *this);
 }
 
+void Block::decode(std::ifstream &stream) {
+    Unserialize(stream, this->magicNum);
+    LOG(INFO) << "Magic numbar readed: " << magicNum;
+    Unserialize(stream, this->blocksize);
+    LOG(INFO) << "Block size readed: " << blocksize;
+    blockHeader.unserialize(stream);
+    this->numbarRawTransaction.decode(stream);
+    if (numbarRawTransaction.getValue() == -1) {
+        LOG_IF(FATAL, (numbarRawTransaction.getValue() == -1)) << "Error numbarRaw Transaction = " << numbarRawTransaction.getValue();
+        //TODO segnalare errore lanciando un eccezione
+        return;
+    }
+    rawTransactions.clear();
+    for (int i = 0; i < numbarRawTransaction.getValue(); i++) {
+        LOG(INFO) << "Readed raw transaction numbar << " + i;
+        RawTransaction *transaction = new RawTransaction();
+        transaction->decode(stream);
+        rawTransactions.push_back(*transaction);
+        delete transaction;
+    }
+    LOG(INFO) << "End block read";
+}
+
+string Block::toSerealizationForm()
+{
+  return blockHeader.toSerealizationForm();
+}
+
+
+string Block::toString() {
+    stringstream *stream = new stringstream();
+    *stream << "-------- BLOCK --------- \n" << "Magic Numbar: " << convertMagicNumbar() << endl;
+    *stream << "Block Size: " << blocksize << endl;
+    *stream << blockHeader.toString();
+    *stream << "Numbar Raw Transaction: " << numbarRawTransaction.getValue() << endl;
+    for (int i = 0; i < rawTransactions.size(); i++) {
+        *stream << this->rawTransactions.at(i).toString(); //TODO possible generated exception
+    }
+    string streamResult = stream->str();
+    delete  stream;
+    return streamResult;
+}
+
+
+json Block::toJsonLite()
+{
+  return json::object({
+                        {"magicNumbar", magicNum},
+                        {"blockSize", blocksize},
+                        {"blockHeader", blockHeader.toJoson()}
+                      });
+}
+
+json Block::toJsonFat()
+{
+
+
+  //stringstream streamJson;
+  json jsonTransactionRaw;
+  for (int i = 0; i < numbarRawTransaction.getValue(); i++)
+  {
+      //streamJson << rawTransactions.at(i).toJson() << ",";
+      jsonTransactionRaw.push_back(rawTransactions.at(i).toJson());
+  }
+
+  json jsonFat = {
+      {"magicNumbar", magicNum},
+      {"blockSize", blocksize},
+      {"blockHeader", blockHeader.toJoson()},
+      {"numbarRawTransactions", numbarRawTransaction.getValue()},
+  };
+  //jsonFat["rawTransactions"] = {streamJson.str()};
+  jsonFat["rawTransactions"] = jsonTransactionRaw;
+  return jsonFat;
+}
 

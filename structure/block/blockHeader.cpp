@@ -89,6 +89,18 @@ string BlockHeader::toSerealizationForm()
   return stream->str();
 }
 
+json BlockHeader::toJoson()
+{
+  return json::object({
+                        {"version", version},
+                        {"previusBlockHeaderHash", this->previousBlockHeaderHash.GetHex()},
+                        {"markleRoot", this->merkleRoot.GetHex()},
+                        {"time", this->time},
+                        {"nBits", this->nBits},
+                        {"nonce", this->nonce},
+                      });
+}
+
 string BlockHeader::toString() {
     stringstream stream;
     stream << "---------- Block Header ---------- \n" << "Version: " << version << endl;

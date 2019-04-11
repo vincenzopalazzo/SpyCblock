@@ -4,13 +4,16 @@
 #ifndef PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
 #define PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
 
-
+#include <nlohmann/json.hpp>
 #include <cstdint>
+
 #include "../type/Outpoint.h"
 #include "../type/DScript.h"
 //#include "../../persistence/serializationutil.h"
 
+
 using namespace std;
+using namespace nlohmann;
 /*
  * In the coindbase transaction, outpoint is standard, the hash id resiver si 0 and
  * the n is 2^32 - 1*/
@@ -40,6 +43,8 @@ namespace spyCBlock{
         void decode(std::ifstream &stream);
 
         string toSerealizationForm();
+
+        json toJson();
     };
 }
 

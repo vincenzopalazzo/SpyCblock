@@ -18,6 +18,7 @@
 #include "../cryptobitcoin/Utils.hpp"
 #include "../crypto/utilcrypto.h"
 #include "../structure/block/block.h"
+#include "../crypto/cryptosingleton.h"
 
 //Included for convert string into hash byte for only testing
 //this is library is the bitcoin crittografy library
@@ -308,7 +309,7 @@ TEST(hash_test, first_test_comparable_transaction_hash_value_readed) {
     EXPECT_EQ(shaHash.ToStringForProtocol(), "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
 }
 
-TEST(serealization_test, hash_block_genesi_test_to_read_file)
+TEST(hash_test, hash_block_genesi_test_to_read_file)
 {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
@@ -330,7 +331,7 @@ TEST(serealization_test, hash_block_genesi_test_to_read_file)
   ASSERT_EQ(shaHash.ToStringForProtocol(), expectedHash);
 }
 
-TEST(serealization_test, hash_transaction_genesi_block_test_to_read_file)
+TEST(hash_test, hash_transaction_genesi_block_test_to_read_file)
 {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
@@ -353,3 +354,168 @@ TEST(serealization_test, hash_transaction_genesi_block_test_to_read_file)
 
   ASSERT_EQ(shaHash.ToStringForProtocol(), expectedHash);
 }
+
+TEST(hash_test, hash_transaction_genesi_block_test_to_read_file_with_scriptssingleton)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_transaction_genesi_block_test_to_read_file.log");
+
+  Block *block = new Block();
+
+  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  block->decode(fileOut);
+  fileOut.close();
+
+  RawTransaction rawTransaction = block->getRawTransactions().at(0);
+  string  serealizationFormTransaction = rawTransaction.toSerealizationForm();
+
+  string gettedHash = CryptoSingleton::getIstance()->getHash256(serealizationFormTransaction);
+
+  string expectedHash = "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b";
+
+  ASSERT_EQ(gettedHash, expectedHash);
+}
+
+TEST(hash_test, hash_genesi_block_test_to_read_file_with_scriptssingleton)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_transaction_genesi_block_test_to_read_file.log");
+
+  Block *block = new Block();
+
+  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  block->decode(fileOut);
+  fileOut.close();
+
+  string  serealizationFormTransaction = block->toSerealizationForm();
+
+  string gettedHash = CryptoSingleton::getIstance()->getHash256(serealizationFormTransaction);
+
+  string expectedHash = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f";
+
+  ASSERT_EQ(gettedHash, expectedHash);
+}
+
+TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssingleton)
+{
+  FLAGS_minloglevel = 1;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/hash_confront_genesi_block_test_to_read_file_with_scriptssingleton.log");
+
+  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
+  ofstream fileSaveBlock("/home/vincenzo/Github/SpyCblock/test/file_test/generate_hash_block.txt");
+
+  LOG_IF(ERROR, !fileOut.is_open()) << "File blk00000.dat not open";
+  LOG_IF(ERROR, !fileSaveBlock) << "File fileSaveBlock.txt not cerated";
+
+  while(!fileOut.eof()){
+    Block *block = new Block();
+    block->decode(fileOut);
+    string toSerealizeForm = block->toSerealizationForm();
+    string hashCalculate = CryptoSingleton::getIstance()->getHash256(toSerealizeForm);
+    fileSaveBlock << hashCalculate << endl;
+    delete block;
+  }
+  fileSaveBlock.close();
+  fileOut.close();
+
+  //Confront the file created with the file conetenented all previus hash block
+  ifstream fileHashGenerated("/home/vincenzo/Github/SpyCblock/test/file_test/generate_hash_block.txt");
+  vector<string> *hashGenerated = new vector<string>;
+  LOG_IF(ERROR, !fileHashGenerated.is_open()) << "File generate_hash_block.txt not open";
+  while(!fileHashGenerated.eof())
+  {
+    string hashReaded;
+    fileHashGenerated >> hashReaded;
+    LOG(INFO) << "The hash readed is: " << hashReaded;
+    hashGenerated->push_back(hashReaded);
+  }
+  fileHashGenerated.close();
+
+  EXPECT_EQ(hashGenerated->size(), 119974); // The file have the hash block genesi and the hash last block, is ok calcule(I hope)
+
+  ifstream preveusHashFile("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
+  LOG_IF(ERROR, !preveusHashFile.is_open()) << "File previus_hash_block_header.txt not open";
+
+  string firstHashAll0;
+  preveusHashFile >> firstHashAll0;
+  LOG(WARNING) << "The fist hash block geneses preveush hash is: " << firstHashAll0;
+  int position = 0;
+  while (!preveusHashFile.eof()) {
+    string preveusHashReaded;
+    preveusHashFile >> preveusHashReaded;
+    string hashGeneratedString = hashGenerated->at(position);
+    LOG_IF(ERROR, preveusHashReaded != hashGeneratedString) << "The hash are different " << preveusHashReaded << " " << hashGeneratedString;
+    position++;
+  }
+  ASSERT_EQ(position, 119972); // The block not have the first position and the end file
+}
+
+TEST(hash_test, hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssingleton)
+{
+  FLAGS_minloglevel = 1;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssingleton.log");
+
+  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
+  Block *block = new Block();
+
+  block->decode(fileOut);
+
+  RawTransaction rawTransaction = block->getRawTransactions().at(0);
+  TransactionInput input = rawTransaction.getTxInd().at(0);
+  OutPoint outpoint = input.getOutpoint();
+  string hashTxout = outpoint.getHash().GetHex();
+
+  TransactionOutput output = rawTransaction.getTxOut().at(0);
+  string hexoutput = output.toSerealizationForm();
+  string hashOutput = CryptoSingleton::getIstance()->getHash256(hexoutput);
+
+  ASSERT_EQ(hashTxout, hashTxout);
+}
+
+/*
+ * https://www.blockchain.com/it/btc/block/000000000000000001c984a6589be98fd3c593a1d707a7fdaaa4adf748632022
+ * @brief TEST
+ */
+
+TEST(hash_test, hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton)
+{
+  FLAGS_minloglevel = 1;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton.log");
+
+  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+
+  Block *block = new Block();
+
+  block->decode(fileOut);
+
+  string hexBlock = block->toSerealizationForm();
+  string hashBlock = CryptoSingleton::getIstance()->getHash256(hexBlock);
+
+  string expettedHashBlock = "000000000000000001c984a6589be98fd3c593a1d707a7fdaaa4adf748632022";
+
+  RawTransaction rawTransaction = block->getRawTransactions().at(0);
+  string hexRawTransaction = rawTransaction.toSerealizationForm();
+  string heshRawTransaction = CryptoSingleton::getIstance()->getHash256(hexRawTransaction);
+
+  string expettedHash = "f2a140b42b47c649a30823712dc568e25443ed390168c897ed5baa52cc50cc4a";
+
+
+  RawTransaction rawTransactionMoreInput = block->getRawTransactions().at(3);
+  string hexRawTransactionMoreInput = rawTransactionMoreInput.toSerealizationForm();
+  string heshRawTransactionMoreInput = CryptoSingleton::getIstance()->getHash256(hexRawTransactionMoreInput);
+
+  string expettedHashMoreInput = "8bbcf573e66cba09f3109a2eca0589a09232caad248b58ae69cc24bb1a22b264";
+
+  EXPECT_EQ(2461, block->getRawTransactions().size());
+  ASSERT_EQ(hashBlock, expettedHashBlock);
+  ASSERT_EQ(heshRawTransaction, expettedHash);
+  ASSERT_EQ(heshRawTransaction, expettedHash);
+}
+

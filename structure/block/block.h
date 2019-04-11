@@ -5,7 +5,6 @@
 #include <glog/logging.h>
 #include "../transaction/RawTransaction.h"
 #include "blockHeader.h"
-#include "spdlog/spdlog.h"
 #include "../../persistence/serializationutil.h"
 
 using namespace std;
@@ -15,6 +14,13 @@ using namespace std;
  */
 
 namespace spyCBlock {
+
+    enum typeBlock{
+        NETWORK_MAIN = 3652501241, //0xD9B4BEF9
+        NETWORK_TESTNET = 3669344250, //0xDAB5BFFA
+        NETWORK_TESTNET3 = 118034699, //0x0709110B
+        NETWORK_NAMECOIN = 4273258233 //0xFEB4BEF9
+    };
 
     class Block {
     private:
@@ -50,6 +56,10 @@ namespace spyCBlock {
         void decode(std::ifstream &stream);
 
         string toSerealizationForm();
+
+        json toJsonLite();
+
+        json toJsonFat();
     };
 }
 

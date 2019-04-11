@@ -6,14 +6,17 @@
 #ifndef PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 #define PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 
+#include <nlohmann/json.hpp>
 #include <vector>
 #include "TransactionOutput.h"
 #include "TransactionInput.h"
 #include <glog/logging.h>
 #include "../../util/serialize.h"
+
 //#include "../../persistence/serializationutil.h"
 
 using namespace std;
+using namespace nlohmann;
 
 namespace spyCBlock{
 
@@ -49,6 +52,9 @@ namespace spyCBlock{
         void decode(std::ifstream &stream);
 
         string toSerealizationForm();
+
+        json toJson();
+
     };
 }
 #endif //PARSINGBLOCKCHAIN_RAWTRANSACTION_H

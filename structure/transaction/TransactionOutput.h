@@ -7,10 +7,13 @@
 #define PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H
 
 #include <cstdint>
+#include <nlohmann/json.hpp>
+
 #include "../type/DScript.h"
 //#include "../../persistence/serializationutil.h"
 
 using namespace std;
+using namespace nlohmann;
 
 namespace spyCBlock{
 
@@ -31,6 +34,7 @@ namespace spyCBlock{
 
         string toSerealizationForm();
 
+        json toJson();
     };
 }
 #endif //PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H

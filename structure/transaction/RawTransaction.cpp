@@ -100,6 +100,37 @@ string RawTransaction::toString() {
     return result;
 }
 
+json RawTransaction::toJson()
+{
+  json jsonRawTransaction =  json::object({
+                        {"version", version},
+                        {"numbarTxInput", this->numberTxIn.getValue()},
+                        {"numbarTxInput", this->numberTxOut.getValue()},
+                        {"lockTime", this->lockTime},
+                      });
+  //stringstream intputTransactionJson;
+  json txInputjson;
+  for(int i = 0; i < numberTxIn.getValue(); i++)
+  {
+    //intputTransactionJson <<  this->txInd.at(i).toJson() << ",";
+      txInputjson.push_back(this->txInd.at(i).toJson());
+  }
+
+  //stringstream outputTransactionJson;
+  json txOutjson;
+  for(int i = 0 ; i < numberTxOut.getValue(); i++)
+  {
+    //outputTransactionJson <<  this->txOut.at(i).toJson() << ",";
+    txOutjson.push_back(this->txOut.at(i).toJson());
+  }
+
+  /*jsonRawTransaction["inputTransactions"] = {intputTransactionJson.str()};
+  jsonRawTransaction["outputTransaction"] = {outputTransactionJson.str()};*/
+  jsonRawTransaction["inputTransactions"] = txInputjson;
+  jsonRawTransaction["outputTransaction"] = txOutjson;
+  return jsonRawTransaction;
+}
+
 RawTransaction::~RawTransaction() {
 }
 
