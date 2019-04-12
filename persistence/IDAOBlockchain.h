@@ -17,6 +17,8 @@ namespace spyCBlock{
     public:
         virtual vector<Block> loadBlocks(string path) = 0;
 
+        virtual bool saveBlock(string inputPath, string outputPath) = 0;
+
     };
 }
 

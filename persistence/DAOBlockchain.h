@@ -31,6 +31,8 @@ namespace spyCBlock{
 
         vector<Block> loadBlocks(string path) override;
 
+        bool saveBlock(string inputPath, string outputPath) override;
+
     };
 
 }

@@ -17,6 +17,8 @@ namespace spyCBlock {
         //TODO this method refactoring
         void read(string pathBlockchain);
 
+        bool convertBlockchainToJson(string locationBitcoinCore, string destinationBitcoinCoreJson);
+
     };
 
 }

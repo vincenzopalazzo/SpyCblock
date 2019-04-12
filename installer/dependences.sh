@@ -1,4 +1,5 @@
 #!/bin/bash
+echo '----------------------| SpyCBlock |---------------------------'
 echo 'Welcome into installer SpyCBlock a simple bicoin-core parser'
 echo 'Author https://github.com/vincenzopalazzo'
 
@@ -13,8 +14,8 @@ else
 fi
 
 echo '----------- Install gtest library --------------------'
-echo ''
-echo ''
+echo 'The library for testing application by google'
+echo 'Link repo: https://github.com/google/googletest'
 echo ''
 echo ''
 
@@ -30,8 +31,8 @@ sudo rm -r googletest
 
 
 echo '-------------- Install glog library -------------------'
-echo ''
-echo ''
+echo 'The library for loggin application by google'
+echo 'Link repo: https://github.com/google/glog'
 echo ''
 echo ''
 
@@ -53,4 +54,20 @@ make -j8
 sudo make install
 cd ..
 sudo rm -r glog
+
+echo '-------------- Install json library -------------------'
+echo 'The library for json,  by nlohmann'
+echo 'Link repo: https://github.com/nlohmann/json'
+echo ''
+echo ''
+
+git clone https://github.com/nlohmann/json.git
+cd json
+mkdir build && cd build
+cmake ..
+sudo make install
+cd ..
+cd ..
+sudo rm -r json
+
 echo 'The dependecis are OK'

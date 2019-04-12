@@ -9,6 +9,7 @@
 #include "../structure/block/block.h"
 #include "../persistence/IDAOBlockchain.h"
 #include "../persistence/DAOBlockchain.h"
+#include "../persistence/json/DAOBlkToJson.h"
 #include "../persistence/DAOException.h"
 
 using namespace spyCBlock;
@@ -38,5 +39,28 @@ void SpyCBlock::read(string pathBlockchain) {
     block->decode(*stream);
     *outStream << block->toString();
     delete block;
+    }
+}
+
+bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
+{
+  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
+  {
+    LOG(ERROR) << "The input/s method are/is null";
+    throw "Input are null";
   }
+  IDAOBlockchain *dao = new DAOFileBlkJson();
+
+  bool resultConversion = dao->saveBlock(locationBitcoinCore, destinationBitcoinCoreJson);
+
+  delete dao;
+
+  if(resultConversion)
+  {
+      cout << "Conversion bitcoin-core into json O.K";
+      return true;
+  }
+  cout << "Conversion bitcoin-core into json K.O";
+
+
 }

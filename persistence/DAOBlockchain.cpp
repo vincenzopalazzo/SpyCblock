@@ -35,6 +35,11 @@ vector<spyCBlock::Block> spyCBlock::DAOBlockchain::loadBlocks(string path) {
     throw new DAOException("The path not exist");
 }
 
+bool spyCBlock::DAOBlockchain::saveBlock(string inputPath, string outputPath)
+{
+  //do nothing
+}
+
 std::vector<spyCBlock::Block> *spyCBlock::DAOBlockchain::readBlock(fs::directory_entry entry) {
     if (!isBlockFileBlk(entry)) {
         LOG(INFO) << "This path not contain a file blk";
