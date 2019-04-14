@@ -35,3 +35,8 @@ string CryptoSingleton::getHash256(string baseHash)
 CryptoSingleton::CryptoSingleton() {
 }
 
+CryptoSingleton::~CryptoSingleton()
+{
+  delete SINGLETON;
+}
+

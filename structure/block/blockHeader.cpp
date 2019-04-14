@@ -14,27 +14,9 @@
 
 using namespace spyCBlock;
 
-int32_t BlockHeader::getVersion() const{
-    return version;
-}
-
-
-uint32_t BlockHeader::getTime() const {
-    return time;
-}
-
-uint32_t BlockHeader::getNBits() const {
-    return nBits;
-}
-
-uint32_t BlockHeader::getNonce() const {
-    return nonce;
-}
-
-
-
 BlockHeader::BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint256 merkleRoot, uint32_t time,
-                         uint32_t nBits, uint32_t nonce) {
+                         uint32_t nBits, uint32_t nonce)
+{
     this->version = version;
     this->previousBlockHeaderHash = previousBlockHeaderHash;
     this->merkleRoot = merkleRoot;
@@ -43,12 +25,42 @@ BlockHeader::BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint2
     this->nonce = nonce;
 }
 
-BlockHeader::BlockHeader() {}
+BlockHeader::BlockHeader()
+{}
 
-BlockHeader::~BlockHeader() {
+BlockHeader::~BlockHeader()
+{}
+
+int32_t BlockHeader::getVersion() const
+{
+    return version;
 }
 
-bool BlockHeader::operator==(const BlockHeader &rhs) const {
+uint32_t BlockHeader::getTime() const
+{
+    return static_cast<const uint32_t>(time);
+}
+
+uint32_t BlockHeader::getNBits() const
+{
+    return nBits;
+}
+
+uint32_t BlockHeader::getNonce() const
+{
+    return nonce;
+}
+
+const uint256 &BlockHeader::getPreviousBlockHeaderHash() const {
+    return previousBlockHeaderHash;
+}
+
+const uint256 &BlockHeader::getMerkleRoot() const {
+    return merkleRoot;
+}
+
+bool BlockHeader::operator==(const BlockHeader &rhs) const
+{
     return version == rhs.version &&
            previousBlockHeaderHash == rhs.previousBlockHeaderHash &&
            merkleRoot == rhs.merkleRoot &&
@@ -57,7 +69,8 @@ bool BlockHeader::operator==(const BlockHeader &rhs) const {
            nonce == rhs.nonce;
 }
 
-bool BlockHeader::operator!=(const BlockHeader &rhs) const {
+bool BlockHeader::operator!=(const BlockHeader &rhs) const
+{
     return !(rhs == *this);
 }
 
@@ -65,7 +78,7 @@ void BlockHeader::unserialize(std::ifstream &stream)
 {
     Unserialize(stream, version);
     LOG(INFO) << "Version block header readed: " << version;
-   this->previousBlockHeaderHash.Unserialize(stream);
+    this->previousBlockHeaderHash.Unserialize(stream);
     LOG(INFO) << "Privius block readed: " << previousBlockHeaderHash.ToString();
     this->merkleRoot.Unserialize(stream);
     LOG(INFO) << "Merkler root readed: " << merkleRoot.ToString();
@@ -79,14 +92,13 @@ void BlockHeader::unserialize(std::ifstream &stream)
 
 string BlockHeader::toSerealizationForm()
 {
-  stringstream *stream = new stringstream();
-  *stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->version)
-          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getPreviousBlockHeaderHash())
-          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getMerkleRoot())
-          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->time)
-          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nBits)
-          << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nonce);
-  return stream->str();
+  string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(this->version);
+  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getPreviousBlockHeaderHash());
+  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getMerkleRoot());
+  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->time);
+  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nBits);
+  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nonce);
+  return hexForm;
 }
 
 json BlockHeader::toJoson()
@@ -101,18 +113,31 @@ json BlockHeader::toJoson()
                       });
 }
 
-string BlockHeader::toString() {
-    stringstream stream;
-    stream << "---------- Block Header ---------- \n" << "Version: " << version << endl;
-    stream << "Previous Block Header Hash: " << previousBlockHeaderHash.GetHex() << endl;
-    stream << "Merkle Root: " << merkleRoot.GetHex() << endl;
-    stream << "Time: " << convertTimeStamp() << endl;
-    stream << "nBits: " << nBits << endl;
-    stream << "Nonce: " << nonce << endl;
-    return stream.str();
+string BlockHeader::toString()
+{
+    string stringForm =  "---------- Block Header ---------- \n";
+    stringForm += "Version: ";
+    stringForm += to_string(version);
+    stringForm += "\n";
+    stringForm += "Previous Block Header Hash: ";
+    stringForm += previousBlockHeaderHash.GetHex();
+    stringForm += "\n";
+    stringForm += "Merkle Root: ";
+    stringForm += merkleRoot.GetHex();
+    stringForm += "\n";
+    stringForm += "Time: ";
+    stringForm += convertTimeStamp();
+    stringForm += "\n";
+    stringForm += "nBits: ";
+    stringForm += to_string(nBits);
+    stringForm += "\n";
+    stringForm += "Nonce: ";
+    stringForm += to_string(nonce);
+    return stringForm;
 }
 
-string BlockHeader::convertTimeStamp() {
+string BlockHeader::convertTimeStamp()
+{
     char data[30];
     time_t timeToValue = time;
     tm *tmTime = gmtime(&timeToValue);
@@ -120,13 +145,4 @@ string BlockHeader::convertTimeStamp() {
     string dataString = string(data);
     return dataString;
 }
-
-const uint256 &BlockHeader::getPreviousBlockHeaderHash() const {
-    return previousBlockHeaderHash;
-}
-
-const uint256 &BlockHeader::getMerkleRoot() const {
-    return merkleRoot;
-}
-
 

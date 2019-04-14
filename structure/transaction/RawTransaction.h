@@ -6,14 +6,14 @@
 #ifndef PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 #define PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 
-#include <nlohmann/json.hpp>
 #include <vector>
+
+#include <glog/logging.h>
+#include <nlohmann/json.hpp>
+
 #include "TransactionOutput.h"
 #include "TransactionInput.h"
-#include <glog/logging.h>
 #include "../../util/serialize.h"
-
-//#include "../../persistence/serializationutil.h"
 
 using namespace std;
 using namespace nlohmann;
@@ -23,6 +23,7 @@ namespace spyCBlock{
     class RawTransaction{
 
     private:
+
         int32_t version;
         DVarInt numberTxIn;
         vector<TransactionInput> txInd; // TODO che cosa cambia nella transazione coind base?
@@ -30,20 +31,24 @@ namespace spyCBlock{
         vector<TransactionOutput> txOut;
         uint32_t lockTime;
 
-    public:
+        //Additiona information
+        string hashRawTransaction;
 
+    public:
 
         virtual ~RawTransaction();
 
         int32_t getVersion() const;
 
-        const DVarInt & getNumberTxIn() const;
+        const DVarInt& getNumberTxIn() const;
 
-        const vector<TransactionInput> &getTxInd() const;
+        const vector<TransactionInput>& getTxInd() const;
 
-        const DVarInt & getNumberTxOut() const;
+        const DVarInt& getNumberTxOut() const;
 
-        const vector<TransactionOutput> &getTxOut() const;
+        const vector<TransactionOutput>& getTxOut() const;
+
+        string getHashRawTransaction() const;
 
         uint32_t getLockTime() const;
 

@@ -1,27 +1,15 @@
 //
 // Created by https://github.com/vincenzopalazzo on 1/24/19.
 //
+#include <string>
 
-#include <sstream>
 #include "Outpoint.h"
 
-bool operator<(const OutPoint &a, const OutPoint &b) {
-    return false;
-}
+using namespace std;
 
-bool operator==(const OutPoint &a, const OutPoint &b) {
-    return false;
-}
+OutPoint::~OutPoint()
+{
 
-bool operator!=(const OutPoint &a, const OutPoint &b) {
-    return false;
-}
-
-std::string OutPoint::ToString() const {
-    stringstream stream;
-    stream << "Hash public key sender: " <<  this->hash.ToString() << endl;
-    stream << "N: " << this->n << endl;
-    return stream.str();
 }
 
 void OutPoint::setHash(const uint256 &hash) {
@@ -36,7 +24,24 @@ uint32_t OutPoint::getN() const {
     return n;
 }
 
-OutPoint::~OutPoint()
-{
-
+bool operator<(const OutPoint &a, const OutPoint &b) {
+    return false;
 }
+
+bool operator==(const OutPoint &a, const OutPoint &b) {
+    return false;
+}
+
+bool operator!=(const OutPoint &a, const OutPoint &b) {
+    return false;
+}
+
+std::string OutPoint::ToString() const {
+    string stringForm = "Hash public key sender: ";
+    stringForm += this->hash.ToString();
+    stringForm += "N: ";
+    stringForm += to_string(this->n);
+    stringForm += "\n";
+    return stringForm;
+}
+

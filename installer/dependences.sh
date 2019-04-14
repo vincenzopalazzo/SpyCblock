@@ -70,4 +70,17 @@ cd ..
 cd ..
 sudo rm -r json
 
+echo '-------------- Install cpp-properties library -------------------'
+echo 'The library for file configuration properties,  by fredyw'
+echo 'Link repo: https://github.com/fredyw/cpp-properties'
+echo ''
+echo ''
+
+git clone https://github.com/fredyw/cpp-properties
+cd cpp-properties
+mkdir build && cd build
+cmake ..
+sudo make install
+sudo rm -r cpp-properties
+
 echo 'The dependecis are OK'

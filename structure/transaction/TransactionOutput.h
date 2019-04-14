@@ -20,13 +20,19 @@ namespace spyCBlock{
     class TransactionOutput{
 
     private:
+
         int64_t nValue;
         DScript script;
 
-    public:
-        int64_t getNValue() const;
+        //Addintiona information
+        string hashOutputTransaction;
 
-        const DScript &getScript() const;
+    public:
+        const int64_t& getNValue() const;
+
+        const DScript& getScript() const;
+
+        const string& getHashOutputTransaction() const;
 
         string toString();
 

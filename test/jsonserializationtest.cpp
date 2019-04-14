@@ -29,6 +29,7 @@ TEST(JsonSerializationTest, serialization_blockheader_test_one)
 
   ofstream fileJson("/home/vincenzo/Github/SpyCblock/test/file_test/block_header.json");
   fileJson << jsonBlockheader;
+
   fileJson.close();
   delete block;
 
@@ -37,6 +38,8 @@ TEST(JsonSerializationTest, serialization_blockheader_test_one)
   LOG_IF(ERROR, !getFilejeson.is_open()) << "File json not open";
 
   getFilejeson >> toFileJson;
+  getFilejeson.close();
+
   int version = toFileJson.at("version");
   EXPECT_EQ(1, version);
   string hexPreviusHashBlock = toFileJson.at("previusBlockHeaderHash");
@@ -78,9 +81,10 @@ TEST(JsonSerializationTest, serialization_lite_block_test_one)
   LOG_IF(ERROR, !getFilejeson.is_open()) << "File json not open";
 
   getFilejeson >> toFileJson;
+  getFilejeson.close();
+
   int magicNumbar = toFileJson.at("magicNumbar");
   int32_t blockSize = toFileJson.at("blockSize");
-
   EXPECT_EQ(spyCBlock::typeBlock::NETWORK_MAIN, magicNumbar);
   EXPECT_EQ(285 , blockSize);
 
@@ -105,6 +109,7 @@ TEST(JsonSerializationTest, serialization_fat_block_test_one)
 
   ofstream fileJson("/home/vincenzo/Github/SpyCblock/test/file_test/block_fat.json");
   fileJson << jsonBlockFat;
+
   fileJson.close();
   delete block;
 
@@ -115,12 +120,18 @@ TEST(JsonSerializationTest, serialization_fat_block_test_one)
   LOG_IF(ERROR, !getFilejeson.is_open()) << "File json not open";
 
   getFilejeson >> toFileJson;
+  getFilejeson.close();
+
   int magicNumbar = toFileJson.at("magicNumbar");
   int32_t blockSize = toFileJson.at("blockSize");
   uint64_t numTransactionRaw = toFileJson.at("numbarRawTransactions");
+  string hashBlock = toFileJson.at("hashBlock");
 
   EXPECT_EQ(spyCBlock::typeBlock::NETWORK_MAIN, magicNumbar);
   EXPECT_EQ(285 , blockSize);
   EXPECT_EQ(1, numTransactionRaw);
+  EXPECT_EQ(hashBlock, "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
 
 }
+
+//ADDING TEST FOR SERIALIZATION TRANSACTION

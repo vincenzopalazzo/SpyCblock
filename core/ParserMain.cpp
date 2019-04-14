@@ -12,15 +12,15 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    FLAGS_minloglevel = 1;
+    FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::InitGoogleLogging("1");
-    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/SpyCblock/log/main_log.log");
+    google::InitGoogleLogging("2");
+    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/log/main_log.log");
 
 
 
     SpyCBlock *spyCBlock = new SpyCBlock();
-    spyCBlock->convertBlockchainToJson("/home/vincenzo/tmp/bitcoin/block/", "/home/vincenzo/tmp/bitcoin/blockJson/");
+    spyCBlock->convertBlockchainToJson("/media/vincenzo/VincentHDD/blocks", "/media/vincenzo/VincentHDD/blockjson");
     delete spyCBlock;
 
     return 0;

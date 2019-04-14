@@ -2,20 +2,26 @@
 // Created by https://github.com/vincenzopalazzo on 1/22/19.
 //
 #include <fstream>
-#include "gtest/gtest.h"
+#include <utility>
+
+#include <gtest/gtest.h>
 #include <glog/logging.h>
 #include "../util/uint256.h"
+#include "../util/strencodings.h"
+
 #include "../structure/block/block.h"
 #include "../persistence/IDAOBlockchain.h"
 #include "../persistence/DAOBlockchain.h"
 #include "../persistence/DAOException.h"
-#include "../util/strencodings.h"
+
 
 using namespace spyCBlock;
 
 //test metod toString
-TEST(RunTest, test_function_to_string) {
+TEST(RunTest, test_function_to_string)
+{
     FLAGS_logtostderr = false;
+
     /* "-------- BLOCK --------- \n"
          "Magic Numbar: d9b4bef9\n"
          "Block Size: 285\n"
@@ -42,54 +48,52 @@ TEST(RunTest, test_function_to_string) {
          "Length script: 67\n"
          "Script: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"
          "0";*/
-    ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
-    Block *block = new Block();
-    block->decode(*stream);
-    stream->close();
-    LOG(WARNING) << block->toString();
-    delete block;
-    delete stream;
+    ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    Block block;
+    block.decode(stream);
+    stream.close();
+    LOG(WARNING) << block.toString();
 }
 
 /*Test new type uint256*/
-TEST(RunTest, type_uint256_test_block_header) {
+TEST(RunTest, type_uint256_test_block_header)
+{
     uint256 priviusBlockHas = uint256();
     priviusBlockHas.SetHex("0000000000004df94b4488e034359e862725dc969c498b9678dc261c58a679dc");
     uint256 merkle_root = uint256();
-    merkle_root.SetHex("2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3");
-    BlockHeader *blockHeader = new BlockHeader(01000000, priviusBlockHas, merkle_root, '6c8cb4d', 'b3936a1a',
-                                               'e3143991');
-    EXPECT_EQ(blockHeader->getMerkleRoot().GetHex(),
-              "2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3");
-    EXPECT_EQ(blockHeader->getPreviousBlockHeaderHash().GetHex(),
-              "0000000000004df94b4488e034359e862725dc969c498b9678dc261c58a679dc");
-    delete blockHeader;
+    merkle_root.SetHex("2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3"); 
+    unique_ptr<BlockHeader> blockHeader(new BlockHeader(01000000, priviusBlockHas, merkle_root, '6c8cb4d', 'b3936a1a', 'e3143991'));
+    EXPECT_EQ(blockHeader->getMerkleRoot().GetHex(), "2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3");
+    EXPECT_EQ(blockHeader->getPreviousBlockHeaderHash().GetHex(), "0000000000004df94b4488e034359e862725dc969c498b9678dc261c58a679dc");
 }
 /*Test new type outpoint*/
-TEST(RunTest, type_out_point_tx_in_test) {
-    TransactionInput *tx = new TransactionInput();
-    OutPoint *outPoint = new OutPoint();
-    uint256 *tx_in_hash = new uint256();
-    tx_in_hash->SetHex("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16");
-    outPoint->setHash(*tx_in_hash);
-    tx->setOutpoint(*outPoint);
-    EXPECT_EQ(tx->getOutpoint().getHash().GetHex(), "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16");
-
-    delete tx;
-    delete outPoint;
-    delete tx_in_hash;
+TEST(RunTest, type_out_point_tx_in_test)
+{
+    TransactionInput tx;
+    OutPoint outPoint;
+    uint256 tx_in_hash;
+    tx_in_hash.SetHex("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16");
+    outPoint.setHash(tx_in_hash);
+    tx.setOutpoint(outPoint);
+    EXPECT_EQ(tx.getOutpoint().getHash().GetHex(), "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16");
 }
 
-TEST(RunTest, serialize_test_int) {
+TEST(RunTest, serialize_test_int)
+{
     std::ofstream fileIn("/home/vincenzo/Github/spyCblock/test/file_test/file_bit_uno.dat");
+
     int value_in = 32;
     Serialize(fileIn, value_in);
+
     fileIn.close();
 
     std::ifstream fileOut("/home/vincenzo/Github/spyCblock/test/file_test/file_bit_uno.dat");
+
     int value;
     Unserialize(fileOut, value);
+
     fileOut.close();
+
     EXPECT_EQ(value, 32);
 }
 
@@ -123,39 +127,41 @@ Outputs:	 1
 Lock Time:	 0
 
   */
-TEST(RunTest, unserialize_one_block) {
+TEST(RunTest, unserialize_one_block)
+{
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
 
-    Block *block = new Block();
+    unique_ptr<Block> block(new Block());
 
     std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
     block->decode(fileOut);
     fileOut.close();
-    std::stringstream hex_string;
-    hex_string << std::hex << block->getMagicNum();
-    EXPECT_EQ(hex_string.str(), "d9b4bef9");
-    EXPECT_EQ(block->getBlocksize(), 285);
 
+    EXPECT_EQ(block->getMagicNum(), spyCBlock::typeBlock::NETWORK_MAIN); //This is equal to "d9b4bef9"
+    EXPECT_EQ(block->getBlocksize(), 285);
     EXPECT_EQ(block->getNumbarRawTransaction().getValue(), 1);
+
     BlockHeader blockHeader = block->getBlockHeader();
+
     EXPECT_EQ(blockHeader.getVersion(), 1);
-    EXPECT_EQ(blockHeader.getPreviousBlockHeaderHash().GetHex(),
-              "0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(blockHeader.getPreviousBlockHeaderHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
     EXPECT_EQ(blockHeader.getMerkleRoot().GetHex(), "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
     EXPECT_EQ(blockHeader.getTime(), 1231006505);
     EXPECT_EQ(blockHeader.getNBits(), 486604799);
     EXPECT_EQ(blockHeader.getNonce(), 2083236893);
 
     RawTransaction rawTransaction = block->getRawTransactions().at(0);
+
     EXPECT_EQ(rawTransaction.getVersion(), 1);
     EXPECT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
 
     //Transaction Input
     TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
-    EXPECT_EQ(transactionInput.getOutpoint().getHash().GetHex(),
-              "0000000000000000000000000000000000000000000000000000000000000000");
+
+    EXPECT_EQ(transactionInput.getOutpoint().getHash().GetHex(),"0000000000000000000000000000000000000000000000000000000000000000");
     EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival at 0xffffff
     EXPECT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 77);
     EXPECT_EQ(transactionInput.getScript().getScriptString().size(), 77);
@@ -182,26 +188,25 @@ TEST(RunTest, unserialize_one_block) {
              //04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5facac
     EXPECT_EQ(rawTransaction.getLockTime(), 0);
 
-    delete block;
-
 }
 
-TEST(RunTest, unserialize_two_block) {
+TEST(RunTest, unserialize_two_block)
+{
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/pyCblock/test/log/unserialize_block_test.log");
 
-    Block *block = new Block();
+    unique_ptr<Block> block(new Block());
 
     std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
     block->decode(fileOut);
-    std::stringstream hex_string;
-    hex_string << std::hex << block->getMagicNum();
-    EXPECT_EQ(hex_string.str(), "d9b4bef9");
-    EXPECT_EQ(block->getBlocksize(), 285);
 
+    EXPECT_EQ(block->getMagicNum(), spyCBlock::typeBlock::NETWORK_MAIN);
+    EXPECT_EQ(block->getBlocksize(), 285);
     EXPECT_EQ(block->getNumbarRawTransaction().getValue(), 1);
+
     BlockHeader blockHeader = block->getBlockHeader();
+
     EXPECT_EQ(blockHeader.getVersion(), 1);
     EXPECT_EQ(blockHeader.getPreviousBlockHeaderHash().GetHex(),
               "0000000000000000000000000000000000000000000000000000000000000000");
@@ -211,9 +216,11 @@ TEST(RunTest, unserialize_two_block) {
     EXPECT_EQ(blockHeader.getNonce(), 2083236893);
 
     RawTransaction rawTransaction = block->getRawTransactions().at(0);
+
     EXPECT_EQ(rawTransaction.getVersion(), 1);
     EXPECT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
     EXPECT_EQ(rawTransaction.getTxInd().size(), 1);
+
     //Transaction Input
     TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
     EXPECT_EQ(transactionInput.getOutpoint().getHash().GetHex(),
@@ -225,21 +232,23 @@ TEST(RunTest, unserialize_two_block) {
     //Transaction Output
     EXPECT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
     EXPECT_EQ(rawTransaction.getTxOut().size(), 1);
+
     TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
     EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
     EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
     EXPECT_EQ(rawTransaction.getLockTime(), 0);
 
-    Block *block_two = new Block();
+    unique_ptr<Block> block_two(new Block());
+
     block_two->decode(fileOut);
     fileOut.close();
-    std::stringstream hex_string_two;
-    hex_string_two << std::hex << block_two->getMagicNum();
-    EXPECT_EQ(hex_string.str(), "d9b4bef9");
+
+    EXPECT_EQ(block_two->getMagicNum(), spyCBlock::typeBlock::NETWORK_MAIN);
     EXPECT_EQ(block_two->getBlocksize(), 215);
 
 
     blockHeader = block_two->getBlockHeader();
+
     EXPECT_EQ(blockHeader.getVersion(), 1);
     EXPECT_EQ(blockHeader.getPreviousBlockHeaderHash().GetHex(),
               "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
@@ -251,6 +260,7 @@ TEST(RunTest, unserialize_two_block) {
     EXPECT_EQ(block_two->getNumbarRawTransaction().getValue(), 1);
 
     rawTransaction = block_two->getRawTransactions().at(0);
+
     EXPECT_EQ(rawTransaction.getVersion(), 1);
     EXPECT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
 
@@ -268,33 +278,36 @@ TEST(RunTest, unserialize_two_block) {
     EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
     EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
     EXPECT_EQ(rawTransaction.getLockTime(), 0);
-
-    delete block;
-    delete block_two;
 }
 
 /*Test Read all file dat*/
-TEST(RunTest, all_Read_file_dat) {
+TEST(RunTest, all_Read_file_dat)
+{
 
-    FLAGS_minloglevel = 1;
-    FLAGS_logtostderr = true;
-    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/SpyCblock/test/log/all_Read_file_dat_test_first.log");
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/all_Read_file_dat_test_first.log");
 
-    ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
-    ofstream *outStream = new ofstream("/home/vincenzo/Github/SpyCblock/test/file_test/file_test_readl_all_file_dat_uno.txt");
+    ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    ofstream outStream("/home/vincenzo/Github/SpyCblock/test/file_test/file_test_readl_all_file_dat_uno.txt");
+
     vector<Block> *blocks = new vector<Block>();
-    try {
-        if (stream->is_open()) {
+    try
+    {
+        if (stream.is_open())
+          {
             LOG(INFO) << "Stream is open";
             int numbarBlock = 0;
-            while (!stream->eof()) {
+
+            while (!stream.eof()) {
                 Block *block = new Block();
-                block->decode(*stream);
+                block->decode(stream);
                 if(block->getBlockHeader().getVersion() == 0)//TODO dare un occhiata qui qualcosa non va con i numeri di blocchi
                 {
                     LOG(WARNING) << "block is null -> " << block->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+                    delete block;
                 }else{
-                    *outStream << block->toString();
+                    outStream << block->toString();
                     blocks->push_back(*block);
                     delete block;
                     numbarBlock++;
@@ -315,10 +328,10 @@ TEST(RunTest, all_Read_file_dat) {
         FAIL();
     }
     LOG(WARNING) << "Memory occuped for list block readed " << (blocks->capacity() * sizeof(Block)) + blocks->size();
-    stream->close();
-    outStream->close();
-    delete stream;
-    delete outStream;
+
+    stream.close();
+    outStream.close();
+
     delete blocks;
 
 }/*Test Read all file dat error numbar file read*/
@@ -352,6 +365,7 @@ TEST(RunTest, compare_previus_block_hash) {
     ASSERT_EQ(priviusHashs->size(), 119972);
 
     fileWhitHash->close();
+
     delete fileWhitHash;
 
     ifstream *fileBlk = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
@@ -378,6 +392,7 @@ TEST(RunTest, compare_previus_block_hash) {
     EXPECT_EQ(coutBlockRead, 119972);
 
     fileBlk->close();
+
     delete priviusHashs;
     delete fileBlk;
 }
@@ -449,26 +464,25 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
 {
     //Init Log this test
     FLAGS_logtostderr = false;
-    FLAGS_minloglevel = 1;
-    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/SpyCblock/test/log/read_two_consecutive_block_another_file_blk.log");
+    FLAGS_minloglevel = 2;
+    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/SpyCblock/test/log/read_two_consecutive_block_another_file_blk.log");
 
     //Init data for start this test
-    ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+    ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
 
     Block *block = new Block();
-    block->decode(*stream);
+    block->decode(stream);
+
 
     //Init assertion on blockRead
 
     /* ------ TEST BLOCK -----*/
-    stringstream *hexaNumbarMagic = new stringstream();
-    *hexaNumbarMagic << hex << block->getMagicNum();
-    ASSERT_EQ(hexaNumbarMagic->str(), "d9b4bef9");
-    delete hexaNumbarMagic;
+    ASSERT_EQ(block->getMagicNum(), spyCBlock::typeBlock::NETWORK_MAIN);
     ASSERT_EQ(block->getBlocksize(), 934444);
 
     /* ------ TEST BLOCK HEADER-----*/
     BlockHeader blockHeader = block->getBlockHeader();
+
     ASSERT_EQ(blockHeader.getVersion(), 4);
     ASSERT_EQ(blockHeader.getPreviousBlockHeaderHash().GetHex(), "0000000000000000037cc15769f72a8c7ea600975439e5a75f0c52534a4034ce");
     ASSERT_EQ(blockHeader.getMerkleRoot().GetHex(), "fdd92740f2472da1be5359a0006205f900ec1ecafea8a37fe2ebccc0d4dab963");
@@ -479,7 +493,9 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
     /* ----------- TEST RAW TRANSACTION -------------*/
     ASSERT_EQ(block->getNumbarRawTransaction().getValue(), 2461);
     ASSERT_EQ(block->getRawTransactions().size(), 2461);
+
     RawTransaction rawTransaction = block->getRawTransactions().at(0);
+
     ASSERT_EQ(rawTransaction.getVersion(), 1);
     ASSERT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
     ASSERT_EQ(rawTransaction.getTxInd().size(), 1);
@@ -488,35 +504,39 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
 
     /* ----------- TEST IN TRANSACTION -------------*/
     ASSERT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
+
     TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
+
     ASSERT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
     ASSERT_EQ(transactionInput.getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
     ASSERT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 42);
     ASSERT_EQ(transactionInput.getSequences(), 4294967295);
 
     /* ----------- TEST OUT TRANSACTION -------------*/
+
     ASSERT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
     ASSERT_EQ(rawTransaction.getTxOut().size(), 1);
+
     TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
+
     ASSERT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 25);
     ASSERT_EQ(transactionOutput.getNValue(), 2549850141); // satoshiBlock *block = new Block();
 
+    delete block;
     /* ----------| SECOND BLOCK |---------- */
 
     Block *blockTwo = new Block();
-    blockTwo->decode(*stream);
+    blockTwo->decode(stream);
 
     //Init assertion on blockRead
 
     /* ------ TEST BLOCK -----*/
-    stringstream *hexaNumbarMagicTwo = new stringstream();
-    *hexaNumbarMagicTwo << hex << blockTwo->getMagicNum();
-    ASSERT_EQ(hexaNumbarMagicTwo->str(), "d9b4bef9");
-    delete hexaNumbarMagicTwo;
+    ASSERT_EQ(blockTwo->getMagicNum(), spyCBlock::typeBlock::NETWORK_MAIN);
     ASSERT_EQ(blockTwo->getBlocksize(), 934026);
 
     /* ------ TEST BLOCK HEADER-----*/
     BlockHeader blockHeaderTwo = blockTwo->getBlockHeader();
+
     ASSERT_EQ(blockHeaderTwo.getVersion(), 4);
     ASSERT_EQ(blockHeaderTwo.getPreviousBlockHeaderHash().GetHex(), "000000000000000005f63eb7767a8272bde8ea61578c0843e29636cd8e801027");
     ASSERT_EQ(blockHeaderTwo.getMerkleRoot().GetHex(), "e5d3ee60c360e9ed65f25eb0c45a2df37c73a79f233ca74fbd85722994e28c85");
@@ -527,7 +547,9 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
     /* ----------- TEST RAW TRANSACTION -------------*/
     ASSERT_EQ(blockTwo->getNumbarRawTransaction().getValue(), 2237);
     ASSERT_EQ(blockTwo->getRawTransactions().size(), 2237);
+
     RawTransaction rawTransactionTwo = blockTwo->getRawTransactions().at(0);
+
     ASSERT_EQ(rawTransactionTwo.getVersion(), 1);
     ASSERT_EQ(rawTransactionTwo.getNumberTxIn().getValue(), 1);
     ASSERT_EQ(rawTransactionTwo.getTxInd().size(), 1);
@@ -536,7 +558,9 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
 
     /* ----------- TEST IN TRANSACTION -------------*/
     ASSERT_EQ(rawTransactionTwo.getNumberTxIn().getValue(), 1);
+
     TransactionInput transactionInputTwo = rawTransactionTwo.getTxInd().at(0);
+
     ASSERT_EQ(transactionInputTwo.getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
     ASSERT_EQ(transactionInputTwo.getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
     ASSERT_EQ(transactionInputTwo.getScript().getScriptLenght().getValue(), 42);
@@ -545,13 +569,13 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
     /* ----------- TEST OUT TRANSACTION -------------*/
     ASSERT_EQ(rawTransactionTwo.getNumberTxOut().getValue(), 1);
     ASSERT_EQ(rawTransactionTwo.getTxOut().size(), 1);
+
     TransactionOutput transactionOutputTwo = rawTransactionTwo.getTxOut().at(0);
+
     ASSERT_EQ(transactionOutputTwo.getScript().getScriptLenght().getValue(), 25);
     ASSERT_EQ(transactionOutputTwo.getNValue(), 2542408827); // satoshi
 
-    stream->close();
-    delete stream;
-    delete block;
+    stream.close();
     delete blockTwo;
 
 }
@@ -560,71 +584,74 @@ TEST(RunTest, countd_all_block_another_file_blk)
 {
     //Init Log this test
     FLAGS_logtostderr = false;
-    FLAGS_minloglevel = 1;
-    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/SpyCblock/test/log/countd_all_block_another_file_blk.log");
+    FLAGS_minloglevel = 2;
+    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/countd_all_block_another_file_blk.log");
 
     //Init data for start this test
-    ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+    ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
     int count = 0;
-    while(!stream->eof())
+    while(!stream.eof())
     {
         Block *block = new Block();
-        block->decode(*stream);
+        block->decode(stream);
+
         delete block;
         count++;
     }
     ASSERT_EQ(count, 155); // conta anche quello null
 
-    stream->close();
-    delete stream;
-
+    stream.close();
 }
 
 TEST(RunTest, compare_previus_second_block_hash) {
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/SpyCblock/test/log/compare_previus_second_block_hash.log");
+    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/compare_previus_second_block_hash.log");
 
-    ifstream *fileWhitHash = new ifstream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_second_block_header.txt");
+    ifstream fileWhitHash("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_second_block_header.txt");
 
-    vector<string> *priviusHashs = new vector<string>();
-    if(!fileWhitHash->is_open())
+    vector<string> priviusHashs;
+    if(!fileWhitHash.is_open())
     {
         FAIL() << "File previus_hash_block_header.txt not open";
     }
-    while (!fileWhitHash->eof())
+    while (!fileWhitHash.eof())
     {
         string readLine;
-        *fileWhitHash >> readLine;
+        fileWhitHash >> readLine;
         LOG(INFO) << "I have read " << readLine;
-        if(readLine != ""){
-            priviusHashs->push_back(readLine);
-        } else{
+        if(readLine != "")
+        {
+            priviusHashs.push_back(readLine);
+        }else{
             LOG(WARNING) << "Line empty";
         }
 
     }
-    fileWhitHash->close();
-    LOG(INFO) << "Hashs readted: " << priviusHashs->size();
-    ASSERT_EQ(priviusHashs->size(), 154);
 
-    fileWhitHash->close();
-    delete fileWhitHash;
+    fileWhitHash.close();
+    LOG(INFO) << "Hashs readted: " << priviusHashs.size();
+    ASSERT_EQ(priviusHashs.size(), 154);
 
-    ifstream *fileBlk = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+    fileWhitHash.close();
 
-    LOG_IF(FATAL, !fileBlk->is_open()) << "File: blk00450 not open";
+    ifstream fileBlk("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+
+    LOG_IF(FATAL, !fileBlk.is_open()) << "File: blk00450 not open";
     int coutBlockRead = 0;
     try
     {
-        while(!fileBlk->eof() && coutBlockRead < priviusHashs->size())
+        while(!fileBlk.eof() && coutBlockRead < priviusHashs.size())
         {
             Block *blockTested = new Block();
-            blockTested->decode(*fileBlk);
+            blockTested->decode(fileBlk);
+
             LOG(INFO) << "Block hash previus readed " << blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-            LOG(INFO) << "Block hash previus awaited " << priviusHashs->at(coutBlockRead);
-            ASSERT_EQ(blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex(),  priviusHashs->at(coutBlockRead)) << "Assertion fail at: " << coutBlockRead;
+            LOG(INFO) << "Block hash previus awaited " << priviusHashs.at(coutBlockRead);
+
+            ASSERT_EQ(blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex(),  priviusHashs.at(coutBlockRead)) << "Assertion fail at: " << coutBlockRead;
+
             coutBlockRead++;
             delete blockTested;
         }
@@ -636,50 +663,50 @@ TEST(RunTest, compare_previus_second_block_hash) {
     }
     EXPECT_EQ(coutBlockRead, 154);
 
-    fileBlk->close();
-    delete fileBlk;
-    delete priviusHashs;
-
+    fileBlk.close();
 }
 
 TEST(RunTest, compare_previus_all_block_hash)
 {
 
   //Init logger
-  FLAGS_minloglevel = 1;
+  FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::GLOG_INFO,  "/home/vincenzo/Github/SpyCblock/test/log/compare_previus_all_block_hash.log");
+  google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/compare_previus_all_block_hash.log");
 
-    IDAOBlockchain *daoBlockchain = new DAOBlockchain();
+    unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
     try
     {
             vector<Block> blocks = daoBlockchain->loadBlocks("/home/vincenzo/tmp/bitcoin/block");
             ASSERT_EQ(120127, blocks.size());
 
-            ifstream *stream = new ifstream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_second_block_header.txt");
-            LOG_IF(ERROR, !stream->is_open()) << "The file previus_hash_second_block_header.txt not opened";
+            ifstream stream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_second_block_header.txt");
+
+            LOG_IF(ERROR, !stream.is_open()) << "The file previus_hash_second_block_header.txt not opened";
+
             int numbarBlock = 0;
-            while(!stream->eof())
+
+            while(!stream.eof())
             {
                   string previusBlockCalculate;
-                  *stream >> previusBlockCalculate;
+                  stream >> previusBlockCalculate;
                   if(!previusBlockCalculate.empty())
-                    {
-                      LOG(INFO) << "The previus block calculate is: " << previusBlockCalculate;
-                      string previusBlockReaded = blocks.at(numbarBlock).getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-                      LOG(INFO) << "The previus block readed is: " << previusBlockCalculate;
-                      ASSERT_EQ(previusBlockCalculate, previusBlockReaded) << " the hash block are different at the "  << numbarBlock << " numbars blocks";
-                      numbarBlock++;
-                    }
+                  {
+                     LOG(INFO) << "The previus block calculate is: " << previusBlockCalculate;
+                     string previusBlockReaded = blocks.at(numbarBlock).getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+                     LOG(INFO) << "The previus block readed is: " << previusBlockCalculate;
+                     ASSERT_EQ(previusBlockCalculate, previusBlockReaded) << " the hash block are different at the "  << numbarBlock << " numbars blocks";
+                     numbarBlock++;
+                  }
               }
-            stream->close();
+            stream.close();
 
-            ifstream *streamTwo = new ifstream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
-            LOG_IF(ERROR, !streamTwo->is_open()) << "The file previus_hash_block_header not is open";
-            while(!streamTwo->eof())
+            ifstream streamTwo("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
+            LOG_IF(ERROR, !streamTwo.is_open()) << "The file previus_hash_block_header not is open";
+            while(!streamTwo.eof())
             {
                 string previusBlockCalculate;
-                *streamTwo >> previusBlockCalculate;
+                streamTwo >> previusBlockCalculate;
                 if(!previusBlockCalculate.empty())
                   {
                     LOG(INFO) << "The previus block calculate is: " << previusBlockCalculate;
@@ -689,34 +716,30 @@ TEST(RunTest, compare_previus_all_block_hash)
                     numbarBlock++;
                   }
               }
-            streamTwo->close();
-            delete stream;
-            delete streamTwo;
-    }
+            streamTwo.close();
+           }
     catch (DAOException daoException)
     {
         FAIL() << "The the fail for cause of this exception:  " << daoException.what();
     }
-    delete daoBlockchain;
 }
 
 TEST(RunTest, compare_type_blocks_network)
 {
   //Init Log this test
   FLAGS_logtostderr = false;
-  FLAGS_minloglevel = 1;
-  google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/SpyCblock/test/log/read_two_consecutive_block_another_file_blk.log");
+  FLAGS_minloglevel = 2;
+  google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/read_two_consecutive_block_another_file_blk.log");
 
   //Init data for start this test
-  ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+  ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
 
   Block *block = new Block();
-  block->decode(*stream);
+  block->decode(stream);
 
   EXPECT_EQ(spyCBlock::typeBlock::NETWORK_MAIN, block->getMagicNum());
 
-  stream->close();
-  delete stream;
+  stream.close();
   delete block;
 }
 

@@ -1,29 +1,38 @@
 //
 // Created by https://github.com/vincenzopalazzo on 3/7/19.
 //
+#include <utility>
+
 #include "DAOBlockchain.h"
 #include "DAOException.h"
 
 
 vector<spyCBlock::Block> spyCBlock::DAOBlockchain::loadBlocks(string path) {
-    if (path.empty()) {
+    if (path.empty())
+    {
         LOG(ERROR) << "The argument function is null";
         throw new DAOException("The argument function loadBlocks from DAOBlockchain is Empity");
     }
-    vector<Block> blockchainBloks = vector<Block>();
-    if (fs::exists(path)) {
-        if (fs::is_directory(path)) {
+    vector<Block> blockchainBloks;
+
+    if (fs::exists(path))
+    {
+        if (fs::is_directory(path))
+        {
             fs::path pathObject = path;
             LOG(INFO) << "Path exits and the path is the directory, the path is:  " << path;
-            for (auto &p: fs::directory_iterator(pathObject)) {
+            for (auto &p: fs::directory_iterator(pathObject))
+            {
                 LOG(INFO) << "The file examinad is: " << p;
                 vector<Block> *vector1 = readBlock(p);
-                if (vector1 != nullptr) {
+                if (vector1 != nullptr)
+                {
                     LOG(INFO) << "I added block readed in this file " << path;
                     LOG(INFO) << "Dimension blockchain before join " << blockchainBloks.size();
                     blockchainBloks.insert(blockchainBloks.end(), vector1->begin(), vector1->end());
                     LOG(INFO) << "Dimension blockchain after join " << blockchainBloks.size();
                 }
+                delete vector1;
             }
             return blockchainBloks;
         }
@@ -41,31 +50,39 @@ bool spyCBlock::DAOBlockchain::saveBlock(string inputPath, string outputPath)
 }
 
 std::vector<spyCBlock::Block> *spyCBlock::DAOBlockchain::readBlock(fs::directory_entry entry) {
-    if (!isBlockFileBlk(entry)) {
+    if (!isBlockFileBlk(entry))
+    {
         LOG(INFO) << "This path not contain a file blk";
         return nullptr;
     }
-    ifstream *stream = new ifstream(entry.path());
-    if (stream->is_open()) {
+    ifstream stream(entry.path());
+
+    if (stream.is_open())
+    {
         LOG(INFO) << "File in this path " << entry.path() << " is open";
         vector<Block> *blocksFile = new vector<Block>();
-        while (!stream->eof()) {
+        while (!stream.eof())
+        {
             Block *block = new Block();
-            block->decode(*stream);
+            block->decode(stream);
             string previuHashBlock = block->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
             string genesiBlock = "0000000000000000000000000000000000000000000000000000000000000000";
-            if(isBlockGenesi(entry, block)){
+            if(isBlockGenesi(entry, block))
+            {
                 LOG(WARNING) << "Finde genesy block";
                 blocksFile->push_back(*block);
-              }
-            if(previuHashBlock != genesiBlock){
+            }
+            if(previuHashBlock != genesiBlock)
+            {
                  blocksFile->push_back(*block);
-              }
+            }
             delete block;
         }
+        stream.close();
         LOG(WARNING) << "Readed a " << blocksFile->size() << " files";
         return blocksFile;
     }
+    stream.close();
     LOG(ERROR) << "File not open";
     throw new DAOException("File not open");
 }

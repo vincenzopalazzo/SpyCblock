@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <glog/logging.h>
 #include <nlohmann/json.hpp>
 
@@ -5,32 +7,40 @@
 #include "../DAOException.h"
 
 using namespace spyCBlock;
+using namespace std;
 using json = nlohmann::json;
 
 bool DAOFileBlkJson::saveBlock(string inputPath, string outputPath)
 {
-  if (inputPath.empty() || outputPath.empty()) {
+  if (inputPath.empty() || outputPath.empty())
+  {
       LOG(ERROR) << "The argument function is null";
       throw new DAOException("The argument function loadBlocks from DAOBlockchain is Empity");
   }
 
   bool result = false;
 
-  if (fs::exists(inputPath)){
-      if(fs::is_directory(inputPath)){
+  if (fs::exists(inputPath))
+  {
+      if(fs::is_directory(inputPath))
+      {
          fs::path pathObject = inputPath;
           LOG(WARNING) << "Path exits and the path is the directory, the path is:  " << inputPath;
-          for (auto &p: fs::directory_iterator(pathObject)) {
+          for (auto &p: fs::directory_iterator(pathObject))
+          {
               LOG(WARNING) << "The file examinad is: " << p;
               LOG_IF(ERROR, counterBlock < 0) << "The counter block are negative, this is not possible, the attual value is" << counterBlock;
               string nameFile = getNameFile(p);
               vector<Block> *vectorBlockFileBlk = readBlock(p, counterBlock);
-              if (vectorBlockFileBlk != nullptr) {
+
+              if (vectorBlockFileBlk != nullptr)
+              {
                   LOG(INFO) << "I added block readed in this file " << inputPath;
                   result = convertVectorBlockIntoJson(vectorBlockFileBlk, outputPath, nameFile);
                   if(!result)
                   {
                      LOG(ERROR) << "Error into convert vector blocks readed into json file";
+                     delete vectorBlockFileBlk;
                      return result;
                   }
               }
@@ -39,37 +49,41 @@ bool DAOFileBlkJson::saveBlock(string inputPath, string outputPath)
           return result;
       }
       LOG(ERROR) << "The path not is a directory";
-      throw new DAOException("The path not is a directory");
+      throw DAOException("The path not is a directory");
   }
   LOG(ERROR) << "The path not exist";
-  throw new DAOException("The path not exist");
+  throw DAOException("The path not exist");
 }
 
 vector<Block> *DAOFileBlkJson::readBlock(experimental::filesystem::__cxx11::directory_entry entry, int &counterBlock)
 {
-  if (!isBlockFileBlk(entry)) {
+  if (!isBlockFileBlk(entry))
+  {
       LOG(INFO) << "This path not contain a file blk";
       return nullptr;
   }
   ifstream *stream = new ifstream(entry.path());
-  if (stream->is_open()) {
+  if (stream->is_open())
+  {
       LOG(INFO) << "File in this path " << entry.path() << " is open";
       vector<Block> *blocksFile = new vector<Block>();
-      while (!stream->eof()) {
+      while (!stream->eof())
+      {
           Block *block = new Block();
           block->decode(*stream);
-          // TODO increment the contatour for cont block and setting the numbar into block
-          //block->setBlockNumabar(counterBlock);
+          block->setHeightBlock(counterBlock);
           counterBlock++;
           LOG(WARNING) << "The numbar blocks readed are: " << counterBlock;
           blocksFile->push_back(*block);
           delete block;
       }
+      stream->close();
+      delete stream;
       LOG(WARNING) << "Readed a " << blocksFile->size() << " files";
       return blocksFile;
   }
   LOG(ERROR) << "File not open";
-  throw new DAOException("File not open");
+  throw DAOException("File not open");
 }
 
 //TODO refactoring method into IDAOBlockchain becouse thi method are common
@@ -94,34 +108,44 @@ bool DAOFileBlkJson::isBlockFileBlk(experimental::filesystem::__cxx11::directory
   return containsBlk && containsExstension;
 }
 
+//TODO ho modoficato questo da stanco, ho metto dei puntatori
+//prova aggiungendo anche unique_ptr.
 bool DAOFileBlkJson::convertVectorBlockIntoJson(vector<Block> *blockFileBlk, string outputPath, string nameFile)
 {
   if(blockFileBlk == nullptr || outputPath.empty() || nameFile.empty())
   {
     LOG(ERROR) << "The imput parameter is null";
-    throw new DAOException("Input is null");
+    throw DAOException("Input is null");
   }
-  json jsonBlocksFile;//TODO convert vector into json.
+
+  json *jsonBlocksFile = new json();//TODO convert vector into json.
 
   json listBlocksConvert;
 
-  for(int i = 0; i < blockFileBlk->size(); i++)
+  for(int i = 0; i < static_cast<int>(blockFileBlk->size()); i++)
   {
      listBlocksConvert.push_back(blockFileBlk->at(i).toJsonFat());
   }
 
-  jsonBlocksFile["blocks"] = listBlocksConvert;
+  *jsonBlocksFile ={"blocks", listBlocksConvert};
 
-  stringstream nameFileJson;
-  nameFileJson << outputPath << nameFile << ".json";
 
-  ofstream streamOutput(nameFileJson.str());
+  string nameFileJson = outputPath;
+  nameFileJson += nameFile;
+  nameFileJson += ".json";
 
-  if(streamOutput.is_open())
+  ofstream *streamOutput = new ofstream(nameFileJson);
+
+  if(streamOutput->is_open())
   {
-    streamOutput << jsonBlocksFile;
+    *streamOutput << jsonBlocksFile;
+    streamOutput->close();
+    delete streamOutput;
+    delete jsonBlocksFile;
     return true;
   }
+  delete streamOutput;
+  delete jsonBlocksFile;
   LOG(ERROR) << "ERROR the file is not open into this directory " << outputPath;
   return false;
 }
@@ -134,6 +158,37 @@ string DAOFileBlkJson::getNameFile(experimental::filesystem::__cxx11::directory_
   LOG(WARNING) << "Name file analized is " << nameFile << "and creating file json whit this name";
   LOG_IF(ERROR, nameFile.empty()) << "Name file empity";
   return nameFile;
+}
+
+string DAOFileBlkJson::nameFileSearched(string pathInput)
+{
+  if(pathInput.empty())
+  {
+    LOG(ERROR) << "Input function null";
+    throw exception();
+  }
+
+  //Search file blk.dat
+  if(currentFile < 10) //Il path input deve avere per forza il /
+  {   //refactoring using a &
+
+      return pathInput + "blk0000" + to_string(currentFile) + ".dat";
+
+  }else if(currentFile < 100)
+  {
+      return pathInput + "blk000" + to_string(currentFile) + ".dat";
+  }else if (currentFile < 1000)
+  {
+      return pathInput + "blk00" + to_string(currentFile) + ".dat";
+  }else if (currentFile < 10000)
+  {
+      return pathInput + "blk0" + to_string(currentFile) + ".dat";
+  }else if (currentFile < 100000) {
+
+      return pathInput + "blk0" + to_string(currentFile) + ".dat";
+  }
+  LOG(ERROR) << "The current file is greater to 100000, the value current file is:" << currentFile;
+  throw exception();
 }
 
 DAOFileBlkJson::DAOFileBlkJson() = default;

@@ -20,6 +20,8 @@ namespace spyCBlock {
       protected:
           CryptoSingleton();
 
+          ~CryptoSingleton();
+
       private:
           static spyCBlock::CryptoSingleton* SINGLETON;
     };

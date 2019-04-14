@@ -3,8 +3,9 @@
 
 #include <ostream>
 #include <glog/logging.h>
-#include "../transaction/RawTransaction.h"
+
 #include "blockHeader.h"
+#include "../transaction/RawTransaction.h"
 #include "../../persistence/serializationutil.h"
 
 using namespace std;
@@ -31,6 +32,11 @@ namespace spyCBlock {
         DVarInt numbarRawTransaction;
         vector<RawTransaction> rawTransactions;
 
+        //Surplus information to the block
+        //The value -1 indicate a value null because the value is setter to passer
+        int32_t heightBlock = -1;
+        string hashBlock;
+
         string convertMagicNumbar();
 
     public:
@@ -46,6 +52,12 @@ namespace spyCBlock {
         const DVarInt &getNumbarRawTransaction() const;
 
         const vector<RawTransaction> &getRawTransactions() const;
+
+        int32_t getHeightBlock() const;
+
+        void setHeightBlock(int32_t heightBlock);
+
+        string getHashBlock() const;
 
         bool operator==(const Block &rhs) const;
 

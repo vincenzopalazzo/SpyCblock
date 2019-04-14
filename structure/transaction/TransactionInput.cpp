@@ -3,20 +3,92 @@
 //
 
 #include <sstream>
-#include "TransactionInput.h"
+
 #include <glog/logging.h>
+
+#include "TransactionInput.h"
 #include "../../persistence/serializationutil.h"
+#include "../../crypto/cryptosingleton.h"
 
 using namespace spyCBlock;
 
-const OutPoint &TransactionInput::getOutpoint() const {
+const OutPoint &TransactionInput::getOutpoint() const
+{
     return outpoint;
 }
 
-void TransactionInput::setOutpoint(const OutPoint &outpoint) {
+void TransactionInput::setOutpoint(const OutPoint &outpoint)
+{
   TransactionInput::outpoint = outpoint;
 }
 
+const string& TransactionInput::getHashInputTransaction() const
+{
+  return hashInputTransaction;
+}
+
+uint32_t TransactionInput::getSequences() const
+{
+    return sequences;
+}
+
+const DScript &TransactionInput::getScript() const
+{
+    return script;
+}
+
+void TransactionInput::decode(std::ifstream &stream)
+{
+    outpoint.Unserialize(stream);
+    LOG(INFO) << "Outopoint Hash" << outpoint.getHash().GetHex();
+    LOG(INFO) << "Outopoint N" << outpoint.getN();
+    this->script.decode(stream);
+    LOG(INFO) << "Script Lenght" << script.getScriptLenght().getValue();
+    LOG(INFO) << "Script Value" << script.toString();
+    Unserialize(stream, this->sequences);
+    LOG(INFO) << "Numbar sequences " << sequences;
+
+    //Create hash transaction
+    string hexInputTransaction = toSerealizationForm();
+    this->hashInputTransaction = CryptoSingleton::getIstance()->getHash256(hexInputTransaction);
+}
+
+string TransactionInput::toSerealizationForm()
+{
+  string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(this->outpoint.getHash());
+  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->outpoint.getN());
+  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getScript().getScriptLenght());
+  hexForm += this->script.getScriptToSerializationForm();
+  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->sequences);
+
+  return hexForm;
+}
+
+json TransactionInput::toJson()
+{
+  return json::object({
+                        {"outputTxHash", this->outpoint.getHash().GetHex()},
+                        {"ammount", this->outpoint.getN()},
+                        {"scriptLenght", this->getScript().getScriptLenght().getValue()},
+                        {"script", this->getScript().getRawScriptString()},
+                        {"sequences", this->sequences},
+                        {"hashInputTransaction", this->hashInputTransaction},
+                      });
+}
+
+string TransactionInput::toString()
+{
+    string stringForm = outpoint.ToString();
+    stringForm += script.getScriptToSerializationForm();
+    stringForm += "\n";
+    stringForm += "Sequences: ";
+    stringForm += to_string(sequences);
+    stringForm += "\n";
+    return stringForm;
+}
+
+//TODO non funziona e' stata solo una prova
+//Non cancello il codice perchè potrebbe essere sempre implementata una cosa del genere
 string TransactionInput::decodeIntoStringScriptSing()
 {
   string hexScriptSing = this->script.getRawScriptString();
@@ -53,55 +125,3 @@ string TransactionInput::decodeIntoStringScriptSing()
   LOG(INFO) << "Method decodeIntoStringScriptSing: " << "The public key is " << pubKey;
   return pubKey;
 }
-
-
-void TransactionInput::decode(std::ifstream &stream)
-{
-    outpoint.Unserialize(stream);
-    LOG(INFO) << "Outopoint Hash" << outpoint.getHash().GetHex();
-    LOG(INFO) << "Outopoint N" << outpoint.getN();
-    this->script.decode(stream);
-    LOG(INFO) << "Script Lenght" << script.getScriptLenght().getValue();
-    LOG(INFO) << "Script Value" << script.toString();
-    Unserialize(stream, this->sequences);
-    LOG(INFO) << "Numbar sequences " << sequences;
-}
-
-string TransactionInput::toSerealizationForm()
-{
-  stringstream stream;
-  stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->outpoint.getHash())
-         << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->outpoint.getN())
-         << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getScript().getScriptLenght())
-         << this->script.getScriptToSerializationForm()
-         << SerializationUtilSingleton::getInstance()->toSerealizeForm(this->sequences);
-  return stream.str();
-}
-
-json TransactionInput::toJson()
-{
-  return json::object({
-                        {"outputTxHash", this->outpoint.getHash().GetHex()},
-                        {"ammount", this->outpoint.getN()},
-                        {"scriptLenght", this->getScript().getScriptLenght().getValue()},
-                        {"script", this->getScript().getRawScriptString()},
-                        {"sequences", this->sequences}
-                      });
-}
-
-uint32_t TransactionInput::getSequences() const {
-    return sequences;
-}
-
-const DScript &TransactionInput::getScript() const {
-    return script;
-}
-
-string TransactionInput::toString() {
-    stringstream stream;
-    stream << outpoint.ToString();
-    stream << script.getScriptString() << endl;
-    stream << "Sequences: " << sequences << endl;
-    return stream.str();
-}
-

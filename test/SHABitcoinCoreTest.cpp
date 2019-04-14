@@ -1,8 +1,6 @@
 ﻿//
 // Created by https://github.com/vincenzopalazzo on 3/23/19.
 //
-
-#include <gtest/gtest.h>
 #include <bitset>
 #include <cstddef>
 #include <cstdio>
@@ -10,19 +8,19 @@
 #include <cstring>
 #include <string.h>
 #include <sstream>
-#include "glog/logging.h"
+
+#include <glog/logging.h>
+#include <gtest/gtest.h>
 
 #include "../util/strencodings.h"
 #include "../cryptobitcoin/Sha256.hpp"
 #include "../cryptobitcoin/Sha256Hash.hpp"
 #include "../cryptobitcoin/Utils.hpp"
+#include "../cryptobitcoin/TestHelper.hpp"
+
 #include "../crypto/utilcrypto.h"
 #include "../structure/block/block.h"
 #include "../crypto/cryptosingleton.h"
-
-//Included for convert string into hash byte for only testing
-//this is library is the bitcoin crittografy library
-#include "../cryptobitcoin/TestHelper.hpp"
 
 using namespace std;
 using namespace spyCBlock;
@@ -34,14 +32,16 @@ using namespace spyCBlock;
 TEST(hash_test, first_test_double_sha_not_on_bitcoin_protocol)
 {
     //Init logger
-    FLAGS_minloglevel = 0;
-    FLAGS_logtostderr = true;
-    google::SetLogDestination(google::GLOG_WARNING,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocol.log");
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocol.log");
 
     string hello = "hello";
 
     Bytes byte = asciiBytes(hello.c_str());
+
     Sha256Hash shaHash = Sha256::getHash(byte.data(), byte.size());
+
     LOG(INFO) << "The string hello converting with sha256: " << shaHash.ToString();
 
     ASSERT_EQ(shaHash.ToString(), "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824");
@@ -54,9 +54,9 @@ TEST(hash_test, first_test_double_sha_not_on_bitcoin_protocol)
 TEST(hash_test, first_test_double_sha_not_on_bitcoin_crypolibrary)
 {
     //Init logger
-    FLAGS_minloglevel = 0;
-    FLAGS_logtostderr = true;
-    google::SetLogDestination(google::GLOG_WARNING,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
 
     string hello = "hello";
 
@@ -89,9 +89,9 @@ FFFFFFFF
 TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypolibrary)
 {
     //Init logger
-    FLAGS_minloglevel = 0;
-    FLAGS_logtostderr = true;
-    google::SetLogDestination(google::GLOG_WARNING,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
 
     string versionRawTransaction = "01000000";
     string numbarTransactionInput = "01";
@@ -105,15 +105,19 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypo
     string publicKeyScript = "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac";
     string lockTime = "00000000";
 
-    //TODO refactorinf, this is unique method for create a string?
-    stringstream stream;
+    string hexForm = versionRawTransaction;
+    hexForm += numbarTransactionInput;
+    hexForm += output;
+    hexForm += scriptLenght;
+    hexForm += scriptSing;
+    hexForm += sequences;
+    hexForm += numbarTransactionOutput;
+    hexForm += cAmmount;
+    hexForm += publicKeyScriptLenght;
+    hexForm += publicKeyScript;
+    hexForm += lockTime;;
 
-    //This is correct sequences for create a hash raw transaction
-    stream << versionRawTransaction << numbarTransactionInput << output << scriptLenght << scriptSing
-           << sequences << numbarTransactionOutput << cAmmount << publicKeyScriptLenght << publicKeyScript << lockTime;
-    string waitingString = stream.str();
-
-    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(waitingString);
+    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 
     Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
@@ -125,9 +129,9 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypo
 TEST(hash_test, first_test_double_sha_bit_genesi_block_bitcoin_crypolibrary)
 {
     //Init logger
-    FLAGS_minloglevel = 0;
-    FLAGS_logtostderr = true;
-    google::SetLogDestination(google::GLOG_WARNING,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
 
     string version = "01000000";
     string previusBlock = "0000000000000000000000000000000000000000000000000000000000000000";
@@ -136,18 +140,19 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_bitcoin_crypolibrary)
     string bit = "ffff001d";
     string nonce = "1dac2b7c";
 
-    stringstream stream;
-    stream  << version << previusBlock << merkleRoot << timeStamp << bit << nonce;
+    string hexForm = version;
+    hexForm += previusBlock;
+    hexForm += merkleRoot;
+    hexForm += timeStamp;
+    hexForm += bit;
+    hexForm += nonce;
 
-    string waitingString = stream.str();
-    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(waitingString);
+    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 
     Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
     LOG(INFO) << "The hash genesi block converting with double sha256: " << shaHash.ToStringForProtocol();
     ASSERT_EQ(shaHash.ToStringForProtocol(), "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
-
-
 }
 
 /**
@@ -159,9 +164,9 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_bitcoin_crypolibrary)
 TEST(hash_test, first_test_double_sha_bit_esample_block_bitcoin_crypolibrary)
 {
     //Init logger
-    FLAGS_minloglevel = 0;
-    FLAGS_logtostderr = true;
-    google::SetLogDestination(google::GLOG_INFO,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_double_sha_bit_esample_block_bitcoin_crypolibrary.log");
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_double_sha_bit_esample_block_bitcoin_crypolibrary.log");
 
     string version = "01000000";
     string previusBlock = "81cd02ab7e569e8bcd9317e2fe99f2de44d49ab2b8851ba4a308000000000000";
@@ -170,11 +175,14 @@ TEST(hash_test, first_test_double_sha_bit_esample_block_bitcoin_crypolibrary)
     string bit = "f2b9441a";
     string nonce = "42a14695";
 
-    stringstream stream;
-    stream  << version << previusBlock << merkleRoot << timeStamp << bit << nonce;
+    string hexForm = version;
+    hexForm += previusBlock;
+    hexForm += merkleRoot;
+    hexForm += timeStamp;
+    hexForm +=bit;
+    hexForm += nonce;
 
-    string value = stream.str();
-    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(value);
+    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 
     Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
@@ -186,16 +194,19 @@ TEST(hash_test, first_test_double_sha_bit_esample_block_bitcoin_crypolibrary)
 /*
   Test the value readed with parser
 */
-TEST(hash_test, first_test_comparable_value_readed) {
+TEST(hash_test, first_test_comparable_value_readed)
+{
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/first_test_comparable_value_readed.log");
 
-    Block *block = new Block();
+    unique_ptr<Block> block(new Block());
 
     std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
     block->decode(fileOut);
     fileOut.close();
+
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion()), "01000000");
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash()), "0000000000000000000000000000000000000000000000000000000000000000");
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getMerkleRoot()), "3ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a");
@@ -205,14 +216,16 @@ TEST(hash_test, first_test_comparable_value_readed) {
 
 }
 
-TEST(hash_test, first_test_comparable_hash_value_readed) {
+TEST(hash_test, first_test_comparable_hash_value_readed)
+{
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
 
-    Block *block = new Block();
+    unique_ptr<Block> block(new Block());
 
     std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
     block->decode(fileOut);
     fileOut.close();
 
@@ -223,16 +236,14 @@ TEST(hash_test, first_test_comparable_hash_value_readed) {
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits()), "ffff001d");
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce()), "1dac2b7c");
 
-    stringstream stream;
-    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion());
-    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash());
-    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getMerkleRoot());
-    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime());
-    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits());
-    stream  << SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce());
+    string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getMerkleRoot());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce());
 
-    string value = stream.str();
-    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(value);
+    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 
     Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
@@ -246,15 +257,17 @@ TEST(hash_test, first_test_comparable_transaction_value_readed) {
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/first_test_comparable_value_readed.log");
 
-    Block *block = new Block();
+    unique_ptr<Block> block(new Block());
 
     std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
     block->decode(fileOut);
     fileOut.close();
 
     RawTransaction raw = block->getRawTransactions().at(0);
 
     string version = to_string(raw.getVersion());
+
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion()), "01000000");
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn()), "01");
     EXPECT_EQ(raw.getTxInd().at(0).getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
@@ -271,37 +284,36 @@ TEST(hash_test, first_test_comparable_transaction_value_readed) {
     EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getLockTime()), "00000000");
 }
 
-TEST(hash_test, first_test_comparable_transaction_hash_value_readed) {
+TEST(hash_test, first_test_comparable_transaction_hash_value_readed)
+{
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/first_test_comparable_value_readed.log");
 
-    Block *block = new Block();
+    unique_ptr<Block> block(new Block());
 
     std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
     block->decode(fileOut);
     fileOut.close();
 
     RawTransaction raw = block->getRawTransactions().at(0);
 
-    stringstream stream;
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion());
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn());
-    stream << raw.getTxInd().at(0).getOutpoint().getHash().GetHex();
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getOutpoint().getN());
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getScript().getScriptLenght());
-    stream << raw.getTxInd().at(0).getScript().getRawScriptString().substr(0, raw.getTxInd().at(0).getScript().getScriptLenght().getValue() * 2);
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getSequences());
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut());
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getNValue());
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght());
-    stream << raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() * 2);
-    stream << SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getLockTime());
+    string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn());
+    hexForm += raw.getTxInd().at(0).getOutpoint().getHash().GetHex();
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getOutpoint().getN());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getScript().getScriptLenght());
+    hexForm += raw.getTxInd().at(0).getScript().getRawScriptString().substr(0, raw.getTxInd().at(0).getScript().getScriptLenght().getValue() * 2);
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getSequences());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getNValue());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght());
+    hexForm += raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() * 2);
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getLockTime());
 
-    string waitingString = stream.str();
-
-    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(waitingString);
+    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 
     Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
@@ -315,9 +327,10 @@ TEST(hash_test, hash_block_genesi_test_to_read_file)
   FLAGS_logtostderr = false;
   google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_block_test_to_read_file.log");
 
-  Block *block = new Block();
+  unique_ptr<Block> block(new Block());
 
   std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
   block->decode(fileOut);
   fileOut.close();
 
@@ -337,14 +350,15 @@ TEST(hash_test, hash_transaction_genesi_block_test_to_read_file)
   FLAGS_logtostderr = false;
   google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_transaction_genesi_block_test_to_read_file.log");
 
-  Block *block = new Block();
+  unique_ptr<Block> block(new Block());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
   block->decode(fileOut);
   fileOut.close();
 
   RawTransaction rawTransaction = block->getRawTransactions().at(0);
-  string  serealizationFormTransaction = rawTransaction.toSerealizationForm();
+  string serealizationFormTransaction = rawTransaction.toSerealizationForm();
 
   vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(serealizationFormTransaction);
 
@@ -361,7 +375,7 @@ TEST(hash_test, hash_transaction_genesi_block_test_to_read_file_with_scriptssing
   FLAGS_logtostderr = false;
   google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_transaction_genesi_block_test_to_read_file.log");
 
-  Block *block = new Block();
+  unique_ptr<Block> block(new Block());
 
   std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
   block->decode(fileOut);
@@ -383,9 +397,10 @@ TEST(hash_test, hash_genesi_block_test_to_read_file_with_scriptssingleton)
   FLAGS_logtostderr = false;
   google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_transaction_genesi_block_test_to_read_file.log");
 
-  Block *block = new Block();
+  unique_ptr<Block> block(new Block());
 
   std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+
   block->decode(fileOut);
   fileOut.close();
 
@@ -400,11 +415,11 @@ TEST(hash_test, hash_genesi_block_test_to_read_file_with_scriptssingleton)
 
 TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssingleton)
 {
-  FLAGS_minloglevel = 1;
+  FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/hash_confront_genesi_block_test_to_read_file_with_scriptssingleton.log");
+  google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_confront_genesi_block_test_to_read_file_with_scriptssingleton.log");
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
 
   ofstream fileSaveBlock("/home/vincenzo/Github/SpyCblock/test/file_test/generate_hash_block.txt");
 
@@ -414,28 +429,33 @@ TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssinglet
   while(!fileOut.eof()){
     Block *block = new Block();
     block->decode(fileOut);
+
     string toSerealizeForm = block->toSerealizationForm();
     string hashCalculate = CryptoSingleton::getIstance()->getHash256(toSerealizeForm);
+
     fileSaveBlock << hashCalculate << endl;
     delete block;
   }
+
   fileSaveBlock.close();
   fileOut.close();
 
   //Confront the file created with the file conetenented all previus hash block
   ifstream fileHashGenerated("/home/vincenzo/Github/SpyCblock/test/file_test/generate_hash_block.txt");
-  vector<string> *hashGenerated = new vector<string>;
+
+  vector<string> hashGenerated;
   LOG_IF(ERROR, !fileHashGenerated.is_open()) << "File generate_hash_block.txt not open";
+
   while(!fileHashGenerated.eof())
   {
     string hashReaded;
     fileHashGenerated >> hashReaded;
     LOG(INFO) << "The hash readed is: " << hashReaded;
-    hashGenerated->push_back(hashReaded);
+    hashGenerated.push_back(hashReaded);
   }
   fileHashGenerated.close();
 
-  EXPECT_EQ(hashGenerated->size(), 119974); // The file have the hash block genesi and the hash last block, is ok calcule(I hope)
+  EXPECT_EQ(hashGenerated.size(), 119974); // The file have the hash block genesi and the hash last block, is ok calcule(I hope)
 
   ifstream preveusHashFile("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
   LOG_IF(ERROR, !preveusHashFile.is_open()) << "File previus_hash_block_header.txt not open";
@@ -447,22 +467,23 @@ TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssinglet
   while (!preveusHashFile.eof()) {
     string preveusHashReaded;
     preveusHashFile >> preveusHashReaded;
-    string hashGeneratedString = hashGenerated->at(position);
+    string hashGeneratedString = hashGenerated.at(position);
     LOG_IF(ERROR, preveusHashReaded != hashGeneratedString) << "The hash are different " << preveusHashReaded << " " << hashGeneratedString;
     position++;
   }
+  preveusHashFile.close();
   ASSERT_EQ(position, 119972); // The block not have the first position and the end file
 }
 
 TEST(hash_test, hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssingleton)
 {
-  FLAGS_minloglevel = 1;
+  FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssingleton.log");
+  google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssingleton.log");
 
   std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
 
-  Block *block = new Block();
+  unique_ptr<Block> block(new Block());
 
   block->decode(fileOut);
 
@@ -485,13 +506,13 @@ TEST(hash_test, hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssing
 
 TEST(hash_test, hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton)
 {
-  FLAGS_minloglevel = 1;
+  FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/spyCblock/test/log/hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton.log");
+  google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton.log");
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+  ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
 
-  Block *block = new Block();
+  unique_ptr<Block> block(new Block());
 
   block->decode(fileOut);
 

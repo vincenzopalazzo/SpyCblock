@@ -4,11 +4,14 @@
  * @author https://github.com/vincenzopalazzo
  */
 
-#include "serializationutil.h"
+#include <glog/logging.h>
+
 #include "../util/endian.h"
-#include "glog/logging.h"
 #include "../util/strencodings.h"
 #include "../util/uint256.h"
+
+#include "serializationutil.h"
+
 
 using namespace spyCBlock;
 

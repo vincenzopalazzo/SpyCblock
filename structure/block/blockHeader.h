@@ -45,9 +45,9 @@ public:
 
     uint32_t getNonce() const;
 
-    const uint256 &getPreviousBlockHeaderHash() const;
+    const uint256& getPreviousBlockHeaderHash() const;
 
-    const uint256 &getMerkleRoot() const;
+    const uint256& getMerkleRoot() const;
 
     bool operator==(const BlockHeader &rhs) const;
 
