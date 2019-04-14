@@ -129,6 +129,7 @@ unique_ptr<vector<Block>> DAOFileBlkJson::readBlock(string path, int &conuterBlo
       fileBlkReaded++;
 
       stream->close();
+      delete stream.release();
       //delete stream;
       LOG(WARNING) << "Readed a " << blocksFile->size() << " files";
       return blocksFile;
@@ -185,6 +186,7 @@ bool DAOFileBlkJson::convertVectorBlockIntoJson(unique_ptr<vector<Block>> &block
 
   //json listBlocksConvert;
   unique_ptr<json> listBlocksConvert(new json);
+
   for(int i = 0; i < static_cast<int>(blockFileBlk->size()); i++)
   {
      listBlocksConvert->push_back(blockFileBlk->at(i).toJsonFat());
@@ -194,6 +196,7 @@ bool DAOFileBlkJson::convertVectorBlockIntoJson(unique_ptr<vector<Block>> &block
 
   *jsonBlocksFile = {"blocks", *listBlocksConvert};
 
+  delete  listBlocksConvert.release();
 
   string nameFileJson = outputPath;
   nameFileJson += nameFile + ".json";
@@ -204,6 +207,8 @@ bool DAOFileBlkJson::convertVectorBlockIntoJson(unique_ptr<vector<Block>> &block
   {
     *streamOutput << jsonBlocksFile->dump();
     streamOutput->close();
+    delete streamOutput.release();
+    delete jsonBlocksFile.release();
    // delete streamOutput;
     //delete jsonBlocksFile;
     return true;
