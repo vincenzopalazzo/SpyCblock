@@ -17,20 +17,23 @@ namespace spyCBlock{
 
       int counterBlock = 0;
       int currentFile = 0;
-      int fileReaded = 0;
+      int fileBlkReaded = 0;
 
       vector<spyCBlock::Block>* readBlock(fs::directory_entry entry, int &conuterBlock);
 
+      shared_ptr<vector<Block>> readBlock(string path, int &conuterBlock);
+
       bool isBlockFileBlk(fs::directory_entry entry);
 
-      bool isBlockFileBlk(string entry);
+      bool isBlockFileBlk(string path);
 
-      bool convertVectorBlockIntoJson(vector<Block> *blockFileBlk, string outputPath, string nameFile);
+      bool convertVectorBlockIntoJson(shared_ptr<vector<Block>> blockFileBlk, string outputPath, string nameFile);
 
       string getNameFile(string path);
 
       string getNameFile(fs::directory_entry entry);
 
+      //Return the path of file blk
       string nameFileSearched(string pathInput);
 
     public:
