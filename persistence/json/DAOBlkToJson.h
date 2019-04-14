@@ -21,13 +21,13 @@ namespace spyCBlock{
 
       vector<spyCBlock::Block>* readBlock(fs::directory_entry entry, int &conuterBlock);
 
-      shared_ptr<vector<Block>> readBlock(string path, int &conuterBlock);
+      unique_ptr<vector<Block>> readBlock(string path, int &conuterBlock);
 
       bool isBlockFileBlk(fs::directory_entry entry);
 
       bool isBlockFileBlk(string path);
 
-      bool convertVectorBlockIntoJson(shared_ptr<vector<Block>> blockFileBlk, string outputPath, string nameFile);
+      bool convertVectorBlockIntoJson(unique_ptr<vector<Block>> &blockFileBlk, string outputPath, string nameFile);
 
       string getNameFile(string path);
 

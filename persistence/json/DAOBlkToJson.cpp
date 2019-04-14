@@ -32,7 +32,7 @@ bool DAOFileBlkJson::saveBlock(string inputPath, string outputPath)
               LOG(WARNING) << "The file examinad is: " << pathFile;
               LOG_IF(ERROR, counterBlock < 0) << "The counter block are negative, this is not possible, the attual value is" << counterBlock;
               string nameFile = getNameFile(pathFile);
-              shared_ptr<vector<Block>> vectorBlockFileBlk = readBlock(pathFile, counterBlock);
+              unique_ptr<vector<Block>> vectorBlockFileBlk = readBlock(pathFile, counterBlock);
 
               if (vectorBlockFileBlk != nullptr)
               {
@@ -42,11 +42,13 @@ bool DAOFileBlkJson::saveBlock(string inputPath, string outputPath)
                   {
                      LOG(ERROR) << "Error into convert vector blocks readed into json file";
                      //delete vectorBlockFileBlk;
+                     vectorBlockFileBlk->clear();
                      return result;
                   }
               }
               currentFile++;
 
+              vectorBlockFileBlk->clear();
               //delete vectorBlockFileBlk;
               pathFile = nameFileSearched(inputPath);
           }
@@ -59,7 +61,7 @@ bool DAOFileBlkJson::saveBlock(string inputPath, string outputPath)
   throw DAOException("The path not exist");
 }
 
-//Methof with file system library
+//Method with file system library
 vector<Block> *DAOFileBlkJson::readBlock(experimental::filesystem::__cxx11::directory_entry entry, int &counterBlock)
 {
   if (!isBlockFileBlk(entry))
@@ -91,8 +93,8 @@ vector<Block> *DAOFileBlkJson::readBlock(experimental::filesystem::__cxx11::dire
   throw DAOException("File not open");
 }
 
-//Methof whitout file sistem library
-shared_ptr<vector<Block>> DAOFileBlkJson::readBlock(string path, int &conuterBlock)
+//Method whitout file sistem library
+unique_ptr<vector<Block>> DAOFileBlkJson::readBlock(string path, int &conuterBlock)
 {
   if (!isBlockFileBlk(path))
   {
@@ -109,7 +111,7 @@ shared_ptr<vector<Block>> DAOFileBlkJson::readBlock(string path, int &conuterBlo
   {
       LOG(INFO) << "File in this path " << path << " is open";
       //vector<Block> *blocksFile = new vector<Block>();
-      shared_ptr<vector<Block>> blocksFile(new vector<Block>());
+      unique_ptr<vector<Block>> blocksFile(new vector<Block>());
       while (!stream->eof())
       {
           //Block *block = new Block();
@@ -170,7 +172,7 @@ bool DAOFileBlkJson::isBlockFileBlk(string path)
 
 //TODO ho modoficato questo da stanco, ho metto dei puntatori
 //prova aggiungendo anche unique_ptr.
-bool DAOFileBlkJson::convertVectorBlockIntoJson(shared_ptr<vector<Block>> blockFileBlk, string outputPath, string nameFile)
+bool DAOFileBlkJson::convertVectorBlockIntoJson(unique_ptr<vector<Block>> &blockFileBlk, string outputPath, string nameFile)
 {
   if(blockFileBlk == nullptr || outputPath.empty() || nameFile.empty())
   {
@@ -188,12 +190,13 @@ bool DAOFileBlkJson::convertVectorBlockIntoJson(shared_ptr<vector<Block>> blockF
      listBlocksConvert->push_back(blockFileBlk->at(i).toJsonFat());
   }
 
+  blockFileBlk->clear();
+
   *jsonBlocksFile = {"blocks", *listBlocksConvert};
 
 
   string nameFileJson = outputPath;
-  nameFileJson += nameFile;
-  nameFileJson += ".json";
+  nameFileJson += nameFile + ".json";
 
   //ofstream *streamOutput = new ofstream(nameFileJson);
   unique_ptr<ofstream> streamOutput( new ofstream(nameFileJson));
