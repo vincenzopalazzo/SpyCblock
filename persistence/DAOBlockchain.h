@@ -18,18 +18,18 @@ namespace spyCBlock{
 
     private:
 
-        std::vector<spyCBlock::Block>* readBlock(fs::directory_entry entry);
+        std::vector<unique_ptr<Block>> readBlock(fs::directory_entry entry);
 
-        bool isBlockFileBlk(fs::directory_entry entry);
+        bool isBlockFileBlk(fs::directory_entry &entry);
 
-        bool isBlockGenesi(fs::directory_entry entry, spyCBlock::Block* genericBlock);
+        bool isBlockGenesi(fs::directory_entry &entry, unique_ptr<Block> &genericBlock);
 
     public:
         virtual ~DAOBlockchain();
 
         DAOBlockchain();
 
-        vector<Block> loadBlocks(string path) override;
+        vector<unique_ptr<Block>> loadBlocks(string &path) override;
 
         bool saveBlock(string inputPath, string outputPath) override;
 

@@ -6,14 +6,16 @@
 #include "DAOBlockchain.h"
 #include "DAOException.h"
 
+using namespace spyCBlock;
 
-vector<spyCBlock::Block> spyCBlock::DAOBlockchain::loadBlocks(string path) {
+vector<unique_ptr<Block>> spyCBlock::DAOBlockchain::loadBlocks(string &path) {
     if (path.empty())
     {
         LOG(ERROR) << "The argument function is null";
-        throw new DAOException("The argument function loadBlocks from DAOBlockchain is Empity");
+        throw DAOException("The argument function loadBlocks from DAOBlockchain is Empity");
     }
-    vector<Block> blockchainBloks;
+
+    vector<unique_ptr<Block>> blockchainBloks;
 
     if (fs::exists(path))
     {
@@ -24,15 +26,18 @@ vector<spyCBlock::Block> spyCBlock::DAOBlockchain::loadBlocks(string path) {
             for (auto &p: fs::directory_iterator(pathObject))
             {
                 LOG(INFO) << "The file examinad is: " << p;
-                vector<Block> *vector1 = readBlock(p);
-                if (vector1 != nullptr)
+                vector<unique_ptr<Block>> vector1 = readBlock(p);
+
+                if (!vector1.empty())
                 {
                     LOG(INFO) << "I added block readed in this file " << path;
                     LOG(INFO) << "Dimension blockchain before join " << blockchainBloks.size();
-                    blockchainBloks.insert(blockchainBloks.end(), vector1->begin(), vector1->end());
+                    for(auto& block : vector1)
+                    {
+                      blockchainBloks.push_back(move(block));
+                    }
                     LOG(INFO) << "Dimension blockchain after join " << blockchainBloks.size();
                 }
-                delete vector1;
             }
             return blockchainBloks;
         }
@@ -41,7 +46,7 @@ vector<spyCBlock::Block> spyCBlock::DAOBlockchain::loadBlocks(string path) {
 
     }
     LOG(INFO) << "The path not exist";
-    throw new DAOException("The path not exist");
+    throw DAOException("The path not exist");
 }
 
 bool spyCBlock::DAOBlockchain::saveBlock(string inputPath, string outputPath)
@@ -49,37 +54,38 @@ bool spyCBlock::DAOBlockchain::saveBlock(string inputPath, string outputPath)
   //do nothing
 }
 
-std::vector<spyCBlock::Block> *spyCBlock::DAOBlockchain::readBlock(fs::directory_entry entry) {
+std::vector<unique_ptr<Block>> spyCBlock::DAOBlockchain::readBlock(fs::directory_entry entry) {
     if (!isBlockFileBlk(entry))
     {
         LOG(INFO) << "This path not contain a file blk";
-        return nullptr;
+        return vector<unique_ptr<Block>>();
     }
     ifstream stream(entry.path());
 
     if (stream.is_open())
     {
         LOG(INFO) << "File in this path " << entry.path() << " is open";
-        vector<Block> *blocksFile = new vector<Block>();
+        vector<unique_ptr<Block>> blocksFile;
         while (!stream.eof())
         {
-            Block *block = new Block();
+            unique_ptr<Block> block(new Block());
             block->decode(stream);
+
             string previuHashBlock = block->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
             string genesiBlock = "0000000000000000000000000000000000000000000000000000000000000000";
+
             if(isBlockGenesi(entry, block))
             {
                 LOG(WARNING) << "Finde genesy block";
-                blocksFile->push_back(*block);
+                blocksFile.push_back(move(block));
             }
             if(previuHashBlock != genesiBlock)
             {
-                 blocksFile->push_back(*block);
+                 blocksFile.push_back(move(block));
             }
-            delete block;
         }
         stream.close();
-        LOG(WARNING) << "Readed a " << blocksFile->size() << " files";
+        LOG(WARNING) << "Readed a " << blocksFile.size() << " files";
         return blocksFile;
     }
     stream.close();
@@ -87,7 +93,7 @@ std::vector<spyCBlock::Block> *spyCBlock::DAOBlockchain::readBlock(fs::directory
     throw new DAOException("File not open");
 }
 
-bool spyCBlock::DAOBlockchain::isBlockFileBlk(fs::directory_entry entry)
+bool spyCBlock::DAOBlockchain::isBlockFileBlk(fs::directory_entry &entry)
 {
     string pathFile = entry.path();
     string tmpPathFile(pathFile);
@@ -99,7 +105,7 @@ bool spyCBlock::DAOBlockchain::isBlockFileBlk(fs::directory_entry entry)
     return containsBlk && containsExstension;
 }
 
-bool spyCBlock::DAOBlockchain::isBlockGenesi(fs::directory_entry entry, spyCBlock::Block *genericBlock)
+bool spyCBlock::DAOBlockchain::isBlockGenesi(fs::directory_entry &entry, unique_ptr<Block> &genericBlock)
  {
      string pathFile = entry.path();
      string tmpPathFile(pathFile);

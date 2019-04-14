@@ -18,16 +18,17 @@ namespace spyCBlock{
       int counterBlock = 0;
       int currentFile = 0;
       int fileBlkReaded = 0;
+      bool finishBlocks = false;
 
       vector<spyCBlock::Block>* readBlock(fs::directory_entry entry, int &conuterBlock);
 
-      unique_ptr<vector<Block>> readBlock(string path, int &conuterBlock);
+      vector<unique_ptr<Block>> readBlock(string path, int &conuterBlock);
 
       bool isBlockFileBlk(fs::directory_entry entry);
 
       bool isBlockFileBlk(string path);
 
-      bool convertVectorBlockIntoJson(unique_ptr<vector<Block>> &blockFileBlk, string outputPath, string nameFile);
+      bool convertVectorBlockIntoJson(vector<unique_ptr<Block>> &blockFileBlk, string outputPath, string nameFile);
 
       string getNameFile(string path);
 
@@ -42,7 +43,9 @@ namespace spyCBlock{
 
         virtual ~DAOFileBlkJson();
 
-        vector<Block> loadBlocks(string path) override;
+        bool getFinishBlock() const;
+
+        vector<unique_ptr<Block>> loadBlocks(string &path) override;
 
         bool saveBlock(string inputPath, string outputPath) override;
     };

@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 
 
     SpyCBlock *spyCBlock = new SpyCBlock();
-    spyCBlock->convertBlockchainToJson("/media/vincenzo/VincentHDD/blocks/", "/media/vincenzo/VincentHDD/blockjson/");
+    spyCBlock->convertBlkIntoJson("/media/vincenzo/VincentHDD/blocks/", "/media/vincenzo/VincentHDD/blockjson/");
     delete spyCBlock;
 
     return 0;

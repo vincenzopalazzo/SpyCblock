@@ -19,6 +19,15 @@ namespace spyCBlock {
 
         bool convertBlockchainToJson(string locationBitcoinCore, string destinationBitcoinCoreJson);
 
+        void convertBlkIntoJson(string locationBitcoinCore, string destinationBitcoinCoreJson);
+
+    private:
+
+        int currentFile = 0;
+
+        string nameFileSearched(string pathInput);
+
+        string getNameFile(string path);
     };
 
 }

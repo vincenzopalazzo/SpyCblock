@@ -15,7 +15,7 @@ namespace spyCBlock{
     class IDAOBlockchain{
 
     public:
-        virtual vector<Block> loadBlocks(string path) = 0;
+        virtual vector<unique_ptr<Block>> loadBlocks(string &path) = 0;
 
         virtual bool saveBlock(string inputPath, string outputPath) = 0;
 

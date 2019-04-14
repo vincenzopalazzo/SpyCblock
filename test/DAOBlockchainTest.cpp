@@ -22,7 +22,8 @@ TEST(DAOBlockchainTest, test_dao_blockchain_give_file_data) {
    //s IDAOBlockchain *daoBlockchain = new DAOBlockchain();
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
     try {
-        vector<Block> allBlocks = daoBlockchain->loadBlocks("/home/vincenzo/tmp/bitcoin/block");
+        string path = "/home/vincenzo/tmp/bitcoin/block";
+        vector<unique_ptr<Block>> allBlocks = daoBlockchain->loadBlocks(path);
         ASSERT_EQ(120127, allBlocks.size()); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {
@@ -40,7 +41,8 @@ TEST(DAOBlockchainTest, test_dao_blockchain_give_file_data_error_one) {
 
     //IDAOBlockchain *daoBlockchain = new DAOBlockchain();
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
-    vector<Block> allBlocks = daoBlockchain->loadBlocks("/home/vincenzo/tmp/bitcoin/"); // TODO dovrebbe lanciare eccezione se è in una directory sbahliata
+    string path = "/home/vincenzo/tmp/bitcoin/";
+    vector<unique_ptr<Block>> allBlocks = daoBlockchain->loadBlocks(path); // TODO dovrebbe lanciare eccezione se è in una directory sbahliata
     ASSERT_EQ(0, allBlocks.size());
 }
 
@@ -53,7 +55,8 @@ TEST(DAOBlockchainTest, test_dao_blockchain_give_file_data_error_two) {
 
     //IDAOBlockchain *daoBlockchain = new DAOBlockchain();
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
-    EXPECT_ANY_THROW(daoBlockchain->loadBlocks("/home/vincenzo/tmp/bitcoin/block/blk00000.dat"));
+    string path = "/home/vincenzo/tmp/bitcoin/block/blk00000.dat";
+    EXPECT_ANY_THROW(daoBlockchain->loadBlocks(path));
 }
 
 /*Test bitcoin core null directory*/
@@ -65,5 +68,6 @@ TEST(DAOBlockchainTest, test_dao_blockchain_give_file_data_null) {
 
     //IDAOBlockchain *daoBlockchain = new DAOBlockchain();
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
-    EXPECT_ANY_THROW(daoBlockchain->loadBlocks(""));
+    string path = "";
+    EXPECT_ANY_THROW(daoBlockchain->loadBlocks(path));
 }
