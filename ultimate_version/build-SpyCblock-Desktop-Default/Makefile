@@ -933,6 +933,33 @@ test/jsonserializationtest.cpp.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/jsonserializationtest.cpp.s
 .PHONY : test/jsonserializationtest.cpp.s
 
+test/nulldatatransactiontest.o: test/nulldatatransactiontest.cpp.o
+
+.PHONY : test/nulldatatransactiontest.o
+
+# target to build an object file
+test/nulldatatransactiontest.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/nulldatatransactiontest.cpp.o
+.PHONY : test/nulldatatransactiontest.cpp.o
+
+test/nulldatatransactiontest.i: test/nulldatatransactiontest.cpp.i
+
+.PHONY : test/nulldatatransactiontest.i
+
+# target to preprocess a source file
+test/nulldatatransactiontest.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/nulldatatransactiontest.cpp.i
+.PHONY : test/nulldatatransactiontest.cpp.i
+
+test/nulldatatransactiontest.s: test/nulldatatransactiontest.cpp.s
+
+.PHONY : test/nulldatatransactiontest.s
+
+# target to generate assembly for a file
+test/nulldatatransactiontest.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/nulldatatransactiontest.cpp.s
+.PHONY : test/nulldatatransactiontest.cpp.s
+
 test/serealizationtest.o: test/serealizationtest.cpp.o
 
 .PHONY : test/serealizationtest.o
@@ -1142,6 +1169,9 @@ help:
 	@echo "... test/jsonserializationtest.o"
 	@echo "... test/jsonserializationtest.i"
 	@echo "... test/jsonserializationtest.s"
+	@echo "... test/nulldatatransactiontest.o"
+	@echo "... test/nulldatatransactiontest.i"
+	@echo "... test/nulldatatransactiontest.s"
 	@echo "... test/serealizationtest.o"
 	@echo "... test/serealizationtest.i"
 	@echo "... test/serealizationtest.s"

@@ -84,6 +84,10 @@ void Block::decode(std::ifstream &stream) {
         delete transaction.release();
     }
     LOG(INFO) << "End block read";
+
+    //create hash block
+    string deserializeForm = toSerealizationForm();
+    this->hashBlock = CryptoSingleton::getIstance()->getHash256(deserializeForm);
 }
 
 string Block::toSerealizationForm()
@@ -116,9 +120,6 @@ json Block::toJsonLite()
 
 json Block::toJsonFat()
 {
-  //create hash block
-  string deserializeForm = toSerealizationForm();
-  this->hashBlock = CryptoSingleton::getIstance()->getHash256(deserializeForm);
 
   //stringstream streamJson;
   json jsonTransactionRaw;

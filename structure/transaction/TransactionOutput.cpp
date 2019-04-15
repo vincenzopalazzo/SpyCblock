@@ -38,6 +38,10 @@ void TransactionOutput::decode(ifstream &stream)
     LOG(INFO) << "Script Lenght: " << script.getScriptLenght().getValue();
     LOG(INFO) << "Script Value: " << script.toString();
 
+    //Creating hash transaction
+    string hexForm = toSerealizationForm();
+    this->hashOutputTransaction = CryptoSingleton::getIstance()->getHash256(hexForm);
+
 }
 
 string TransactionOutput::toSerealizationForm()
@@ -51,9 +55,7 @@ string TransactionOutput::toSerealizationForm()
 
 json TransactionOutput::toJson()
 {
-  //Creating hash transaction
-  string hexForm = toSerealizationForm();
-  this->hashOutputTransaction = CryptoSingleton::getIstance()->getHash256(hexForm);
+
 
   return json::object({
                         {"ammount", this->nValue},

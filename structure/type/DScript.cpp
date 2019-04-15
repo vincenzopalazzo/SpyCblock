@@ -26,7 +26,11 @@ string DScript::getScriptToSerializationForm()
   {
       LOG(ERROR) << "The raw script is null " +  scriptString;
       //TODO create a exception genral for all parser
-      throw  exception();
+      //throw  exception();
+      // I don't launch exception because some script are null
+      //Look this example https://www.blockchain.com/it/btc/tx/c78854360663aa585b0400df7297afc458521bf858e6c93b34d4ca696ae30f29
+      //and look te test NullDataTrasaction
+      return scriptString;
   }
   return rawScriptString.substr(0, (this->scriptLenght.getValue() * 2));
 }
@@ -44,6 +48,8 @@ const string &DScript::getScriptString() const
 void DScript::decode(std::ifstream &stream)
 {
     this->scriptLenght.decode(stream);
+
+    LOG_IF(WARNING, (scriptLenght.getValue() == 16)) << "readed a null data transaction The lenght is 16 byte";
 
     char buffer[scriptLenght.getValue()];
     LOG(INFO) << "Dimension script: " << scriptLenght.getValue();

@@ -42,7 +42,7 @@ vector<unique_ptr<Block>> spyCBlock::DAOBlockchain::loadBlocks(string &path) {
             return blockchainBloks;
         }
         LOG(ERROR) << "The path not finisced with a directory";
-        throw new DAOException("The path not finisced with a directory");
+        throw DAOException("The path not finisced with a directory");
 
     }
     LOG(INFO) << "The path not exist";

@@ -79,6 +79,11 @@ void RawTransaction::decode(std::ifstream &stream)
         delete transactionOutput.release();
     }
     Unserialize(stream, this->lockTime);
+
+
+    //Create additional information
+    string serializationForm = toSerealizationForm();
+    this->hashRawTransaction = CryptoSingleton::getIstance()->getHash256(serializationForm);
 }
 
 string RawTransaction::toSerealizationForm()
@@ -124,9 +129,6 @@ string RawTransaction::toString() {
 
 json RawTransaction::toJson()
 {
-  //Create additional information
-  string serializationForm = toSerealizationForm();
-  this->hashRawTransaction = CryptoSingleton::getIstance()->getHash256(serializationForm);
 
   json jsonRawTransaction =  json::object({
                         {"version", version},

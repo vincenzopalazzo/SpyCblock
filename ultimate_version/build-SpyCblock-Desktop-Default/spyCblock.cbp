@@ -335,6 +335,9 @@
 		<Unit filename="/home/vincenzo/Github/SpyCblock/test/jsonserializationtest.cpp">
 			<Option target="runTests"/>
 		</Unit>
+		<Unit filename="/home/vincenzo/Github/SpyCblock/test/nulldatatransactiontest.cpp">
+			<Option target="runTests"/>
+		</Unit>
 		<Unit filename="/home/vincenzo/Github/SpyCblock/test/serealizationtest.cpp">
 			<Option target="runTests"/>
 		</Unit>
