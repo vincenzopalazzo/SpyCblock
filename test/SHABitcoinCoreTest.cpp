@@ -264,24 +264,27 @@ TEST(hash_test, first_test_comparable_transaction_value_readed) {
     block->decode(fileOut);
     fileOut.close();
 
-    RawTransaction raw = block->getRawTransactions().at(0);
+    //RawTransaction raw = block->getRawTransactions().at(0);
 
-    string version = to_string(raw.getVersion());
+    string version = to_string(block->getRawTransactions().at(0)->getVersion());
 
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion()), "01000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn()), "01");
-    EXPECT_EQ(raw.getTxInd().at(0).getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getOutpoint().getN()), "ffffffff");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getScript().getScriptLenght()), "4d");
-    EXPECT_EQ(raw.getTxInd().at(0).getScript().getRawScriptString(),
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getVersion()), "01000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxIn()), "01");
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(
+                block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN()), "ffffffff");
+
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(
+                block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght()), "4d");
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getRawScriptString(),
               "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getSequences()), "ffffffff");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut()), "01");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getNValue()), "00f2052a01000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght()), "43");
-    EXPECT_EQ(raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() * 2),
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences()), "ffffffff");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxOut()), "01");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue()), "00f2052a01000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght()), "43");
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getRawScriptString().substr(0, block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue() * 2),
               "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getLockTime()), "00000000");
+    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getLockTime()), "00000000");
 }
 
 TEST(hash_test, first_test_comparable_transaction_hash_value_readed)
@@ -298,20 +301,19 @@ TEST(hash_test, first_test_comparable_transaction_hash_value_readed)
     block->decode(fileOut);
     fileOut.close();
 
-    RawTransaction raw = block->getRawTransactions().at(0);
 
-    string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getVersion());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxIn());
-    hexForm += raw.getTxInd().at(0).getOutpoint().getHash().GetHex();
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getOutpoint().getN());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getScript().getScriptLenght());
-    hexForm += raw.getTxInd().at(0).getScript().getRawScriptString().substr(0, raw.getTxInd().at(0).getScript().getScriptLenght().getValue() * 2);
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxInd().at(0).getSequences());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getNumberTxOut());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getNValue());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getTxOut().at(0).getScript().getScriptLenght());
-    hexForm += raw.getTxOut().at(0).getScript().getRawScriptString().substr(0, raw.getTxOut().at(0).getScript().getScriptLenght().getValue() * 2);
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(raw.getLockTime());
+    string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getVersion());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxIn());
+    hexForm += block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex();
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght());
+    hexForm += block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getRawScriptString().substr(0, block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght().getValue() * 2);
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxOut());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue());
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght());
+    hexForm += block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getRawScriptString().substr(0, block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue() * 2);
+    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getLockTime());
 
     vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 
@@ -357,8 +359,7 @@ TEST(hash_test, hash_transaction_genesi_block_test_to_read_file)
   block->decode(fileOut);
   fileOut.close();
 
-  RawTransaction rawTransaction = block->getRawTransactions().at(0);
-  string serealizationFormTransaction = rawTransaction.toSerealizationForm();
+  string serealizationFormTransaction = block->getRawTransactions().at(0)->toSerealizationForm();
 
   vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(serealizationFormTransaction);
 
@@ -381,8 +382,7 @@ TEST(hash_test, hash_transaction_genesi_block_test_to_read_file_with_scriptssing
   block->decode(fileOut);
   fileOut.close();
 
-  RawTransaction rawTransaction = block->getRawTransactions().at(0);
-  string  serealizationFormTransaction = rawTransaction.toSerealizationForm();
+  string  serealizationFormTransaction = block->getRawTransactions().at(0)->toSerealizationForm();
 
   string gettedHash = CryptoSingleton::getIstance()->getHash256(serealizationFormTransaction);
 
@@ -487,13 +487,12 @@ TEST(hash_test, hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssing
 
   block->decode(fileOut);
 
-  RawTransaction rawTransaction = block->getRawTransactions().at(0);
-  TransactionInput input = rawTransaction.getTxInd().at(0);
-  OutPoint outpoint = input.getOutpoint();
+  //TransactionInput input = block->getRawTransactions().at(0)->getTxInd().at(0);
+  OutPoint outpoint = block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint();
   string hashTxout = outpoint.getHash().GetHex();
 
-  TransactionOutput output = rawTransaction.getTxOut().at(0);
-  string hexoutput = output.toSerealizationForm();
+  //TransactionOutput output = block->getRawTransactions().at(0).getTxOut().at(0);
+  string hexoutput = block->getRawTransactions().at(0)->getTxOut().at(0)->toSerealizationForm();
   string hashOutput = CryptoSingleton::getIstance()->getHash256(hexoutput);
 
   ASSERT_EQ(hashTxout, hashTxout);
@@ -521,15 +520,15 @@ TEST(hash_test, hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingle
 
   string expettedHashBlock = "000000000000000001c984a6589be98fd3c593a1d707a7fdaaa4adf748632022";
 
-  RawTransaction rawTransaction = block->getRawTransactions().at(0);
-  string hexRawTransaction = rawTransaction.toSerealizationForm();
+  //RawTransaction rawTransaction = block->getRawTransactions().at(0);
+  string hexRawTransaction = block->getRawTransactions().at(0)->toSerealizationForm();
   string heshRawTransaction = CryptoSingleton::getIstance()->getHash256(hexRawTransaction);
 
   string expettedHash = "f2a140b42b47c649a30823712dc568e25443ed390168c897ed5baa52cc50cc4a";
 
 
-  RawTransaction rawTransactionMoreInput = block->getRawTransactions().at(3);
-  string hexRawTransactionMoreInput = rawTransactionMoreInput.toSerealizationForm();
+  //RawTransaction rawTransactionMoreInput = block->getRawTransactions().at(3);
+  string hexRawTransactionMoreInput = block->getRawTransactions().at(3)->toSerealizationForm();
   string heshRawTransactionMoreInput = CryptoSingleton::getIstance()->getHash256(hexRawTransactionMoreInput);
 
   string expettedHashMoreInput = "8bbcf573e66cba09f3109a2eca0589a09232caad248b58ae69cc24bb1a22b264";

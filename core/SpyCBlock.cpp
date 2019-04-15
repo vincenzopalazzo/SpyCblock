@@ -17,15 +17,14 @@ using namespace spyCBlock;
 
 void SpyCBlock::read(string pathBlockchain) {
 
-  ifstream *stream = new ifstream(pathBlockchain);
+  ifstream stream(pathBlockchain);
 
-  ofstream *outStream = new ofstream("/home/vincenzo/Desktop/deserealize_file/blk00450.txt");
+  ofstream outStream("/home/vincenzo/Desktop/deserealize_file/blk00450.txt");
 
-  while (!stream->eof()) {
-    Block *block = new Block();
-    block->decode(*stream);
-    *outStream << block->toString();
-    delete block;
+  while (!stream.eof()) {
+    Block block;
+    block.decode(stream);
+    outStream << block.toString();
     }
 }
 
@@ -41,12 +40,7 @@ bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string desti
 
   bool resultConversion = false;
 
-
-
   resultConversion = dao->saveBlock(locationBitcoinCore, destinationBitcoinCoreJson);
-
-
-
 
   if(resultConversion)
   {
@@ -75,8 +69,8 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
     string fileNameOutput = getNameFile(pathInput);
     DAOJson dao;
 
-    destinationBitcoinCoreJson += fileNameOutput;
-    dao.saveBlock(pathInput, destinationBitcoinCoreJson);
+    pathInput += fileNameOutput;
+    dao.saveBlock(pathInput, pathInput);
 
     currentFile++;
     pathInput = nameFileSearched(locationBitcoinCore);

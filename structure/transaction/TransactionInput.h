@@ -31,6 +31,9 @@ namespace spyCBlock{
         string hashInputTransaction;
 
     public:
+
+        virtual ~TransactionInput();
+
         const DScript& getScript() const;
 
         uint32_t getSequences() const;

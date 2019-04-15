@@ -26,9 +26,9 @@ namespace spyCBlock{
 
         int32_t version;
         DVarInt numberTxIn;
-        vector<TransactionInput> txInd; // TODO che cosa cambia nella transazione coind base?
+        vector<unique_ptr<TransactionInput>> txInd; // TODO che cosa cambia nella transazione coind base?
         DVarInt numberTxOut;
-        vector<TransactionOutput> txOut;
+        vector<unique_ptr<TransactionOutput>> txOut;
         uint32_t lockTime;
 
         //Additiona information
@@ -42,11 +42,11 @@ namespace spyCBlock{
 
         const DVarInt& getNumberTxIn() const;
 
-        const vector<TransactionInput>& getTxInd() const;
+        const vector<unique_ptr<TransactionInput>>& getTxInd() const;
 
         const DVarInt& getNumberTxOut() const;
 
-        const vector<TransactionOutput>& getTxOut() const;
+        const vector<unique_ptr<TransactionOutput>>& getTxOut() const;
 
         string getHashRawTransaction() const;
 

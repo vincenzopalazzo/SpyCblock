@@ -30,7 +30,6 @@ bool DAOJson::saveBlock(string inputPath, string outputPath)
           ifstream loadFileDat(inputPath);
           if(loadFileDat.is_open())
           {
-            //vector<Block> blockFileBlk;
             vector<unique_ptr<Block>> blockFileBlk;
             while(!loadFileDat.eof())
             {
@@ -43,16 +42,13 @@ bool DAOJson::saveBlock(string inputPath, string outputPath)
           }
           LOG(ERROR) << "The file " + inputPath + " not opened";
           throw DAOException("The file " + inputPath + " not opened");
-          return false;
 
       }
       LOG(ERROR) << "The file input is a directory" << inputPath;
       throw DAOException("The file input is a directory " + inputPath);
-      return false;
   }
   LOG(ERROR) << "The file input not exist" << inputPath;
   throw DAOException("The file input not exist " + inputPath);
-  return false;
 }
 
 void DAOJson::convertToJson(vector<unique_ptr<Block>> &blocks, string outputPath)

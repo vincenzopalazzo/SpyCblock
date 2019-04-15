@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vincenzo/Github/SpyCblock
+CMAKE_SOURCE_DIR = /home/vincenzo/Desktop/SpyCblock
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vincenzo/Github/SpyCblock
+CMAKE_BINARY_DIR = /home/vincenzo/Desktop/SpyCblock
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -91,9 +91,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Github/SpyCblock/CMakeFiles /home/vincenzo/Github/SpyCblock/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Desktop/SpyCblock/CMakeFiles /home/vincenzo/Desktop/SpyCblock/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Github/SpyCblock/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vincenzo/Desktop/SpyCblock/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -440,6 +440,36 @@ persistence/json/DAOBlkToJson.cpp.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/persistence/json/DAOBlkToJson.cpp.s
 	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/persistence/json/DAOBlkToJson.cpp.s
 .PHONY : persistence/json/DAOBlkToJson.cpp.s
+
+persistence/json/DAOJson.o: persistence/json/DAOJson.cpp.o
+
+.PHONY : persistence/json/DAOJson.o
+
+# target to build an object file
+persistence/json/DAOJson.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/persistence/json/DAOJson.cpp.o
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/persistence/json/DAOJson.cpp.o
+.PHONY : persistence/json/DAOJson.cpp.o
+
+persistence/json/DAOJson.i: persistence/json/DAOJson.cpp.i
+
+.PHONY : persistence/json/DAOJson.i
+
+# target to preprocess a source file
+persistence/json/DAOJson.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/persistence/json/DAOJson.cpp.i
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/persistence/json/DAOJson.cpp.i
+.PHONY : persistence/json/DAOJson.cpp.i
+
+persistence/json/DAOJson.s: persistence/json/DAOJson.cpp.s
+
+.PHONY : persistence/json/DAOJson.s
+
+# target to generate assembly for a file
+persistence/json/DAOJson.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/persistence/json/DAOJson.cpp.s
+	$(MAKE) -f CMakeFiles/spyCblock.dir/build.make CMakeFiles/spyCblock.dir/persistence/json/DAOJson.cpp.s
+.PHONY : persistence/json/DAOJson.cpp.s
 
 persistence/serializationutil.o: persistence/serializationutil.cpp.o
 
@@ -849,6 +879,33 @@ test/SHABitcoinCoreTest.cpp.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/SHABitcoinCoreTest.cpp.s
 .PHONY : test/SHABitcoinCoreTest.cpp.s
 
+test/daojsontest.o: test/daojsontest.cpp.o
+
+.PHONY : test/daojsontest.o
+
+# target to build an object file
+test/daojsontest.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/daojsontest.cpp.o
+.PHONY : test/daojsontest.cpp.o
+
+test/daojsontest.i: test/daojsontest.cpp.i
+
+.PHONY : test/daojsontest.i
+
+# target to preprocess a source file
+test/daojsontest.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/daojsontest.cpp.i
+.PHONY : test/daojsontest.cpp.i
+
+test/daojsontest.s: test/daojsontest.cpp.s
+
+.PHONY : test/daojsontest.s
+
+# target to generate assembly for a file
+test/daojsontest.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/test/daojsontest.cpp.s
+.PHONY : test/daojsontest.cpp.s
+
 test/jsonserializationtest.o: test/jsonserializationtest.cpp.o
 
 .PHONY : test/jsonserializationtest.o
@@ -1034,6 +1091,9 @@ help:
 	@echo "... persistence/json/DAOBlkToJson.o"
 	@echo "... persistence/json/DAOBlkToJson.i"
 	@echo "... persistence/json/DAOBlkToJson.s"
+	@echo "... persistence/json/DAOJson.o"
+	@echo "... persistence/json/DAOJson.i"
+	@echo "... persistence/json/DAOJson.s"
 	@echo "... persistence/serializationutil.o"
 	@echo "... persistence/serializationutil.i"
 	@echo "... persistence/serializationutil.s"
@@ -1076,6 +1136,9 @@ help:
 	@echo "... test/SHABitcoinCoreTest.o"
 	@echo "... test/SHABitcoinCoreTest.i"
 	@echo "... test/SHABitcoinCoreTest.s"
+	@echo "... test/daojsontest.o"
+	@echo "... test/daojsontest.i"
+	@echo "... test/daojsontest.s"
 	@echo "... test/jsonserializationtest.o"
 	@echo "... test/jsonserializationtest.i"
 	@echo "... test/jsonserializationtest.s"

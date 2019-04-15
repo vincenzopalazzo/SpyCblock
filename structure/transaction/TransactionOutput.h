@@ -17,7 +17,8 @@ using namespace nlohmann;
 
 namespace spyCBlock{
 
-    class TransactionOutput{
+    class TransactionOutput
+    {
 
     private:
 
@@ -28,6 +29,9 @@ namespace spyCBlock{
         string hashOutputTransaction;
 
     public:
+
+        virtual ~TransactionOutput();
+
         const int64_t& getNValue() const;
 
         const DScript& getScript() const;

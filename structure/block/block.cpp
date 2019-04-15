@@ -11,7 +11,9 @@ using namespace spyCBlock;
 
 
 Block::~Block()
-{}
+{
+  rawTransactions.clear();
+}
 
 int32_t Block::getMagicNum() const {
     return magicNum;
@@ -29,7 +31,7 @@ const DVarInt &Block::getNumbarRawTransaction() const {
     return numbarRawTransaction;
 }
 
-const vector<RawTransaction> &Block::getRawTransactions() const {
+const vector<unique_ptr<RawTransaction>> &Block::getRawTransactions() const {
   return rawTransactions;
 }
 
@@ -64,8 +66,10 @@ void Block::decode(std::ifstream &stream) {
     Unserialize(stream, this->blocksize);
     LOG(INFO) << "Block size readed: " << blocksize;
     blockHeader.unserialize(stream);
+
     this->numbarRawTransaction.decode(stream);
     if (numbarRawTransaction.getValue() == -1) {
+
         LOG_IF(FATAL, (numbarRawTransaction.getValue() == -1)) << "Error numbarRaw Transaction = " << numbarRawTransaction.getValue();
         //TODO segnalare errore lanciando un eccezione
         return;
@@ -73,16 +77,13 @@ void Block::decode(std::ifstream &stream) {
     rawTransactions.clear();
     for (int i = 0; i < numbarRawTransaction.getValue(); i++) {
         LOG(INFO) << "Readed raw transaction numbar << " + i;
-        RawTransaction *transaction = new RawTransaction();
+        //RawTransaction *transaction = new RawTransaction();
+        unique_ptr<RawTransaction> transaction(new RawTransaction);
         transaction->decode(stream);
-        rawTransactions.push_back(*transaction);
-        delete transaction;
+        rawTransactions.push_back(move(transaction));
+        delete transaction.release();
     }
     LOG(INFO) << "End block read";
-
-    //create hash block
-    string deserializeForm = toSerealizationForm();
-    this->hashBlock = CryptoSingleton::getIstance()->getHash256(deserializeForm);
 }
 
 string Block::toSerealizationForm()
@@ -99,7 +100,7 @@ string Block::toString() {
   stringForm += numbarRawTransaction.getValue();
   stringForm += "\n";
   for (int i = 0; i < rawTransactions.size(); i++) {
-      stringForm += this->rawTransactions.at(i).toString(); //TODO possible generated exception
+      stringForm += this->rawTransactions.at(i)->toString(); //TODO possible generated exception
   }
   return stringForm;
 }
@@ -115,14 +116,16 @@ json Block::toJsonLite()
 
 json Block::toJsonFat()
 {
-
+  //create hash block
+  string deserializeForm = toSerealizationForm();
+  this->hashBlock = CryptoSingleton::getIstance()->getHash256(deserializeForm);
 
   //stringstream streamJson;
   json jsonTransactionRaw;
   for (int i = 0; i < numbarRawTransaction.getValue(); i++)
   {
       //streamJson << rawTransactions.at(i).toJson() << ",";
-      jsonTransactionRaw.push_back(rawTransactions.at(i).toJson());
+      jsonTransactionRaw.push_back(rawTransactions.at(i)->toJson());
   }
 
   json jsonFat = {

@@ -19,7 +19,6 @@ TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test) 
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_dao_json_test.log");
 
-    //IDAOBlockchain *daoBlockchain = new DAOFileBlkJson();
     DAOJson dao;
     try {
         bool result = dao.saveBlock("/home/vincenzo/tmp/bitcoin/block/blk00450.dat", "/home/vincenzo/tmp/bitcoin/blockJson/blk00450.json");

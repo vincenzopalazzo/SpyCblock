@@ -12,6 +12,10 @@
 
 using namespace spyCBlock;
 
+
+TransactionInput::~TransactionInput()
+{}
+
 const OutPoint &TransactionInput::getOutpoint() const
 {
     return outpoint;
@@ -48,9 +52,6 @@ void TransactionInput::decode(std::ifstream &stream)
     Unserialize(stream, this->sequences);
     LOG(INFO) << "Numbar sequences " << sequences;
 
-    //Create hash transaction
-    string hexInputTransaction = toSerealizationForm();
-    this->hashInputTransaction = CryptoSingleton::getIstance()->getHash256(hexInputTransaction);
 }
 
 string TransactionInput::toSerealizationForm()
@@ -66,6 +67,10 @@ string TransactionInput::toSerealizationForm()
 
 json TransactionInput::toJson()
 {
+  //Create hash transaction
+  string hexInputTransaction = toSerealizationForm();
+  this->hashInputTransaction = CryptoSingleton::getIstance()->getHash256(hexInputTransaction);
+
   return json::object({
                         {"outputTxHash", this->outpoint.getHash().GetHex()},
                         {"ammount", this->outpoint.getN()},

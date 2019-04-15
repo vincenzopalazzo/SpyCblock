@@ -12,7 +12,10 @@
 using namespace spyCBlock;
 
 RawTransaction::~RawTransaction()
-{}
+{
+  txInd.clear();
+  txOut.clear();
+}
 
 int32_t RawTransaction::getVersion() const
 {
@@ -24,7 +27,7 @@ const DVarInt &RawTransaction::getNumberTxIn() const
     return numberTxIn;
 }
 
-const vector<TransactionInput> &RawTransaction::getTxInd() const
+const vector<unique_ptr<TransactionInput>> &RawTransaction::getTxInd() const
 {
     return txInd;
 }
@@ -34,7 +37,7 @@ const DVarInt &RawTransaction::getNumberTxOut() const
     return numberTxOut;
 }
 
-const vector<TransactionOutput> &RawTransaction::getTxOut() const
+const vector<unique_ptr<TransactionOutput>> &RawTransaction::getTxOut() const
 {
   return txOut;
 }
@@ -58,26 +61,24 @@ void RawTransaction::decode(std::ifstream &stream)
     txInd.clear();
     for(int i = 0; i < static_cast<int>(this->numberTxIn.getValue()); i++)
     {
-        TransactionInput *transaction = new TransactionInput();
+        //TransactionInput *transaction = new TransactionInput();
+        unique_ptr<TransactionInput> transaction(new TransactionInput());
         transaction->decode(stream);
-        this->txInd.push_back(*transaction);
-        delete transaction;
+        this->txInd.push_back(move(transaction));
+        delete transaction.release();
     }
     this->numberTxOut.decode(stream);
     LOG(INFO) << "Numbar transaction output in raw transaction " << numberTxOut.getValue();
     txOut.clear();
     for(int i = 0; i < static_cast<int>(numberTxOut.getValue()); i++)
     {
-        TransactionOutput *transactionOutput = new TransactionOutput();
+        //TransactionOutput *transactionOutput = new TransactionOutput();
+        unique_ptr<TransactionOutput> transactionOutput(new TransactionOutput());
         transactionOutput->decode(stream);
-        this->txOut.push_back(*transactionOutput);
-        delete transactionOutput;
+        this->txOut.push_back(move(transactionOutput));
+        delete transactionOutput.release();
     }
     Unserialize(stream, this->lockTime);
-
-    //Create additional information
-    string serializationForm = toSerealizationForm();
-    this->hashRawTransaction = CryptoSingleton::getIstance()->getHash256(serializationForm);
 }
 
 string RawTransaction::toSerealizationForm()
@@ -87,12 +88,12 @@ string RawTransaction::toSerealizationForm()
   hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->numberTxIn);
   for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
   {
-    hexForm += txInd.at(i).toSerealizationForm();
+    hexForm += txInd.at(i)->toSerealizationForm();
   }
   hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->numberTxOut);
   for(int i = 0; i < static_cast<int>(numberTxOut.getValue()); i++)
   {
-     hexForm += txOut.at(i).toSerealizationForm();
+     hexForm += txOut.at(i)->toSerealizationForm();
   }
   hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->lockTime);
 
@@ -108,14 +109,14 @@ string RawTransaction::toString() {
     stringForm += to_string(numberTxIn.getValue());
     for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
     {
-        stringForm += this->txInd.at(i).toString();
+        stringForm += this->txInd.at(i)->toString();
     }
     stringForm += "---------- Transaction Output ----------\n";
     stringForm += "Number Transaction out: ";
     stringForm += to_string(numberTxOut.getValue());
     for(int i = 0; i < static_cast<int>(numberTxOut.getValue()); i++)
     {
-        stringForm += this->txOut.at(i).toString();
+        stringForm += this->txOut.at(i)->toString();
     }
     stringForm += to_string(this->lockTime);
     return stringForm;
@@ -123,6 +124,10 @@ string RawTransaction::toString() {
 
 json RawTransaction::toJson()
 {
+  //Create additional information
+  string serializationForm = toSerealizationForm();
+  this->hashRawTransaction = CryptoSingleton::getIstance()->getHash256(serializationForm);
+
   json jsonRawTransaction =  json::object({
                         {"version", version},
                         {"numbarTxInput", this->numberTxIn.getValue()},
@@ -135,7 +140,7 @@ json RawTransaction::toJson()
   for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
   {
     //intputTransactionJson <<  this->txInd.at(i).toJson() << ",";
-      txInputjson.push_back(this->txInd.at(i).toJson());
+      txInputjson.push_back(this->txInd.at(i)->toJson());
   }
 
   //stringstream outputTransactionJson;
@@ -143,7 +148,7 @@ json RawTransaction::toJson()
   for(int i = 0 ; i < static_cast<int>(numberTxOut.getValue()); i++)
   {
     //outputTransactionJson <<  this->txOut.at(i).toJson() << ",";
-    txOutjson.push_back(this->txOut.at(i).toJson());
+    txOutjson.push_back(this->txOut.at(i)->toJson());
   }
 
   /*jsonRawTransaction["inputTransactions"] = {intputTransactionJson.str()};

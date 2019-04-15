@@ -3,12 +3,14 @@
 //
 
 #include <sstream>
+
 #include <glog/logging.h>
 #include "DScript.h"
 #include "../../util/serialize.h"
 #include "../../util/strencodings.h"
 
 using namespace spyCBlock;
+using namespace std;
 
 DScript::~DScript()
 {}
@@ -22,7 +24,7 @@ string DScript::getScriptToSerializationForm()
 {
   if(rawScriptString.empty())
   {
-      LOG(ERROR) << "The raw script is null";
+      LOG(ERROR) << "The raw script is null " +  scriptString;
       //TODO create a exception genral for all parser
       throw  exception();
   }
@@ -48,6 +50,7 @@ void DScript::decode(std::ifstream &stream)
 
     stream.read(buffer, static_cast<long>(scriptLenght.getValue())); //TODO look this canged
 
+
     LOG_IF(ERROR, (sizeof (buffer) != scriptLenght.getValue())) << "Dimension script readed wrong";
     scriptString = string(buffer, scriptLenght.getValue());
 
@@ -65,4 +68,3 @@ string DScript::toString()
 
     return stringForm;
 }
-

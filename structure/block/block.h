@@ -30,7 +30,7 @@ namespace spyCBlock {
         int32_t blocksize;
         BlockHeader blockHeader;
         DVarInt numbarRawTransaction;
-        vector<RawTransaction> rawTransactions;
+        vector<unique_ptr<RawTransaction>> rawTransactions;
 
         //Surplus information to the block
         //The value -1 indicate a value null because the value is setter to passer
@@ -51,7 +51,7 @@ namespace spyCBlock {
 
         const DVarInt &getNumbarRawTransaction() const;
 
-        const vector<RawTransaction> &getRawTransactions() const;
+        const vector<unique_ptr<RawTransaction>> &getRawTransactions() const;
 
         int32_t getHeightBlock() const;
 

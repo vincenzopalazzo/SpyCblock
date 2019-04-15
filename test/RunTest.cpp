@@ -153,40 +153,40 @@ TEST(RunTest, unserialize_one_block)
     EXPECT_EQ(blockHeader.getNBits(), 486604799);
     EXPECT_EQ(blockHeader.getNonce(), 2083236893);
 
-    RawTransaction rawTransaction = block->getRawTransactions().at(0);
+    //RawTransaction rawTransaction = block->getRawTransactions().at(0);
 
-    EXPECT_EQ(rawTransaction.getVersion(), 1);
-    EXPECT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getVersion(), 1);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getNumberTxIn().getValue(), 1);
 
     //Transaction Input
-    TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
+    //TransactionInput transactionInput = block->getRawTransactions().at(0)->getTxInd().at(0)->;
 
-    EXPECT_EQ(transactionInput.getOutpoint().getHash().GetHex(),"0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival at 0xffffff
-    EXPECT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 77);
-    EXPECT_EQ(transactionInput.getScript().getScriptString().size(), 77);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex(),"0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN(), 4294967295); // 4294967295 equival at 0xffffff
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght().getValue(), 77);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptString().size(), 77);
     string data = "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73";
                  //04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73
-    EXPECT_EQ(transactionInput.getScript().getRawScriptString().substr(0, transactionInput.getScript().getScriptLenght().getValue() * 2), data);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getRawScriptString().substr(0, block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght().getValue() * 2), data);
 
-    EXPECT_EQ(transactionInput.decodeIntoStringScriptSing(), data);
-    EXPECT_EQ(transactionInput.getSequences(), 4294967295);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->decodeIntoStringScriptSing(), data);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences(), 4294967295);
 
     //Transaction Output
-    EXPECT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
-    TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
-    EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
-    EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getNumberTxOut().getValue(), 1);
+    //TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue(), 5000000000);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue(), 67);
     //TODO the pure script not calculate with the substr(0, (transactionOutput.getScript().getScriptLenght().getValue()) * 2)
-    EXPECT_EQ(transactionOutput.getScript().getRawScriptString().substr(0, (transactionOutput.getScript().getScriptLenght().getValue()) * 2),
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getRawScriptString().substr(0, (block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue()) * 2),
               "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
     //TODO this lengh scritp contains the value opt code and this is wrong, wich I have minus two
              //4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac68c39c059c6100
     //Testing a pure script
-    EXPECT_EQ(transactionOutput.getScript().getRawScriptString().substr(2, (transactionOutput.getScript().getScriptLenght().getValue() - 2) * 2),
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getRawScriptString().substr(2, (block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue() - 2) * 2),
               "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f");
              //04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5facac
-    EXPECT_EQ(rawTransaction.getLockTime(), 0);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getLockTime(), 0);
 
 }
 
@@ -215,28 +215,28 @@ TEST(RunTest, unserialize_two_block)
     EXPECT_EQ(blockHeader.getNBits(), 486604799);
     EXPECT_EQ(blockHeader.getNonce(), 2083236893);
 
-    RawTransaction rawTransaction = block->getRawTransactions().at(0);
+    //RawTransaction rawTransaction = block->getRawTransactions().at(0);
 
-    EXPECT_EQ(rawTransaction.getVersion(), 1);
-    EXPECT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
-    EXPECT_EQ(rawTransaction.getTxInd().size(), 1);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getVersion(), 1);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getNumberTxIn().getValue(), 1);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().size(), 1);
 
     //Transaction Input
-    TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
-    EXPECT_EQ(transactionInput.getOutpoint().getHash().GetHex(),
+    //TransactionInput transactionInput = block->getRawTransactions().at(0)->getTxInd().at(0)->;
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex(),
               "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295);
-    EXPECT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 77);
-    EXPECT_EQ(transactionInput.getSequences(), 4294967295);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN(), 4294967295);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght().getValue(), 77);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences(), 4294967295);
 
     //Transaction Output
-    EXPECT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
-    EXPECT_EQ(rawTransaction.getTxOut().size(), 1);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getNumberTxOut().getValue(), 1);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxOut().size(), 1);
 
-    TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
-    EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
-    EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
-    EXPECT_EQ(rawTransaction.getLockTime(), 0);
+    //TransactionOutput transactionOutput = block->getRawTransactions().at(0)->getTxOut().at(0)->;
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue(), 5000000000);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue(), 67);
+    EXPECT_EQ(block->getRawTransactions().at(0)->getLockTime(), 0);
 
     unique_ptr<Block> block_two(new Block());
 
@@ -259,25 +259,25 @@ TEST(RunTest, unserialize_two_block)
 
     EXPECT_EQ(block_two->getNumbarRawTransaction().getValue(), 1);
 
-    rawTransaction = block_two->getRawTransactions().at(0);
+    //rawTransaction = block_two->getRawTransactions().at(0)->;
 
-    EXPECT_EQ(rawTransaction.getVersion(), 1);
-    EXPECT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getVersion(), 1);
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getNumberTxIn().getValue(), 1);
 
     //Transaction Input
-    transactionInput = rawTransaction.getTxInd().at(0);
-    EXPECT_EQ(transactionInput.getOutpoint().getHash().GetHex(),
+    //transactionInput = block_two->getRawTransactions().at(0)->getTxInd().at(0)->;
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex(),
               "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(transactionInput.getOutpoint().getN(), 4294967295);
-    EXPECT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 7);
-    EXPECT_EQ(transactionInput.getSequences(), 4294967295);
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN(), 4294967295);
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght().getValue(), 7);
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getTxInd().at(0)->getSequences(), 4294967295);
 
     //Transaction Output
-    EXPECT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
-    transactionOutput = rawTransaction.getTxOut().at(0);
-    EXPECT_EQ(transactionOutput.getNValue(), 5000000000);
-    EXPECT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 67);
-    EXPECT_EQ(rawTransaction.getLockTime(), 0);
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getNumberTxOut().getValue(), 1);
+    //transactionOutput = block_two->getRawTransactions().at(0)->getTxInd().at(0)->getTxOut().at(0);
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getTxOut().at(0)->getNValue(), 5000000000);
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue(), 67);
+    EXPECT_EQ(block_two->getRawTransactions().at(0)->getLockTime(), 0);
 }
 
 /*Test Read all file dat*/
@@ -291,7 +291,8 @@ TEST(RunTest, all_Read_file_dat)
     ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
     ofstream outStream("/home/vincenzo/Github/SpyCblock/test/file_test/file_test_readl_all_file_dat_uno.txt");
 
-    vector<Block> *blocks = new vector<Block>();
+    //vector<Block> *blocks = new vector<Block>();
+    vector<unique_ptr<Block>> blocks;
     try
     {
         if (stream.is_open())
@@ -300,21 +301,22 @@ TEST(RunTest, all_Read_file_dat)
             int numbarBlock = 0;
 
             while (!stream.eof()) {
-                Block *block = new Block();
+                //Block *block = new Block();
+                unique_ptr<Block> block(new Block());
                 block->decode(stream);
                 if(block->getBlockHeader().getVersion() == 0)//TODO dare un occhiata qui qualcosa non va con i numeri di blocchi
                 {
                     LOG(WARNING) << "block is null -> " << block->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-                    delete block;
+                    delete block.release();
                 }else{
                     outStream << block->toString();
-                    blocks->push_back(*block);
-                    delete block;
+                    blocks.push_back(move(block));
+                    delete block.release();
                     numbarBlock++;
                     LOG(INFO) << "Numbar block read now " << numbarBlock;
                 }
             }
-            EXPECT_EQ(blocks->size(), 119973); //TODO qualcosa alla fine del blocco fa i capricci sono in realtà 19973
+            EXPECT_EQ(blocks.size(), 119973); //TODO qualcosa alla fine del blocco fa i capricci sono in realtà 19973
         } else{
             FAIL() << "File not open blk00000.dat";
         }
@@ -327,12 +329,12 @@ TEST(RunTest, all_Read_file_dat)
         LOG(FATAL) << "Exception generet: " << fe.what();
         FAIL();
     }
-    LOG(WARNING) << "Memory occuped for list block readed " << (blocks->capacity() * sizeof(Block)) + blocks->size();
+    LOG(WARNING) << "Memory occuped for list block readed " << (blocks.capacity() * sizeof(Block)) + blocks.size();
 
     stream.close();
     outStream.close();
 
-    delete blocks;
+    blocks.clear();
 
 }/*Test Read all file dat error numbar file read*/
 
@@ -415,10 +417,7 @@ TEST(RunTest, read_first_block_another_file_blk)
     //Init assertion on blockRead
 
     /* ------ TEST BLOCK -----*/
-    stringstream *hexaNumbarMagic = new stringstream();
-    *hexaNumbarMagic << hex << block->getMagicNum();
-    ASSERT_EQ(hexaNumbarMagic->str(), "d9b4bef9");
-    delete hexaNumbarMagic;
+    ASSERT_EQ(block->getMagicNum(), spyCBlock::typeBlock::NETWORK_MAIN);
     ASSERT_EQ(block->getBlocksize(), 934444);
 
     /* ------ TEST BLOCK HEADER-----*/
@@ -433,27 +432,28 @@ TEST(RunTest, read_first_block_another_file_blk)
     /* ----------- TEST RAW TRANSACTION -------------*/
     ASSERT_EQ(block->getNumbarRawTransaction().getValue(), 2461);
     ASSERT_EQ(block->getRawTransactions().size(), 2461);
-    RawTransaction rawTransaction = block->getRawTransactions().at(0);
-    ASSERT_EQ(rawTransaction.getVersion(), 1);
-    ASSERT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
-    ASSERT_EQ(rawTransaction.getTxInd().size(), 1);
-    ASSERT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
-    ASSERT_EQ(rawTransaction.getLockTime(), 0);
+    //RawTransaction rawTransaction = block->getRawTransactions().at(0);
+    //unique_ptr<RawTransaction> rawTransaction = block->getRawTransactions().at(0);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getVersion(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getNumberTxIn().getValue(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().size(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getNumberTxOut().getValue(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getLockTime(), 0);
 
     /* ----------- TEST IN TRANSACTION -------------*/
-    ASSERT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
-    TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
-    ASSERT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
-    ASSERT_EQ(transactionInput.getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
-    ASSERT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 42);
-    ASSERT_EQ(transactionInput.getSequences(), 4294967295);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getNumberTxIn().getValue(), 1);
+    //TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght().getValue(), 42);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences(), 4294967295);
 
     /* ----------- TEST OUT TRANSACTION -------------*/
-    ASSERT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
-    ASSERT_EQ(rawTransaction.getTxOut().size(), 1);
-    TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
-    ASSERT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 25);
-    ASSERT_EQ(transactionOutput.getNValue(), 2549850141); // satoshi
+    ASSERT_EQ(block->getRawTransactions().at(0)->getNumberTxOut().getValue(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxOut().size(), 1);
+    //TransactionOutput transactionOutput = block->getRawTransactions().at(0)->getTxOut().at(0);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue(), 25);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue(), 2549850141); // satoshi
 
     delete stream;
     delete block;
@@ -494,33 +494,33 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
     ASSERT_EQ(block->getNumbarRawTransaction().getValue(), 2461);
     ASSERT_EQ(block->getRawTransactions().size(), 2461);
 
-    RawTransaction rawTransaction = block->getRawTransactions().at(0);
+    //RawTransaction rawTransaction = block->getRawTransactions().at(0);
 
-    ASSERT_EQ(rawTransaction.getVersion(), 1);
-    ASSERT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
-    ASSERT_EQ(rawTransaction.getTxInd().size(), 1);
-    ASSERT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
-    ASSERT_EQ(rawTransaction.getLockTime(), 0);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getVersion(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getNumberTxIn().getValue(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().size(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getNumberTxOut().getValue(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getLockTime(), 0);
 
     /* ----------- TEST IN TRANSACTION -------------*/
-    ASSERT_EQ(rawTransaction.getNumberTxIn().getValue(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getNumberTxIn().getValue(), 1);
 
-    TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
+    //TransactionInput transactionInput = block->getRawTransactions().at(0)->getTxInd().at(0)->;
 
-    ASSERT_EQ(transactionInput.getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
-    ASSERT_EQ(transactionInput.getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
-    ASSERT_EQ(transactionInput.getScript().getScriptLenght().getValue(), 42);
-    ASSERT_EQ(transactionInput.getSequences(), 4294967295);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght().getValue(), 42);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences(), 4294967295);
 
     /* ----------- TEST OUT TRANSACTION -------------*/
 
-    ASSERT_EQ(rawTransaction.getNumberTxOut().getValue(), 1);
-    ASSERT_EQ(rawTransaction.getTxOut().size(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getNumberTxOut().getValue(), 1);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxOut().size(), 1);
 
-    TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
+    //TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
 
-    ASSERT_EQ(transactionOutput.getScript().getScriptLenght().getValue(), 25);
-    ASSERT_EQ(transactionOutput.getNValue(), 2549850141); // satoshiBlock *block = new Block();
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue(), 25);
+    ASSERT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue(), 2549850141); // satoshiBlock *block = new Block();
 
     delete block;
     /* ----------| SECOND BLOCK |---------- */
@@ -548,32 +548,32 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
     ASSERT_EQ(blockTwo->getNumbarRawTransaction().getValue(), 2237);
     ASSERT_EQ(blockTwo->getRawTransactions().size(), 2237);
 
-    RawTransaction rawTransactionTwo = blockTwo->getRawTransactions().at(0);
+    //RawTransaction rawTransactionTwo = blockTwo->getNumbarRawTransaction().at(0->);
 
-    ASSERT_EQ(rawTransactionTwo.getVersion(), 1);
-    ASSERT_EQ(rawTransactionTwo.getNumberTxIn().getValue(), 1);
-    ASSERT_EQ(rawTransactionTwo.getTxInd().size(), 1);
-    ASSERT_EQ(rawTransactionTwo.getNumberTxOut().getValue(), 1);
-    ASSERT_EQ(rawTransactionTwo.getLockTime(), 0);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getVersion(), 1);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getNumberTxIn().getValue(), 1);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getTxInd().size(), 1);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getNumberTxOut().getValue(), 1);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getLockTime(), 0);
 
     /* ----------- TEST IN TRANSACTION -------------*/
-    ASSERT_EQ(rawTransactionTwo.getNumberTxIn().getValue(), 1);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getNumberTxIn().getValue(), 1);
 
-    TransactionInput transactionInputTwo = rawTransactionTwo.getTxInd().at(0);
+    //TransactionInput transactionInputTwo = blockTwo->getRawTransactions().at(0)->getTxInd().at(0);
 
-    ASSERT_EQ(transactionInputTwo.getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
-    ASSERT_EQ(transactionInputTwo.getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
-    ASSERT_EQ(transactionInputTwo.getScript().getScriptLenght().getValue(), 42);
-    ASSERT_EQ(transactionInputTwo.getSequences(), 4294967295);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght().getValue(), 42);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getTxInd().at(0)->getSequences(), 4294967295);
 
     /* ----------- TEST OUT TRANSACTION -------------*/
-    ASSERT_EQ(rawTransactionTwo.getNumberTxOut().getValue(), 1);
-    ASSERT_EQ(rawTransactionTwo.getTxOut().size(), 1);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getNumberTxOut().getValue(), 1);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getTxOut().size(), 1);
 
-    TransactionOutput transactionOutputTwo = rawTransactionTwo.getTxOut().at(0);
+    //TransactionOutput transactionOutputTwo = blockTwo->getRawTransactions().at(0)->getTxOut().at(0);
 
-    ASSERT_EQ(transactionOutputTwo.getScript().getScriptLenght().getValue(), 25);
-    ASSERT_EQ(transactionOutputTwo.getNValue(), 2542408827); // satoshi
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue(), 25);
+    ASSERT_EQ(blockTwo->getRawTransactions().at(0)->getTxOut().at(0)->getNValue(), 2542408827); // satoshi
 
     stream.close();
     delete blockTwo;
@@ -592,10 +592,11 @@ TEST(RunTest, countd_all_block_another_file_blk)
     int count = 0;
     while(!stream.eof())
     {
-        Block *block = new Block();
+        //Block *block = new Block();
+        unique_ptr<Block> block(new Block());
         block->decode(stream);
 
-        delete block;
+        delete block.release();
         count++;
     }
     ASSERT_EQ(count, 155); // conta anche quello null
@@ -668,16 +669,17 @@ TEST(RunTest, compare_previus_second_block_hash) {
 
 TEST(RunTest, compare_previus_all_block_hash)
 {
-
   //Init logger
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
   google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/compare_previus_all_block_hash.log");
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
+
     try
     {
-            vector<Block> blocks = daoBlockchain->loadBlocks("/home/vincenzo/tmp/bitcoin/block");
+            string path = "/home/vincenzo/tmp/bitcoin/block";
+            vector<unique_ptr<Block>> blocks = daoBlockchain->loadBlocks(path);
             ASSERT_EQ(120127, blocks.size());
 
             ifstream stream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_second_block_header.txt");
@@ -693,7 +695,7 @@ TEST(RunTest, compare_previus_all_block_hash)
                   if(!previusBlockCalculate.empty())
                   {
                      LOG(INFO) << "The previus block calculate is: " << previusBlockCalculate;
-                     string previusBlockReaded = blocks.at(numbarBlock).getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+                     string previusBlockReaded = blocks.at(numbarBlock)->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
                      LOG(INFO) << "The previus block readed is: " << previusBlockCalculate;
                      ASSERT_EQ(previusBlockCalculate, previusBlockReaded) << " the hash block are different at the "  << numbarBlock << " numbars blocks";
                      numbarBlock++;
@@ -702,7 +704,9 @@ TEST(RunTest, compare_previus_all_block_hash)
             stream.close();
 
             ifstream streamTwo("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
+
             LOG_IF(ERROR, !streamTwo.is_open()) << "The file previus_hash_block_header not is open";
+
             while(!streamTwo.eof())
             {
                 string previusBlockCalculate;
@@ -710,7 +714,7 @@ TEST(RunTest, compare_previus_all_block_hash)
                 if(!previusBlockCalculate.empty())
                   {
                     LOG(INFO) << "The previus block calculate is: " << previusBlockCalculate;
-                    string previusBlockReaded = blocks.at(numbarBlock).getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+                    string previusBlockReaded = blocks.at(numbarBlock)->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
                     LOG(INFO) << "The previus block readed is: " << previusBlockCalculate;
                     ASSERT_EQ(previusBlockCalculate, previusBlockReaded) << " the hash block are different at the "  << numbarBlock << " numbars blocks";
                     numbarBlock++;
@@ -734,13 +738,13 @@ TEST(RunTest, compare_type_blocks_network)
   //Init data for start this test
   ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
 
-  Block *block = new Block();
+  //Block *block = new Block();
+  unique_ptr<Block> block(new Block());
   block->decode(stream);
 
   EXPECT_EQ(spyCBlock::typeBlock::NETWORK_MAIN, block->getMagicNum());
 
   stream.close();
-  delete block;
 }
 
 int main(int argc, char **argv) {

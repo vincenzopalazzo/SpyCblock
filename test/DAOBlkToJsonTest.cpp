@@ -19,7 +19,6 @@ TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data) {
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data.log");
 
-    //IDAOBlockchain *daoBlockchain = new DAOFileBlkJson();
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
     try {
         bool result = daoBlockchain->saveBlock("/home/vincenzo/tmp/bitcoin/block/", "/home/vincenzo/tmp/bitcoin/blockJson/");
@@ -37,7 +36,6 @@ TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_one)
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_error_one.log");
 
-    //IDAOBlockchain *daoBlockchain = new DAOFileBlkJson();
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
     bool result = daoBlockchain->saveBlock("/home/vincenzo/tmp/bitcoin/", "/home/vincenzo/tmp/bitcoin/blockJson/");
     ASSERT_FALSE(result); // are inclusind left block in the file blk
@@ -50,7 +48,6 @@ TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_two)
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_error_two.log");
 
-    //IDAOBlockchain *daoBlockchain = new DAOFileBlkJson();
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
     EXPECT_ANY_THROW(daoBlockchain->saveBlock("/home/vincenzo/tmp/bitcoin/block/blk00000.dat", "/home/vincenzo/tmp/bitcoin/blockJson/"));
 }
@@ -62,7 +59,6 @@ TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_null
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_error_null.log");
 
-    //IDAOBlockchain *daoBlockchain = new DAOFileBlkJson();
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
     EXPECT_ANY_THROW(daoBlockchain->saveBlock("", "/home/vincenzo/tmp/bitcoin/blockJson/"));
 }
