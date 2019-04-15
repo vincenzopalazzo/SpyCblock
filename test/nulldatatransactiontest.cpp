@@ -235,7 +235,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
   {
     string attualValue;
     saveFileWhitScriptNull >> attualValue;
-    if(attualValue.empty())
+    if(attualValue.empty() || attualValue == "")
     {
         continue;
     }
@@ -251,7 +251,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
   {
     string attualValue;
     loadFileReadedToPython >> attualValue;
-    if(attualValue.empty())
+    if(attualValue.empty() || attualValue == "")
     {
         continue;
     }
@@ -357,7 +357,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
   {
     string attualValue;
     saveFileWhitScriptNull >> attualValue;
-    if(attualValue.empty())
+    if(attualValue.empty() || attualValue == "")
     {
         continue;
     }
@@ -373,7 +373,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
   {
     string attualValue;
     loadFileReadedToPython >> attualValue;
-    if(attualValue.empty())
+    if(attualValue.empty() || attualValue == "")
     {
         continue;
     }

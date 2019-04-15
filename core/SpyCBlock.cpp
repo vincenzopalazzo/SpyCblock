@@ -69,8 +69,8 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
     string fileNameOutput = getNameFile(pathInput);
     DAOJson dao;
 
-    pathInput += fileNameOutput;
-    dao.saveBlock(pathInput, pathInput);
+    string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".json";
+    dao.saveBlock(pathInput, pathOutput);
 
     currentFile++;
     pathInput = nameFileSearched(locationBitcoinCore);
