@@ -20,3 +20,6 @@ A simple parser bitcoin core
 
 ## Contributors
 ![GitHub contributors](https://img.shields.io/github/contributors/vincenzopalazzo/SpyCblock.svg?color=blue&style=for-the-badge)
+
+## Status
+The alpha version is revisited in the following [branch](https://github.com/vincenzopalazzo/SpyCblock/tree/version_beta_work)
