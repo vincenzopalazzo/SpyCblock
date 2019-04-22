@@ -70,19 +70,8 @@ std::vector<unique_ptr<Block>> spyCBlock::DAOBlockchain::readBlock(fs::directory
         {
             unique_ptr<Block> block(new Block());
             block->decode(stream);
+            blocksFile.push_back(move(block));
 
-            string previuHashBlock = block->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-            string genesiBlock = "0000000000000000000000000000000000000000000000000000000000000000";
-
-            if(isBlockGenesi(entry, block))
-            {
-                LOG(WARNING) << "Finde genesy block";
-                blocksFile.push_back(move(block));
-            }
-            if(previuHashBlock != genesiBlock)
-            {
-                 blocksFile.push_back(move(block));
-            }
         }
         stream.close();
         LOG(WARNING) << "Readed a " << blocksFile.size() << " files";

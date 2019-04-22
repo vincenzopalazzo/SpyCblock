@@ -9,8 +9,9 @@
 #include <sstream>
 #include <locale>
 #include <cmath>
+
 #include "blockHeader.h"
-#include "../../persistence/serializationutil.h"
+#include "../../persistence/SerializationUtil.h"
 
 using namespace spyCBlock;
 
@@ -83,11 +84,11 @@ void BlockHeader::unserialize(std::ifstream &stream)
     this->merkleRoot.Unserialize(stream);
     LOG(INFO) << "Merkler root readed: " << merkleRoot.ToString();
     Unserialize(stream, this->time);
-    LOG(INFO) << "Time stamp block readed: " << previousBlockHeaderHash.ToString();
+    LOG(INFO) << "Time stamp block readed: " << time;
     Unserialize(stream, this->nBits);
-    LOG(INFO) << "NBits block readed: " << previousBlockHeaderHash.ToString();
+    LOG(INFO) << "NBits block readed: " << nBits;
     Unserialize(stream, this->nonce);
-    LOG(INFO) << "Nonce block readed: " << previousBlockHeaderHash.ToString();
+    LOG(INFO) << "Nonce block readed: " << nonce;
 }
 
 string BlockHeader::toSerealizationForm()

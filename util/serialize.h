@@ -266,7 +266,7 @@ void WriteCompactSize(Stream& os, uint64_t nSize)
     }
     return;
 }
-//TODO version satoshi the variant int, look this
+
 template<typename Stream>
 uint64_t ReadCompactSize(Stream& is)
 {

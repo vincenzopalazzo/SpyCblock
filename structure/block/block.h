@@ -6,7 +6,7 @@
 
 #include "blockHeader.h"
 #include "../transaction/RawTransaction.h"
-#include "../../persistence/serializationutil.h"
+#include "../../persistence/SerializationUtil.h"
 
 using namespace std;
 

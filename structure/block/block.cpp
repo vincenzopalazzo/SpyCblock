@@ -5,7 +5,7 @@
 #include <regex>
 
 #include "block.h"
-#include "../../crypto/cryptosingleton.h"
+#include "../../crypto/CryptoCore.h"
 
 using namespace spyCBlock;
 
@@ -68,6 +68,9 @@ void Block::decode(std::ifstream &stream) {
     blockHeader.unserialize(stream);
 
     this->numbarRawTransaction.decode(stream);
+
+    LOG(INFO) << "Numbar raw transanctions into blok whit previous hash " << this->blockHeader.getPreviousBlockHeaderHash().GetHex();
+
     if (numbarRawTransaction.getValue() == -1) {
 
         LOG_IF(FATAL, (numbarRawTransaction.getValue() == -1)) << "Error numbarRaw Transaction = " << numbarRawTransaction.getValue();
@@ -76,14 +79,13 @@ void Block::decode(std::ifstream &stream) {
     }
     rawTransactions.clear();
     for (int i = 0; i < numbarRawTransaction.getValue(); i++) {
-        LOG(INFO) << "Readed raw transaction numbar << " + i;
-        //RawTransaction *transaction = new RawTransaction();
+        LOG(INFO) << "Readed raw transaction numbar " <<  i + 1;
         unique_ptr<RawTransaction> transaction(new RawTransaction);
         transaction->decode(stream);
         rawTransactions.push_back(move(transaction));
         delete transaction.release();
     }
-    LOG(INFO) << "End block read";
+    LOG(INFO) << "End block read whit previus hash " << this->blockHeader.getPreviousBlockHeaderHash().GetHex();
 
     //create hash block
     string deserializeForm = toSerealizationForm();

@@ -7,8 +7,8 @@
 #include <glog/logging.h>
 
 #include "TransactionInput.h"
-#include "../../persistence/serializationutil.h"
-#include "../../crypto/cryptosingleton.h"
+#include "../../persistence/SerializationUtil.h"
+#include "../../crypto/CryptoCore.h"
 
 using namespace spyCBlock;
 

@@ -1,6 +1,27 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/22/19.
-//
+/*
+ * MIT License
+ *
+ * Copyright (c) 2019 Vincenzo Palazzo vincenzopalazzodev@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 #include <fstream>
 #include <utility>
 
@@ -17,8 +38,17 @@
 
 using namespace spyCBlock;
 
-//test metod toString
-TEST(RunTest, test_function_to_string)
+/**
+ * This battery of tests was developed first to test the parser evolution over time,
+ * all functions are tested from the parsing of a simple data
+ * to the paring of the whole block folder with a parser that was created only at test purpose.
+ * Look at the DAOBlockchain.cpp file in persistence to get more information about him
+ * @author https://github.com/vincenzopalazzo
+ */
+
+
+//Simple test for decode Genesis block and print ToString of the block in the Log
+TEST(StructureBitcoinCoreTest, test_function_to_string)
 {
     FLAGS_logtostderr = false;
 
@@ -55,8 +85,8 @@ TEST(RunTest, test_function_to_string)
     LOG(WARNING) << block.toString();
 }
 
-/*Test new type uint256*/
-TEST(RunTest, type_uint256_test_block_header)
+//Simple test for import the uint256 bitcoin core
+TEST(StructureBitcoinCoreTest, type_uint256_test_block_header)
 {
     uint256 priviusBlockHas = uint256();
     priviusBlockHas.SetHex("0000000000004df94b4488e034359e862725dc969c498b9678dc261c58a679dc");
@@ -66,8 +96,9 @@ TEST(RunTest, type_uint256_test_block_header)
     EXPECT_EQ(blockHeader->getMerkleRoot().GetHex(), "2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3");
     EXPECT_EQ(blockHeader->getPreviousBlockHeaderHash().GetHex(), "0000000000004df94b4488e034359e862725dc969c498b9678dc261c58a679dc");
 }
-/*Test new type outpoint*/
-TEST(RunTest, type_out_point_tx_in_test)
+
+//Simple test for import the Outpoint bitcoin core
+TEST(StructureBitcoinCoreTest, type_out_point_tx_in_test)
 {
     TransactionInput tx;
     OutPoint outPoint;
@@ -78,7 +109,8 @@ TEST(RunTest, type_out_point_tx_in_test)
     EXPECT_EQ(tx.getOutpoint().getHash().GetHex(), "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16");
 }
 
-TEST(RunTest, serialize_test_int)
+//Simple test for import the library serealize.h bitcoin core
+TEST(StructureBitcoinCoreTest, serialize_test_int)
 {
     std::ofstream fileIn("/home/vincenzo/Github/spyCblock/test/file_test/file_bit_uno.dat");
 
@@ -97,6 +129,7 @@ TEST(RunTest, serialize_test_int)
     EXPECT_EQ(value, 32);
 }
 
+//First test for decode a gesesis block with the structure of the SpyCBlock
 /*
    The real date of blockchain first block read in the blk0000.dat
 Magic No: 	d9b4bef9
@@ -127,7 +160,7 @@ Outputs:	 1
 Lock Time:	 0
 
   */
-TEST(RunTest, unserialize_one_block)
+TEST(StructureBitcoinCoreTest, unserialize_one_block)
 {
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
@@ -190,7 +223,8 @@ TEST(RunTest, unserialize_one_block)
 
 }
 
-TEST(RunTest, unserialize_two_block)
+//Second test for decode a gesesis block and succesive block with the structure of the SpyCBlock
+TEST(StructureBitcoinCoreTest, unserialize_two_block)
 {
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
@@ -280,8 +314,8 @@ TEST(RunTest, unserialize_two_block)
     EXPECT_EQ(block_two->getRawTransactions().at(0)->getLockTime(), 0);
 }
 
-/*Test Read all file dat*/
-TEST(RunTest, all_Read_file_dat)
+//First test for decode all file blk
+TEST(StructureBitcoinCoreTest, all_Read_file_dat)
 {
 
     FLAGS_minloglevel = 2;
@@ -338,7 +372,8 @@ TEST(RunTest, all_Read_file_dat)
 
 }/*Test Read all file dat error numbar file read*/
 
-TEST(RunTest, compare_previus_block_hash) {
+//First test compare hash previus block whit the previus block generated another parser
+TEST(StructureBitcoinCoreTest, compare_previus_block_hash) {
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
@@ -399,7 +434,8 @@ TEST(RunTest, compare_previus_block_hash) {
     delete fileBlk;
 }
 
-TEST(RunTest, read_first_block_another_file_blk)
+//First test compare hash previus block whit the previus block generated another parser
+TEST(StructureBitcoinCoreTest, read_first_block_another_file_blk)
 {
     //Init Log this test
     FLAGS_logtostderr = false;
@@ -460,7 +496,8 @@ TEST(RunTest, read_first_block_another_file_blk)
 
 }
 
-TEST(RunTest, read_two_consecutive_block_another_file_blk)
+//Second test for decode a two consecutive block into file blk with the structure of the SpyCBlock
+TEST(StructureBitcoinCoreTest, read_two_consecutive_block_another_file_blk)
 {
     //Init Log this test
     FLAGS_logtostderr = false;
@@ -580,12 +617,13 @@ TEST(RunTest, read_two_consecutive_block_another_file_blk)
 
 }
 
-TEST(RunTest, countd_all_block_another_file_blk)
+//First test than count the block contains into file blk
+TEST(StructureBitcoinCoreTest, count_all_block_another_file_blk)
 {
     //Init Log this test
     FLAGS_logtostderr = false;
     FLAGS_minloglevel = 2;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/countd_all_block_another_file_blk.log");
+    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/count_all_block_another_file_blk.log");
 
     //Init data for start this test
     ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
@@ -604,7 +642,8 @@ TEST(RunTest, countd_all_block_another_file_blk)
     stream.close();
 }
 
-TEST(RunTest, compare_previus_second_block_hash) {
+//First test compare hash previus block whit the previus block generated another parser
+TEST(StructureBitcoinCoreTest, compare_previus_second_block_hash) {
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
@@ -667,7 +706,9 @@ TEST(RunTest, compare_previus_second_block_hash) {
     fileBlk.close();
 }
 
-TEST(RunTest, compare_previus_all_block_hash)
+//Fist test for create readed all file into directory block whit DAOBlockchain
+//Look at the DAOBlockchain.cpp file in persistence to get more information about him
+TEST(StructureBitcoinCoreTest, compare_previus_all_block_hash)
 {
   //Init logger
   FLAGS_minloglevel = 2;
@@ -728,7 +769,8 @@ TEST(RunTest, compare_previus_all_block_hash)
     }
 }
 
-TEST(RunTest, compare_type_blocks_network)
+//FistTest for copare the type block network
+TEST(StructureBitcoinCoreTest, compare_type_blocks_network)
 {
   //Init Log this test
   FLAGS_logtostderr = false;

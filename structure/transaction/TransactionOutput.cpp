@@ -7,8 +7,8 @@
 #include "../../util/serialize.h"
 
 #include "TransactionOutput.h"
-#include "../../persistence/serializationutil.h"
-#include "../../crypto/cryptosingleton.h"
+#include "../../persistence/SerializationUtil.h"
+#include "../../crypto/CryptoCore.h"
 
 using namespace spyCBlock;
 

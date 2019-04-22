@@ -1,6 +1,26 @@
-//
-// Created by https://github.com/vincenzopalazzo on 3/9/19.
-//
+/*
+ * MIT License
+ *
+ * Copyright (c) 2019 Vincenzo Palazzo vincenzopalazzodev@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 #include <vector>
 #include <utility>
@@ -14,16 +34,24 @@
 using namespace std;
 using namespace spyCBlock;
 
-/*Leggo solo una volta i blocchi e poi effettuo operazioni
- * per verificare la legalita delle operazioni
+/**
+ * This battery of tests was developed for the testing of a bug,
+ * in the alpha version of the parser the Null data transactions had not been taken into account,
+ * with this battery of tests the fix that fixes this bug was introduced.
+ *
+ * The alpha version of this project reports a big problem in memory allocation
+ * and therefore this leads to a subsequent rewrite of the way in which data
+ * structures are used and how memory is allocated, so as to decrease the workload on processor and RAM
+ *
+ * @author https://github.com/vincenzopalazzo
  */
 
 vector<unique_ptr<Block>> blocks;
 vector<string> previusBlockHashWhitScriptNull;
 vector<string> previusBlockHashWhitScriptNullCompare;
 
-/*Test for block blk00032*/
-/*The error transaction is https://www.blockchain.com/it/btc/tx/c78854360663aa585b0400df7297afc458521bf858e6c93b34d4ca696ae30f29*/
+//Test for block blk00032
+//The error transaction is https://www.blockchain.com/it/btc/tx/c78854360663aa585b0400df7297afc458521bf858e6c93b34d4ca696ae30f29
 TEST(NullDataTransactionTest, testNullDataTransaction) {
     //Init logger
     FLAGS_minloglevel = 2;
@@ -42,7 +70,7 @@ TEST(NullDataTransactionTest, testNullDataTransaction) {
     }
 }
 
-/*Test for block blk00032*/
+//Test for block blk00032
 TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two) {
     //Init logger
     FLAGS_minloglevel = 2;
@@ -89,7 +117,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     ASSERT_TRUE(findValueSerched);
 }
 
-/*Test for block blk00032*/
+//Test for block blk00032
 TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null) {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
@@ -141,8 +169,8 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
 
 }
 
-/*Test for block blk00053*/
-/*The error transaction is https://www.blockchain.com/it/btc/tx/4fb1ee7b2e8121baf400b4a947508b431c39d64e2192059ff482624ba58f01d2*/
+//Test for block blk00053
+//The error transaction is https://www.blockchain.com/it/btc/tx/4fb1ee7b2e8121baf400b4a947508b431c39d64e2192059ff482624ba58f01d2
 TEST(NullDataTransactionTest, test_null_data_transaction_blk53) {
     //Init logger
     FLAGS_minloglevel = 2;
@@ -161,7 +189,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk53) {
     }
 }
 
-/*Test for block blk00053*/
+//Test for block blk00053
 TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two_blk53) {
     //Init logger
     FLAGS_minloglevel = 2;
@@ -211,7 +239,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     ASSERT_TRUE(findValueSerched);
 }
 
-/*Test for block blk00053*/
+//Test for block blk00053
 TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null_blk53) {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
@@ -264,8 +292,8 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
 
 }
 
-/*Test for block blk00054*/
-/*The error transaction is https://www.blockchain.com/it/btc/tx/7bd54def72825008b4ca0f4aeff13e6be2c5fe0f23430629a9d484a1ac2a29b8*/
+//Test for block blk00054
+//The error transaction is https://www.blockchain.com/it/btc/tx/7bd54def72825008b4ca0f4aeff13e6be2c5fe0f23430629a9d484a1ac2a29b8
 TEST(NullDataTransactionTest, test_null_data_transaction_blk54) {
     //Init logger
     FLAGS_minloglevel = 2;
@@ -284,7 +312,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk54) {
     }
 }
 
-/*Test for block blk00054*/
+//Test for block blk00054
 TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two_blk54) {
     //Init logger
     FLAGS_minloglevel = 2;
@@ -334,7 +362,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     ASSERT_TRUE(findValueSerched);
 }
 
-/*Test for block blk00054*/
+//Test for block blk00054
 TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null_blk54) {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;

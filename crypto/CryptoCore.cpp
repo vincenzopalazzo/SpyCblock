@@ -1,6 +1,6 @@
 #include <glog/logging.h>
-#include "cryptosingleton.h"
-#include "../crypto/utilcrypto.h"
+#include "CryptoCore.h"
+#include "../crypto/UtilCrypto.h"
 #include "../cryptobitcoin/Sha256Hash.hpp"
 #include "../cryptobitcoin/Sha256.hpp"
 
@@ -17,7 +17,6 @@ CryptoSingleton *CryptoSingleton::getIstance()
   return CryptoSingleton::SINGLETON;
 }
 
-//TODO testing this function.
 string CryptoSingleton::getHash256(string baseHash)
 {
   if(baseHash.length() <= 0)

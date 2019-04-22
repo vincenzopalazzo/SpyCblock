@@ -10,7 +10,7 @@
 #include "../util/strencodings.h"
 #include "../util/uint256.h"
 
-#include "serializationutil.h"
+#include "SerializationUtil.h"
 
 
 using namespace spyCBlock;
