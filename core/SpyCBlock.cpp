@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <glog/logging.h>
+
 #include "SpyCBlock.h"
 #include "../structure/block/block.h"
 #include "../persistence/IDAOBlockchain.h"
@@ -15,6 +16,10 @@
 
 using namespace spyCBlock;
 
+/*
+ This method have problem with a memory, for the moment I don't refactoring this code because this is only a prototype of the parser
+ This method is replaced with convertBlkIntoJson() method
+*/
 void SpyCBlock::read(string pathBlockchain) {
 
   ifstream stream(pathBlockchain);
@@ -28,6 +33,10 @@ void SpyCBlock::read(string pathBlockchain) {
     }
 }
 
+/*
+ This method have problem with a memory, for the moment I don't refactoring this code because this is only a prototype of the parser
+ This method is replaced with convertBlkIntoJson() method
+*/
 bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
   if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
@@ -44,10 +53,10 @@ bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string desti
 
   if(resultConversion)
   {
-      cout << "Conversion bitcoin-core into json O.K" << endl;
+      LOG(INFO) << "Conversion bitcoin-core into json O.K";
       return resultConversion;
   }
-  cout << "Conversion bitcoin-core into json K.O" << endl;
+   LOG(INFO) << "Conversion bitcoin-core into json K.O";
   return resultConversion;
 
 }
@@ -78,7 +87,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
 
 }
 
-string SpyCBlock::nameFileSearched(string pathInput)
+string SpyCBlock::nameFileSearched(string &pathInput)
 {
   if(pathInput.empty())
   {
@@ -87,9 +96,8 @@ string SpyCBlock::nameFileSearched(string pathInput)
   }
   LOG(ERROR) << "Attual value current file blk: " << currentFile;
   //Search file blk.dat
-  if(currentFile < 10) //Il path input deve avere per forza il /
-  {   //refactoring using a &
-
+  if(currentFile < 10) //TODO Il path input deve avere per forza il /
+  {
      return pathInput + "blk0000" + to_string(currentFile) + ".dat";
 
   }else if(currentFile < 100)
@@ -109,7 +117,7 @@ string SpyCBlock::nameFileSearched(string pathInput)
   return "";
 }
 
-string SpyCBlock::getNameFile(string path)
+string SpyCBlock::getNameFile(string &path)
 {
   LOG(INFO) << "Path File is " << path;
   string nameFile = path.substr((path.size() - 12), 8);

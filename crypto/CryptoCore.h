@@ -14,16 +14,14 @@ namespace spyCBlock {
     class CryptoSingleton
     {
       public:
-          static CryptoSingleton* getIstance();
-          string getHash256(string baseHash);
+        static CryptoSingleton& getIstance(){
+            static CryptoSingleton SINGLETON;
+        }
 
-      protected:
-          CryptoSingleton();
-
-          ~CryptoSingleton();
+        string getHash256(string baseHash);
 
       private:
-          static spyCBlock::CryptoSingleton* SINGLETON;
+        CryptoSingleton(){}
     };
 }
 

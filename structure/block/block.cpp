@@ -89,7 +89,7 @@ void Block::decode(std::ifstream &stream) {
 
     //create hash block
     string deserializeForm = toSerealizationForm();
-    this->hashBlock = CryptoSingleton::getIstance()->getHash256(deserializeForm);
+    this->hashBlock = CryptoSingleton::getIstance().getHash256(deserializeForm);
 }
 
 string Block::toSerealizationForm()

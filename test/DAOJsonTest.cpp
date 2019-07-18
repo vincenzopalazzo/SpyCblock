@@ -54,7 +54,7 @@ TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test) 
 
     DAOJson dao;
     try {
-        bool result = dao.saveBlock("/home/vincenzo/tmp/bitcoin/block/blk00450.dat", "/home/vincenzo/tmp/bitcoin/blockJson/blk00450.json");
+        bool result = dao.saveBlock("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/blk00450.dat", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/blk00450.json");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {

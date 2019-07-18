@@ -83,7 +83,7 @@ void RawTransaction::decode(std::ifstream &stream)
 
     //Create additional information
     string serializationForm = toSerealizationForm();
-    this->hashRawTransaction = CryptoSingleton::getIstance()->getHash256(serializationForm);
+    this->hashRawTransaction = CryptoSingleton::getIstance().getHash256(serializationForm);
 }
 
 string RawTransaction::toSerealizationForm()

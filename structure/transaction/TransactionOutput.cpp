@@ -40,7 +40,7 @@ void TransactionOutput::decode(ifstream &stream)
 
     //Creating hash transaction
     string hexForm = toSerealizationForm();
-    this->hashOutputTransaction = CryptoSingleton::getIstance()->getHash256(hexForm);
+    this->hashOutputTransaction = CryptoSingleton::getIstance().getHash256(hexForm);
 
 }
 

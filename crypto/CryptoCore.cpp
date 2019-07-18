@@ -1,21 +1,11 @@
 #include <glog/logging.h>
+
 #include "CryptoCore.h"
 #include "../crypto/UtilCrypto.h"
 #include "../cryptobitcoin/Sha256Hash.hpp"
 #include "../cryptobitcoin/Sha256.hpp"
 
 using namespace spyCBlock;
-
-CryptoSingleton* CryptoSingleton::SINGLETON = nullptr; //Se levi questo causi errore sintattico ma perchè?
-
-CryptoSingleton *CryptoSingleton::getIstance()
-{
-  if(CryptoSingleton::SINGLETON == nullptr)
-  {
-    CryptoSingleton::SINGLETON = new CryptoSingleton();
-  }
-  return CryptoSingleton::SINGLETON;
-}
 
 string CryptoSingleton::getHash256(string baseHash)
 {
@@ -29,13 +19,5 @@ string CryptoSingleton::getHash256(string baseHash)
   Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
   return shaHash.ToStringForProtocol();
-}
-
-CryptoSingleton::CryptoSingleton() {
-}
-
-CryptoSingleton::~CryptoSingleton()
-{
-  delete SINGLETON;
 }
 

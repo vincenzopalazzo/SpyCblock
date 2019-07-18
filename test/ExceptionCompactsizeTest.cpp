@@ -58,7 +58,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk976) {
 
     DAOBlockchain daoBlockchain;
     try {
-        string path = "/home/vincenzo/tmp/bitcoin/block/bug/blk976";
+        string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/bug/blk976";
 
         vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
         ASSERT_TRUE(allBlocks.size() > 120);
@@ -78,7 +78,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk975) {
 
     DAOBlockchain daoBlockchain;
     try {
-        string path = "/home/vincenzo/tmp/bitcoin/block/bug/blk975";
+        string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/bug/blk975";
 
         vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
         ASSERT_EQ(135, allBlocks.size());
@@ -98,7 +98,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk977) {
 
     DAOBlockchain daoBlockchain;
     try {
-        string path = "/home/vincenzo/tmp/bitcoin/block/bug/blk977";
+        string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/bug/blk977";
 
         vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
         ASSERT_TRUE(allBlocks.size() > 120);
@@ -118,7 +118,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk1124) 
 
     DAOBlockchain daoBlockchain;
     try {
-        string path = "/home/vincenzo/tmp/bitcoin/block/bug/blk1124";
+        string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/bug/blk1124";
 
         vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
         ASSERT_TRUE(allBlocks.size() > 50);

@@ -54,7 +54,7 @@ void TransactionInput::decode(std::ifstream &stream)
 
     //Create hash transaction
     string hexInputTransaction = toSerealizationForm();
-    this->hashInputTransaction = CryptoSingleton::getIstance()->getHash256(hexInputTransaction);
+    this->hashInputTransaction = CryptoSingleton::getIstance().getHash256(hexInputTransaction);
 
 }
 

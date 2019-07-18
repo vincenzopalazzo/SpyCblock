@@ -48,7 +48,7 @@ TEST(JsonSerializationTest, serialization_blockheader_test_one)
 
   google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serialization_blockheader_test_one.log");
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/blk00000.dat");
 
   Block *block = new Block();
 

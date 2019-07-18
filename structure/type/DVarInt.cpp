@@ -21,6 +21,7 @@ uint64_t DVarInt::getValue() const
 void DVarInt::decode(std::ifstream &stream)
 {
     value = ReadCompactSize(stream);
+
     LOG(INFO) << "Variant int read is: " << value;
 }
 

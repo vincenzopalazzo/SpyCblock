@@ -60,7 +60,7 @@ TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data) {
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
     try {
-        bool result = daoBlockchain->saveBlock("/home/vincenzo/tmp/bitcoin/block/", "/home/vincenzo/tmp/bitcoin/blockJson/");
+        bool result = daoBlockchain->saveBlock("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {
@@ -76,7 +76,7 @@ TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_one)
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_error_one.log");
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
-    bool result = daoBlockchain->saveBlock("/home/vincenzo/tmp/bitcoin/", "/home/vincenzo/tmp/bitcoin/blockJson/");
+    bool result = daoBlockchain->saveBlock("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/");
     ASSERT_FALSE(result); // are inclusind left block in the file blk
 }
 
@@ -88,7 +88,7 @@ TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_two)
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_error_two.log");
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
-    EXPECT_ANY_THROW(daoBlockchain->saveBlock("/home/vincenzo/tmp/bitcoin/block/blk00000.dat", "/home/vincenzo/tmp/bitcoin/blockJson/"));
+    EXPECT_ANY_THROW(daoBlockchain->saveBlock("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/blk00000.dat", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/"));
 }
 
 //Third test for using DAOBlkToJson into all directory bitcoin blocks with error reading
@@ -99,6 +99,6 @@ TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_null
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_error_null.log");
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
-    EXPECT_ANY_THROW(daoBlockchain->saveBlock("", "/home/vincenzo/tmp/bitcoin/blockJson/"));
+    EXPECT_ANY_THROW(daoBlockchain->saveBlock("", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/"));
 }
 

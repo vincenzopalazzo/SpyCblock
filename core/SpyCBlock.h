@@ -25,9 +25,9 @@ namespace spyCBlock {
 
         int currentFile = 0;
 
-        string nameFileSearched(string pathInput);
+        string nameFileSearched(string &pathInput);
 
-        string getNameFile(string path);
+        string getNameFile(string &path);
     };
 
 }

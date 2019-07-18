@@ -34,6 +34,7 @@
 #include "../persistence/IDAOBlockchain.h"
 #include "../persistence/DAOBlockchain.h"
 #include "../persistence/DAOException.h"
+#include "../core/ConfiguratorSingleton.h"
 
 
 using namespace spyCBlock;
@@ -50,6 +51,8 @@ using namespace spyCBlock;
 //Simple test for decode Genesis block and print ToString of the block in the Log
 TEST(StructureBitcoinCoreTest, test_function_to_string)
 {
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
     FLAGS_logtostderr = false;
 
     /* "-------- BLOCK --------- \n"
@@ -78,7 +81,8 @@ TEST(StructureBitcoinCoreTest, test_function_to_string)
          "Length script: 67\n"
          "Script: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"
          "0";*/
-    ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    string path = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/" + "bitcoin/block/blk00000.dat";
+    ifstream stream(path);
     Block block;
     block.decode(stream);
     stream.close();
@@ -91,7 +95,7 @@ TEST(StructureBitcoinCoreTest, type_uint256_test_block_header)
     uint256 priviusBlockHas = uint256();
     priviusBlockHas.SetHex("0000000000004df94b4488e034359e862725dc969c498b9678dc261c58a679dc");
     uint256 merkle_root = uint256();
-    merkle_root.SetHex("2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3"); 
+    merkle_root.SetHex("2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3");
     unique_ptr<BlockHeader> blockHeader(new BlockHeader(01000000, priviusBlockHas, merkle_root, '6c8cb4d', 'b3936a1a', 'e3143991'));
     EXPECT_EQ(blockHeader->getMerkleRoot().GetHex(), "2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3");
     EXPECT_EQ(blockHeader->getPreviousBlockHeaderHash().GetHex(), "0000000000004df94b4488e034359e862725dc969c498b9678dc261c58a679dc");
@@ -112,14 +116,18 @@ TEST(StructureBitcoinCoreTest, type_out_point_tx_in_test)
 //Simple test for import the library serealize.h bitcoin core
 TEST(StructureBitcoinCoreTest, serialize_test_int)
 {
-    std::ofstream fileIn("/home/vincenzo/Github/spyCblock/test/file_test/file_bit_uno.dat");
+   string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
+    string pathRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
+    std::ofstream fileIn(pathRoot + "file_bit_uno.dat");
 
     int value_in = 32;
     Serialize(fileIn, value_in);
 
     fileIn.close();
 
-    std::ifstream fileOut("/home/vincenzo/Github/spyCblock/test/file_test/file_bit_uno.dat");
+    std::ifstream fileOut(pathRoot + "file_bit_uno.dat");
 
     int value;
     Unserialize(fileOut, value);
@@ -153,8 +161,8 @@ Inputs:		 1
 Outputs:	 1
 	Value:		 5000000000 Satoshi
 	Script Len:	 67
- 	OP_CODE %d is probably obselete pay to address
- 	Pubkey OP_CODE:	 None Bytes:65 tail_op_code:OP_CHECKSIG
+	OP_CODE %d is probably obselete pay to address
+	Pubkey OP_CODE:	 None Bytes:65 tail_op_code:OP_CHECKSIG
 	Pure Pubkey:	   04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
 	ScriptPubkey:	 4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac
 Lock Time:	 0
@@ -162,13 +170,16 @@ Lock Time:	 0
   */
 TEST(StructureBitcoinCoreTest, unserialize_one_block)
 {
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
+    google::SetLogDestination(google::ERROR, pathLogRoot.append("unserialize_block_test.log").c_str());
 
     unique_ptr<Block> block(new Block());
 
-    std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    std::ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
 
     block->decode(fileOut);
     fileOut.close();
@@ -226,13 +237,17 @@ TEST(StructureBitcoinCoreTest, unserialize_one_block)
 //Second test for decode a gesesis block and succesive block with the structure of the SpyCBlock
 TEST(StructureBitcoinCoreTest, unserialize_two_block)
 {
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+    string localPathRoot = pathLogRoot;
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/pyCblock/test/log/unserialize_block_test.log");
+    google::SetLogDestination(google::ERROR, localPathRoot.append("unserialize_block_test.log").c_str());
 
     unique_ptr<Block> block(new Block());
 
-    std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    std::ifstream fileOut(pathMockRoot + "/bitcoin/block/blk00000.dat");
     block->decode(fileOut);
 
     EXPECT_EQ(block->getMagicNum(), spyCBlock::typeBlock::NETWORK_MAIN);
@@ -317,13 +332,16 @@ TEST(StructureBitcoinCoreTest, unserialize_two_block)
 //First test for decode all file blk
 TEST(StructureBitcoinCoreTest, all_Read_file_dat)
 {
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+    string localPathRoot = pathLogRoot;
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/all_Read_file_dat_test_first.log");
+    google::SetLogDestination(google::GLOG_ERROR, localPathRoot.append("all_Read_file_dat_test_first.log").c_str());
 
-    ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
-    ofstream outStream("/home/vincenzo/Github/SpyCblock/test/file_test/file_test_readl_all_file_dat_uno.txt");
+    ifstream stream(pathMockRoot + "bitcoin/block/blk00000.dat");
+    ofstream outStream(pathMockRoot + "file_test_readl_all_file_dat_uno.txt");
 
     //vector<Block> *blocks = new vector<Block>();
     vector<unique_ptr<Block>> blocks;
@@ -373,13 +391,17 @@ TEST(StructureBitcoinCoreTest, all_Read_file_dat)
 }/*Test Read all file dat error numbar file read*/
 
 //First test compare hash previus block whit the previus block generated another parser
-TEST(StructureBitcoinCoreTest, compare_previus_block_hash) {
+TEST(StructureBitcoinCoreTest, compare_previus_block_hash)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+    string localPathRoot = pathLogRoot;
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_WARNING, "/home/vincenzo/Github/spyCblock/test/log/compare_previus_block_hash.log");
+    google::SetLogDestination(google::GLOG_WARNING, localPathRoot.append("compare_previus_block_hash.log").c_str());
 
-    ifstream *fileWhitHash = new ifstream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
+    ifstream *fileWhitHash = new ifstream(pathMockRoot + "previus_hash_block_header.txt");
 
     vector<string> *priviusHashs = new vector<string>();
     if(!fileWhitHash->is_open())
@@ -405,7 +427,7 @@ TEST(StructureBitcoinCoreTest, compare_previus_block_hash) {
 
     delete fileWhitHash;
 
-    ifstream *fileBlk = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    ifstream *fileBlk = new ifstream(pathMockRoot + "/bitcoin/block/blk00000.dat");
 
     LOG_IF(FATAL, !fileBlk->is_open()) << "File: blk00000 not open";
     int coutBlockRead = 0;
@@ -437,13 +459,16 @@ TEST(StructureBitcoinCoreTest, compare_previus_block_hash) {
 //First test compare hash previus block whit the previus block generated another parser
 TEST(StructureBitcoinCoreTest, read_first_block_another_file_blk)
 {
-    //Init Log this test
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+    string localPathRoot = pathLogRoot;
+
     FLAGS_logtostderr = false;
     FLAGS_minloglevel = 1;
-    google::SetLogDestination(google::WARNING, "/home/vincenzo/Github/SpyCblock/test/log/read_first_block_another_file_blk.log");
+    google::SetLogDestination(google::WARNING, localPathRoot.append("read_first_block_another_file_blk.log").c_str());
 
     //Init data for start this test
-    ifstream *stream = new ifstream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+    ifstream *stream = new ifstream(pathMockRoot + "bitcoin/block/blk00450.dat");
 
     Block *block = new Block();
     block->decode(*stream);
@@ -499,19 +524,20 @@ TEST(StructureBitcoinCoreTest, read_first_block_another_file_blk)
 //Second test for decode a two consecutive block into file blk with the structure of the SpyCBlock
 TEST(StructureBitcoinCoreTest, read_two_consecutive_block_another_file_blk)
 {
-    //Init Log this test
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
+    string localPathRoot = pathLogRoot;
+
     FLAGS_logtostderr = false;
     FLAGS_minloglevel = 2;
-    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/SpyCblock/test/log/read_two_consecutive_block_another_file_blk.log");
+    google::SetLogDestination(google::ERROR, localPathRoot.append("read_two_consecutive_block_another_file_blk.log").c_str());
 
-    //Init data for start this test
-    ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+    ifstream stream(pathMockRoot + "bitcoin/block/blk00450.dat");
 
     Block *block = new Block();
     block->decode(stream);
 
-
-    //Init assertion on blockRead
 
     /* ------ TEST BLOCK -----*/
     ASSERT_EQ(block->getMagicNum(), spyCBlock::typeBlock::NETWORK_MAIN);
@@ -620,13 +646,17 @@ TEST(StructureBitcoinCoreTest, read_two_consecutive_block_another_file_blk)
 //First test than count the block contains into file blk
 TEST(StructureBitcoinCoreTest, count_all_block_another_file_blk)
 {
-    //Init Log this test
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
+    string localPathRoot = pathLogRoot;
+
     FLAGS_logtostderr = false;
     FLAGS_minloglevel = 2;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/count_all_block_another_file_blk.log");
+    google::SetLogDestination(google::GLOG_ERROR, localPathRoot.append("count_all_block_another_file_blk.log").c_str());
 
     //Init data for start this test
-    ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+    ifstream stream(pathMockRoot + "bitcoin/block/blk00450.dat");
     int count = 0;
     while(!stream.eof())
     {
@@ -643,13 +673,18 @@ TEST(StructureBitcoinCoreTest, count_all_block_another_file_blk)
 }
 
 //First test compare hash previus block whit the previus block generated another parser
-TEST(StructureBitcoinCoreTest, compare_previus_second_block_hash) {
+TEST(StructureBitcoinCoreTest, compare_previus_second_block_hash)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
+    string localPathRoot = pathLogRoot;
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/compare_previus_second_block_hash.log");
+    google::SetLogDestination(google::GLOG_ERROR, localPathRoot.append("compare_previus_second_block_hash.log").c_str());
 
-    ifstream fileWhitHash("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_second_block_header.txt");
+    ifstream fileWhitHash(pathMockRoot + "previus_hash_second_block_header.txt");
 
     vector<string> priviusHashs;
     if(!fileWhitHash.is_open())
@@ -676,7 +711,7 @@ TEST(StructureBitcoinCoreTest, compare_previus_second_block_hash) {
 
     fileWhitHash.close();
 
-    ifstream fileBlk("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+    ifstream fileBlk(pathMockRoot + "bitcoin/block/blk00450.dat");
 
     LOG_IF(FATAL, !fileBlk.is_open()) << "File: blk00450 not open";
     int coutBlockRead = 0;
@@ -710,20 +745,24 @@ TEST(StructureBitcoinCoreTest, compare_previus_second_block_hash) {
 //Look at the DAOBlockchain.cpp file in persistence to get more information about him
 TEST(StructureBitcoinCoreTest, compare_previus_all_block_hash)
 {
-  //Init logger
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
+  string localPathRoot = pathLogRoot;
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/compare_previus_all_block_hash.log");
+  google::SetLogDestination(google::GLOG_ERROR,  localPathRoot.append("compare_previus_all_block_hash.log").c_str());
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
 
     try
     {
-            string path = "/home/vincenzo/tmp/bitcoin/block";
+            string path = pathMockRoot + "bitcoin/block";
             vector<unique_ptr<Block>> blocks = daoBlockchain->loadBlocks(path);
             ASSERT_EQ(120127, blocks.size());
 
-            ifstream stream("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_second_block_header.txt");
+            ifstream stream(pathMockRoot + "previus_hash_second_block_header.txt");
 
             LOG_IF(ERROR, !stream.is_open()) << "The file previus_hash_second_block_header.txt not opened";
 
@@ -744,7 +783,7 @@ TEST(StructureBitcoinCoreTest, compare_previus_all_block_hash)
               }
             stream.close();
 
-            ifstream streamTwo("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
+            ifstream streamTwo(pathMockRoot + "previus_hash_block_header.txt");
 
             LOG_IF(ERROR, !streamTwo.is_open()) << "The file previus_hash_block_header not is open";
 
@@ -772,13 +811,17 @@ TEST(StructureBitcoinCoreTest, compare_previus_all_block_hash)
 //FistTest for copare the type block network
 TEST(StructureBitcoinCoreTest, compare_type_blocks_network)
 {
-  //Init Log this test
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
+  string localPathRoot = pathLogRoot;
+
   FLAGS_logtostderr = false;
   FLAGS_minloglevel = 2;
-  google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/read_two_consecutive_block_another_file_blk.log");
+  google::SetLogDestination(google::GLOG_ERROR, localPathRoot.append("read_two_consecutive_block_another_file_blk.log").c_str());
 
   //Init data for start this test
-  ifstream stream("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+  ifstream stream(pathMockRoot + "bitcoin/block/blk00450.dat");
 
   //Block *block = new Block();
   unique_ptr<Block> block(new Block());

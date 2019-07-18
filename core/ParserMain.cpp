@@ -3,7 +3,9 @@
 //
 
 #include <glog/logging.h>
+
 #include "SpyCBlock.h"
+#include "ConfiguratorSingleton.h"
 
 using namespace google;
 using namespace spyCBlock;
@@ -15,13 +17,12 @@ int main(int argc, char* argv[])
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
     google::InitGoogleLogging("2");
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/log/main_log.log");
+    string pathLogFile = ConfiguratorSingleton::getInstance().getPathFileLog() + "/main_log.log";
+    google::SetLogDestination(google::GLOG_ERROR, pathLogFile.c_str());
 
-
-
-    SpyCBlock *spyCBlock = new SpyCBlock();
-    spyCBlock->convertBlkIntoJson("/media/vincenzo/VincentHDD/blocks/", "/media/vincenzo/VincentHDD/blockjson/");
-    delete spyCBlock;
+    SpyCBlock spyCBlock = SpyCBlock();
+    //TODO fix the bug id The path contains the end /
+    spyCBlock.convertBlkIntoJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
 
     return 0;
 }

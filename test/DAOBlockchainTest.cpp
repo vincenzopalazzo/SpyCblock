@@ -56,7 +56,7 @@ TEST(DAOBlockchainTest, test_dao_blockchain_give_file_data) {
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
     try {
-        string path = "/home/vincenzo/tmp/bitcoin/block";
+        string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block";
         vector<unique_ptr<Block>> allBlocks = daoBlockchain->loadBlocks(path);
         ASSERT_EQ(120127, allBlocks.size()); // are inclusind left block in the file blk
     }
@@ -74,7 +74,7 @@ TEST(DAOBlockchainTest, test_dao_blockchain_give_file_data_error_one) {
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blockchain_give_file_data_error_one.log");
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
-    string path = "/home/vincenzo/tmp/bitcoin/";
+    string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/";
     vector<unique_ptr<Block>> allBlocks = daoBlockchain->loadBlocks(path); // TODO dovrebbe lanciare eccezione se è in una directory sbahliata
     ASSERT_EQ(0, allBlocks.size());
 }
@@ -87,7 +87,7 @@ TEST(DAOBlockchainTest, test_dao_blockchain_give_file_data_error_two) {
     google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blockchain_give_file_data_error_two.log");
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
-    string path = "/home/vincenzo/tmp/bitcoin/block/blk00000.dat";
+    string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/blk00000.dat";
     EXPECT_ANY_THROW(daoBlockchain->loadBlocks(path));
 }
 

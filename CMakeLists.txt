@@ -3,6 +3,8 @@ project(SpyCBlock)
 
 set(CMAKE_CXX_STANDARD 17)
 
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
 # Locate GTest
 enable_testing()
 find_package(GTest REQUIRED)
@@ -29,6 +31,7 @@ add_executable(
         test/DAOJsonTest.cpp
         test/NullDataTransactionsTest.cpp
         test/ExceptionCompactsizeTest.cpp
+        test/ConfiguratorSingletonTest.cpp
 
         util/uint256.cpp
         util/strencodings.cpp
@@ -58,6 +61,13 @@ add_executable(
 
         crypto/UtilCrypto.cpp
         crypto/CryptoCore.cpp
+
+        core/ConfiguratorSingleton.cpp
+
+        #cpp-properties file include
+        include/cpp-properties/src/Properties.cpp
+        include/cpp-properties/src/PropertiesParser.cpp
+        include/cpp-properties/src/PropertiesUtils.cpp
 )
 
 add_executable(
@@ -66,6 +76,7 @@ add_executable(
 
         core/ParserMain.cpp
         core/SpyCBlock.cpp
+        core/ConfiguratorSingleton.cpp
 
         util/uint256.cpp
         util/strencodings.cpp
@@ -95,7 +106,13 @@ add_executable(
         cryptobitcoin/Sha256.cpp
         cryptobitcoin/Sha256Hash.cpp
         cryptobitcoin/Utils.cpp
-        )
+
+        #cpp-properties file include
+        include/cpp-properties/src/Properties.cpp
+        include/cpp-properties/src/PropertiesParser.cpp
+        include/cpp-properties/src/PropertiesUtils.cpp
+
+)
 
 #using glog
 target_link_libraries(${PROJECT_NAME} glog::glog)

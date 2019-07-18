@@ -414,7 +414,7 @@ TEST(hash_test, hash_transaction_genesi_block_test_to_read_file_with_scriptssing
 
   string  serealizationFormTransaction = block->getRawTransactions().at(0)->toSerealizationForm();
 
-  string gettedHash = CryptoSingleton::getIstance()->getHash256(serealizationFormTransaction);
+  string gettedHash = CryptoSingleton::getIstance().getHash256(serealizationFormTransaction);
 
   string expectedHash = "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b";
 
@@ -436,7 +436,7 @@ TEST(hash_test, hash_genesi_block_test_to_read_file_with_scriptssingleton)
 
   string  serealizationFormTransaction = block->toSerealizationForm();
 
-  string gettedHash = CryptoSingleton::getIstance()->getHash256(serealizationFormTransaction);
+  string gettedHash = CryptoSingleton::getIstance().getHash256(serealizationFormTransaction);
 
   string expectedHash = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f";
 
@@ -461,7 +461,7 @@ TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssinglet
     block->decode(fileOut);
 
     string toSerealizeForm = block->toSerealizationForm();
-    string hashCalculate = CryptoSingleton::getIstance()->getHash256(toSerealizeForm);
+    string hashCalculate = CryptoSingleton::getIstance().getHash256(toSerealizeForm);
 
     fileSaveBlock << hashCalculate << endl;
     delete block;
@@ -523,7 +523,7 @@ TEST(hash_test, hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssing
 
   //TransactionOutput output = block->getRawTransactions().at(0).getTxOut().at(0);
   string hexoutput = block->getRawTransactions().at(0)->getTxOut().at(0)->toSerealizationForm();
-  string hashOutput = CryptoSingleton::getIstance()->getHash256(hexoutput);
+  string hashOutput = CryptoSingleton::getIstance().getHash256(hexoutput);
 
   ASSERT_EQ(hashTxout, hashTxout);
 }
@@ -546,20 +546,20 @@ TEST(hash_test, hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingle
   block->decode(fileOut);
 
   string hexBlock = block->toSerealizationForm();
-  string hashBlock = CryptoSingleton::getIstance()->getHash256(hexBlock);
+  string hashBlock = CryptoSingleton::getIstance().getHash256(hexBlock);
 
   string expettedHashBlock = "000000000000000001c984a6589be98fd3c593a1d707a7fdaaa4adf748632022";
 
   //RawTransaction rawTransaction = block->getRawTransactions().at(0);
   string hexRawTransaction = block->getRawTransactions().at(0)->toSerealizationForm();
-  string heshRawTransaction = CryptoSingleton::getIstance()->getHash256(hexRawTransaction);
+  string heshRawTransaction = CryptoSingleton::getIstance().getHash256(hexRawTransaction);
 
   string expettedHash = "f2a140b42b47c649a30823712dc568e25443ed390168c897ed5baa52cc50cc4a";
 
 
   //RawTransaction rawTransactionMoreInput = block->getRawTransactions().at(3);
   string hexRawTransactionMoreInput = block->getRawTransactions().at(3)->toSerealizationForm();
-  string heshRawTransactionMoreInput = CryptoSingleton::getIstance()->getHash256(hexRawTransactionMoreInput);
+  string heshRawTransactionMoreInput = CryptoSingleton::getIstance().getHash256(hexRawTransactionMoreInput);
 
   string expettedHashMoreInput = "8bbcf573e66cba09f3109a2eca0589a09232caad248b58ae69cc24bb1a22b264";
 
