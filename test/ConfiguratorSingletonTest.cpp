@@ -49,4 +49,6 @@ TEST(ConfiguratorSingletonTest, inizializeTestWithFileConfig)
   ASSERT_FALSE(configuration.getPathBlockDat().empty());
 }
 
+//TODO some test
+
 
