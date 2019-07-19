@@ -30,6 +30,7 @@
 #include "../util/strencodings.h"
 
 #include "../structure/block/block.h"
+#include "../core/ConfiguratorSingleton.h"
 
 using namespace spyCBlock;
 using namespace std;
@@ -47,50 +48,59 @@ using namespace std;
 
 TEST(serealization_test, serealization_util_test_uint32)
 {
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = true;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_util_test_uint32.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serealization_util_test_uint32.log").c_str());
 
   uint32_t nonce = 2083236893;
-  string nonceConversion = SerializationUtilSingleton::getInstance()->toSerealizeForm(nonce);
+  string nonceConversion = SerializationUtil::toSerealizeForm(nonce);
 
   ASSERT_EQ(nonceConversion, "1dac2b7c");
 }
 
 TEST(serealization_test, serealization_util_test_uint)
 {
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = true;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_util_test_uint16.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serealization_util_test_uint16.log").c_str());
 
   int32_t version = 1;
-  string nonceConversion = SerializationUtilSingleton::getInstance()->toSerealizeForm(version);
+  string nonceConversion = SerializationUtil::toSerealizeForm(version);
 
   ASSERT_EQ(nonceConversion, "01000000");
 }
 
 TEST(serealization_test, serealization_util_test_to_read_file)
 {
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = true;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_util_test_to_read_file.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serealization_util_test_to_read_file.log").c_str());
 
   unique_ptr<Block> block(new Block());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
 
   block->decode(fileOut);
   fileOut.close();
 
-  string lietEndiaConversionVersion = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion());
-  string lietEndiaConversionTimeStamp = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime());
-  string lietEndiaConversionNbit = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits());
-  string lietEndiaConversionNonce = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce());
-  string lietEndiaConversionNumTxIn = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxIn());
-  string lietEndiaConversionNumTxOut = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxOut());
-  string lietEndiaConversionNumScriptLenghtTxIn = SerializationUtilSingleton::getInstance()->toSerealizeForm(
+  string lietEndiaConversionVersion = SerializationUtil::toSerealizeForm(block->getBlockHeader().getVersion());
+  string lietEndiaConversionTimeStamp = SerializationUtil::toSerealizeForm(block->getBlockHeader().getTime());
+  string lietEndiaConversionNbit = SerializationUtil::toSerealizeForm(block->getBlockHeader().getNBits());
+  string lietEndiaConversionNonce = SerializationUtil::toSerealizeForm(block->getBlockHeader().getNonce());
+  string lietEndiaConversionNumTxIn = SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxIn());
+  string lietEndiaConversionNumTxOut = SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxOut());
+  string lietEndiaConversionNumScriptLenghtTxIn = SerializationUtil::toSerealizeForm(
         block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght());
-  string lietEndiaConversionNumScriptLenghtTxOut = SerializationUtilSingleton::getInstance()->toSerealizeForm(
+  string lietEndiaConversionNumScriptLenghtTxOut = SerializationUtil::toSerealizeForm(
         block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght());
 
   delete block.release();
@@ -107,13 +117,16 @@ TEST(serealization_test, serealization_util_test_to_read_file)
 
 TEST(serealization_test, serealization_genesi_block_test_to_read_file)
 {
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_block_test_to_read_file.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serealization_block_test_to_read_file.log").c_str());
 
   unique_ptr<Block> block(new Block());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot.append("bitcoin/block/blk00000.dat"));
 
   block->decode(fileOut);
   fileOut.close();
@@ -130,13 +143,16 @@ TEST(serealization_test, serealization_genesi_block_test_to_read_file)
 
 TEST(serealization_test, serealization_transaction_genesi_block_test_to_read_file)
 {
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_transaction_genesi_block_test_to_read_file.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serealization_transaction_genesi_block_test_to_read_file.log").c_str());
 
   unique_ptr<Block> block(new Block());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot.append("bitcoin/block/blk00000.dat"));
 
   block->decode(fileOut);
   fileOut.close();

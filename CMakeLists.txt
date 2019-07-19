@@ -3,8 +3,6 @@ project(SpyCBlock)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
-
 # Locate GTest
 enable_testing()
 find_package(GTest REQUIRED)
@@ -15,7 +13,6 @@ find_package(glog 0.3.5 REQUIRED)
 
 ## Json library
 find_package(nlohmann_json 3.2.0 REQUIRED)
-
 
 # Link runTests with what we want to test and the GTest and pthread library
 add_executable(
@@ -68,6 +65,7 @@ add_executable(
         include/cpp-properties/src/Properties.cpp
         include/cpp-properties/src/PropertiesParser.cpp
         include/cpp-properties/src/PropertiesUtils.cpp
+
 )
 
 add_executable(

@@ -28,6 +28,7 @@
 #include "../structure/block/block.h"
 #include "../persistence/json/DAOBlkToJson.h"
 #include "../persistence/DAOException.h"
+#include "../core/ConfiguratorSingleton.h"
 
 using namespace std;
 using namespace spyCBlock;
@@ -52,15 +53,18 @@ using namespace spyCBlock;
   */
 
 //Fist test for using DAOBlkToJson into all directory bitcoin blocks not exception
-TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data) {
-    //Init logger
+TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data.log");
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data.log").c_str());
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
     try {
-        bool result = daoBlockchain->saveBlock("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/");
+        bool result = daoBlockchain->saveBlock(pathMockRoot + "bitcoin/block/", pathMockRoot + "bitcoin/blockJson/");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {
@@ -69,36 +73,45 @@ TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data) {
 }
 
 //Fist test for using DAOBlkToJson into all directory bitcoin blocks with error reading
-TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_one) {
-    //Init logger
+TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_one)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_error_one.log");
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_error_one.log").c_str());
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
-    bool result = daoBlockchain->saveBlock("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/");
+    bool result = daoBlockchain->saveBlock(pathMockRoot + ("bitcoin/"), pathMockRoot + ("bitcoin/blockJson/"));
     ASSERT_FALSE(result); // are inclusind left block in the file blk
 }
 
 //Second test for using DAOBlkToJson into all directory bitcoin blocks with error reading
-TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_two) {
-    //Init logger
+TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_two)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_error_two.log");
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_error_two.log").c_str());
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
-    EXPECT_ANY_THROW(daoBlockchain->saveBlock("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/blk00000.dat", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/"));
+    EXPECT_ANY_THROW(daoBlockchain->saveBlock(pathMockRoot + ("bitcoin/block/blk00000.dat"), pathMockRoot + ("bitcoin/blockJson/")));
 }
 
 //Third test for using DAOBlkToJson into all directory bitcoin blocks with error reading
-TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_null) {
-    //Init logger
+TEST(DAOBlkToJsonTest, test_dao_blk_to_json_blockchain_give_file_data_error_null)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_error_null.log");
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_error_null.log").c_str());
 
     unique_ptr<IDAOBlockchain> daoBlockchain(new DAOFileBlkJson());
-    EXPECT_ANY_THROW(daoBlockchain->saveBlock("", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/"));
+    EXPECT_ANY_THROW(daoBlockchain->saveBlock("", pathMockRoot + ("bitcoin/blockJson/")));
 }
 

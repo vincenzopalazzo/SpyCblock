@@ -14,24 +14,25 @@ namespace fs = std::experimental::filesystem;
 
 namespace spyCBlock{
 
-    class DAOBlockchain : public IDAOBlockchain{
+    class DAOBlockchain : public IDAOBlockchain
+    {
 
-    private:
+      private:
 
-        std::vector<unique_ptr<Block>> readBlock(fs::directory_entry entry);
+          std::vector<unique_ptr<Block>> readBlock(fs::directory_entry entry);
 
-        bool isBlockFileBlk(fs::directory_entry &entry);
+          bool isBlockFileBlk(fs::directory_entry &entry);
 
-        bool isBlockGenesi(fs::directory_entry &entry, unique_ptr<Block> &genericBlock);
+          bool isBlockGenesi(fs::directory_entry &entry, unique_ptr<Block> &genericBlock);
 
-    public:
-        virtual ~DAOBlockchain();
+      public:
+          virtual ~DAOBlockchain();
 
-        DAOBlockchain();
+          DAOBlockchain();
 
-        vector<unique_ptr<Block>> loadBlocks(string &path) override;
+          vector<unique_ptr<Block>> loadBlocks(string &path) override;
 
-        bool saveBlock(string inputPath, string outputPath) override;
+          bool saveBlock(string inputPath, string outputPath) override;
 
     };
 

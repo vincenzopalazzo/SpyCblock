@@ -116,8 +116,7 @@ TEST(StructureBitcoinCoreTest, type_out_point_tx_in_test)
 //Simple test for import the library serealize.h bitcoin core
 TEST(StructureBitcoinCoreTest, serialize_test_int)
 {
-   string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
     string pathRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
 
     std::ofstream fileIn(pathRoot + "file_bit_uno.dat");

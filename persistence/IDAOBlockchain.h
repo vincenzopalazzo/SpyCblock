@@ -6,18 +6,21 @@
 #define SPYCBLOCK_IDAOBLOCKCHAIN_H
 
 #include <vector>
+
 #include "../structure/block/block.h"
 
 using namespace std;
 
-namespace spyCBlock{
+namespace spyCBlock
+{
 
-    class IDAOBlockchain{
+    class IDAOBlockchain
+    {
 
-    public:
-        virtual vector<unique_ptr<Block>> loadBlocks(string &path) = 0;
+      public:
+          virtual vector<unique_ptr<Block>> loadBlocks(string &path) = 0;
 
-        virtual bool saveBlock(string inputPath, string outputPath) = 0;
+          virtual bool saveBlock(string inputPath, string outputPath) = 0;
 
     };
 }

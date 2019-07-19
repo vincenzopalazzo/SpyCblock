@@ -42,6 +42,7 @@
 #include "../crypto/UtilCrypto.h"
 #include "../structure/block/block.h"
 #include "../crypto/CryptoCore.h"
+#include "../core/ConfiguratorSingleton.h"
 
 using namespace std;
 using namespace spyCBlock;
@@ -61,10 +62,11 @@ using namespace spyCBlock;
 // https://en.bitcoin.it/wiki/Protocol_documentation#Hashes
 TEST(hash_test, first_test_double_sha_not_on_bitcoin_protocol)
 {
-    //Init logger
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocol.log");
+    google::SetLogDestination(google::GLOG_ERROR,  pathLogRoot.append("first_test_sha_not_on_bitcoin_protocol.log").c_str());
 
     string hello = "hello";
 
@@ -83,10 +85,11 @@ TEST(hash_test, first_test_double_sha_not_on_bitcoin_protocol)
  * */
 TEST(hash_test, first_test_double_sha_not_on_bitcoin_crypolibrary)
 {
-    //Init logger
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
+    google::SetLogDestination(google::GLOG_ERROR,  pathLogRoot.append("first_test_sha_not_on_bitcoin_protocolo.log").c_str());
 
     string hello = "hello";
 
@@ -118,10 +121,11 @@ FFFFFFFF
 
 TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypolibrary)
 {
-    //Init logger
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
+    google::SetLogDestination(google::GLOG_ERROR,  pathLogRoot.append("first_test_sha_not_on_bitcoin_protocolo.log").c_str());
 
     string versionRawTransaction = "01000000";
     string numbarTransactionInput = "01";
@@ -158,10 +162,11 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypo
 
 TEST(hash_test, first_test_double_sha_bit_genesi_block_bitcoin_crypolibrary)
 {
-    //Init logger
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_sha_not_on_bitcoin_protocolo.log");
+    google::SetLogDestination(google::GLOG_ERROR,  pathLogRoot.append("first_test_sha_not_on_bitcoin_protocolo.log").c_str());
 
     string version = "01000000";
     string previusBlock = "0000000000000000000000000000000000000000000000000000000000000000";
@@ -193,10 +198,11 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_bitcoin_crypolibrary)
 
 TEST(hash_test, first_test_double_sha_bit_esample_block_bitcoin_crypolibrary)
 {
-    //Init logger
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR,  "/home/vincenzo/Github/SpyCblock/test/log/first_test_double_sha_bit_esample_block_bitcoin_crypolibrary.log");
+    google::SetLogDestination(google::GLOG_ERROR,  pathLogRoot.append("first_test_double_sha_bit_esample_block_bitcoin_crypolibrary.log").c_str());
 
     string version = "01000000";
     string previusBlock = "81cd02ab7e569e8bcd9317e2fe99f2de44d49ab2b8851ba4a308000000000000";
@@ -226,52 +232,58 @@ TEST(hash_test, first_test_double_sha_bit_esample_block_bitcoin_crypolibrary)
 */
 TEST(hash_test, first_test_comparable_value_readed)
 {
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/first_test_comparable_value_readed.log");
+    google::SetLogDestination(google::ERROR, pathLogRoot.append("first_test_comparable_value_readed.log").c_str());
 
     unique_ptr<Block> block(new Block());
 
-    std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    std::ifstream fileOut(pathMockRoot.append("bitcoin/block/blk00000.dat"));
 
     block->decode(fileOut);
     fileOut.close();
 
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion()), "01000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash()), "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getMerkleRoot()), "3ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime()), "29ab5f49");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits()), "ffff001d");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce()), "1dac2b7c");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getVersion()), "01000000");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash()), "0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getMerkleRoot()), "3ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getTime()), "29ab5f49");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getNBits()), "ffff001d");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getNonce()), "1dac2b7c");
 
 }
 
 TEST(hash_test, first_test_comparable_hash_value_readed)
 {
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/unserialize_block_test.log");
+    google::SetLogDestination(google::ERROR, pathLogRoot.append("unserialize_block_test.log").c_str());
 
     unique_ptr<Block> block(new Block());
 
-    std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    std::ifstream fileOut(pathMockRoot.append("bitcoin/block/blk00000.dat"));
 
     block->decode(fileOut);
     fileOut.close();
 
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion()), "01000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash()), "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getMerkleRoot()), "3ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime()), "29ab5f49");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits()), "ffff001d");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce()), "1dac2b7c");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getVersion()), "01000000");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash()), "0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getMerkleRoot()), "3ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getTime()), "29ab5f49");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getNBits()), "ffff001d");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getNonce()), "1dac2b7c");
 
-    string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getVersion());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getMerkleRoot());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getTime());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNBits());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getBlockHeader().getNonce());
+    string hexForm = SerializationUtil::toSerealizeForm(block->getBlockHeader().getVersion());
+    hexForm += SerializationUtil::toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash());
+    hexForm += SerializationUtil::toSerealizeForm(block->getBlockHeader().getMerkleRoot());
+    hexForm += SerializationUtil::toSerealizeForm(block->getBlockHeader().getTime());
+    hexForm += SerializationUtil::toSerealizeForm(block->getBlockHeader().getNBits());
+    hexForm += SerializationUtil::toSerealizeForm(block->getBlockHeader().getNonce());
 
     vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 
@@ -282,14 +294,18 @@ TEST(hash_test, first_test_comparable_hash_value_readed)
 
 }
 
-TEST(hash_test, first_test_comparable_transaction_value_readed) {
+TEST(hash_test, first_test_comparable_transaction_value_readed)
+{
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/first_test_comparable_value_readed.log");
+    google::SetLogDestination(google::ERROR, pathLogRoot.append("first_test_comparable_value_readed.log").c_str());
 
     unique_ptr<Block> block(new Block());
 
-    std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    std::ifstream fileOut(pathMockRoot.append("bitcoin/block/blk00000.dat"));
 
     block->decode(fileOut);
     fileOut.close();
@@ -298,52 +314,54 @@ TEST(hash_test, first_test_comparable_transaction_value_readed) {
 
     string version = to_string(block->getRawTransactions().at(0)->getVersion());
 
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getVersion()), "01000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxIn()), "01");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getVersion()), "01000000");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxIn()), "01");
     EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(
                 block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN()), "ffffffff");
 
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(
                 block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght()), "4d");
     EXPECT_EQ(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getRawScriptString(),
               "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences()), "ffffffff");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxOut()), "01");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue()), "00f2052a01000000");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght()), "43");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences()), "ffffffff");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxOut()), "01");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue()), "00f2052a01000000");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght()), "43");
     EXPECT_EQ(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getRawScriptString().substr(0, block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue() * 2),
               "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
-    EXPECT_EQ(SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getLockTime()), "00000000");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getLockTime()), "00000000");
 }
 
 TEST(hash_test, first_test_comparable_transaction_hash_value_readed)
 {
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/first_test_comparable_value_readed.log");
+    google::SetLogDestination(google::ERROR, pathLogRoot.append("first_test_comparable_value_readed.log").c_str());
 
     unique_ptr<Block> block(new Block());
 
-    std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+    std::ifstream fileOut(pathMockRoot.append("bitcoin/block/blk00000.dat"));
 
     block->decode(fileOut);
     fileOut.close();
 
 
-    string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getVersion());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxIn());
+    string hexForm = SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getVersion());
+    hexForm += SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxIn());
     hexForm += block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getHash().GetHex();
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght());
+    hexForm += SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getOutpoint().getN());
+    hexForm += SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght());
     hexForm += block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getRawScriptString().substr(0, block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght().getValue() * 2);
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxOut());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue());
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght());
+    hexForm += SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getTxInd().at(0)->getSequences());
+    hexForm += SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxOut());
+    hexForm += SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getNValue());
+    hexForm += SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght());
     hexForm += block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getRawScriptString().substr(0, block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght().getValue() * 2);
-    hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(block->getRawTransactions().at(0)->getLockTime());
+    hexForm += SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getLockTime());
 
     vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 
@@ -355,13 +373,16 @@ TEST(hash_test, first_test_comparable_transaction_hash_value_readed)
 
 TEST(hash_test, hash_block_genesi_test_to_read_file)
 {
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serealization_block_test_to_read_file.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serealization_block_test_to_read_file.log").c_str());
 
   unique_ptr<Block> block(new Block());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
 
   block->decode(fileOut);
   fileOut.close();
@@ -378,13 +399,16 @@ TEST(hash_test, hash_block_genesi_test_to_read_file)
 
 TEST(hash_test, hash_transaction_genesi_block_test_to_read_file)
 {
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_transaction_genesi_block_test_to_read_file.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("hash_transaction_genesi_block_test_to_read_file.log").c_str());
 
   unique_ptr<Block> block(new Block());
 
-  ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
 
   block->decode(fileOut);
   fileOut.close();
@@ -402,13 +426,16 @@ TEST(hash_test, hash_transaction_genesi_block_test_to_read_file)
 
 TEST(hash_test, hash_transaction_genesi_block_test_to_read_file_with_scriptssingleton)
 {
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_transaction_genesi_block_test_to_read_file.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("hash_transaction_genesi_block_test_to_read_file.log").c_str());
 
   unique_ptr<Block> block(new Block());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
   block->decode(fileOut);
   fileOut.close();
 
@@ -423,13 +450,16 @@ TEST(hash_test, hash_transaction_genesi_block_test_to_read_file_with_scriptssing
 
 TEST(hash_test, hash_genesi_block_test_to_read_file_with_scriptssingleton)
 {
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_transaction_genesi_block_test_to_read_file.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("hash_transaction_genesi_block_test_to_read_file.log").c_str());
 
   unique_ptr<Block> block(new Block());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot.append("bitcoin/block/blk00000.dat"));
 
   block->decode(fileOut);
   fileOut.close();
@@ -445,13 +475,16 @@ TEST(hash_test, hash_genesi_block_test_to_read_file_with_scriptssingleton)
 
 TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssingleton)
 {
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_confront_genesi_block_test_to_read_file_with_scriptssingleton.log");
+  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("hash_confront_genesi_block_test_to_read_file_with_scriptssingleton.log").c_str());
 
-  ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
 
-  ofstream fileSaveBlock("/home/vincenzo/Github/SpyCblock/test/file_test/generate_hash_block.txt");
+  ofstream fileSaveBlock(pathMockRoot + "generate_hash_block.txt");
 
   LOG_IF(ERROR, !fileOut.is_open()) << "File blk00000.dat not open";
   LOG_IF(ERROR, !fileSaveBlock) << "File fileSaveBlock.txt not cerated";
@@ -471,7 +504,7 @@ TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssinglet
   fileOut.close();
 
   //Confront the file created with the file conetenented all previus hash block
-  ifstream fileHashGenerated("/home/vincenzo/Github/SpyCblock/test/file_test/generate_hash_block.txt");
+  ifstream fileHashGenerated(pathMockRoot + "file_test/generate_hash_block.txt");
 
   vector<string> hashGenerated;
   LOG_IF(ERROR, !fileHashGenerated.is_open()) << "File generate_hash_block.txt not open";
@@ -487,7 +520,7 @@ TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssinglet
 
   EXPECT_EQ(hashGenerated.size(), 119974); // The file have the hash block genesi and the hash last block, is ok calcule(I hope)
 
-  ifstream preveusHashFile("/home/vincenzo/Github/SpyCblock/test/file_test/previus_hash_block_header.txt");
+  ifstream preveusHashFile(pathMockRoot.append(pathMockRoot.append("previus_hash_block_header.txt")));
   LOG_IF(ERROR, !preveusHashFile.is_open()) << "File previus_hash_block_header.txt not open";
 
   string firstHashAll0;
@@ -507,11 +540,14 @@ TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssinglet
 
 TEST(hash_test, hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssingleton)
 {
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssingleton.log");
+  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssingleton.log").c_str());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot.append("bitcoin/block/blk00000.dat"));
 
   unique_ptr<Block> block(new Block());
 
@@ -535,11 +571,14 @@ TEST(hash_test, hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssing
 
 TEST(hash_test, hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton)
 {
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/spyCblock/test/log/hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton.log");
+  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton.log").c_str());
 
-  ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00450.dat");
+  ifstream fileOut(pathMockRoot.append("bitcoin/block/blk00450.dat"));
 
   unique_ptr<Block> block(new Block());
 

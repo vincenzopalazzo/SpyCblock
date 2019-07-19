@@ -10,13 +10,13 @@ namespace spyCBlock {
 
   class DAOJson : public IDAOBlockchain
   {
-  public:
-    vector<unique_ptr<Block>> loadBlocks(string &path) override;
+    public:
+      vector<unique_ptr<Block>> loadBlocks(string &path) override;
 
-    bool saveBlock(string inputPath, string outputPath) override;
+      bool saveBlock(string inputPath, string outputPath) override;
 
-  private:
-    void convertToJson(vector<unique_ptr<Block>> &blocks, string outputPath);
+    private:
+      void convertToJson(vector<unique_ptr<Block>> &blocks, string outputPath);
   };
 
 }

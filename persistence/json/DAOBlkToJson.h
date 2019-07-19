@@ -13,41 +13,41 @@ namespace spyCBlock{
 
     class DAOFileBlkJson : public IDAOBlockchain{
 
-    private:
+      private:
 
-      int counterBlock = 0;
-      int currentFile = 0;
-      int fileBlkReaded = 0;
-      bool finishBlocks = false;
+        int counterBlock = 0;
+        int currentFile = 0;
+        int fileBlkReaded = 0;
+        bool finishBlocks = false;
 
-      vector<spyCBlock::Block>* readBlock(fs::directory_entry entry, int &conuterBlock);
+        vector<spyCBlock::Block>* readBlock(fs::directory_entry entry, int &conuterBlock);
 
-      vector<unique_ptr<Block>> readBlock(string path, int &conuterBlock);
+        vector<unique_ptr<Block>> readBlock(string path, int &conuterBlock);
 
-      bool isBlockFileBlk(fs::directory_entry entry);
+        bool isBlockFileBlk(fs::directory_entry entry);
 
-      bool isBlockFileBlk(string path);
+        bool isBlockFileBlk(string path);
 
-      bool convertVectorBlockIntoJson(vector<unique_ptr<Block>> &blockFileBlk, string outputPath, string nameFile);
+        bool convertVectorBlockIntoJson(vector<unique_ptr<Block>> &blockFileBlk, string outputPath, string nameFile);
 
-      string getNameFile(string path);
+        string getNameFile(string path);
 
-      string getNameFile(fs::directory_entry entry);
+        string getNameFile(fs::directory_entry entry);
 
-      //Return the path of file blk
-      string nameFileSearched(string pathInput);
+        //Return the path of file blk
+        string nameFileSearched(string pathInput);
 
-    public:
+      public:
 
-        DAOFileBlkJson();
+          DAOFileBlkJson();
 
-        virtual ~DAOFileBlkJson();
+          virtual ~DAOFileBlkJson();
 
-        bool getFinishBlock() const;
+          bool getFinishBlock() const;
 
-        vector<unique_ptr<Block>> loadBlocks(string &path) override;
+          vector<unique_ptr<Block>> loadBlocks(string &path) override;
 
-        bool saveBlock(string inputPath, string outputPath) override;
+          bool saveBlock(string inputPath, string outputPath) override;
     };
 
 }

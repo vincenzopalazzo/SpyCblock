@@ -24,7 +24,7 @@ string DScript::getScriptToSerializationForm()
 {
   if(rawScriptString.empty())
   {
-      LOG(ERROR) << "The raw script is null " +  scriptString;
+      LOG(WARNING) << "The raw script is null " +  scriptString;
       //TODO create a exception genral for all parser
       //throw  exception();
       // I don't launch exception because some script are null

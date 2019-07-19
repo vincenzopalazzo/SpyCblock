@@ -60,11 +60,11 @@ void TransactionInput::decode(std::ifstream &stream)
 
 string TransactionInput::toSerealizationForm()
 {
-  string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(this->outpoint.getHash());
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->outpoint.getN());
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getScript().getScriptLenght());
+  string hexForm = SerializationUtil::toSerealizeForm(this->outpoint.getHash());
+  hexForm += SerializationUtil::toSerealizeForm(this->outpoint.getN());
+  hexForm += SerializationUtil::toSerealizeForm(this->getScript().getScriptLenght());
   hexForm += this->script.getScriptToSerializationForm();
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->sequences);
+  hexForm += SerializationUtil::toSerealizeForm(this->sequences);
 
   return hexForm;
 }

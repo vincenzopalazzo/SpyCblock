@@ -89,18 +89,18 @@ void RawTransaction::decode(std::ifstream &stream)
 string RawTransaction::toSerealizationForm()
 {
 
-  string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(this->version);
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->numberTxIn);
+  string hexForm = SerializationUtil::toSerealizeForm(this->version);
+  hexForm += SerializationUtil::toSerealizeForm(this->numberTxIn);
   for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
   {
     hexForm += txInd.at(i)->toSerealizationForm();
   }
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->numberTxOut);
+  hexForm += SerializationUtil::toSerealizeForm(this->numberTxOut);
   for(int i = 0; i < static_cast<int>(numberTxOut.getValue()); i++)
   {
      hexForm += txOut.at(i)->toSerealizationForm();
   }
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->lockTime);
+  hexForm += SerializationUtil::toSerealizeForm(this->lockTime);
 
   return hexForm;
 }

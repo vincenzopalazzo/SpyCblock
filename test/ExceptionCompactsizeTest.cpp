@@ -28,6 +28,7 @@
 #include "../structure/block/block.h"
 #include "../persistence/DAOBlockchain.h"
 #include "../persistence/DAOException.h"
+#include "../core/ConfiguratorSingleton.h"
 
 using namespace std;
 using namespace spyCBlock;
@@ -50,15 +51,18 @@ using namespace spyCBlock;
  */
 
 //Test for the first file blk that generated exception
-TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk976) {
-    //Init logger
+TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk976)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 0;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_INFO, "/home/vincenzo/Github/SpyCblock/test/log/test_exception_compactsize_file_blk976.log");
+    google::SetLogDestination(google::GLOG_INFO, pathLogRoot.append("test_exception_compactsize_file_blk976.log").c_str());
 
     DAOBlockchain daoBlockchain;
     try {
-        string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/bug/blk976";
+        string path = pathMockRoot.append("bitcoin/block/bug/blk976");
 
         vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
         ASSERT_TRUE(allBlocks.size() > 120);
@@ -70,15 +74,17 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk976) {
 }
 
 //Test for the last file blk that generated exception
-TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk975) {
-    //Init logger
+TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk975)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_exception_compactsize_file_blk975.log");
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_exception_compactsize_file_blk975.log").c_str());
 
     DAOBlockchain daoBlockchain;
     try {
-        string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/bug/blk975";
+        string path = pathMockRoot.append("bitcoin/block/bug/blk975");
 
         vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
         ASSERT_EQ(135, allBlocks.size());
@@ -90,15 +96,18 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk975) {
 }
 
 //Test for the another file blk that generated exception
-TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk977) {
-    //Init logger
+TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk977)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 0;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_INFO, "/home/vincenzo/Github/SpyCblock/test/log/test_exception_compactsize_file_blk977.log");
+    google::SetLogDestination(google::GLOG_INFO, pathLogRoot.append("test_exception_compactsize_file_blk977.log").c_str());
 
     DAOBlockchain daoBlockchain;
     try {
-        string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/bug/blk977";
+        string path = pathMockRoot.append("bitcoin/block/bug/blk977");
 
         vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
         ASSERT_TRUE(allBlocks.size() > 120);
@@ -110,15 +119,18 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk977) {
 }
 
 //Test for the another file blk that generated exception
-TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk1124) {
-    //Init logger
+TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk1124)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 0;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_INFO, "/home/vincenzo/Github/SpyCblock/test/log/test_exception_compactsize_file_blk1124.log");
+    google::SetLogDestination(google::GLOG_INFO, pathMockRoot.append("test_exception_compactsize_file_blk1124.log").c_str());
 
     DAOBlockchain daoBlockchain;
     try {
-        string path = "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/bug/blk1124";
+        string path = pathMockRoot.append("bitcoin/block/bug/blk1124");
 
         vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
         ASSERT_TRUE(allBlocks.size() > 50);

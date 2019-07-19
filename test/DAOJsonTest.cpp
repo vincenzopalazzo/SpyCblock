@@ -28,6 +28,7 @@
 #include "../structure/block/block.h"
 #include "../persistence/json/DAOJson.h"
 #include "../persistence/DAOException.h"
+#include "../core/ConfiguratorSingleton.h"
 
 using namespace std;
 using namespace spyCBlock;
@@ -46,15 +47,18 @@ using namespace spyCBlock;
   */
 
 //First test for decode all files blk into bitcoin diretory blocks
-TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test) {
-    //Init logger
+TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/test_dao_blk_to_json_blockchain_give_file_data_dao_json_test.log");
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_dao_json_test.log").c_str());
 
     DAOJson dao;
     try {
-        bool result = dao.saveBlock("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/blk00450.dat", "/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/blockJson/blk00450.json");
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/blk00000.dat", pathMockRoot + "bitcoin/blockJson/blk00000.json");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {

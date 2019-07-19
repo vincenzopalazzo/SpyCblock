@@ -30,6 +30,7 @@
 #include "../structure/block/block.h"
 #include "../persistence/DAOBlockchain.h"
 #include "../persistence/DAOException.h"
+#include "../core/ConfiguratorSingleton.h"
 
 using namespace std;
 using namespace spyCBlock;
@@ -53,15 +54,17 @@ vector<string> previusBlockHashWhitScriptNullCompare;
 //Test for block blk00032
 //The error transaction is https://www.blockchain.com/it/btc/tx/c78854360663aa585b0400df7297afc458521bf858e6c93b34d4ca696ae30f29
 TEST(NullDataTransactionTest, testNullDataTransaction) {
-    //Init logger
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/testNullDataTransaction.log");
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("testNullDataTransaction.log").c_str());
 
     unique_ptr<IDAOBlockchain> dao(new DAOBlockchain());
 
     try {
-        string path = "/home/vincenzo/tmp/bitcoin/block/bug/blk32";
+        string path = pathMockRoot + "bitcoin/block/bug/blk32";
         blocks = dao->loadBlocks(path);
         ASSERT_EQ(blocks.size(), 915);
     }
@@ -75,17 +78,21 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     //Init logger
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    string pathFileLog = "/home/vincenzo/Github/SpyCblock/test/log";
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
     string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-    google::SetLogDestination(google::GLOG_ERROR, pathFileLog.c_str());
+
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
     bool findValueSerched = false;
 
 
-    string pathSaveData = "/home/vincenzo/Github/SpyCblock/test/file_test/";
-
-    ofstream saveFileWhitScriptNull(pathSaveData + "previus_hash_script_null_blk32.txt");
-    LOG_IF(ERROR, !saveFileWhitScriptNull.is_open()) << "File not open into path " << pathSaveData;
+    ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk32.txt"));
+    if(!saveFileWhitScriptNull.is_open())
+    {
+      LOG(ERROR) << "File not open into path " << pathMockRoot;
+      FAIL()<< "File not open into path " << pathMockRoot;
+    }
 
     for(auto &block : blocks)
     {
@@ -118,20 +125,24 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
 }
 
 //Test for block blk00032
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null) {
+TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null)
+{
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  string pathFileLog = "/home/vincenzo/Github/SpyCblock/test/log";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
   string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-  google::SetLogDestination(google::GLOG_ERROR, pathFileLog.c_str());
+  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
   bool findValueSerched = false;
 
 
-  string pathSaveData = "/home/vincenzo/Github/SpyCblock/test/file_test/";
-
-  ifstream saveFileWhitScriptNull(pathSaveData + "previus_hash_script_null_blk32.txt");
-  LOG_IF(ERROR, !saveFileWhitScriptNull.is_open()) << "File not open into path " << pathSaveData;
+  ifstream saveFileWhitScriptNull(pathMockRoot + "previus_hash_script_null_blk32.txt");
+  if(!saveFileWhitScriptNull.is_open())
+  {
+    LOG(ERROR) << "File not open into path " << pathMockRoot;
+    FAIL() << "File not open into path " << pathMockRoot;
+  }
 
   previusBlockHashWhitScriptNull.clear();
   previusBlockHashWhitScriptNullCompare.clear();
@@ -149,8 +160,12 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
 
   saveFileWhitScriptNull.close();
 
-  ifstream loadFileReadedToPython(pathSaveData + "previusHashTheScriptNull_blk32.txt");
-  LOG_IF(ERROR, !loadFileReadedToPython.is_open()) << "File not open into path " << pathSaveData;
+  ifstream loadFileReadedToPython(pathMockRoot + "previusHashTheScriptNull_blk32.txt");
+  if(!loadFileReadedToPython.is_open())
+  {
+    LOG(ERROR) << "File not open into path " << pathMockRoot;
+    FAIL() << "File not open into path " << pathMockRoot;
+  }
 
   while(!loadFileReadedToPython.eof())
   {
@@ -171,16 +186,18 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
 
 //Test for block blk00053
 //The error transaction is https://www.blockchain.com/it/btc/tx/4fb1ee7b2e8121baf400b4a947508b431c39d64e2192059ff482624ba58f01d2
-TEST(NullDataTransactionTest, test_null_data_transaction_blk53) {
-    //Init logger
+TEST(NullDataTransactionTest, test_null_data_transaction_blk53)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/testNullDataTransaction.log");
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("testNullDataTransaction.log").c_str());
 
     unique_ptr<IDAOBlockchain> dao(new DAOBlockchain());
 
     try {
-        string path = "/home/vincenzo/tmp/bitcoin/block/bug/blk53";
+        string path = pathMockRoot + "bitcoin/block/bug/blk53";
         blocks = dao->loadBlocks(path);
         ASSERT_EQ(blocks.size(), 751);
     }
@@ -190,13 +207,16 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk53) {
 }
 
 //Test for block blk00053
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two_blk53) {
-    //Init logger
+TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two_blk53)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+    string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    string pathFileLog = "/home/vincenzo/Github/SpyCblock/test/log";
-    string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-    google::SetLogDestination(google::GLOG_ERROR, pathFileLog.c_str());
+
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
     bool findValueSerched = false;
 
@@ -204,10 +224,12 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     previusBlockHashWhitScriptNull.clear();
     previusBlockHashWhitScriptNullCompare.clear();
 
-    string pathSaveData = "/home/vincenzo/Github/SpyCblock/test/file_test/";
-
-    ofstream saveFileWhitScriptNull(pathSaveData + "previus_hash_script_null_blk53.txt");
-    LOG_IF(ERROR, !saveFileWhitScriptNull.is_open()) << "File not open into path " << pathSaveData;
+    ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk53.txt"));
+    if(!saveFileWhitScriptNull.is_open())
+    {
+      LOG(ERROR) << "File not open into path " << pathMockRoot;
+      FAIL() << "File not open into path " << pathMockRoot;
+    }
 
     for(auto &block : blocks)
     {
@@ -240,24 +262,29 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
 }
 
 //Test for block blk00053
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null_blk53) {
+TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null_blk53)
+{
+
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  string pathFileLog = "/home/vincenzo/Github/SpyCblock/test/log";
   string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-  google::SetLogDestination(google::GLOG_ERROR, pathFileLog.c_str());
+  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
   bool findValueSerched = false;
-
-
-  string pathSaveData = "/home/vincenzo/Github/SpyCblock/test/file_test/";
 
 
   previusBlockHashWhitScriptNull.clear();
   previusBlockHashWhitScriptNullCompare.clear();
 
-  ifstream saveFileWhitScriptNull(pathSaveData + "previus_hash_script_null_blk53.txt");
-  LOG_IF(ERROR, !saveFileWhitScriptNull.is_open()) << "File not open into path " << pathSaveData;
+  ifstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk53.txt"));
+  if(!saveFileWhitScriptNull.is_open())
+  {
+    LOG(ERROR) << "File not open into path " << pathMockRoot;
+    FAIL() << "File not open into path " << pathMockRoot;
+  }
 
   while(!saveFileWhitScriptNull.eof())
   {
@@ -272,8 +299,12 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
 
   saveFileWhitScriptNull.close();
 
-  ifstream loadFileReadedToPython(pathSaveData + "previusHashTheScriptNull_blk53.txt");
-  LOG_IF(ERROR, !loadFileReadedToPython.is_open()) << "File not open into path " << pathSaveData;
+  ifstream loadFileReadedToPython(pathMockRoot + "previusHashTheScriptNull_blk53.txt");
+  if(!loadFileReadedToPython.is_open())
+  {
+    LOG(ERROR) << "File not open into path " << pathMockRoot;
+    FAIL() << "File not open into path " << pathMockRoot;;
+  }
 
   while(!loadFileReadedToPython.eof())
   {
@@ -294,16 +325,18 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
 
 //Test for block blk00054
 //The error transaction is https://www.blockchain.com/it/btc/tx/7bd54def72825008b4ca0f4aeff13e6be2c5fe0f23430629a9d484a1ac2a29b8
-TEST(NullDataTransactionTest, test_null_data_transaction_blk54) {
-    //Init logger
+TEST(NullDataTransactionTest, test_null_data_transaction_blk54)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, "/home/vincenzo/Github/SpyCblock/test/log/testNullDataTransaction.log");
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("testNullDataTransaction.log").c_str());
 
     unique_ptr<IDAOBlockchain> dao(new DAOBlockchain());
 
     try {
-        string path = "/home/vincenzo/tmp/bitcoin/block/bug/blk54";
+        string path = pathMockRoot + ("bitcoin/block/bug/blk54");
         blocks = dao->loadBlocks(path);
         ASSERT_EQ(blocks.size(), 811);
     }
@@ -313,13 +346,15 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk54) {
 }
 
 //Test for block blk00054
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two_blk54) {
-    //Init logger
+TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two_blk54)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    string pathFileLog = "/home/vincenzo/Github/SpyCblock/test/log";
     string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-    google::SetLogDestination(google::GLOG_ERROR, pathFileLog.c_str());
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
     bool findValueSerched = false;
 
@@ -327,10 +362,12 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     previusBlockHashWhitScriptNull.clear();
     previusBlockHashWhitScriptNullCompare.clear();
 
-    string pathSaveData = "/home/vincenzo/Github/SpyCblock/test/file_test/";
-
-    ofstream saveFileWhitScriptNull(pathSaveData + "previus_hash_script_null_blk54.txt");
-    LOG_IF(ERROR, !saveFileWhitScriptNull.is_open()) << "File not open into path " << pathSaveData;
+    ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk54.txt"));
+    if(!saveFileWhitScriptNull.is_open())
+    {
+      LOG(ERROR) << "File not open into path " << pathMockRoot;
+      FAIL();
+    }
 
     for(auto &block : blocks)
     {
@@ -363,12 +400,14 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
 }
 
 //Test for block blk00054
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null_blk54) {
+TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null_blk54)
+{
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
-  string pathFileLog = "/home/vincenzo/Github/SpyCblock/test/log";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
   string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-  google::SetLogDestination(google::GLOG_ERROR, pathFileLog.c_str());
+  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
   bool findValueSerched = false;
 
@@ -376,10 +415,12 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
   previusBlockHashWhitScriptNull.clear();
   previusBlockHashWhitScriptNullCompare.clear();
 
-  string pathSaveData = "/home/vincenzo/Github/SpyCblock/test/file_test/";
-
-  ifstream saveFileWhitScriptNull(pathSaveData + "previus_hash_script_null_blk54.txt");
-  LOG_IF(ERROR, !saveFileWhitScriptNull.is_open()) << "File not open into path " << pathSaveData;
+  ifstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk54.txt"));
+  if(!saveFileWhitScriptNull.is_open())
+  {
+    LOG(ERROR) << "File not open into path " << pathMockRoot;
+    FAIL() << "File not open into path " << pathMockRoot;
+  }
 
   while(!saveFileWhitScriptNull.eof())
   {
@@ -394,8 +435,12 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
 
   saveFileWhitScriptNull.close();
 
-  ifstream loadFileReadedToPython(pathSaveData + "previusHashTheScriptNull_blk54.txt");
-  LOG_IF(ERROR, !loadFileReadedToPython.is_open()) << "File not open into path " << pathSaveData;
+  ifstream loadFileReadedToPython(pathMockRoot + ("previusHashTheScriptNull_blk54.txt"));
+  if(!loadFileReadedToPython.is_open())
+  {
+    LOG(ERROR) << "File not open into path " << pathMockRoot;
+    FAIL() << "File not open into path " << pathMockRoot;
+  }
 
   while(!loadFileReadedToPython.eof())
   {

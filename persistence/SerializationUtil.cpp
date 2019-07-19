@@ -12,25 +12,11 @@
 
 #include "SerializationUtil.h"
 
-
 using namespace spyCBlock;
 
-SerializationUtilSingleton* SerializationUtilSingleton::SINGLETON = nullptr; //Se levi questo causi errore sintattico ma perchè?
+SerializationUtil::SerializationUtil(){}
 
-SerializationUtilSingleton::SerializationUtilSingleton()
-{
-}
-
-SerializationUtilSingleton* SerializationUtilSingleton::getInstance()
-{
-  if(SerializationUtilSingleton::SINGLETON == nullptr)
-  {
-    SerializationUtilSingleton::SINGLETON = new SerializationUtilSingleton();
-  }
-  return SerializationUtilSingleton::SINGLETON;
-}
-
-string SerializationUtilSingleton::toSerealizeForm(uint8_t value8)
+string SerializationUtil::toSerealizeForm(uint8_t value8)
 {
   string formLiteEndian;
   stringstream stream;
@@ -40,7 +26,7 @@ string SerializationUtilSingleton::toSerealizeForm(uint8_t value8)
   return formLiteEndian;
 }
 
-string SerializationUtilSingleton::toSerealizeForm(int8_t value8)
+string SerializationUtil::toSerealizeForm(int8_t value8)
 {
   string formLiteEndian;
   stringstream stream;
@@ -50,7 +36,7 @@ string SerializationUtilSingleton::toSerealizeForm(int8_t value8)
   return formLiteEndian;
 }
 
-string spyCBlock::SerializationUtilSingleton::toSerealizeForm(uint16_t value16)
+string spyCBlock::SerializationUtil::toSerealizeForm(uint16_t value16)
 {
   string formLiteEndian;
   value16 = htole16(value16);
@@ -61,7 +47,7 @@ string spyCBlock::SerializationUtilSingleton::toSerealizeForm(uint16_t value16)
   return formLiteEndian;
 }
 
-string SerializationUtilSingleton::toSerealizeForm(int16_t value16)
+string SerializationUtil::toSerealizeForm(int16_t value16)
 {
   string formLiteEndian;
   value16 = htole16(value16);
@@ -72,7 +58,7 @@ string SerializationUtilSingleton::toSerealizeForm(int16_t value16)
   return formLiteEndian;
 }
 
-string spyCBlock::SerializationUtilSingleton::toSerealizeForm(uint32_t value32)
+string spyCBlock::SerializationUtil::toSerealizeForm(uint32_t value32)
 {
   string formLiteEndian;
   value32 = htole32(value32);
@@ -83,7 +69,7 @@ string spyCBlock::SerializationUtilSingleton::toSerealizeForm(uint32_t value32)
   return formLiteEndian;
 }
 
-string SerializationUtilSingleton::toSerealizeForm(int32_t value32)
+string SerializationUtil::toSerealizeForm(int32_t value32)
 {
   string formLiteEndian;
   value32 = htole32(value32);
@@ -94,7 +80,7 @@ string SerializationUtilSingleton::toSerealizeForm(int32_t value32)
   return formLiteEndian;
 }
 
-string spyCBlock::SerializationUtilSingleton::toSerealizeForm(uint64_t value64)
+string spyCBlock::SerializationUtil::toSerealizeForm(uint64_t value64)
 {
   string formLiteEndian;
   value64 = htole64(value64);
@@ -105,7 +91,7 @@ string spyCBlock::SerializationUtilSingleton::toSerealizeForm(uint64_t value64)
   return formLiteEndian;
 }
 
-string SerializationUtilSingleton::toSerealizeForm(int64_t value64)
+string SerializationUtil::toSerealizeForm(int64_t value64)
 {
   string formLiteEndian;
   value64 = htole64(value64);
@@ -116,7 +102,7 @@ string SerializationUtilSingleton::toSerealizeForm(int64_t value64)
   return formLiteEndian;
 }
 
-string SerializationUtilSingleton::toSerealizeForm(DVarInt valueVarInt)
+string SerializationUtil::toSerealizeForm(DVarInt valueVarInt)
 {
   string hexConvert;
   stringstream *stream = new stringstream();
@@ -129,27 +115,27 @@ string SerializationUtilSingleton::toSerealizeForm(DVarInt valueVarInt)
   LOG_IF(ERROR, dimensioVarInt < 0) << "Error in the readed dimension of compact size, the dimension eraded is: " << dimensioVarInt;
   if( dimensioVarInt <= sizeof (unsigned char)){
     int8_t value8 = valueVarInt.getValue();
-    return this->toSerealizeForm(value8);
+    return SerializationUtil::toSerealizeForm(value8);
   }else if (dimensioVarInt <= sizeof (unsigned short) + sizeof (unsigned char)) {
     int16_t value16 = valueVarInt.getValue();
     stringstream stream;
-    stream << this->toSerealizeForm(253) << this->toSerealizeForm(value16);
+    stream << SerializationUtil::toSerealizeForm(253) << SerializationUtil::toSerealizeForm(value16);
     return stream.str();
   }else if (dimensioVarInt <= sizeof (unsigned int) + sizeof (unsigned char)) {
       int32_t value32 = valueVarInt.getValue();
       stringstream stream;
-      stream << this->toSerealizeForm(254) << this->toSerealizeForm(value32);
+      stream << SerializationUtil::toSerealizeForm(254) << SerializationUtil::toSerealizeForm(value32);
       return stream.str();
   }else{
       int64_t value64 = valueVarInt.getValue();
       stringstream stream;
-      stream << this->toSerealizeForm(255) << this->toSerealizeForm(value64);
+      stream << SerializationUtil::toSerealizeForm(255) << SerializationUtil::toSerealizeForm(value64);
       return stream.str();
   }
   LOG_IF(ERROR, true) << "The dimension not corret, There is no suitable type";
 }
 
-string SerializationUtilSingleton::toSerealizeForm(uint256 value256)
+string SerializationUtil::toSerealizeForm(uint256 value256)
 {
   stringstream streamReversUint256;
   string reverString = value256.GetHex();

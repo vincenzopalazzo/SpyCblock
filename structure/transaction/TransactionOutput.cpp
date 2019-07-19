@@ -46,8 +46,8 @@ void TransactionOutput::decode(ifstream &stream)
 
 string TransactionOutput::toSerealizationForm()
 {
-  string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nValue);
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getScript().getScriptLenght());
+  string hexForm = SerializationUtil::toSerealizeForm(this->nValue);
+  hexForm += SerializationUtil::toSerealizeForm(this->getScript().getScriptLenght());
   hexForm += this->script.getScriptToSerializationForm();
 
   return hexForm;

@@ -93,12 +93,12 @@ void BlockHeader::unserialize(std::ifstream &stream)
 
 string BlockHeader::toSerealizationForm()
 {
-  string hexForm = SerializationUtilSingleton::getInstance()->toSerealizeForm(this->version);
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getPreviousBlockHeaderHash());
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->getMerkleRoot());
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->time);
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nBits);
-  hexForm += SerializationUtilSingleton::getInstance()->toSerealizeForm(this->nonce);
+  string hexForm = SerializationUtil::toSerealizeForm(this->version);
+  hexForm += SerializationUtil::toSerealizeForm(this->getPreviousBlockHeaderHash());
+  hexForm += SerializationUtil::toSerealizeForm(this->getMerkleRoot());
+  hexForm += SerializationUtil::toSerealizeForm(this->time);
+  hexForm += SerializationUtil::toSerealizeForm(this->nBits);
+  hexForm += SerializationUtil::toSerealizeForm(this->nonce);
   return hexForm;
 }
 

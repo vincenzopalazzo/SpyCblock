@@ -6,7 +6,7 @@
 #include "../cryptobitcoin/Sha256.hpp"
 
 using namespace spyCBlock;
-
+//TODO create an exception for this
 string CryptoSingleton::getHash256(string baseHash)
 {
   if(baseHash.length() <= 0)

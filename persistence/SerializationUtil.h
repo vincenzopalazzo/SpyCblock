@@ -19,53 +19,47 @@ using namespace std;
  * https://bitcoin.stackexchange.com/questions/2063/why-does-the-bitcoin-protocol-use-the-little-endian-notation
  * @author https://github.com/vincenzopalazzo
  */
-
+//Trasforma questa classe in una classe statica, il patter singleton non
+//e' una buona idea in questo caso
 namespace spyCBlock
 {
 
-  class SerializationUtilSingleton
+  class SerializationUtil
   {
 
-  private:
-    static spyCBlock::SerializationUtilSingleton* SINGLETON;
-    //static constexpr string LOG = "spyCBlock::SerializationUtil: ";
+    private:
+      SerializationUtil();
 
-  protected:
-    SerializationUtilSingleton();
+    public:
 
-  public:
-
-    static SerializationUtilSingleton* getInstance();
+      static string toSerealizeForm(uint8_t value8);
 
 
-    string toSerealizeForm(uint8_t value8);
+      static string toSerealizeForm(int8_t value8);
 
 
-    string toSerealizeForm(int8_t value8);
+      static string toSerealizeForm(uint16_t value16);
 
 
-    string toSerealizeForm(uint16_t value16);
+      static string toSerealizeForm(int16_t value16);
 
 
-    string toSerealizeForm(int16_t value16);
+      static string toSerealizeForm(uint32_t value32);
 
 
-    string toSerealizeForm(uint32_t value32);
+      static string toSerealizeForm(int32_t value32);
 
 
-    string toSerealizeForm(int32_t value32);
+      static string toSerealizeForm(uint64_t value64);
 
 
-    string toSerealizeForm(uint64_t value64);
+      static string toSerealizeForm(int64_t value64);
 
 
-    string toSerealizeForm(int64_t value64);
+      static string toSerealizeForm(DVarInt valueVarInt);
 
 
-    string toSerealizeForm(DVarInt valueVarInt);
-
-
-    string toSerealizeForm(uint256 value256);
+      static string toSerealizeForm(uint256 value256);
 
 
   };

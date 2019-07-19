@@ -7,26 +7,20 @@
 
 using namespace spyCBlock;
 namespace fs = std::experimental::filesystem;
-
-vector<unique_ptr<Block>> spyCBlock::DAOJson::loadBlocks(string &path)
-{
-  //do nothig
-
-}
+vector<unique_ptr<Block>> spyCBlock::DAOJson::loadBlocks(string &path){}
 
 bool DAOJson::saveBlock(string inputPath, string outputPath)
 {
   if(inputPath.empty() || outputPath.empty())
   {
-    LOG(FATAL) << "Error, the input method are null";
-    throw exception();
+    LOG(WARNING) << "Error, the input method are null";
+    throw DAOException("Error, the input method are null");
   }
 
   if (fs::exists(inputPath))
   {
       if(!fs::is_directory(inputPath))
       {
-
           ifstream loadFileDat(inputPath);
           if(loadFileDat.is_open())
           {
@@ -78,5 +72,4 @@ void DAOJson::convertToJson(vector<unique_ptr<Block>> &blocks, string outputPath
   }
   LOG(ERROR) << "The file output not open " + outputPath;
   throw DAOException("The file output not open " + outputPath);
-  return;
 }

@@ -27,6 +27,7 @@
 #include <nlohmann/json.hpp>
 
 #include "../structure/block/block.h"
+#include "../core/ConfiguratorSingleton.h"
 
 using namespace spyCBlock;
 using namespace nlohmann;
@@ -43,12 +44,15 @@ using namespace nlohmann;
 
 TEST(JsonSerializationTest, serialization_blockheader_test_one)
 {
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serialization_blockheader_test_one.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serialization_blockheader_test_one.log").c_str());
 
-  std::ifstream fileOut("/media/vincenzo/vincenzodev/data-mock/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot + ("bitcoin/block/blk00000.dat"));
 
   Block *block = new Block();
 
@@ -58,15 +62,19 @@ TEST(JsonSerializationTest, serialization_blockheader_test_one)
   BlockHeader blockHeader = block->getBlockHeader();
   json jsonBlockheader = blockHeader.toJoson();
 
-  ofstream fileJson("/home/vincenzo/Github/SpyCblock/test/file_test/block_header.json");
+  ofstream fileJson(pathMockRoot + "block_header.json");
   fileJson << jsonBlockheader;
 
   fileJson.close();
   delete block;
 
   json toFileJson;
-  ifstream getFilejeson("/home/vincenzo/Github/SpyCblock/test/file_test/block_header.json");
-  LOG_IF(ERROR, !getFilejeson.is_open()) << "File json not open";
+  ifstream getFilejeson(pathMockRoot + "block_header.json");
+  if(!getFilejeson.is_open())
+  {
+    LOG(ERROR) << "File json not open";
+    FAIL() << "File json not open";
+  }
 
   getFilejeson >> toFileJson;
   getFilejeson.close();
@@ -87,12 +95,15 @@ TEST(JsonSerializationTest, serialization_blockheader_test_one)
 
 TEST(JsonSerializationTest, serialization_lite_block_test_one)
 {
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serialization_blockheader_test_one.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serialization_blockheader_test_one.log").c_str());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
 
   Block *block = new Block();
 
@@ -102,14 +113,18 @@ TEST(JsonSerializationTest, serialization_lite_block_test_one)
 
   json JsonBlockLite = block->toJsonLite();
 
-  ofstream fileJson("/home/vincenzo/Github/SpyCblock/test/file_test/block_lite.json");
+  ofstream fileJson(pathMockRoot + "block_lite.json");
   fileJson << JsonBlockLite;
   fileJson.close();
   delete block;
 
   json toFileJson;
-  ifstream getFilejeson("/home/vincenzo/Github/SpyCblock/test/file_test/block_lite.json");
-  LOG_IF(ERROR, !getFilejeson.is_open()) << "File json not open";
+  ifstream getFilejeson(pathMockRoot + "block_lite.json");
+  if(!getFilejeson.is_open())
+  {
+    LOG(ERROR) << "File json not open";
+    FAIL() << "File json not open";
+  }
 
   getFilejeson >> toFileJson;
   getFilejeson.close();
@@ -123,12 +138,15 @@ TEST(JsonSerializationTest, serialization_lite_block_test_one)
 
 TEST(JsonSerializationTest, serialization_fat_block_test_one)
 {
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 
-  google::SetLogDestination(google::ERROR, "/home/vincenzo/Github/spyCblock/test/log/serialization_fat_block_test_one.log");
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serialization_fat_block_test_one.log").c_str());
 
-  std::ifstream fileOut("/home/vincenzo/tmp/bitcoin/block/blk00000.dat");
+  std::ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
 
   Block *block = new Block();
 
@@ -138,7 +156,7 @@ TEST(JsonSerializationTest, serialization_fat_block_test_one)
 
   json jsonBlockFat = block->toJsonFat();
 
-  ofstream fileJson("/home/vincenzo/Github/SpyCblock/test/file_test/block_fat.json");
+  ofstream fileJson(pathMockRoot + "file_test/block_fat.json");
   fileJson << jsonBlockFat;
 
   fileJson.close();
@@ -147,8 +165,12 @@ TEST(JsonSerializationTest, serialization_fat_block_test_one)
 
 
   json toFileJson;
-  ifstream getFilejeson("/home/vincenzo/Github/SpyCblock/test/file_test/block_fat.json");
-  LOG_IF(ERROR, !getFilejeson.is_open()) << "File json not open";
+  ifstream getFilejeson(pathMockRoot + "block_fat.json");
+  if(!getFilejeson.is_open())
+  {
+    LOG(ERROR) << "File json not open";
+    FAIL() << "File json not open";
+  }
 
   getFilejeson >> toFileJson;
   getFilejeson.close();
