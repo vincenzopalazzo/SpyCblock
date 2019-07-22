@@ -96,12 +96,12 @@ TEST(serealization_test, serealization_util_test_to_read_file)
   string lietEndiaConversionTimeStamp = SerializationUtil::toSerealizeForm(block->getBlockHeader().getTime());
   string lietEndiaConversionNbit = SerializationUtil::toSerealizeForm(block->getBlockHeader().getNBits());
   string lietEndiaConversionNonce = SerializationUtil::toSerealizeForm(block->getBlockHeader().getNonce());
-  string lietEndiaConversionNumTxIn = SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxIn());
-  string lietEndiaConversionNumTxOut = SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0)->getNumberTxOut());
+  string lietEndiaConversionNumTxIn = SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0).getNumberTxIn());
+  string lietEndiaConversionNumTxOut = SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0).getNumberTxOut());
   string lietEndiaConversionNumScriptLenghtTxIn = SerializationUtil::toSerealizeForm(
-        block->getRawTransactions().at(0)->getTxInd().at(0)->getScript().getScriptLenght());
+        block->getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght());
   string lietEndiaConversionNumScriptLenghtTxOut = SerializationUtil::toSerealizeForm(
-        block->getRawTransactions().at(0)->getTxOut().at(0)->getScript().getScriptLenght());
+        block->getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght());
 
   delete block.release();
 
@@ -157,7 +157,7 @@ TEST(serealization_test, serealization_transaction_genesi_block_test_to_read_fil
   block->decode(fileOut);
   fileOut.close();
 
-  string  serealizationFormTransaction = block->getRawTransactions().at(0)->toSerealizationForm();
+  string  serealizationFormTransaction = block->getRawTransactions().at(0).toSerealizationForm();
   string attendForm = "01000000010000000000000000000000000000000000000000000000000000000000000000FFFFFFFF4D04FFFF001D0104455468652054696D65732030332F4A616E2F32303039204368616E63656C6C6F72206F6E206272696E6B206F66207365636F6E64206261696C6F757420666F722062616E6B73FFFFFFFF0100F2052A01000000434104678AFDB0FE5548271967F1A67130B7105CD6A828E03909A67962E0EA1F61DEB649F6BC3F4CEF38C4F35504E51EC112DE5C384DF7BA0B8D578A4C702B6BF11D5FAC00000000";
   transform(attendForm.begin(), attendForm.end(), attendForm.begin(), ::tolower);
 

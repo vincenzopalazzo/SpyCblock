@@ -1,8 +1,3 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/21/19.
-//
-
-
 #ifndef PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 #define PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 
@@ -15,50 +10,49 @@
 #include "TransactionInput.h"
 #include "../../util/serialize.h"
 
-using namespace std;
-using namespace nlohmann;
-
+/**
+ * Created on 1/21/19.
+ * @author https://github.com/vincenzopalazzo
+ */
 namespace spyCBlock{
 
     class RawTransaction{
 
-    private:
+      private:
 
-        int32_t version;
-        DVarInt numberTxIn;
-        vector<unique_ptr<TransactionInput>> txInd; // TODO che cosa cambia nella transazione coind base?
-        DVarInt numberTxOut;
-        vector<unique_ptr<TransactionOutput>> txOut;
-        uint32_t lockTime;
+          int32_t version;
+          DVarInt numberTxIn;
+          std::vector<TransactionInput> txIn; // TODO che cosa cambia nella transazione coind base?
+          DVarInt numberTxOut;
+          std::vector<TransactionOutput> txOut;
+          uint32_t lockTime;
 
-        //Additiona information
-        string hashRawTransaction;
+          //Additiona information
+          std::string hashRawTransaction;
 
-    public:
+      public:
 
-        virtual ~RawTransaction();
+          int32_t getVersion() const;
 
-        int32_t getVersion() const;
+          const DVarInt& getNumberTxIn() const;
 
-        const DVarInt& getNumberTxIn() const;
+          const std::vector<TransactionInput> &getTxIn() const;
 
-        const vector<unique_ptr<TransactionInput>>& getTxInd() const;
+          const DVarInt& getNumberTxOut() const;
 
-        const DVarInt& getNumberTxOut() const;
+          const std::vector<TransactionOutput> &getTxOut() const;
 
-        const vector<unique_ptr<TransactionOutput>>& getTxOut() const;
+          std::string getHashRawTransaction() const;
 
-        string getHashRawTransaction() const;
+          uint32_t getLockTime() const;
 
-        uint32_t getLockTime() const;
+          std::string toString();
 
-        string toString();
+          void decode(std::ifstream &stream);
 
-        void decode(std::ifstream &stream);
+          std::string toSerealizationForm() const;
 
-        string toSerealizationForm();
-
-        json toJson();
+          nlohmann::json toJson();
 
     };
 }

@@ -10,47 +10,8 @@
 #include "../../crypto/CryptoCore.h"
 
 using namespace spyCBlock;
-
-RawTransaction::~RawTransaction()
-{
-  txInd.clear();
-  txOut.clear();
-}
-
-int32_t RawTransaction::getVersion() const
-{
-    return version;
-}
-
-const DVarInt &RawTransaction::getNumberTxIn() const
-{
-    return numberTxIn;
-}
-
-const vector<unique_ptr<TransactionInput>> &RawTransaction::getTxInd() const
-{
-    return txInd;
-}
-
-const DVarInt &RawTransaction::getNumberTxOut() const
-{
-    return numberTxOut;
-}
-
-const vector<unique_ptr<TransactionOutput>> &RawTransaction::getTxOut() const
-{
-  return txOut;
-}
-
-string RawTransaction::getHashRawTransaction() const
-{
-  return hashRawTransaction;
-}
-
-uint32_t RawTransaction::getLockTime() const
-{
-    return lockTime;
-}
+using namespace std;
+using namespace nlohmann;
 
 void RawTransaction::decode(std::ifstream &stream)
 {
@@ -58,47 +19,49 @@ void RawTransaction::decode(std::ifstream &stream)
     LOG(INFO) << "Version raw transaction " << version;
     this->numberTxIn.decode(stream);
     LOG(INFO) << "Numbar transaction input in raw transaction " << numberTxIn.getValue();
-    txInd.clear();
+    txIn.clear();
+
+    txIn.reserve(numberTxIn.getValue());
     for(int i = 0; i < static_cast<int>(this->numberTxIn.getValue()); i++)
     {
-        //TransactionInput *transaction = new TransactionInput();
-        unique_ptr<TransactionInput> transaction(new TransactionInput());
-        transaction->decode(stream);
-        this->txInd.push_back(move(transaction));
-        delete transaction.release();
+        txIn.emplace_back(TransactionInput{});
+        TransactionInput& transaction = txIn.back();
+        transaction.decode(stream);
     }
     this->numberTxOut.decode(stream);
     LOG(INFO) << "Numbar transaction output in raw transaction " << numberTxOut.getValue();
+
     txOut.clear();
+    txOut.reserve(numberTxOut.getValue());
+
     for(int i = 0; i < static_cast<int>(numberTxOut.getValue()); i++)
     {
-        //TransactionOutput *transactionOutput = new TransactionOutput();
-        unique_ptr<TransactionOutput> transactionOutput(new TransactionOutput());
-        transactionOutput->decode(stream);
-        this->txOut.push_back(move(transactionOutput));
-        delete transactionOutput.release();
-    }
-    Unserialize(stream, this->lockTime);
+        txOut.emplace_back(TransactionOutput{});
+        TransactionOutput& transactionOutput = txOut.back();
+        transactionOutput.decode(stream);
 
+    }
+    //Create a wrapper
+    Unserialize(stream, this->lockTime);
 
     //Create additional information
     string serializationForm = toSerealizationForm();
     this->hashRawTransaction = CryptoSingleton::getIstance().getHash256(serializationForm);
 }
 
-string RawTransaction::toSerealizationForm()
+string RawTransaction::toSerealizationForm() const
 {
 
   string hexForm = SerializationUtil::toSerealizeForm(this->version);
   hexForm += SerializationUtil::toSerealizeForm(this->numberTxIn);
-  for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
+  for(TransactionInput txInput : this->txIn)
   {
-    hexForm += txInd.at(i)->toSerealizationForm();
+    hexForm += txInput.toSerealizationForm();
   }
   hexForm += SerializationUtil::toSerealizeForm(this->numberTxOut);
-  for(int i = 0; i < static_cast<int>(numberTxOut.getValue()); i++)
+  for(TransactionOutput txOutput : this->txOut)
   {
-     hexForm += txOut.at(i)->toSerealizationForm();
+     hexForm += txOutput.toSerealizationForm();
   }
   hexForm += SerializationUtil::toSerealizeForm(this->lockTime);
 
@@ -112,16 +75,16 @@ string RawTransaction::toString() {
     stringForm += "---------- Transaction Input ----------\n";
     stringForm += "Number Transaction In: ";
     stringForm += to_string(numberTxIn.getValue());
-    for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
+    for(TransactionInput txInput : this->txIn)
     {
-        stringForm += this->txInd.at(i)->toString();
+        stringForm += txInput.toString();
     }
     stringForm += "---------- Transaction Output ----------\n";
     stringForm += "Number Transaction out: ";
     stringForm += to_string(numberTxOut.getValue());
-    for(int i = 0; i < static_cast<int>(numberTxOut.getValue()); i++)
+    for(TransactionOutput txOutput : this->txOut)
     {
-        stringForm += this->txOut.at(i)->toString();
+        stringForm += txOutput.toString();
     }
     stringForm += to_string(this->lockTime);
     return stringForm;
@@ -137,27 +100,62 @@ json RawTransaction::toJson()
                         {"lockTime", this->lockTime},
                         {"hashRawTransaction", this->hashRawTransaction},
                       });
-  //stringstream intputTransactionJson;
+
+  //TODO this refactoring required more attention on Json form test
   json txInputjson;
-  for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
+  for(TransactionInput txInput : this->txIn)
   {
-    //intputTransactionJson <<  this->txInd.at(i).toJson() << ",";
-      txInputjson.push_back(this->txInd.at(i)->toJson());
+      json txInputJsonSingle = txInput.toJson();
+      txInputjson.emplace_back(txInputJsonSingle);
   }
 
-  //stringstream outputTransactionJson;
+  //TODO this refactoring required more attention on Json form test
   json txOutjson;
-  for(int i = 0 ; i < static_cast<int>(numberTxOut.getValue()); i++)
+  for(TransactionOutput txOutput : this->txOut)
   {
-    //outputTransactionJson <<  this->txOut.at(i).toJson() << ",";
-    txOutjson.push_back(this->txOut.at(i)->toJson());
+    json txOutputJsonSingle = txOutput.toJson();
+    txOutjson.emplace_back(txOutputJsonSingle);
   }
 
-  /*jsonRawTransaction["inputTransactions"] = {intputTransactionJson.str()};
-  jsonRawTransaction["outputTransaction"] = {outputTransactionJson.str()};*/
   jsonRawTransaction["inputTransactions"] = txInputjson;
   jsonRawTransaction["outputTransaction"] = txOutjson;
   return jsonRawTransaction;
+}
+
+//Getter and setter
+int32_t RawTransaction::getVersion() const
+{
+    return version;
+}
+
+const DVarInt &RawTransaction::getNumberTxIn() const
+{
+    return numberTxIn;
+}
+
+const vector<TransactionInput> &RawTransaction::getTxIn() const
+{
+    return txIn;
+}
+
+const DVarInt &RawTransaction::getNumberTxOut() const
+{
+    return numberTxOut;
+}
+
+const vector<TransactionOutput> &RawTransaction::getTxOut() const
+{
+  return txOut;
+}
+
+string RawTransaction::getHashRawTransaction() const
+{
+  return hashRawTransaction;
+}
+
+uint32_t RawTransaction::getLockTime() const
+{
+    return lockTime;
 }
 
 

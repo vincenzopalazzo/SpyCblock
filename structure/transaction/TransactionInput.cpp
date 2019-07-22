@@ -1,7 +1,3 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/21/19.
-//
-
 #include <sstream>
 
 #include <glog/logging.h>
@@ -11,36 +7,13 @@
 #include "../../crypto/CryptoCore.h"
 
 using namespace spyCBlock;
+using namespace std;
+using namespace nlohmann;
 
-
-TransactionInput::~TransactionInput()
-{}
-
-const OutPoint &TransactionInput::getOutpoint() const
-{
-    return outpoint;
-}
-
-void TransactionInput::setOutpoint(const OutPoint &outpoint)
-{
-  TransactionInput::outpoint = outpoint;
-}
-
-const string& TransactionInput::getHashInputTransaction() const
-{
-  return hashInputTransaction;
-}
-
-uint32_t TransactionInput::getSequences() const
-{
-    return sequences;
-}
-
-const DScript &TransactionInput::getScript() const
-{
-    return script;
-}
-
+/**
+ * Created on 1/21/19.
+ * @author https://github.com/vincenzopalazzo
+ */
 void TransactionInput::decode(std::ifstream &stream)
 {
     outpoint.Unserialize(stream);
@@ -71,16 +44,16 @@ string TransactionInput::toSerealizationForm()
 
 json TransactionInput::toJson()
 {
+  json jsonTxsInput = json::object({
+                                     {"outputTxHash", this->outpoint.getHash().GetHex()},
+                                     {"ammount", this->outpoint.getN()},
+                                     {"scriptLenght", this->getScript().getScriptLenght().getValue()},
+                                     {"script", this->getScript().getRawScriptString()},
+                                     {"sequences", this->sequences},
+                                     {"hashInputTransaction", this->hashInputTransaction},
+                                   });
 
-
-  return json::object({
-                        {"outputTxHash", this->outpoint.getHash().GetHex()},
-                        {"ammount", this->outpoint.getN()},
-                        {"scriptLenght", this->getScript().getScriptLenght().getValue()},
-                        {"script", this->getScript().getRawScriptString()},
-                        {"sequences", this->sequences},
-                        {"hashInputTransaction", this->hashInputTransaction},
-                      });
+  return jsonTxsInput;
 }
 
 string TransactionInput::toString()
@@ -96,7 +69,7 @@ string TransactionInput::toString()
 
 //TODO non funziona e' stata solo una prova
 //Non cancello il codice perchè potrebbe essere sempre implementata una cosa del genere
-string TransactionInput::decodeIntoStringScriptSing()
+string TransactionInput::decodeIntoStringScriptSing() const
 {
   string hexScriptSing = this->script.getRawScriptString();
   if(this->outpoint.getN() == 0xffffffff)
@@ -131,4 +104,30 @@ string TransactionInput::decodeIntoStringScriptSing()
   string pubKey = hexScriptSing.substr(2 + op_type + 2, 2 + op_type + 2 + 66);
   LOG(INFO) << "Method decodeIntoStringScriptSing: " << "The public key is " << pubKey;
   return pubKey;
+}
+
+//getter and setter
+const OutPoint &TransactionInput::getOutpoint() const
+{
+    return outpoint;
+}
+
+void TransactionInput::setOutpoint(const OutPoint &outpoint)
+{
+  TransactionInput::outpoint = outpoint;
+}
+
+const string& TransactionInput::getHashInputTransaction() const
+{
+  return hashInputTransaction;
+}
+
+uint32_t TransactionInput::getSequences() const
+{
+    return sequences;
+}
+
+const DScript &TransactionInput::getScript() const
+{
+    return script;
 }

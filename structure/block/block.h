@@ -8,12 +8,10 @@
 #include "../transaction/RawTransaction.h"
 #include "../../persistence/SerializationUtil.h"
 
-using namespace std;
-
 /**
+ * Created on 1/21/19.
  * @author https://github.com/vincenzopalazzo
  */
-
 namespace spyCBlock {
 
     enum typeBlock{
@@ -24,54 +22,52 @@ namespace spyCBlock {
     };
 
     class Block {
-    private:
+      private:
 
-        int32_t magicNum;
-        int32_t blocksize;
-        BlockHeader blockHeader;
-        DVarInt numbarRawTransaction;
-        vector<unique_ptr<RawTransaction>> rawTransactions;
+          int32_t magicNum;
+          int32_t blocksize;
+          BlockHeader blockHeader;
+          DVarInt numbarRawTransaction;
+          vector<RawTransaction> rawTransactions;
 
-        //Surplus information to the block
-        //The value -1 indicate a value null because the value is setter to passer
-        int32_t heightBlock = -1;
-        string hashBlock;
+          //Surplus information to the block
+          //The value -1 indicate a value null because the value is setter to passer
+          int32_t heightBlock = -1;
+          string hashBlock;
 
-        string convertMagicNumbar();
+          string convertMagicNumbar();
 
-    public:
+      public:
 
-        virtual ~Block();
+          int32_t getMagicNum() const;
 
-        int32_t getMagicNum() const;
+          int32_t getBlocksize() const;
 
-        int32_t getBlocksize() const;
+          const BlockHeader &getBlockHeader() const;
 
-        const BlockHeader &getBlockHeader() const;
+          const DVarInt &getNumbarRawTransaction() const;
 
-        const DVarInt &getNumbarRawTransaction() const;
+          const vector<RawTransaction> &getRawTransactions() const;
 
-        const vector<unique_ptr<RawTransaction>> &getRawTransactions() const;
+          int32_t getHeightBlock() const;
 
-        int32_t getHeightBlock() const;
+          void setHeightBlock(int32_t heightBlock);
 
-        void setHeightBlock(int32_t heightBlock);
+          std::string getHashBlock() const;
 
-        string getHashBlock() const;
+          bool operator==(const Block &rhs) const;
 
-        bool operator==(const Block &rhs) const;
+          bool operator!=(const Block &rhs) const;
 
-        bool operator!=(const Block &rhs) const;
+          std::string toString();
 
-        string toString();
+          void decode(std::ifstream &stream);
 
-        void decode(std::ifstream &stream);
+          std::string toSerealizationForm();
 
-        string toSerealizationForm();
+          nlohmann::json toJsonLite();
 
-        json toJsonLite();
-
-        json toJsonFat();
+          nlohmann::json toJsonFat();
     };
 }
 

@@ -86,7 +86,6 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
 
     bool findValueSerched = false;
 
-
     ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk32.txt"));
     if(!saveFileWhitScriptNull.is_open())
     {
@@ -98,23 +97,23 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     {
       for(auto &rawTransaction : block->getRawTransactions())
       {
-          for(auto &inputTransaction : rawTransaction->getTxInd())
+          for(auto &inputTransaction : rawTransaction.getTxIn())
           {
-             if(inputTransaction->getScript().getRawScriptString().empty())
+             if(inputTransaction.getScript().getRawScriptString().empty())
              {
-               LOG(WARNING) << "NullDataTransaction findend, the row script is " << inputTransaction->getScript().getRawScriptString();
+               LOG(WARNING) << "NullDataTransaction findend, the row script is " << inputTransaction.getScript().getRawScriptString();
                findValueSerched = true;
-               saveFileWhitScriptNull << rawTransaction->getHashRawTransaction() << endl;
+               saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
              }
           }
 
-         for(auto &outputTransaction : rawTransaction->getTxOut())
+         for(auto &outputTransaction : rawTransaction.getTxOut())
          {
-            if(outputTransaction->getScript().getRawScriptString().empty())
+            if(outputTransaction.getScript().getRawScriptString().empty())
             {
-              LOG(WARNING) << "NullDataTransaction findend, the row script is " << outputTransaction->getScript().getRawScriptString();
+              LOG(WARNING) << "NullDataTransaction findend, the row script is " << outputTransaction.getScript().getRawScriptString();
               findValueSerched = true;
-              saveFileWhitScriptNull << rawTransaction->getHashRawTransaction() << endl;
+              saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
             }
          }
 
@@ -235,23 +234,23 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     {
       for(auto &rawTransaction : block->getRawTransactions())
       {
-          for(auto &inputTransaction : rawTransaction->getTxInd())
+          for(auto &inputTransaction : rawTransaction.getTxIn())
           {
-             if(inputTransaction->getScript().getRawScriptString().empty())
+             if(inputTransaction.getScript().getRawScriptString().empty())
              {
-               LOG(WARNING) << "NullDataTransaction findend, the row script is " << inputTransaction->getScript().getRawScriptString();
+               LOG(WARNING) << "NullDataTransaction findend, the row script is " << inputTransaction.getScript().getRawScriptString();
                findValueSerched = true;
-               saveFileWhitScriptNull << rawTransaction->getHashRawTransaction() << endl;
+               saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
              }
           }
 
-         for(auto &outputTransaction : rawTransaction->getTxOut())
+         for(auto &outputTransaction : rawTransaction.getTxOut())
          {
-            if(outputTransaction->getScript().getRawScriptString().empty())
+            if(outputTransaction.getScript().getRawScriptString().empty())
             {
-              LOG(WARNING) << "NullDataTransaction findend, the row script is " << outputTransaction->getScript().getRawScriptString();
+              LOG(WARNING) << "NullDataTransaction findend, the row script is " << outputTransaction.getScript().getRawScriptString();
               findValueSerched = true;
-              saveFileWhitScriptNull << rawTransaction->getHashRawTransaction() << endl;
+              saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
             }
          }
 
@@ -373,23 +372,23 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     {
       for(auto &rawTransaction : block->getRawTransactions())
       {
-          for(auto &inputTransaction : rawTransaction->getTxInd())
+          for(auto &inputTransaction : rawTransaction.getTxIn())
           {
-             if(inputTransaction->getScript().getRawScriptString().empty())
+             if(inputTransaction.getScript().getRawScriptString().empty())
              {
-               LOG(WARNING) << "NullDataTransaction findend, the row script is " << inputTransaction->getScript().getRawScriptString();
+               LOG(WARNING) << "NullDataTransaction findend, the row script is " << inputTransaction.getScript().getRawScriptString();
                findValueSerched = true;
-               saveFileWhitScriptNull << rawTransaction->getHashRawTransaction() << endl;
+               saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
              }
           }
 
-         for(auto &outputTransaction : rawTransaction->getTxOut())
+         for(auto &outputTransaction : rawTransaction.getTxOut())
          {
-            if(outputTransaction->getScript().getRawScriptString().empty())
+            if(outputTransaction.getScript().getRawScriptString().empty())
             {
-              LOG(WARNING) << "NullDataTransaction findend, the row script is " << outputTransaction->getScript().getRawScriptString();
+              LOG(WARNING) << "NullDataTransaction findend, the row script is " << outputTransaction.getScript().getRawScriptString();
               findValueSerched = true;
-              saveFileWhitScriptNull << rawTransaction->getHashRawTransaction() << endl;
+              saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
             }
          }
 

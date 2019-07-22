@@ -1,7 +1,7 @@
 //
-// Created by https://github.com/vincenzopalazzo on 2/4/19.
+// Created on  2/4/19.
+// @author https://github.com/vincenzopalazzo
 //
-
 #include <cmath>
 #include <uv.h>
 
@@ -10,8 +10,7 @@
 
 #include "DVarInt.h"
 
-DVarInt::~DVarInt()
-{}
+using namespace spyCBlock;
 
 uint64_t DVarInt::getValue() const
 {

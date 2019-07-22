@@ -14,7 +14,10 @@
 #include "../../persistence/SerializationUtil.h"
 
 using namespace spyCBlock;
+using namespace std;
+using namespace nlohmann;
 
+//TODO remove this method
 BlockHeader::BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint256 merkleRoot, uint32_t time,
                          uint32_t nBits, uint32_t nonce)
 {
@@ -26,11 +29,7 @@ BlockHeader::BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint2
     this->nonce = nonce;
 }
 
-BlockHeader::BlockHeader()
-{}
-
-BlockHeader::~BlockHeader()
-{}
+BlockHeader::BlockHeader(){}
 
 int32_t BlockHeader::getVersion() const
 {

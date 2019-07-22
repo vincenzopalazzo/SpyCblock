@@ -6,7 +6,10 @@
 #include "../DAOException.h"
 
 using namespace spyCBlock;
+using namespace nlohmann;
+using namespace std;
 namespace fs = std::experimental::filesystem;
+
 vector<unique_ptr<Block>> spyCBlock::DAOJson::loadBlocks(string &path){}
 
 bool DAOJson::saveBlock(string inputPath, string outputPath)

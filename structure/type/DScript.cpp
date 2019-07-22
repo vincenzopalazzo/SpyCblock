@@ -1,26 +1,20 @@
-//
-// Created by https://github.com/vincenzopalazzo on 2/4/19.
-//
-
 #include <sstream>
 
 #include <glog/logging.h>
-#include "DScript.h"
 #include "../../util/serialize.h"
 #include "../../util/strencodings.h"
+
+#include "DScript.h"
 
 using namespace spyCBlock;
 using namespace std;
 
-DScript::~DScript()
-{}
+//
+// Created on  2/4/19.
+// @author https://github.com/vincenzopalazzo
+//
 
-const DVarInt &DScript::getScriptLenght() const
-{
-  return scriptLenght;
-}
-
-string DScript::getScriptToSerializationForm()
+string DScript::getScriptToSerializationForm() const
 {
   if(rawScriptString.empty())
   {
@@ -35,27 +29,17 @@ string DScript::getScriptToSerializationForm()
   return rawScriptString.substr(0, (this->scriptLenght.getValue() * 2));
 }
 
-const string &DScript::getRawScriptString() const
-{
-  return rawScriptString;
-}
-
-const string &DScript::getScriptString() const
-{
-    return scriptString;
-}
-
 void DScript::decode(std::ifstream &stream)
 {
     this->scriptLenght.decode(stream);
 
     LOG_IF(WARNING, (scriptLenght.getValue() == 16)) << "readed a null data transaction The lenght is 16 byte";
 
+    //Convert this declaratino for C++ version >= 11
     char buffer[scriptLenght.getValue()];
     LOG(INFO) << "Dimension script: " << scriptLenght.getValue();
 
     stream.read(buffer, static_cast<long>(scriptLenght.getValue())); //TODO look this canged
-
 
     LOG_IF(ERROR, (sizeof (buffer) != scriptLenght.getValue())) << "Dimension script readed wrong";
     scriptString = string(buffer, scriptLenght.getValue());
@@ -73,4 +57,20 @@ string DScript::toString()
     stringForm += scriptString;
 
     return stringForm;
+}
+
+//getter and setter
+const DVarInt &DScript::getScriptLenght() const
+{
+  return scriptLenght;
+}
+
+const string &DScript::getRawScriptString() const
+{
+  return rawScriptString;
+}
+
+const string &DScript::getScriptString() const
+{
+    return scriptString;
 }

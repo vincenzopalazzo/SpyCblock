@@ -1,52 +1,61 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/21/19.
-//  The type is type bitcoin core implementation
-//
+// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
 #ifndef PARSINGBLOCKCHAIN_OUTPOINT_H
 #define PARSINGBLOCKCHAIN_OUTPOINT_H
 
 #include <cstdint>
 #include <stdint.h>
+
 #include "../../util/script.h"
 #include "../../util/serialize.h"
 #include "../../util/uint256.h"
 
-using namespace std;
-
 //TODO refactoring the tipe
-/** An outpoint - a combination of a transaction hash and an index n into its vout */
-class OutPoint
+//An outpoint - a combination of a transaction hash and an index n into its vout
+/**
+ * Created on 2/4/19.
+ * The type is type bitcoin core implementation
+ * @author https://github.com/vincenzopalazzo
+ */
+namespace spyCBlock
 {
-private:
-    uint256 hash;
-    uint32_t n;
-public:
-    static constexpr uint32_t NULL_INDEX = std::numeric_limits<uint32_t>::max();
+  class OutPoint
+  {
+    private:
 
-    OutPoint(): n(NULL_INDEX) { }
+        uint256 hash;
 
-    virtual ~OutPoint();
+        uint32_t n;
 
-    const uint256 &getHash() const;
+    public:
 
-    void setHash(const uint256 &hash);
+        static constexpr uint32_t NULL_INDEX = std::numeric_limits<uint32_t>::max();
 
-    uint32_t getN() const;
+        OutPoint(): n(NULL_INDEX) { }
 
+        const uint256 &getHash() const;
 
-    ADD_SERIALIZE_METHODS;
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(hash);
-        READWRITE(n);
-    }
-    friend bool operator<(const OutPoint& a, const OutPoint& b);
+        void setHash(const uint256 &hash);
 
-    friend bool operator==(const OutPoint& a, const OutPoint& b);
+        uint32_t getN() const;
 
-    friend bool operator!=(const OutPoint& a, const OutPoint& b);
+        ADD_SERIALIZE_METHODS;
+        template <typename Stream, typename Operation>
+        inline void SerializationOp(Stream& s, Operation ser_action) {
+            READWRITE(hash);
+            READWRITE(n);
+        }
+        friend bool operator<(const OutPoint& a, const OutPoint& b);
 
-    std::string ToString() const;
-};
+        friend bool operator==(const OutPoint& a, const OutPoint& b);
+
+        friend bool operator!=(const OutPoint& a, const OutPoint& b);
+
+        std::string ToString() const;
+  };
+}
 
 #endif //PARSINGBLOCKCHAIN_OUTPOINT_H
