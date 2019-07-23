@@ -25,12 +25,15 @@
 #include <gtest/gtest.h>
 #include <glog/logging.h>
 #include <nlohmann/json.hpp>
+#include <rapidjson/document.h>
+#include <rapidjson/istreamwrapper.h>
 
 #include "../structure/block/block.h"
 #include "../core/ConfiguratorSingleton.h"
 
 using namespace spyCBlock;
 using namespace nlohmann;
+using namespace rapidjson;
 
 /**
  * This test battery was written to test the json creation function from a bed block.
@@ -185,6 +188,60 @@ TEST(JsonSerializationTest, serialization_fat_block_test_one)
   EXPECT_EQ(1, numTransactionRaw);
   EXPECT_EQ(hashBlock, "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
 
+}
+
+TEST(JsonSerializationTest, serialization_rapidjson_block_test_one)
+{
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+
+  google::SetLogDestination(google::ERROR, pathLogRoot.append("serialization_rapidjson_block_test_one.log").c_str());
+
+  std::ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
+
+  Block block;
+
+  block.decode(fileOut);
+  fileOut.close();
+
+
+  ofstream fileJson(pathMockRoot + "block_rapidjson.json");
+  rapidjson::OStreamWrapper osw(fileJson);
+  rapidjson::Writer<rapidjson::OStreamWrapper> writer(osw);
+
+  block.toJson(writer);
+
+  fileJson.close();
+
+  ifstream fileJsonInput(pathMockRoot + "block_rapidjson.json");
+  if(!fileJsonInput.is_open())
+  {
+    FAIL() <<"File block_rapidjson not open";
+  }
+
+  IStreamWrapper isw { fileJsonInput };
+
+  Document jsonSerialization;
+  jsonSerialization.ParseStream(isw);
+
+
+  EXPECT_TRUE(jsonSerialization.HasMember("magicNumbar"));
+  EXPECT_TRUE(jsonSerialization.HasMember("blockSize"));
+  EXPECT_TRUE(jsonSerialization.HasMember("numbarRawTransactions"));
+  EXPECT_TRUE(jsonSerialization.HasMember("hashBlock"));
+
+  int magicNumbar = jsonSerialization["magicNumbar"].GetInt();
+  int32_t blockSize = jsonSerialization["blockSize"].GetInt();
+  uint64_t numTransactionRaw = jsonSerialization["numbarRawTransactions"].GetUint64();
+  string hashBlock = jsonSerialization["hashBlock"].GetString();
+
+  EXPECT_EQ(spyCBlock::typeBlock::NETWORK_MAIN, magicNumbar);
+  EXPECT_EQ(285 , blockSize);
+  EXPECT_EQ(1, numTransactionRaw);
+  EXPECT_EQ(hashBlock, "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
 }
 
 //ADDING TEST FOR SERIALIZATION TRANSACTION

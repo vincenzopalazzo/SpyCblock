@@ -1,50 +1,46 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/21/19.
-//
-
-
 #ifndef PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H
 #define PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H
 
 #include <cstdint>
+
 #include <nlohmann/json.hpp>
-
+#include <rapidjson/writer.h>
+#include <rapidjson/ostreamwrapper.h>
 #include "../type/DScript.h"
-//#include "../../persistence/serializationutil.h"
 
-using namespace std;
-using namespace nlohmann;
-
+/**
+ * Created on 1/21/19.
+ * @author https://github.com/vincenzopalazzo
+ */
 namespace spyCBlock{
 
     class TransactionOutput
     {
+      private:
 
-    private:
+          int64_t nValue;
+          DScript script;
 
-        int64_t nValue;
-        DScript script;
+          //Addintiona information
+          std::string hashOutputTransaction;
 
-        //Addintiona information
-        string hashOutputTransaction;
+      public:
 
-    public:
+          const int64_t& getNValue() const;
 
-        virtual ~TransactionOutput();
+          const DScript& getScript() const;
 
-        const int64_t& getNValue() const;
+          const std::string& getHashOutputTransaction() const;
 
-        const DScript& getScript() const;
+          std::string toString();
 
-        const string& getHashOutputTransaction() const;
+          void decode(std::ifstream &stream);
 
-        string toString();
+          std::string toSerealizationForm() const;
 
-        void decode(ifstream &stream);
+          nlohmann::json toJson();
 
-        string toSerealizationForm();
-
-        json toJson();
+          void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
     };
 }
 #endif //PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H

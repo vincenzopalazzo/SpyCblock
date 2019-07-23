@@ -14,7 +14,10 @@
 #include "../../persistence/SerializationUtil.h"
 
 using namespace spyCBlock;
+using namespace std;
+using namespace nlohmann;
 
+//TODO remove this method
 BlockHeader::BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint256 merkleRoot, uint32_t time,
                          uint32_t nBits, uint32_t nonce)
 {
@@ -26,11 +29,7 @@ BlockHeader::BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint2
     this->nonce = nonce;
 }
 
-BlockHeader::BlockHeader()
-{}
-
-BlockHeader::~BlockHeader()
-{}
+BlockHeader::BlockHeader(){}
 
 int32_t BlockHeader::getVersion() const
 {
@@ -112,6 +111,31 @@ json BlockHeader::toJoson()
                         {"nBits", this->nBits},
                         {"nonce", this->nonce},
                       });
+}
+
+void BlockHeader::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
+{
+  writerJson.StartObject();
+
+  writerJson.Key("version");
+  writerJson.Int(this->version);
+
+  writerJson.Key("previusBlockHeaderHash");
+  writerJson.String(this->previousBlockHeaderHash.ToString().c_str());
+
+  writerJson.Key("markleRoot");
+  writerJson.String(this->merkleRoot.ToString().c_str());
+
+  writerJson.Key("time");
+  writerJson.Int(this->time);
+
+  writerJson.Key("nBits");
+  writerJson.Uint(this->nBits);
+
+  writerJson.Key("nonce");
+  writerJson.Uint(this->nonce);
+
+  writerJson.EndObject();
 }
 
 string BlockHeader::toString()

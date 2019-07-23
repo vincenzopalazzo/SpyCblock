@@ -1,6 +1,3 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/21/19.
-//
 #include <sstream>
 
 #include <glog/logging.h>
@@ -11,25 +8,13 @@
 #include "../../crypto/CryptoCore.h"
 
 using namespace spyCBlock;
+using namespace std;
+using namespace nlohmann;
 
-TransactionOutput::~TransactionOutput()
-{}
-
-const int64_t& TransactionOutput::getNValue() const
-{
-    return nValue;
-}
-
-const DScript &TransactionOutput::getScript() const
-{
-  return script;
-}
-
-const string &TransactionOutput::getHashOutputTransaction() const
-{
-  return this->hashOutputTransaction;
-}
-
+/**
+ * Created on 1/21/19.
+ * @author https://github.com/vincenzopalazzo
+ */
 void TransactionOutput::decode(ifstream &stream)
 {
     Unserialize(stream, nValue);
@@ -44,7 +29,7 @@ void TransactionOutput::decode(ifstream &stream)
 
 }
 
-string TransactionOutput::toSerealizationForm()
+string TransactionOutput::toSerealizationForm() const
 {
   string hexForm = SerializationUtil::toSerealizeForm(this->nValue);
   hexForm += SerializationUtil::toSerealizeForm(this->getScript().getScriptLenght());
@@ -55,14 +40,33 @@ string TransactionOutput::toSerealizationForm()
 
 json TransactionOutput::toJson()
 {
+  json txOutputjson = json::object({
+                                     {"ammount", this->nValue},
+                                     {"scriptLenght", this->script.getScriptLenght().getValue()},
+                                     {"script", this->getScript().getRawScriptString()},
+                                     {"hashOutputTransaction", this->hashOutputTransaction},
+                                   });
 
+  return txOutputjson;
+}
 
-  return json::object({
-                        {"ammount", this->nValue},
-                        {"scriptLenght", this->script.getScriptLenght().getValue()},
-                        {"script", this->getScript().getRawScriptString()},
-                        {"hashOutputTransaction", this->hashOutputTransaction},
-                      });
+void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
+{
+   writerJson.StartObject();
+
+   writerJson.Key("hashOutputTransaction");
+   writerJson.String(this->hashOutputTransaction.c_str());
+
+   writerJson.Key("ammount");
+   writerJson.Int64(this->nValue);
+
+   writerJson.Key("scriptLenght");
+   writerJson.Uint64(this->script.getScriptLenght().getValue());
+
+   writerJson.Key("script");
+   writerJson.String(this->script.getRawScriptString().c_str());
+
+   writerJson.EndObject();
 }
 
 string TransactionOutput::toString()
@@ -74,4 +78,20 @@ string TransactionOutput::toString()
     stringForm += script.getScriptString();
     stringForm += "\n";
     return stringForm;
+}
+
+//getter and setter
+const int64_t& TransactionOutput::getNValue() const
+{
+    return nValue;
+}
+
+const DScript &TransactionOutput::getScript() const
+{
+  return script;
+}
+
+const string &TransactionOutput::getHashOutputTransaction() const
+{
+  return this->hashOutputTransaction;
 }

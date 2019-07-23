@@ -1,16 +1,17 @@
+// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
-// Created by https://github.com/vincenzopalazzo on 1/24/19.
+// Created on  2/4/19.
+// @author https://github.com/vincenzopalazzo
 //
 #include <string>
 
 #include "Outpoint.h"
 
 using namespace std;
-
-OutPoint::~OutPoint()
-{
-
-}
+using namespace spyCBlock;
 
 void OutPoint::setHash(const uint256 &hash) {
     this->hash = hash;

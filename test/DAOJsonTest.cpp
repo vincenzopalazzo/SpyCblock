@@ -47,18 +47,98 @@ using namespace spyCBlock;
   */
 
 //First test for decode all files blk into bitcoin diretory blocks
-TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test)
+TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00000)
 {
     string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
     string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
 
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_dao_json_test.log").c_str());
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00000.log").c_str());
 
     DAOJson dao;
     try {
         bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/blk00000.dat", pathMockRoot + "bitcoin/blockJson/blk00000.json");
+        ASSERT_TRUE(result); // are inclusind left block in the file blk
+    }
+    catch (DAOException exception) {
+        FAIL() << "Test fail for this cause" << exception.what();
+    }
+}
+
+//TOD initi another test blk00975
+TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00975)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00975.log").c_str());
+
+    DAOJson dao;
+    try {
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00975.dat", pathMockRoot + "bitcoin/blockJson/blk00975.json");
+        ASSERT_TRUE(result); // are inclusind left block in the file blk
+    }
+    catch (DAOException exception) {
+        FAIL() << "Test fail for this cause" << exception.what();
+    }
+}
+
+//for block blk00974
+TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00974)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00974.log").c_str());
+
+    DAOJson dao;
+    try {
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00974.dat", pathMockRoot + "bitcoin/blockJson/blk00974.json");
+        ASSERT_TRUE(result); // are inclusind left block in the file blk
+    }
+    catch (DAOException exception) {
+        FAIL() << "Test fail for this cause" << exception.what();
+    }
+}
+
+//for block blk00032
+TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00032)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00032.log").c_str());
+
+    DAOJson dao;
+    try {
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00032.dat", pathMockRoot + "bitcoin/blockJson/blk00032.json");
+        ASSERT_TRUE(result); // are inclusind left block in the file blk
+    }
+    catch (DAOException exception) {
+        FAIL() << "Test fail for this cause" << exception.what();
+    }
+}
+
+//for block blk00053
+TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00053)
+{
+    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+
+    FLAGS_minloglevel = 2;
+    FLAGS_logtostderr = false;
+    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_blk00053.log").c_str());
+
+    DAOJson dao;
+    try {
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00053.dat", pathMockRoot + "bitcoin/blockJson/blk00053.json");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {

@@ -3,6 +3,9 @@
 
 #include <memory>
 
+#include <rapidjson/writer.h>
+#include <rapidjson/ostreamwrapper.h>
+
 #include "../IDAOBlockchain.h"
 #include "../../structure/block/block.h"
 
@@ -16,7 +19,10 @@ namespace spyCBlock {
       bool saveBlock(string inputPath, string outputPath) override;
 
     private:
-      void convertToJson(vector<unique_ptr<Block>> &blocks, string outputPath);
+      void convertToJson(vector<Block> &blocks, ofstream &outputPath);
+
+      void convertToJsonRapidJson(vector<Block> &blocks, ofstream &outputPath);
+
   };
 
 }

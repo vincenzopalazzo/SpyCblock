@@ -1,66 +1,65 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/21/19.
-//
 #ifndef PARSINGBLOCKCHAIN_BLOCKHEADER_H
 #define PARSINGBLOCKCHAIN_BLOCKHEADER_H
 
 #include <nlohmann/json.hpp>
-
-#include "../../util/uint256.h"
 #include <glog/logging.h>
+#include <rapidjson/writer.h>
+#include <rapidjson/ostreamwrapper.h>
+#include "../../util/uint256.h"
 #include "../../util/serialize.h"
-//#include "../../persistence/serializationutil.h"
-
-using namespace std;
-//using namespace spyCBlock;
-using namespace nlohmann;
 
 /**
- * The dimension blockheader is 80 bit
+ * Created on 1/21/19.
+ * @author https://github.com/vincenzopalazzo
  */
-class BlockHeader
+namespace spyCBlock
 {
-private:
-    int32_t version;
-    uint256 previousBlockHeaderHash;
-    uint256 merkleRoot;
-    int32_t time;
-    uint32_t nBits; // this whats corrisponde
-    uint32_t nonce;
+  class BlockHeader
+  {
+    private:
 
-    string convertTimeStamp();
+        int32_t version;
+        uint256 previousBlockHeaderHash;
+        uint256 merkleRoot;
+        int32_t time;
+        uint32_t nBits; // this whats corrisponde
+        uint32_t nonce;
 
-public:
-    virtual ~BlockHeader();
+        std::string convertTimeStamp();
 
-    BlockHeader();
+    public:
 
-    BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint256 merkleRoot, uint32_t time, uint32_t nBits, uint32_t nonce);
+        BlockHeader();
 
-    int32_t getVersion() const ;
+        BlockHeader(int32_t version, uint256 previousBlockHeaderHash, uint256 merkleRoot, uint32_t time, uint32_t nBits, uint32_t nonce);
 
-    uint32_t getTime() const;
+        int32_t getVersion() const ;
 
-    uint32_t getNBits() const;
+        uint32_t getTime() const;
 
-    uint32_t getNonce() const;
+        uint32_t getNBits() const;
 
-    const uint256& getPreviousBlockHeaderHash() const;
+        uint32_t getNonce() const;
 
-    const uint256& getMerkleRoot() const;
+        const uint256& getPreviousBlockHeaderHash() const;
 
-    bool operator==(const BlockHeader &rhs) const;
+        const uint256& getMerkleRoot() const;
 
-    bool operator!=(const BlockHeader &rhs) const;
+        bool operator==(const BlockHeader &rhs) const;
 
-    string toString();
+        bool operator!=(const BlockHeader &rhs) const;
 
-    void unserialize(std::ifstream &stream);
+        std::string toString();
 
-    string toSerealizationForm();
+        void unserialize(std::ifstream &stream);
 
-    json toJoson();
+        std::string toSerealizationForm();
 
-};
+        nlohmann::json toJoson();
+
+        void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+
+  };
+}
 
 #endif //PARSINGBLOCKCHAIN_BLOCKHEADER_H
