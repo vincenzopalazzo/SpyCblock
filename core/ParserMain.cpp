@@ -22,7 +22,11 @@ int main(int argc, char* argv[])
 
     SpyCBlock spyCBlock = SpyCBlock();
     //TODO fix the bug id The path contains the end /
-    //spyCBlock.convertBlkIntoJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
-    spyCBlock.convertBlockchainToJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+
+    //This method used DAOJson
+    spyCBlock.convertBlkIntoJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+
+    //This method used DAOBlkToJson
+    //spyCBlock.convertBlockchainToJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
     return 0;
 }

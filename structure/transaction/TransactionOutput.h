@@ -2,8 +2,10 @@
 #define PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H
 
 #include <cstdint>
-#include <nlohmann/json.hpp>
 
+#include <nlohmann/json.hpp>
+#include <rapidjson/writer.h>
+#include <rapidjson/ostreamwrapper.h>
 #include "../type/DScript.h"
 
 /**
@@ -37,6 +39,8 @@ namespace spyCBlock{
           std::string toSerealizationForm() const;
 
           nlohmann::json toJson();
+
+          void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
     };
 }
 #endif //PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H

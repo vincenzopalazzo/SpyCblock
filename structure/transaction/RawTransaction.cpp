@@ -103,7 +103,7 @@ json RawTransaction::toJson()
 
   //TODO this refactoring required more attention on Json form test
   json txInputjson;
-  for(TransactionInput txInput : this->txIn)
+  for(TransactionInput &txInput : this->txIn)
   {
       json txInputJsonSingle = txInput.toJson();
       txInputjson.emplace_back(txInputJsonSingle);
@@ -111,7 +111,7 @@ json RawTransaction::toJson()
 
   //TODO this refactoring required more attention on Json form test
   json txOutjson;
-  for(TransactionOutput txOutput : this->txOut)
+  for(TransactionOutput &txOutput : this->txOut)
   {
     json txOutputJsonSingle = txOutput.toJson();
     txOutjson.emplace_back(txOutputJsonSingle);
@@ -120,6 +120,48 @@ json RawTransaction::toJson()
   jsonRawTransaction["inputTransactions"] = txInputjson;
   jsonRawTransaction["outputTransaction"] = txOutjson;
   return jsonRawTransaction;
+}
+
+void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
+{
+  writerJson.StartObject();
+
+  writerJson.Key("hashRawTransaction");
+  writerJson.String(this->hashRawTransaction.c_str());
+
+  writerJson.Key("version");
+  writerJson.Int(this->version);
+
+  writerJson.Key("numbarTxInput");
+  writerJson.Uint64(this->numberTxIn.getValue());
+
+  writerJson.Key("txInput");
+  writerJson.StartArray();
+
+  for(TransactionInput &txInput : this->txIn)
+  {
+    txInput.toJson(writerJson);
+  }
+
+  writerJson.EndArray();
+
+  writerJson.Key("numbarTxOutput");
+  writerJson.Uint64(this->numberTxOut.getValue());
+
+  writerJson.Key("txOutput");
+  writerJson.StartArray();
+
+  for(TransactionOutput &txOutput : this->txOut)
+  {
+    txOutput.toJson(writerJson);
+  }
+
+  writerJson.EndArray();
+
+  writerJson.Key("lockTime");
+  writerJson.Uint(this->lockTime);
+
+  writerJson.EndObject();
 }
 
 //Getter and setter

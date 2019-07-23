@@ -351,7 +351,6 @@ TEST(StructureBitcoinCoreTest, all_Read_file_dat)
     ifstream stream(pathMockRoot + "bitcoin/block/blk00000.dat");
     ofstream outStream(pathMockRoot + "file_test_readl_all_file_dat_uno.txt");
 
-    //vector<Block> *blocks = new vector<Block>();
     vector<Block> blocks;
     try
     {
@@ -361,18 +360,16 @@ TEST(StructureBitcoinCoreTest, all_Read_file_dat)
             int numbarBlock = 0;
 
             while (!stream.eof()) {
-                //Block *block = new Block();
-                blocks.emplace_back(Block{});
+
                 Block block;
                 block.decode(stream);
                 if(block.getBlockHeader().getVersion() == 0)//TODO dare un occhiata qui qualcosa non va con i numeri di blocchi
                 {
                     LOG(WARNING) << "block is null -> " << block.getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-                    //TODO remove block
-                    blocks.erase(blocks.end()); //TODO is correct?
                 }else{
                     outStream << block.toString();
                     numbarBlock++;
+                    blocks.emplace_back(block);
                     LOG(INFO) << "Numbar block read now " << numbarBlock;
                 }
             }

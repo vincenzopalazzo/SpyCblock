@@ -50,6 +50,25 @@ json TransactionOutput::toJson()
   return txOutputjson;
 }
 
+void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
+{
+   writerJson.StartObject();
+
+   writerJson.Key("hashOutputTransaction");
+   writerJson.String(this->hashOutputTransaction.c_str());
+
+   writerJson.Key("ammount");
+   writerJson.Int64(this->nValue);
+
+   writerJson.Key("scriptLenght");
+   writerJson.Uint64(this->script.getScriptLenght().getValue());
+
+   writerJson.Key("script");
+   writerJson.String(this->script.getRawScriptString().c_str());
+
+   writerJson.EndObject();
+}
+
 string TransactionOutput::toString()
 {
     string stringForm =  "N Value: ";

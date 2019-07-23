@@ -2,6 +2,8 @@
 
 #include <glog/logging.h>
 #include <nlohmann/json.hpp>
+#include <rapidjson/writer.h>
+#include <rapidjson/ostreamwrapper.h>
 
 #include "DAOBlkToJson.h"
 #include "../DAOException.h"
@@ -9,6 +11,7 @@
 using namespace spyCBlock;
 using namespace std;
 using json = nlohmann::json;
+using namespace rapidjson;
 
 
 DAOFileBlkJson::DAOFileBlkJson() = default;
@@ -42,7 +45,7 @@ bool DAOFileBlkJson::saveBlock(string inputPath, string outputPath)
               LOG(WARNING) << "The file examinad is: " << pathFile;
               LOG_IF(ERROR, counterBlock < 0) << "The counter block are negative, this is not possible, the attual value is" << counterBlock;
               string nameFile = getNameFile(pathFile);
-              vector<unique_ptr<Block>> vectorBlockFileBlk = readBlock(pathFile, counterBlock);
+              vector<Block> vectorBlockFileBlk = readBlock(pathFile, counterBlock);
 
               if (!vectorBlockFileBlk.empty())
               {
@@ -70,16 +73,16 @@ bool DAOFileBlkJson::saveBlock(string inputPath, string outputPath)
 }
 
 //Method whitout file sistem library
-vector<unique_ptr<Block>> DAOFileBlkJson::readBlock(string path, int &conuterBlock)
+vector<Block> DAOFileBlkJson::readBlock(string path, int &conuterBlock)
 {
   if (!isBlockFileBlk(path))
   {
       LOG(INFO) << "This path not contain a file blk";
-      return vector<unique_ptr<Block>>();
+      return vector<Block>();
   }
   if(!fs::exists(path)){
       LOG(ERROR) << "File " << path << " not exist";
-      return vector<unique_ptr<Block>>();
+      return vector<Block>();
   }
   ifstream stream(path);
 
@@ -87,19 +90,17 @@ vector<unique_ptr<Block>> DAOFileBlkJson::readBlock(string path, int &conuterBlo
   {
       LOG(INFO) << "File in this path " << path << " is open";
 
-      vector<unique_ptr<Block>> blocksFile;
+      vector<Block> blocksFile;
       while (!stream.eof())
       {
-          unique_ptr<Block> block(new Block());
-          block->decode(stream);
-          block->setHeightBlock(counterBlock);
+          Block block;
+          block.decode(stream);
+          block.setHeightBlock(counterBlock);
 
           counterBlock++;
           LOG(WARNING) << "The numbar blocks readed are: " << counterBlock;
 
-          blocksFile.push_back(move(block));
-
-          delete block.release();
+          blocksFile.emplace_back(block);
       }
 
       fileBlkReaded++;
@@ -125,27 +126,13 @@ bool DAOFileBlkJson::isBlockFileBlk(string path)
 
 //TODO ho modoficato questo da stanco, ho metto dei puntatori
 //prova aggiungendo anche unique_ptr.
-bool DAOFileBlkJson::convertVectorBlockIntoJson(vector<unique_ptr<Block>> &blockFileBlk, string outputPath, string nameFile)
+bool DAOFileBlkJson::convertVectorBlockIntoJson(vector<Block> &blockFileBlk, string outputPath, string nameFile)
 {
   if(blockFileBlk.empty() || outputPath.empty() || nameFile.empty())
   {
     LOG(ERROR) << "The imput parameter is null";
     throw DAOException("Input is null");
   }
-
-  json jsonBlocksFile;
-
-  json listBlocksConvert;
-
-  for(int i = 0; i < static_cast<int>(blockFileBlk.size()); i++)
-  {
-     listBlocksConvert.push_back(blockFileBlk.at(i)->toJsonFat());
-  }
-
-  blockFileBlk.clear();
-
-  jsonBlocksFile = {"blocks", listBlocksConvert};
-
   string nameFileJson = outputPath;
   nameFileJson += nameFile + ".json";
 
@@ -153,9 +140,24 @@ bool DAOFileBlkJson::convertVectorBlockIntoJson(vector<unique_ptr<Block>> &block
 
   if(streamOutput.is_open())
   {
-    streamOutput << jsonBlocksFile;
-    streamOutput.close();
-    return true;
+      OStreamWrapper osw(streamOutput);
+      Writer<rapidjson::OStreamWrapper> writer(osw);
+
+      writer.StartObject();
+
+      writer.Key("blocks");
+      writer.StartArray();
+
+      for(Block block : blockFileBlk)
+      {
+        block.toJson(writer);
+      }
+
+      writer.EndArray();
+      writer.EndObject();
+
+      streamOutput.close();
+      return true;
   }
   LOG(ERROR) << "ERROR the file is not open into this directory " << outputPath;
   return false;

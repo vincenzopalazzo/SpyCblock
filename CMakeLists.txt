@@ -13,6 +13,7 @@ find_package(glog 0.3.5 REQUIRED)
 
 ## Json library
 find_package(nlohmann_json 3.2.0 REQUIRED)
+find_package(RapidJSON) #This find the element in the OS
 
 # Link runTests with what we want to test and the GTest and pthread library
 add_executable(

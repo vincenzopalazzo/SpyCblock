@@ -113,6 +113,31 @@ json BlockHeader::toJoson()
                       });
 }
 
+void BlockHeader::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
+{
+  writerJson.StartObject();
+
+  writerJson.Key("version");
+  writerJson.Int(this->version);
+
+  writerJson.Key("previusBlockHeaderHash");
+  writerJson.String(this->previousBlockHeaderHash.ToString().c_str());
+
+  writerJson.Key("markleRoot");
+  writerJson.String(this->merkleRoot.ToString().c_str());
+
+  writerJson.Key("time");
+  writerJson.Int(this->time);
+
+  writerJson.Key("nBits");
+  writerJson.Uint(this->nBits);
+
+  writerJson.Key("nonce");
+  writerJson.Uint(this->nonce);
+
+  writerJson.EndObject();
+}
+
 string BlockHeader::toString()
 {
     string stringForm =  "---------- Block Header ---------- \n";

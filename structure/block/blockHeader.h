@@ -3,7 +3,8 @@
 
 #include <nlohmann/json.hpp>
 #include <glog/logging.h>
-
+#include <rapidjson/writer.h>
+#include <rapidjson/ostreamwrapper.h>
 #include "../../util/uint256.h"
 #include "../../util/serialize.h"
 
@@ -55,6 +56,8 @@ namespace spyCBlock
         std::string toSerealizationForm();
 
         nlohmann::json toJoson();
+
+        void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 
   };
 }

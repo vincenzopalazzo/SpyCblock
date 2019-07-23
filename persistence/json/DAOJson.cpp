@@ -7,6 +7,7 @@
 
 using namespace spyCBlock;
 using namespace nlohmann;
+using namespace rapidjson;
 using namespace std;
 namespace fs = std::experimental::filesystem;
 
@@ -27,14 +28,17 @@ bool DAOJson::saveBlock(string inputPath, string outputPath)
           ifstream loadFileDat(inputPath);
           if(loadFileDat.is_open())
           {
-            vector<unique_ptr<Block>> blockFileBlk;
+            vector<Block> blockFileBlk;
             while(!loadFileDat.eof())
             {
-              auto block = make_unique<Block>();
-              block->decode(loadFileDat);
-              blockFileBlk.push_back(move(block));
+              Block block;
+              block.decode(loadFileDat);
+              blockFileBlk.emplace_back(block);
             }
-            convertToJson(blockFileBlk, outputPath);
+            ofstream saveBlkToJson(outputPath);
+            //convertToJson(blockFileBlk, saveBlkToJson);
+            convertToJsonRapidJson(blockFileBlk, saveBlkToJson);
+            saveBlkToJson.close();
             return true;
           }
           LOG(ERROR) << "The file " + inputPath + " not opened";
@@ -48,12 +52,12 @@ bool DAOJson::saveBlock(string inputPath, string outputPath)
   throw DAOException("The file input not exist " + inputPath);
 }
 
-void DAOJson::convertToJson(vector<unique_ptr<Block>> &blocks, string outputPath)
+void DAOJson::convertToJson(vector<Block> &blocks, ofstream &outputPath)
 {
   if(blocks.empty())
   {
-    LOG(ERROR) << "The input velue is null";
-    throw DAOException("The input value is null");
+    LOG(ERROR) << "The input velue is empty";
+    throw DAOException("The input value is empty");
   }
 
   json jsonFileDatConverted;
@@ -62,17 +66,51 @@ void DAOJson::convertToJson(vector<unique_ptr<Block>> &blocks, string outputPath
 
   for(auto &block : blocks)
   {
-    appendrJsonBlock.push_back(block->toJsonFat());
+    appendrJsonBlock.push_back(block.toJsonFat());
   }
 
   jsonFileDatConverted["blocks"] = appendrJsonBlock;
 
-  ofstream saveBlkToJson(outputPath);
-  if(saveBlkToJson.is_open())
+
+  if(outputPath.is_open())
   {
-     saveBlkToJson << jsonFileDatConverted;
+     outputPath << jsonFileDatConverted;
+     outputPath.clear();
      return;
   }
-  LOG(ERROR) << "The file output not open " + outputPath;
-  throw DAOException("The file output not open " + outputPath);
+  LOG(ERROR) << "The file output not open ";
+  throw DAOException("The file output not open in tha path ");
 }
+
+void DAOJson::convertToJsonRapidJson(vector<Block> &blocks, ofstream &outputPath)
+{
+  if(blocks.empty())
+  {
+    LOG(ERROR) << "The input velue is empty";
+    throw DAOException("The input value is empty");
+  }
+
+  if(outputPath.is_open())
+  {
+      OStreamWrapper osw(outputPath);
+      Writer<rapidjson::OStreamWrapper> writer(osw);
+
+     // writer.Key("block");
+      writer.StartObject();
+
+      writer.Key("blocks");
+      writer.StartArray();
+
+      for(Block &block : blocks)
+      {
+        block.toJson(writer);
+      }
+
+      writer.EndArray();
+      writer.EndObject();
+  }else {
+      LOG(ERROR) << "The file output not open ";
+      throw DAOException("The file output not open in tha path ");
+  }
+}
+

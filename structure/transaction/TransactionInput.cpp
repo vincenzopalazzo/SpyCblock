@@ -56,6 +56,31 @@ json TransactionInput::toJson()
   return jsonTxsInput;
 }
 
+void TransactionInput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
+{
+  writerJson.StartObject();
+
+  writerJson.Key("hashInputTransaction");
+  writerJson.String(this->hashInputTransaction.c_str());
+
+  writerJson.Key("outputTxHash");
+  writerJson.String(outpoint.getHash().ToString().c_str());
+
+  writerJson.Key("ammount");
+  writerJson.Uint(outpoint.getN());
+
+  writerJson.Key("scriptLenght");
+  writerJson.Uint64(this->getScript().getScriptLenght().getValue());
+
+  writerJson.Key("script");
+  writerJson.String(this->script.getRawScriptString().c_str());
+
+  writerJson.Key("sequences");
+  writerJson.Uint(this->sequences);
+
+  writerJson.EndObject();
+}
+
 string TransactionInput::toString()
 {
     string stringForm = outpoint.ToString();

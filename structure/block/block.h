@@ -25,14 +25,17 @@ namespace spyCBlock {
       private:
 
           int32_t magicNum;
+
           int32_t blocksize;
+
           BlockHeader blockHeader;
+
           DVarInt numbarRawTransaction;
+
           vector<RawTransaction> rawTransactions;
 
-          //Surplus information to the block
-          //The value -1 indicate a value null because the value is setter to passer
           int32_t heightBlock = -1;
+
           string hashBlock;
 
           string convertMagicNumbar();
@@ -68,6 +71,8 @@ namespace spyCBlock {
           nlohmann::json toJsonLite();
 
           nlohmann::json toJsonFat();
+
+          void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
     };
 }
 

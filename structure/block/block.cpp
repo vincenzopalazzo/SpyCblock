@@ -98,6 +98,41 @@ json Block::toJsonFat()
   return jsonFat;
 }
 
+void Block::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
+{
+  writerJson.StartObject();
+
+  writerJson.Key("hashBlock");
+  writerJson.String(this->hashBlock.c_str());
+
+  writerJson.Key("height");
+  writerJson.Int(this->heightBlock);
+
+  writerJson.Key("magicNumbar");
+  writerJson.Int(this->magicNum);
+
+  writerJson.Key("blockSize");
+  writerJson.Int(this->blocksize);
+
+  writerJson.Key("blockHeader");
+  this->blockHeader.toJson(writerJson);
+
+  writerJson.Key("numbarRawTransactions");
+  writerJson.Uint64(this->numbarRawTransaction.getValue());
+
+  writerJson.Key("rawTransactions");
+  writerJson.StartArray();
+
+  for(RawTransaction &rawTransaction : this->rawTransactions)
+  {
+    rawTransaction.toJson(writerJson);
+  }
+
+  writerJson.EndArray();
+
+  writerJson.EndObject();
+}
+
 string Block::convertMagicNumbar() {
     stringstream stream;
     stream << hex << magicNum;

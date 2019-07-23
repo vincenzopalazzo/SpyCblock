@@ -54,6 +54,8 @@ namespace spyCBlock{
 
           nlohmann::json toJson();
 
+          void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+
     };
 }
 #endif //PARSINGBLOCKCHAIN_RAWTRANSACTION_H

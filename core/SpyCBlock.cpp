@@ -30,12 +30,14 @@ void SpyCBlock::read(string pathBlockchain) {
     Block block;
     block.decode(stream);
     outStream << block.toString();
-    }
+  }
 }
 
 /*
  This method have problem with a memory, for the moment I don't refactoring this code because this is only a prototype of the parser
  This method is replaced with convertBlkIntoJson() method
+
+ This method used DAOFileBlkJson
 */
 bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
@@ -45,11 +47,11 @@ bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string desti
     throw "Input are null";
   }
 
-  unique_ptr<DAOFileBlkJson> dao(new DAOFileBlkJson);
+  DAOFileBlkJson dao;
 
   bool resultConversion = false;
 
-  resultConversion = dao->saveBlock(locationBitcoinCore, destinationBitcoinCoreJson);
+  resultConversion = dao.saveBlock(locationBitcoinCore, destinationBitcoinCoreJson);
 
   if(resultConversion)
   {
@@ -61,6 +63,7 @@ bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string desti
 
 }
 
+//This method used DAOJson
 void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
   if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())

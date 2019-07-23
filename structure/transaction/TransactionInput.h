@@ -4,6 +4,8 @@
 #include <cstdint>
 
 #include <nlohmann/json.hpp>
+#include <rapidjson/writer.h>
+#include <rapidjson/ostreamwrapper.h>
 #include "../type/Outpoint.h"
 #include "../type/DScript.h"
 
@@ -46,6 +48,8 @@ namespace spyCBlock{
         std::string toSerealizationForm();
 
         nlohmann::json toJson();
+
+        void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
     };
 }
 
