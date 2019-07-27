@@ -1,4 +1,5 @@
 #include <experimental/filesystem>
+#include <chrono>
 
 #include <glog/logging.h>
 
@@ -10,10 +11,11 @@ using namespace nlohmann;
 using namespace rapidjson;
 using namespace std;
 namespace fs = std::experimental::filesystem;
+using namespace chrono;
 
 vector<unique_ptr<Block>> spyCBlock::DAOJson::loadBlocks(string &path){}
 
-bool DAOJson::saveBlock(string inputPath, string outputPath)
+bool DAOJson::saveBlock(string inputPath, string outputPath, int &height)
 {
   if(inputPath.empty() || outputPath.empty())
   {
@@ -26,18 +28,40 @@ bool DAOJson::saveBlock(string inputPath, string outputPath)
       if(!fs::is_directory(inputPath))
       {
           ifstream loadFileDat(inputPath);
+          //Update conversion to json
+          ofstream saveBlkToJson(outputPath);
+          if(!saveBlkToJson.is_open()){
+              LOG(ERROR) << "The file output not open " + outputPath;
+              throw DAOException("The file output not open in tha path " + outputPath);
+          }
+          OStreamWrapper streamWrapper(saveBlkToJson);
+          Writer<OStreamWrapper> writer(streamWrapper);
           if(loadFileDat.is_open())
           {
-            vector<Block> blockFileBlk;
+            //vector<Block> blockFileBlk;
+            writer.StartObject();
+            writer.Key("blocks");
+            writer.StartArray();
+            Block block;
+            chrono::milliseconds start = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());
             while(!loadFileDat.eof())
             {
-              Block block;
+
               block.decode(loadFileDat);
-              blockFileBlk.emplace_back(block);
+              height++;
+              block.setHeightBlock(height);
+              //blockFileBlk.emplace_back(block);
+              block.toJson(writer);
+
             }
-            ofstream saveBlkToJson(outputPath);
+            chrono::milliseconds end = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());
+            milliseconds duration = (end - start);
+            LOG(ERROR) << "Block readed in " + to_string((duration.count() * milliseconds::period::num / milliseconds::period::den));
+            //ofstream saveBlkToJson(outputPath);
             //convertToJson(blockFileBlk, saveBlkToJson);
-            convertToJsonRapidJson(blockFileBlk, saveBlkToJson);
+            //convertToJsonRapidJson(blockFileBlk, saveBlkToJson);
+            writer.EndArray();
+            writer.EndObject();
             saveBlkToJson.close();
             return true;
           }
@@ -52,6 +76,7 @@ bool DAOJson::saveBlock(string inputPath, string outputPath)
   throw DAOException("The file input not exist " + inputPath);
 }
 
+//this method can be removed
 void DAOJson::convertToJson(vector<Block> &blocks, ofstream &outputPath)
 {
   if(blocks.empty())
@@ -82,6 +107,7 @@ void DAOJson::convertToJson(vector<Block> &blocks, ofstream &outputPath)
   throw DAOException("The file output not open in tha path ");
 }
 
+//This methid can be removed because I refactoring the methof saveblock
 void DAOJson::convertToJsonRapidJson(vector<Block> &blocks, ofstream &outputPath)
 {
   if(blocks.empty())
@@ -111,6 +137,5 @@ void DAOJson::convertToJsonRapidJson(vector<Block> &blocks, ofstream &outputPath
   }else {
       LOG(ERROR) << "The file output not open ";
       throw DAOException("The file output not open in tha path ");
-  }
+    }
 }
-

@@ -20,7 +20,7 @@ namespace spyCBlock
       public:
           virtual vector<unique_ptr<Block>> loadBlocks(string &path) = 0;
 
-          virtual bool saveBlock(string inputPath, string outputPath) = 0;
+          virtual bool saveBlock(string inputPath, string outputPath, int &height) = 0;
 
     };
 }

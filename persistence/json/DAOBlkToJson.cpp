@@ -23,7 +23,7 @@ bool DAOFileBlkJson::getFinishBlock() const
   return finishBlocks;
 }
 
-bool DAOFileBlkJson::saveBlock(string inputPath, string outputPath)
+bool DAOFileBlkJson::saveBlock(string inputPath, string outputPath, int &height)
 {
   if (inputPath.empty() || outputPath.empty())
   {

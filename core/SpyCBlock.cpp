@@ -50,8 +50,8 @@ bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string desti
   DAOFileBlkJson dao;
 
   bool resultConversion = false;
-
-  resultConversion = dao.saveBlock(locationBitcoinCore, destinationBitcoinCoreJson);
+  int height = 0; //temporal
+  resultConversion = dao.saveBlock(locationBitcoinCore, destinationBitcoinCoreJson, height);
 
   if(resultConversion)
   {
@@ -72,6 +72,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
     throw exception();
   }
 
+  int height = 0;
   string pathInput = nameFileSearched(locationBitcoinCore);
 
   while(pathInput != "")
@@ -82,8 +83,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
     DAOJson dao;
 
     string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".json";
-    dao.saveBlock(pathInput, pathOutput);
-
+    dao.saveBlock(pathInput, pathOutput, height);
     currentFile++;
     pathInput = nameFileSearched(locationBitcoinCore);
   }

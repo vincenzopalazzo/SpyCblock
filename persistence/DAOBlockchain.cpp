@@ -8,6 +8,7 @@
 
 using namespace spyCBlock;
 
+//TODO can be removed
 vector<unique_ptr<Block>> spyCBlock::DAOBlockchain::loadBlocks(string &path) {
     if (path.empty())
     {
@@ -48,12 +49,13 @@ vector<unique_ptr<Block>> spyCBlock::DAOBlockchain::loadBlocks(string &path) {
     LOG(INFO) << "The path not exist";
     throw DAOException("The path not exist");
 }
-
-bool spyCBlock::DAOBlockchain::saveBlock(string inputPath, string outputPath)
+//Can be removed
+bool spyCBlock::DAOBlockchain::saveBlock(string inputPath, string outputPath, int &height)
 {
   //do nothing
 }
 
+//can be removed
 std::vector<unique_ptr<Block>> spyCBlock::DAOBlockchain::readBlock(fs::directory_entry entry) {
     if (!isBlockFileBlk(entry))
     {
