@@ -8,31 +8,24 @@
 
 #include "TransactionOutput.h"
 #include "TransactionInput.h"
+#include "TransactionWitness.h"
 #include "../../util/serialize.h"
 
-/**
- * Created on 1/21/19.
- * @author https://github.com/vincenzopalazzo
- */
+ // Created on 1/21/19.
+ // @author https://github.com/vincenzopalazzo
 namespace spyCBlock{
 
     class RawTransaction{
 
-      private:
-
-          int32_t version;
-          DVarInt numberTxIn;
-          std::vector<TransactionInput> txIn; // TODO che cosa cambia nella transazione coind base?
-          DVarInt numberTxOut;
-          std::vector<TransactionOutput> txOut;
-          uint32_t lockTime;
-
-          //Additiona information
-          std::string hashRawTransaction;
-
       public:
 
+          enum class Type{PRIMITIVE = 1, WITNESS = 2};
+
           int32_t getVersion() const;
+
+          uint8_t getFlag() const;
+
+          uint8_t getMarker() const;
 
           const DVarInt& getNumberTxIn() const;
 
@@ -55,6 +48,30 @@ namespace spyCBlock{
           nlohmann::json toJson();
 
           void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+
+    private:
+
+          Type type;
+
+          int32_t version;
+
+          uint8_t marker;
+
+          uint8_t flag;
+
+          DVarInt numberTxIn;
+
+          std::vector<TransactionInput> txIn; // TODO che cosa cambia nella transazione coind base?
+
+          DVarInt numberTxOut;
+
+          std::vector<TransactionOutput> txOut;
+
+          uint32_t lockTime;
+
+          std::string hashRawTransaction;
+
+          std::vector<TransactionWitness> txsWitness;
 
     };
 }

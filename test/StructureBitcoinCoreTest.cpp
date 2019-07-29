@@ -32,7 +32,6 @@
 
 #include "../structure/block/block.h"
 #include "../persistence/IDAOBlockchain.h"
-#include "../persistence/DAOBlockchain.h"
 #include "../persistence/DAOException.h"
 #include "../core/ConfiguratorSingleton.h"
 
@@ -715,16 +714,15 @@ TEST(StructureBitcoinCoreTest, compare_previus_second_block_hash)
     {
         while(!fileBlk.eof() && coutBlockRead < priviusHashs.size())
         {
-            Block *blockTested = new Block();
-            blockTested->decode(fileBlk);
+            Block blockTested;
+            blockTested.decode(fileBlk);
 
-            LOG(INFO) << "Block hash previus readed " << blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+            LOG(INFO) << "Block hash previus readed " << blockTested.getBlockHeader().getPreviousBlockHeaderHash().GetHex();
             LOG(INFO) << "Block hash previus awaited " << priviusHashs.at(coutBlockRead);
 
-            ASSERT_EQ(blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex(),  priviusHashs.at(coutBlockRead)) << "Assertion fail at: " << coutBlockRead;
+            ASSERT_EQ(blockTested.getBlockHeader().getPreviousBlockHeaderHash().GetHex(),  priviusHashs.at(coutBlockRead)) << "Assertion fail at: " << coutBlockRead;
 
             coutBlockRead++;
-            delete blockTested;
         }
     }
     catch (out_of_range ore)
@@ -735,73 +733,6 @@ TEST(StructureBitcoinCoreTest, compare_previus_second_block_hash)
     EXPECT_EQ(coutBlockRead, 154);
 
     fileBlk.close();
-}
-
-//Fist test for create readed all file into directory block whit DAOBlockchain
-//Look at the DAOBlockchain.cpp file in persistence to get more information about him
-TEST(StructureBitcoinCoreTest, compare_previus_all_block_hash)
-{
-  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
-
-  string localPathRoot = pathLogRoot;
-
-  FLAGS_minloglevel = 2;
-  FLAGS_logtostderr = false;
-  google::SetLogDestination(google::GLOG_ERROR,  localPathRoot.append("compare_previus_all_block_hash.log").c_str());
-
-    unique_ptr<IDAOBlockchain> daoBlockchain(new DAOBlockchain());
-
-    try
-    {
-            string path = pathMockRoot + "bitcoin/block";
-            vector<unique_ptr<Block>> blocks = daoBlockchain->loadBlocks(path);
-            ASSERT_EQ(120127, blocks.size());
-
-            ifstream stream(pathMockRoot + "previus_hash_second_block_header.txt");
-
-            LOG_IF(ERROR, !stream.is_open()) << "The file previus_hash_second_block_header.txt not opened";
-
-            int numbarBlock = 0;
-
-            while(!stream.eof())
-            {
-                  string previusBlockCalculate;
-                  stream >> previusBlockCalculate;
-                  if(!previusBlockCalculate.empty())
-                  {
-                     LOG(INFO) << "The previus block calculate is: " << previusBlockCalculate;
-                     string previusBlockReaded = blocks.at(numbarBlock)->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-                     LOG(INFO) << "The previus block readed is: " << previusBlockCalculate;
-                     ASSERT_EQ(previusBlockCalculate, previusBlockReaded) << " the hash block are different at the "  << numbarBlock << " numbars blocks";
-                     numbarBlock++;
-                  }
-              }
-            stream.close();
-
-            ifstream streamTwo(pathMockRoot + "previus_hash_block_header.txt");
-
-            LOG_IF(ERROR, !streamTwo.is_open()) << "The file previus_hash_block_header not is open";
-
-            while(!streamTwo.eof())
-            {
-                string previusBlockCalculate;
-                streamTwo >> previusBlockCalculate;
-                if(!previusBlockCalculate.empty())
-                  {
-                    LOG(INFO) << "The previus block calculate is: " << previusBlockCalculate;
-                    string previusBlockReaded = blocks.at(numbarBlock)->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-                    LOG(INFO) << "The previus block readed is: " << previusBlockCalculate;
-                    ASSERT_EQ(previusBlockCalculate, previusBlockReaded) << " the hash block are different at the "  << numbarBlock << " numbars blocks";
-                    numbarBlock++;
-                  }
-              }
-            streamTwo.close();
-           }
-    catch (DAOException daoException)
-    {
-        FAIL() << "The the fail for cause of this exception:  " << daoException.what();
-    }
 }
 
 //FistTest for copare the type block network
@@ -819,11 +750,10 @@ TEST(StructureBitcoinCoreTest, compare_type_blocks_network)
   //Init data for start this test
   ifstream stream(pathMockRoot + "bitcoin/block/blk00450.dat");
 
-  //Block *block = new Block();
-  unique_ptr<Block> block(new Block());
-  block->decode(stream);
+  Block block;
+  block.decode(stream);
 
-  EXPECT_EQ(spyCBlock::typeBlock::NETWORK_MAIN, block->getMagicNum());
+  EXPECT_EQ(spyCBlock::typeBlock::NETWORK_MAIN, block.getMagicNum());
 
   stream.close();
 }

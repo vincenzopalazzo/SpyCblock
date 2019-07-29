@@ -18,6 +18,23 @@ void RawTransaction::decode(std::ifstream &stream)
     Unserialize(stream, version);
     LOG(INFO) << "Version raw transaction " << version;
     this->numberTxIn.decode(stream);
+
+    if(numberTxIn.getValue() == 0)
+    {
+      LOG(WARNING) << "Findend the marker";
+
+      this->numberTxIn.decode(stream);
+
+      if(numberTxIn.getValue() == 1)
+      {
+        LOG(WARNING) << "Findend the flag";
+        type = Type::WITNESS;
+         numberTxIn.decode(stream); //With this code I readed the numbar tranaction input in Witnees transaction type;
+      }
+    }else{
+      type = Type::PRIMITIVE;
+    }
+
     LOG(INFO) << "Numbar transaction input in raw transaction " << numberTxIn.getValue();
     txIn.clear();
 
@@ -41,7 +58,18 @@ void RawTransaction::decode(std::ifstream &stream)
         transactionOutput.decode(stream);
 
     }
-    //Create a wrapper
+
+    if(type == Type::WITNESS){
+      txsWitness.reserve(numberTxIn.getValue());
+      for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
+      {
+          txsWitness.emplace_back(TransactionWitness{});
+          TransactionWitness& txw = txsWitness.back();
+          txw.decode(stream);
+      }
+    }
+
+    //TODO Create a wrapper
     Unserialize(stream, this->lockTime);
 
     //Create additional information
@@ -162,6 +190,16 @@ void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writer
   writerJson.Uint(this->lockTime);
 
   writerJson.EndObject();
+}
+
+uint8_t RawTransaction::getFlag() const
+{
+  return flag;
+}
+
+uint8_t RawTransaction::getMarker() const
+{
+  return marker;
 }
 
 //Getter and setter

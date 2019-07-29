@@ -13,8 +13,6 @@ using namespace std;
 namespace fs = std::experimental::filesystem;
 using namespace chrono;
 
-vector<unique_ptr<Block>> spyCBlock::DAOJson::loadBlocks(string &path){}
-
 bool DAOJson::saveBlock(string inputPath, string outputPath, int &height)
 {
   if(inputPath.empty() || outputPath.empty())
@@ -56,7 +54,7 @@ bool DAOJson::saveBlock(string inputPath, string outputPath, int &height)
             }
             chrono::milliseconds end = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());
             milliseconds duration = (end - start);
-            LOG(ERROR) << "Block readed in " + to_string((duration.count() * milliseconds::period::num / milliseconds::period::den));
+            LOG(ERROR) << "Block readed in " + to_string((duration.count() * milliseconds::period::num / milliseconds::period::den)) + " second";
             //ofstream saveBlkToJson(outputPath);
             //convertToJson(blockFileBlk, saveBlkToJson);
             //convertToJsonRapidJson(blockFileBlk, saveBlkToJson);
@@ -74,37 +72,6 @@ bool DAOJson::saveBlock(string inputPath, string outputPath, int &height)
   }
   LOG(ERROR) << "The file input not exist" << inputPath;
   throw DAOException("The file input not exist " + inputPath);
-}
-
-//this method can be removed
-void DAOJson::convertToJson(vector<Block> &blocks, ofstream &outputPath)
-{
-  if(blocks.empty())
-  {
-    LOG(ERROR) << "The input velue is empty";
-    throw DAOException("The input value is empty");
-  }
-
-  json jsonFileDatConverted;
-
-  json appendrJsonBlock;
-
-  for(auto &block : blocks)
-  {
-    appendrJsonBlock.push_back(block.toJsonFat());
-  }
-
-  jsonFileDatConverted["blocks"] = appendrJsonBlock;
-
-
-  if(outputPath.is_open())
-  {
-     outputPath << jsonFileDatConverted;
-     outputPath.clear();
-     return;
-  }
-  LOG(ERROR) << "The file output not open ";
-  throw DAOException("The file output not open in tha path ");
 }
 
 //This methid can be removed because I refactoring the methof saveblock

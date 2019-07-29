@@ -9,8 +9,6 @@
 #include "SpyCBlock.h"
 #include "../structure/block/block.h"
 #include "../persistence/IDAOBlockchain.h"
-#include "../persistence/DAOBlockchain.h"
-#include "../persistence/json/DAOBlkToJson.h"
 #include "../persistence/DAOException.h"
 #include "../persistence/json/DAOJson.h"
 
@@ -31,36 +29,6 @@ void SpyCBlock::read(string pathBlockchain) {
     block.decode(stream);
     outStream << block.toString();
   }
-}
-
-/*
- This method have problem with a memory, for the moment I don't refactoring this code because this is only a prototype of the parser
- This method is replaced with convertBlkIntoJson() method
-
- This method used DAOFileBlkJson
-*/
-bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
-{
-  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
-  {
-    LOG(ERROR) << "The input/s method are/is null";
-    throw "Input are null";
-  }
-
-  DAOFileBlkJson dao;
-
-  bool resultConversion = false;
-  int height = 0; //temporal
-  resultConversion = dao.saveBlock(locationBitcoinCore, destinationBitcoinCoreJson, height);
-
-  if(resultConversion)
-  {
-      LOG(INFO) << "Conversion bitcoin-core into json O.K";
-      return resultConversion;
-  }
-   LOG(INFO) << "Conversion bitcoin-core into json K.O";
-  return resultConversion;
-
 }
 
 //This method used DAOJson

@@ -28,9 +28,9 @@
 #include <gtest/gtest.h>
 
 #include "../structure/block/block.h"
-#include "../persistence/DAOBlockchain.h"
 #include "../persistence/DAOException.h"
 #include "../core/ConfiguratorSingleton.h"
+#include "util/DAOUtilTest.h"
 
 using namespace std;
 using namespace spyCBlock;
@@ -47,10 +47,6 @@ using namespace spyCBlock;
  * @author https://github.com/vincenzopalazzo
  */
 
-vector<unique_ptr<Block>> blocks;
-vector<string> previusBlockHashWhitScriptNull;
-vector<string> previusBlockHashWhitScriptNullCompare;
-
 //Test for block blk00032
 //The error transaction is https://www.blockchain.com/it/btc/tx/c78854360663aa585b0400df7297afc458521bf858e6c93b34d4ca696ae30f29
 TEST(NullDataTransactionTest, testNullDataTransaction) {
@@ -61,12 +57,10 @@ TEST(NullDataTransactionTest, testNullDataTransaction) {
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("testNullDataTransaction.log").c_str());
 
-    unique_ptr<IDAOBlockchain> dao(new DAOBlockchain());
-
+    DAOUtilTest dao;
     try {
         string path = pathMockRoot + "bitcoin/block/bug/blk32";
-        blocks = dao->loadBlocks(path);
-        ASSERT_EQ(blocks.size(), 915);
+        ASSERT_EQ(dao.loadBlocks(path).size(), 915);
     }
     catch (DAOException exception) {
         FAIL() << "Test fail for this cause" << exception.what();
@@ -85,6 +79,9 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
     bool findValueSerched = false;
+    vector<Block> blocks;
+    vector<string> previusBlockHashWhitScriptNull;
+    vector<string> previusBlockHashWhitScriptNullCompare;
 
     ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk32.txt"));
     if(!saveFileWhitScriptNull.is_open())
@@ -95,7 +92,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
 
     for(auto &block : blocks)
     {
-      for(auto &rawTransaction : block->getRawTransactions())
+      for(auto &rawTransaction : block.getRawTransactions())
       {
           for(auto &inputTransaction : rawTransaction.getTxIn())
           {
@@ -134,7 +131,9 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
   google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
   bool findValueSerched = false;
-
+  vector<Block> blocks;
+  vector<string> previusBlockHashWhitScriptNull;
+  vector<string> previusBlockHashWhitScriptNullCompare;
 
   ifstream saveFileWhitScriptNull(pathMockRoot + "previus_hash_script_null_blk32.txt");
   if(!saveFileWhitScriptNull.is_open())
@@ -142,9 +141,6 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
     LOG(ERROR) << "File not open into path " << pathMockRoot;
     FAIL() << "File not open into path " << pathMockRoot;
   }
-
-  previusBlockHashWhitScriptNull.clear();
-  previusBlockHashWhitScriptNullCompare.clear();
 
   while(!saveFileWhitScriptNull.eof())
   {
@@ -154,7 +150,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
     {
         continue;
     }
-    previusBlockHashWhitScriptNull.push_back(attualValue);
+    previusBlockHashWhitScriptNull.emplace_back(attualValue);
   }
 
   saveFileWhitScriptNull.close();
@@ -174,7 +170,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
     {
         continue;
     }
-    previusBlockHashWhitScriptNullCompare.push_back(attualValue);
+    previusBlockHashWhitScriptNullCompare.emplace_back(attualValue);
   }
 
   loadFileReadedToPython.close();
@@ -193,12 +189,11 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk53)
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("testNullDataTransaction.log").c_str());
 
-    unique_ptr<IDAOBlockchain> dao(new DAOBlockchain());
+    DAOUtilTest dao;
 
     try {
         string path = pathMockRoot + "bitcoin/block/bug/blk53";
-        blocks = dao->loadBlocks(path);
-        ASSERT_EQ(blocks.size(), 751);
+        ASSERT_EQ(dao.loadBlocks(path).size(), 751);
     }
     catch (DAOException exception) {
         FAIL() << "Test fail for this cause" << exception.what();
@@ -218,10 +213,9 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
     bool findValueSerched = false;
-
-
-    previusBlockHashWhitScriptNull.clear();
-    previusBlockHashWhitScriptNullCompare.clear();
+    vector<Block> blocks;
+    vector<string> previusBlockHashWhitScriptNull;
+    vector<string> previusBlockHashWhitScriptNullCompare;
 
     ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk53.txt"));
     if(!saveFileWhitScriptNull.is_open())
@@ -232,7 +226,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
 
     for(auto &block : blocks)
     {
-      for(auto &rawTransaction : block->getRawTransactions())
+      for(auto &rawTransaction : block.getRawTransactions())
       {
           for(auto &inputTransaction : rawTransaction.getTxIn())
           {
@@ -273,10 +267,9 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
   google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
   bool findValueSerched = false;
-
-
-  previusBlockHashWhitScriptNull.clear();
-  previusBlockHashWhitScriptNullCompare.clear();
+  vector<Block> blocks;
+  vector<string> previusBlockHashWhitScriptNull;
+  vector<string> previusBlockHashWhitScriptNullCompare;
 
   ifstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk53.txt"));
   if(!saveFileWhitScriptNull.is_open())
@@ -332,12 +325,11 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk54)
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("testNullDataTransaction.log").c_str());
 
-    unique_ptr<IDAOBlockchain> dao(new DAOBlockchain());
+    DAOUtilTest dao;
 
     try {
         string path = pathMockRoot + ("bitcoin/block/bug/blk54");
-        blocks = dao->loadBlocks(path);
-        ASSERT_EQ(blocks.size(), 811);
+        ASSERT_EQ(dao.loadBlocks(path).size(), 811);
     }
     catch (DAOException exception) {
         FAIL() << "Test fail for this cause" << exception.what();
@@ -356,10 +348,9 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
     google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
     bool findValueSerched = false;
-
-
-    previusBlockHashWhitScriptNull.clear();
-    previusBlockHashWhitScriptNullCompare.clear();
+    vector<Block> blocks;
+    vector<string> previusBlockHashWhitScriptNull;
+    vector<string> previusBlockHashWhitScriptNullCompare;
 
     ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk54.txt"));
     if(!saveFileWhitScriptNull.is_open())
@@ -370,7 +361,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_t
 
     for(auto &block : blocks)
     {
-      for(auto &rawTransaction : block->getRawTransactions())
+      for(auto &rawTransaction : block.getRawTransactions())
       {
           for(auto &inputTransaction : rawTransaction.getTxIn())
           {
@@ -409,10 +400,9 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
   google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
 
   bool findValueSerched = false;
-
-
-  previusBlockHashWhitScriptNull.clear();
-  previusBlockHashWhitScriptNullCompare.clear();
+  vector<Block> blocks;
+  vector<string> previusBlockHashWhitScriptNull;
+  vector<string> previusBlockHashWhitScriptNullCompare;
 
   ifstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk54.txt"));
   if(!saveFileWhitScriptNull.is_open())
@@ -429,7 +419,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
     {
         continue;
     }
-    previusBlockHashWhitScriptNull.push_back(attualValue);
+    previusBlockHashWhitScriptNull.emplace_back(attualValue);
   }
 
   saveFileWhitScriptNull.close();
@@ -449,7 +439,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_
     {
         continue;
     }
-    previusBlockHashWhitScriptNullCompare.push_back(attualValue);
+    previusBlockHashWhitScriptNullCompare.emplace_back(attualValue);
   }
 
   loadFileReadedToPython.close();

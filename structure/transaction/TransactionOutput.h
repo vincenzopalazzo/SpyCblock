@@ -19,8 +19,8 @@ namespace spyCBlock{
       private:
 
           int64_t nValue;
-          DScript script;
 
+          DScript script;
           //Addintiona information
           std::string hashOutputTransaction;
 

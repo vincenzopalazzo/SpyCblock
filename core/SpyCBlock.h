@@ -7,27 +7,24 @@
 
 #include <string>
 
-using namespace std;
 
 namespace spyCBlock {
 
     class SpyCBlock {
 
-    public:
-        //TODO this method refactoring
-        void read(string pathBlockchain);
+        public:
+            //TODO this method refactoring
+            void read(std::string pathBlockchain);
 
-        bool convertBlockchainToJson(string locationBitcoinCore, string destinationBitcoinCoreJson);
+            void convertBlkIntoJson(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 
-        void convertBlkIntoJson(string locationBitcoinCore, string destinationBitcoinCoreJson);
+        private:
 
-    private:
+            int currentFile = 0;
 
-        int currentFile = 0;
+            std::string nameFileSearched(std::string &pathInput);
 
-        string nameFileSearched(string &pathInput);
-
-        string getNameFile(string &path);
+            std::string getNameFile(std::string &path);
     };
 
 }

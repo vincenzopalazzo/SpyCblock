@@ -20,12 +20,12 @@ add_executable(
 
         SpyCBlockTests
 
+        test/util/DAOUtilTest.cpp
+
         test/StructureBitcoinCoreTest.cpp
-        test/DAOBlockchainTest.cpp
         test/SHABitcoinCoreTest.cpp
         test/SerealizationTest.cpp
         test/JsonSerializationTest.cpp
-        test/DAOBlkToJsonTest.cpp
         test/DAOJsonTest.cpp
         test/NullDataTransactionsTest.cpp
         test/ExceptionCompactsizeTest.cpp
@@ -45,15 +45,14 @@ add_executable(
         structure/transaction/RawTransaction.cpp
         structure/transaction/TransactionOutput.cpp
         structure/transaction/TransactionInput.cpp
+        structure/transaction/TransactionWitness.cpp
         structure/script/scriptCode.cpp
         structure/type/Outpoint.cpp
         structure/type/DVarInt.cpp
         structure/type/DScript.cpp
         structure/type/Outpoint.cpp
 
-        persistence/DAOBlockchain.cpp
         persistence/DAOException.cpp
-        persistence/json/DAOBlkToJson.cpp
         persistence/json/DAOJson.cpp
         persistence/SerializationUtil.cpp
 
@@ -86,6 +85,7 @@ add_executable(
         structure/transaction/RawTransaction.cpp
         structure/transaction/TransactionOutput.cpp
         structure/transaction/TransactionInput.cpp
+        structure/transaction/TransactionWitness.cpp
         structure/script/scriptCode.cpp
         structure/type/Outpoint.cpp
         structure/type/DVarInt.cpp
@@ -93,10 +93,7 @@ add_executable(
         structure/type/Outpoint.cpp
 
         persistence/DAOException.cpp
-        persistence/DAOBlockchain.cpp
-        persistence/DAOException.cpp
         persistence/SerializationUtil.cpp
-        persistence/json/DAOBlkToJson.cpp
         persistence/json/DAOJson.cpp
 
         crypto/UtilCrypto.cpp

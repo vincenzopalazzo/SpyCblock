@@ -14,8 +14,6 @@ namespace spyCBlock {
   class DAOJson : public IDAOBlockchain
   {
     public:
-    // Can be removed
-      vector<unique_ptr<Block>> loadBlocks(string &path) override;
 
       bool saveBlock(string inputPath, string outputPath, int &height) override;
 
