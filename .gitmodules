@@ -1,5 +1,5 @@
 [submodule "include/cpp-properties"]
-	url = https://github.com/vincenzopalazzo/cpp-properties
+	url = https://github.com/vincenzopalazzo/cpp-properties.git
 [submodule "include/rapidjson"]
 	path = include/rapidjson
 	url = https://github.com/Tencent/rapidjson.git
