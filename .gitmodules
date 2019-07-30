@@ -5,4 +5,4 @@
 	url = https://github.com/Tencent/rapidjson.git
 [submodule "include/Bitcoin-Cryptography-Library"]
 	path = include/Bitcoin-Cryptography-Library
-	url = https://github.com/vincenzopalazzo/Bitcoin-Cryptography-Library/tree/version_spycblock/
+	url = https://github.com/vincenzopalazzo/Bitcoin-Cryptography-Library.git
