@@ -34,10 +34,10 @@
 #include <gtest/gtest.h>
 
 #include "../util/strencodings.h"
-#include "../cryptobitcoin/Sha256.hpp"
-#include "../cryptobitcoin/Sha256Hash.hpp"
-#include "../cryptobitcoin/Utils.hpp"
-#include "../cryptobitcoin/TestHelper.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/Sha256.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/Sha256Hash.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/Utils.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/TestHelper.hpp"
 
 #include "../crypto/UtilCrypto.h"
 #include "../structure/block/block.h"

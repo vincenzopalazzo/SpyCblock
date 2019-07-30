@@ -35,11 +35,6 @@ add_executable(
         util/strencodings.cpp
         util/prevector.cpp
 
-
-        cryptobitcoin/Sha256.cpp
-        cryptobitcoin/Sha256Hash.cpp
-        cryptobitcoin/Utils.cpp
-
         structure/block/block.cpp
         structure/block/blockHeader.cpp
         structure/transaction/RawTransaction.cpp
@@ -65,6 +60,11 @@ add_executable(
         include/cpp-properties/src/Properties.cpp
         include/cpp-properties/src/PropertiesParser.cpp
         include/cpp-properties/src/PropertiesUtils.cpp
+
+        #include bitcoin-cryptography-library
+        include/bitcoin-cryptography-library/cpp/Sha256.cpp
+        include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp
+        include/bitcoin-cryptography-library/cpp/Utils.cpp
 
 )
 
@@ -99,14 +99,15 @@ add_executable(
         crypto/UtilCrypto.cpp
         crypto/CryptoCore.cpp
 
-        cryptobitcoin/Sha256.cpp
-        cryptobitcoin/Sha256Hash.cpp
-        cryptobitcoin/Utils.cpp
-
         #cpp-properties file include
         include/cpp-properties/src/Properties.cpp
         include/cpp-properties/src/PropertiesParser.cpp
         include/cpp-properties/src/PropertiesUtils.cpp
+
+        #include bitcoin-cryptography-library
+        include/bitcoin-cryptography-library/cpp/Sha256.cpp
+        include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp
+        include/bitcoin-cryptography-library/cpp/Utils.cpp
 
 )
 

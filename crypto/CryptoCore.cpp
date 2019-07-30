@@ -2,8 +2,8 @@
 
 #include "CryptoCore.h"
 #include "../crypto/UtilCrypto.h"
-#include "../cryptobitcoin/Sha256Hash.hpp"
-#include "../cryptobitcoin/Sha256.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/Sha256Hash.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/Sha256.hpp"
 
 using namespace spyCBlock;
 //TODO create an exception for this
