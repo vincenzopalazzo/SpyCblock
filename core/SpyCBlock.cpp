@@ -14,23 +14,6 @@
 
 using namespace spyCBlock;
 
-/*
- This method have problem with a memory, for the moment I don't refactoring this code because this is only a prototype of the parser
- This method is replaced with convertBlkIntoJson() method
-*/
-void SpyCBlock::read(string pathBlockchain) {
-
-  ifstream stream(pathBlockchain);
-
-  ofstream outStream("/home/vincenzo/Desktop/deserealize_file/blk00450.txt");
-
-  while (!stream.eof()) {
-    Block block;
-    block.decode(stream);
-    outStream << block.toString();
-  }
-}
-
 //This method used DAOJson
 void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {

@@ -14,6 +14,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+  //TODO configuration logger to the ConfiguratorSingleton
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
     google::InitGoogleLogging("2");
@@ -21,12 +22,9 @@ int main(int argc, char* argv[])
     google::SetLogDestination(google::GLOG_ERROR, pathLogFile.c_str());
 
     SpyCBlock spyCBlock = SpyCBlock();
-    //TODO fix the bug id The path contains the end /
 
-    //This method used DAOJson
+    //TODO fix the bug id The path contains the end /
     spyCBlock.convertBlkIntoJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
 
-    //This method used DAOBlkToJson
-    //spyCBlock.convertBlockchainToJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
     return 0;
 }

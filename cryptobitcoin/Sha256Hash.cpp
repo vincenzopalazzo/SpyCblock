@@ -48,36 +48,27 @@ bool Sha256Hash::operator!=(const Sha256Hash &other) const {
   return !(*this == other);
 }
 
-/**
-  * Thanks for https://www.reddit.com/r/cpp_questions/comments/b4lvgl/convert_unit8_t_32_to_string/
-  * @author https://github.com/vincenzopalazzo
-*/
-std::string Sha256Hash::ToString()
-{
+
+//@author https://github.com/vincenzopalazzo
+std::string Sha256Hash::ToString(){
   std::string hashResult;
   std::stringstream stream;
 
-  for(int i = 0; i < HASH_LEN; i++)
-  {
-
+  for(int i = 0; i < HASH_LEN; i++){
       unsigned int valueInt = static_cast<unsigned int>(value[i]);
       stream << std::hex << std::setfill('0')  << std::setprecision(2) << std::setw(2) << valueInt;
-
   }
-
   hashResult = stream.str();
   return hashResult;
 }
 
-std::string Sha256Hash::ToStringForProtocol()
-{
-
+//@author https://github.com/vincenzopalazzo
+std::string Sha256Hash::ToStringForProtocol(){
   //reverse array value
   uint8_t clone_has_raw[HASH_LEN];
 
   int position = 0;
-  for(int i = HASH_LEN - 1; i >= 0; i--)
-  {
+  for(int i = HASH_LEN - 1; i >= 0; i--){
     clone_has_raw[position] = value[i];
     position++;
   }
@@ -85,13 +76,10 @@ std::string Sha256Hash::ToStringForProtocol()
   std::string hashResult;
   std::stringstream stream;
 
-  for(int i = 0; i < HASH_LEN; i++)
-  {
+  for(int i = 0; i < HASH_LEN; i++){
       unsigned int valueInt = static_cast<unsigned int>(clone_has_raw[i]);
       stream << std::hex << std::setfill('0')  << std::setprecision(2) << std::setw(2) << valueInt;
-
   }
-
   hashResult = stream.str();
   stream.clear();
   return hashResult;
