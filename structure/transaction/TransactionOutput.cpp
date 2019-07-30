@@ -38,6 +38,11 @@ string TransactionOutput::toSerealizationForm() const
   return hexForm;
 }
 
+bool TransactionOutput::isOPT_RETURN()
+{
+  return this->script.getRawScriptString().empty();
+}
+
 json TransactionOutput::toJson()
 {
   json txOutputjson = json::object({

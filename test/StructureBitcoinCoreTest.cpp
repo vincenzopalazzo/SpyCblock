@@ -42,7 +42,6 @@ using namespace spyCBlock;
  * This battery of tests was developed first to test the parser evolution over time,
  * all functions are tested from the parsing of a simple data
  * to the paring of the whole block folder with a parser that was created only at test purpose.
- * Look at the DAOBlockchain.cpp file in persistence to get more information about him
  * @author https://github.com/vincenzopalazzo
  */
 
@@ -362,15 +361,15 @@ TEST(StructureBitcoinCoreTest, all_Read_file_dat)
 
                 Block block;
                 block.decode(stream);
-                if(block.getBlockHeader().getVersion() == 0)//TODO dare un occhiata qui qualcosa non va con i numeri di blocchi
-                {
-                    LOG(WARNING) << "block is null -> " << block.getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-                }else{
+               // if(block.getBlockHeader().getVersion() == 0)//TODO dare un occhiata qui qualcosa non va con i numeri di blocchi
+                //{
+                 //   LOG(WARNING) << "block is null -> " << block.getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+               // }else{
                     outStream << block.toString();
                     numbarBlock++;
                     blocks.emplace_back(block);
                     LOG(INFO) << "Numbar block read now " << numbarBlock;
-                }
+                //}
             }
             EXPECT_EQ(blocks.size(), 119973); //TODO qualcosa alla fine del blocco fa i capricci sono in realtà 19973
         } else{
@@ -403,46 +402,44 @@ TEST(StructureBitcoinCoreTest, compare_previus_block_hash)
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_WARNING, localPathRoot.append("compare_previus_block_hash.log").c_str());
 
-    ifstream *fileWhitHash = new ifstream(pathMockRoot + "previus_hash_block_header.txt");
+    ifstream fileWhitHash (pathMockRoot + "previus_hash_block_header.txt");
 
-    vector<string> *priviusHashs = new vector<string>();
-    if(!fileWhitHash->is_open())
+    vector<string> priviusHashs;
+    if(!fileWhitHash.is_open())
     {
         FAIL() << "File previus_hash_block_header.txt not open";
     }
-    while (!fileWhitHash->eof()) {
+    while (!fileWhitHash.eof()) {
         string readLine;
-        *fileWhitHash >> readLine;
+        fileWhitHash >> readLine;
         LOG(INFO) << "I have read " << readLine;
         if(readLine != ""){
-            priviusHashs->push_back(readLine);
+            priviusHashs.emplace_back(readLine);
         } else{
             LOG(WARNING) << "Line empty";
         }
 
     }
-    fileWhitHash->close();
-    LOG(INFO) << "Hashs readted: " << priviusHashs->size();
-    ASSERT_EQ(priviusHashs->size(), 119972);
+    fileWhitHash.close();
+  //TODO in this position exist an bug
+    LOG(INFO) << "Hashs readted: " << priviusHashs.size();
+    ASSERT_EQ(priviusHashs.size(), 119972);
 
-    fileWhitHash->close();
+    fileWhitHash.close();
 
-    delete fileWhitHash;
+    ifstream fileBlk(pathMockRoot + "/bitcoin/block/blk00000.dat");
 
-    ifstream *fileBlk = new ifstream(pathMockRoot + "/bitcoin/block/blk00000.dat");
-
-    LOG_IF(FATAL, !fileBlk->is_open()) << "File: blk00000 not open";
+    LOG_IF(FATAL, !fileBlk.is_open()) << "File: blk00000 not open";
     int coutBlockRead = 0;
     try {
-        while(!fileBlk->eof() && coutBlockRead < priviusHashs->size())
+        while(!fileBlk.eof() && (coutBlockRead < static_cast<int>(priviusHashs.size())))
         {
-            Block *blockTested = new Block();
-            blockTested->decode(*fileBlk);
-            LOG(INFO) << "Block hash previus readed " << blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-            LOG(INFO) << "Block hash previus awaited " << priviusHashs->at(coutBlockRead);
-            ASSERT_EQ(blockTested->getBlockHeader().getPreviousBlockHeaderHash().GetHex(),  priviusHashs->at(coutBlockRead)) << "Assertion fail at: " << coutBlockRead;
+            Block blockTested;
+            blockTested.decode(fileBlk);
+            LOG(INFO) << "Block hash previus readed " << blockTested.getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+            LOG(INFO) << "Block hash previus awaited " << priviusHashs.at(coutBlockRead);
+            ASSERT_EQ(blockTested.getBlockHeader().getPreviousBlockHeaderHash().GetHex(),  priviusHashs.at(coutBlockRead)) << "Assertion fail at: " << coutBlockRead;
             coutBlockRead++;
-            delete blockTested;
         }
     }
     catch (out_of_range ore)
@@ -450,12 +447,9 @@ TEST(StructureBitcoinCoreTest, compare_previus_block_hash)
         LOG(FATAL) << "Exception generated: " << ore.what();
         FAIL() << "Exception generated: " << ore.what();
     }
-    EXPECT_EQ(coutBlockRead, 119972);
+    EXPECT_EQ(coutBlockRead, 119973);
 
-    fileBlk->close();
-
-    delete priviusHashs;
-    delete fileBlk;
+    fileBlk.close();
 }
 
 //First test compare hash previus block whit the previus block generated another parser
@@ -655,11 +649,8 @@ TEST(StructureBitcoinCoreTest, count_all_block_another_file_blk)
     int count = 0;
     while(!stream.eof())
     {
-        //Block *block = new Block();
-        unique_ptr<Block> block(new Block());
-        block->decode(stream);
-
-        delete block.release();
+        Block block;
+        block.decode(stream);
         count++;
     }
     ASSERT_EQ(count, 155); // conta anche quello null

@@ -42,6 +42,12 @@ string TransactionInput::toSerealizationForm()
   return hexForm;
 }
 
+bool TransactionInput::isOPT_RETURN()
+{
+  LOG_IF(ERROR, script.getRawScriptString().empty()) << "The scrips is null";
+  return this->script.getRawScriptString().empty();
+}
+
 json TransactionInput::toJson()
 {
   json jsonTxsInput = json::object({

@@ -58,125 +58,41 @@ TEST(NullDataTransactionTest, testNullDataTransaction) {
     google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("testNullDataTransaction.log").c_str());
 
     DAOUtilTest dao;
+    vector<Block> blocks;
     try {
         string path = pathMockRoot + "bitcoin/block/bug/blk32";
-        ASSERT_EQ(dao.loadBlocks(path).size(), 915);
+        blocks = dao.loadBlocks(path);
+        ASSERT_EQ(blocks.size(), 933);
     }
     catch (DAOException exception) {
         FAIL() << "Test fail for this cause" << exception.what();
     }
-}
 
-//Test for block blk00032
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two) {
-    //Init logger
-    FLAGS_minloglevel = 2;
-    FLAGS_logtostderr = false;
-    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
-    string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-
-    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
-
-    bool findValueSerched = false;
-    vector<Block> blocks;
-    vector<string> previusBlockHashWhitScriptNull;
-    vector<string> previusBlockHashWhitScriptNullCompare;
-
-    ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk32.txt"));
-    if(!saveFileWhitScriptNull.is_open())
+    //Find opt return
+    bool contains_OPT_RETUTN = false;
+    for(Block &block : blocks)
     {
-      LOG(ERROR) << "File not open into path " << pathMockRoot;
-      FAIL()<< "File not open into path " << pathMockRoot;
-    }
-
-    for(auto &block : blocks)
-    {
-      for(auto &rawTransaction : block.getRawTransactions())
+      for(RawTransaction rawTx: block.getRawTransactions())
       {
-          for(auto &inputTransaction : rawTransaction.getTxIn())
+          for(TransactionInput txInput : rawTx.getTxIn())
           {
-             if(inputTransaction.getScript().getRawScriptString().empty())
-             {
-               LOG(WARNING) << "NullDataTransaction findend, the row script is " << inputTransaction.getScript().getRawScriptString();
-               findValueSerched = true;
-               saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
-             }
+              if(txInput.isOPT_RETURN())
+              {
+                contains_OPT_RETUTN = true;
+              }
           }
 
-         for(auto &outputTransaction : rawTransaction.getTxOut())
-         {
-            if(outputTransaction.getScript().getRawScriptString().empty())
-            {
-              LOG(WARNING) << "NullDataTransaction findend, the row script is " << outputTransaction.getScript().getRawScriptString();
-              findValueSerched = true;
-              saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
-            }
-         }
-
+          for(TransactionOutput txOutput : rawTx.getTxOut())
+          {
+             if(txOutput.isOPT_RETURN())
+             {
+               contains_OPT_RETUTN = true;
+             }
+          }
       }
     }
-    saveFileWhitScriptNull.close();
-    ASSERT_TRUE(findValueSerched);
-}
 
-//Test for block blk00032
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null)
-{
-  FLAGS_minloglevel = 2;
-  FLAGS_logtostderr = false;
-  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
-  string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
-
-  bool findValueSerched = false;
-  vector<Block> blocks;
-  vector<string> previusBlockHashWhitScriptNull;
-  vector<string> previusBlockHashWhitScriptNullCompare;
-
-  ifstream saveFileWhitScriptNull(pathMockRoot + "previus_hash_script_null_blk32.txt");
-  if(!saveFileWhitScriptNull.is_open())
-  {
-    LOG(ERROR) << "File not open into path " << pathMockRoot;
-    FAIL() << "File not open into path " << pathMockRoot;
-  }
-
-  while(!saveFileWhitScriptNull.eof())
-  {
-    string attualValue;
-    saveFileWhitScriptNull >> attualValue;
-    if(attualValue.empty())
-    {
-        continue;
-    }
-    previusBlockHashWhitScriptNull.emplace_back(attualValue);
-  }
-
-  saveFileWhitScriptNull.close();
-
-  ifstream loadFileReadedToPython(pathMockRoot + "previusHashTheScriptNull_blk32.txt");
-  if(!loadFileReadedToPython.is_open())
-  {
-    LOG(ERROR) << "File not open into path " << pathMockRoot;
-    FAIL() << "File not open into path " << pathMockRoot;
-  }
-
-  while(!loadFileReadedToPython.eof())
-  {
-    string attualValue;
-    loadFileReadedToPython >> attualValue;
-    if(attualValue.empty())
-    {
-        continue;
-    }
-    previusBlockHashWhitScriptNullCompare.emplace_back(attualValue);
-  }
-
-  loadFileReadedToPython.close();
-
-  EXPECT_EQ(previusBlockHashWhitScriptNull.size(), previusBlockHashWhitScriptNullCompare.size());
-
+    ASSERT_TRUE(contains_OPT_RETUTN);
 }
 
 //Test for block blk00053
@@ -190,129 +106,41 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk53)
     google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("testNullDataTransaction.log").c_str());
 
     DAOUtilTest dao;
-
+    vector<Block> blocks;
     try {
         string path = pathMockRoot + "bitcoin/block/bug/blk53";
-        ASSERT_EQ(dao.loadBlocks(path).size(), 751);
+        blocks = dao.loadBlocks(path);
+        ASSERT_EQ(blocks.size(), 756);
     }
     catch (DAOException exception) {
         FAIL() << "Test fail for this cause" << exception.what();
     }
-}
 
-//Test for block blk00053
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two_blk53)
-{
-    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
-    string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-
-    FLAGS_minloglevel = 2;
-    FLAGS_logtostderr = false;
-
-    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
-
-    bool findValueSerched = false;
-    vector<Block> blocks;
-    vector<string> previusBlockHashWhitScriptNull;
-    vector<string> previusBlockHashWhitScriptNullCompare;
-
-    ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk53.txt"));
-    if(!saveFileWhitScriptNull.is_open())
+    //Find the opt return script
+    bool contains_OPT_RETUTN = false;
+    for(Block &block : blocks)
     {
-      LOG(ERROR) << "File not open into path " << pathMockRoot;
-      FAIL() << "File not open into path " << pathMockRoot;
-    }
-
-    for(auto &block : blocks)
-    {
-      for(auto &rawTransaction : block.getRawTransactions())
+      for(RawTransaction rawTx: block.getRawTransactions())
       {
-          for(auto &inputTransaction : rawTransaction.getTxIn())
+          for(TransactionInput txInput : rawTx.getTxIn())
           {
-             if(inputTransaction.getScript().getRawScriptString().empty())
-             {
-               LOG(WARNING) << "NullDataTransaction findend, the row script is " << inputTransaction.getScript().getRawScriptString();
-               findValueSerched = true;
-               saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
-             }
+              if(txInput.isOPT_RETURN())
+              {
+                contains_OPT_RETUTN = true;
+              }
           }
 
-         for(auto &outputTransaction : rawTransaction.getTxOut())
-         {
-            if(outputTransaction.getScript().getRawScriptString().empty())
-            {
-              LOG(WARNING) << "NullDataTransaction findend, the row script is " << outputTransaction.getScript().getRawScriptString();
-              findValueSerched = true;
-              saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
-            }
-         }
-
+          for(TransactionOutput txOutput : rawTx.getTxOut())
+          {
+             if(txOutput.isOPT_RETURN())
+             {
+               contains_OPT_RETUTN = true;
+             }
+          }
       }
     }
-    saveFileWhitScriptNull.close();
-    ASSERT_TRUE(findValueSerched);
-}
 
-//Test for block blk00053
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null_blk53)
-{
-
-  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
-
-  FLAGS_minloglevel = 2;
-  FLAGS_logtostderr = false;
-  string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
-
-  bool findValueSerched = false;
-  vector<Block> blocks;
-  vector<string> previusBlockHashWhitScriptNull;
-  vector<string> previusBlockHashWhitScriptNullCompare;
-
-  ifstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk53.txt"));
-  if(!saveFileWhitScriptNull.is_open())
-  {
-    LOG(ERROR) << "File not open into path " << pathMockRoot;
-    FAIL() << "File not open into path " << pathMockRoot;
-  }
-
-  while(!saveFileWhitScriptNull.eof())
-  {
-    string attualValue;
-    saveFileWhitScriptNull >> attualValue;
-    if(attualValue.empty() || attualValue == "")
-    {
-        continue;
-    }
-    previusBlockHashWhitScriptNull.push_back(attualValue);
-  }
-
-  saveFileWhitScriptNull.close();
-
-  ifstream loadFileReadedToPython(pathMockRoot + "previusHashTheScriptNull_blk53.txt");
-  if(!loadFileReadedToPython.is_open())
-  {
-    LOG(ERROR) << "File not open into path " << pathMockRoot;
-    FAIL() << "File not open into path " << pathMockRoot;;
-  }
-
-  while(!loadFileReadedToPython.eof())
-  {
-    string attualValue;
-    loadFileReadedToPython >> attualValue;
-    if(attualValue.empty() || attualValue == "")
-    {
-        continue;
-    }
-    previusBlockHashWhitScriptNullCompare.push_back(attualValue);
-  }
-
-  loadFileReadedToPython.close();
-
-  EXPECT_EQ(previusBlockHashWhitScriptNull.size(), previusBlockHashWhitScriptNullCompare.size());
-
+    ASSERT_TRUE(contains_OPT_RETUTN);
 }
 
 //Test for block blk00054
@@ -326,126 +154,41 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk54)
     google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("testNullDataTransaction.log").c_str());
 
     DAOUtilTest dao;
-
+    vector<Block> blocks;
     try {
         string path = pathMockRoot + ("bitcoin/block/bug/blk54");
-        ASSERT_EQ(dao.loadBlocks(path).size(), 811);
+        blocks = dao.loadBlocks(path);
+        ASSERT_EQ(blocks.size(), 819);
     }
     catch (DAOException exception) {
         FAIL() << "Test fail for this cause" << exception.what();
     }
-}
 
-//Test for block blk00054
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_equal_to_two_blk54)
-{
-    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
-
-    FLAGS_minloglevel = 2;
-    FLAGS_logtostderr = false;
-    string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
-
-    bool findValueSerched = false;
-    vector<Block> blocks;
-    vector<string> previusBlockHashWhitScriptNull;
-    vector<string> previusBlockHashWhitScriptNullCompare;
-
-    ofstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk54.txt"));
-    if(!saveFileWhitScriptNull.is_open())
+    //Find the opt return script
+    bool contains_OPT_RETUTN = false;
+    for(Block &block : blocks)
     {
-      LOG(ERROR) << "File not open into path " << pathMockRoot;
-      FAIL();
-    }
-
-    for(auto &block : blocks)
-    {
-      for(auto &rawTransaction : block.getRawTransactions())
+      for(RawTransaction rawTx: block.getRawTransactions())
       {
-          for(auto &inputTransaction : rawTransaction.getTxIn())
-          {
-             if(inputTransaction.getScript().getRawScriptString().empty())
-             {
-               LOG(WARNING) << "NullDataTransaction findend, the row script is " << inputTransaction.getScript().getRawScriptString();
-               findValueSerched = true;
-               saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
-             }
-          }
-
-         for(auto &outputTransaction : rawTransaction.getTxOut())
+         for(TransactionInput txInput : rawTx.getTxIn())
          {
-            if(outputTransaction.getScript().getRawScriptString().empty())
-            {
-              LOG(WARNING) << "NullDataTransaction findend, the row script is " << outputTransaction.getScript().getRawScriptString();
-              findValueSerched = true;
-              saveFileWhitScriptNull << rawTransaction.getHashRawTransaction() << endl;
-            }
+             if(txInput.isOPT_RETURN())
+             {
+               contains_OPT_RETUTN = true;
+             }
          }
 
+         for(TransactionOutput txOutput : rawTx.getTxOut())
+         {
+            if(txOutput.isOPT_RETURN())
+            {
+              contains_OPT_RETUTN = true;
+            }
+         }
       }
     }
-    saveFileWhitScriptNull.close();
-    ASSERT_TRUE(findValueSerched);
-}
 
-//Test for block blk00054
-TEST(NullDataTransactionTest, test_null_data_transaction_script_leght_load_hash_pb_whit_script_null_blk54)
-{
-  FLAGS_minloglevel = 2;
-  FLAGS_logtostderr = false;
-  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
-  string nameFileLog = "test_null_data_transaction_script_leght_equal_to_two.log";
-  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append(nameFileLog).c_str());
-
-  bool findValueSerched = false;
-  vector<Block> blocks;
-  vector<string> previusBlockHashWhitScriptNull;
-  vector<string> previusBlockHashWhitScriptNullCompare;
-
-  ifstream saveFileWhitScriptNull(pathMockRoot + ("previus_hash_script_null_blk54.txt"));
-  if(!saveFileWhitScriptNull.is_open())
-  {
-    LOG(ERROR) << "File not open into path " << pathMockRoot;
-    FAIL() << "File not open into path " << pathMockRoot;
-  }
-
-  while(!saveFileWhitScriptNull.eof())
-  {
-    string attualValue;
-    saveFileWhitScriptNull >> attualValue;
-    if(attualValue.empty() || attualValue == "")
-    {
-        continue;
-    }
-    previusBlockHashWhitScriptNull.emplace_back(attualValue);
-  }
-
-  saveFileWhitScriptNull.close();
-
-  ifstream loadFileReadedToPython(pathMockRoot + ("previusHashTheScriptNull_blk54.txt"));
-  if(!loadFileReadedToPython.is_open())
-  {
-    LOG(ERROR) << "File not open into path " << pathMockRoot;
-    FAIL() << "File not open into path " << pathMockRoot;
-  }
-
-  while(!loadFileReadedToPython.eof())
-  {
-    string attualValue;
-    loadFileReadedToPython >> attualValue;
-    if(attualValue.empty() || attualValue == "")
-    {
-        continue;
-    }
-    previusBlockHashWhitScriptNullCompare.emplace_back(attualValue);
-  }
-
-  loadFileReadedToPython.close();
-
-  EXPECT_EQ(previusBlockHashWhitScriptNull.size(), previusBlockHashWhitScriptNullCompare.size());
-
+    ASSERT_TRUE(contains_OPT_RETUTN);
 }
 
 

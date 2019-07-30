@@ -47,6 +47,9 @@ namespace spyCBlock{
 
         std::string toSerealizationForm();
 
+        bool isOPT_RETURN();
+
+        //TODO can be removed
         nlohmann::json toJson();
 
         void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
