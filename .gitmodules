@@ -3,6 +3,3 @@
 [submodule "include/rapidjson"]
 	path = include/rapidjson
 	url = https://github.com/Tencent/rapidjson.git
-[submodule "Bitcoin-Cryptography-Library"]
-	path = Bitcoin-Cryptography-Library
-	url = https://github.com/vincenzopalazzo/Bitcoin-Cryptography-Library/tree/version_spycblock
