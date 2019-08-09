@@ -3,6 +3,7 @@
 
 #include <vector>
 
+
 #include "../type/DVarInt.h"
 #include "../type/DScript.h"
 
@@ -18,6 +19,8 @@ namespace spyCBlock
           std::vector<DScript> getWitnessStack() const;
 
           void decode(std::ifstream &stream);
+
+          std::string toSerealizationForm() const;
 
         private:
 

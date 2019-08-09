@@ -75,7 +75,7 @@ std::vector<Block> DAOUtilTest::readBlocks(fs::directory_entry entry) {
         while (!stream.eof())
         {
             blocksFile.emplace_back(Block{});
-            Block block = blocksFile.back();
+            Block& block = blocksFile.back();
             block.decode(stream);
 
         }

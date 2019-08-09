@@ -5,11 +5,12 @@
 
 #include <glog/logging.h>
 #include <nlohmann/json.hpp>
+#include "../../include/spycblockrpc/core/graph/WrapperInformations.h"
+#include "../../util/serialize.h"
 
 #include "TransactionOutput.h"
 #include "TransactionInput.h"
 #include "TransactionWitness.h"
-#include "../../util/serialize.h"
 
  // Created on 1/21/19.
  // @author https://github.com/vincenzopalazzo
@@ -48,6 +49,8 @@ namespace spyCBlock{
           nlohmann::json toJson();
 
           void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+
+          void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
     private:
 

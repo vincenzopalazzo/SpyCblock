@@ -24,7 +24,9 @@ int main(int argc, char* argv[])
     SpyCBlock spyCBlock = SpyCBlock();
 
     //TODO fix the bug id The path contains the end /
-    spyCBlock.convertBlkIntoJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+    //spyCBlock.convertBlkIntoJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+
+    spyCBlock.convertBlkIntoGraphForm(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
 
     return 0;
 }

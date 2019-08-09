@@ -549,3 +549,18 @@ TEST(hash_test, hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingle
   ASSERT_EQ(heshRawTransaction, expettedHash);
 }
 
+TEST(hash_test, hash_calculate_hash_block_whit_hex_segregated_witness_version)
+{
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton.log").c_str());
+
+  string hexWitness = "0200000001b2f1a88fbfa36ed3e7337eb4c7b953304774e02f226fc53db5f1bd4b04b3b3c705000000171600149068edae0a20342de05941e5fd4f8c8934f8bd43feffffff02e0937200000000001976a91402b36c1beae18deed8698ba427573739419a4ec088ac66541800000000001976a914dd729b4126b5dfc861d3afcfa91cfdc5742eda8d88ac7b5a0700";
+
+  LOG(ERROR) << CryptoSingleton::getIstance().getHash256(hexWitness);
+  //TODO find the solution for testing existence oh explorer online
+}
+

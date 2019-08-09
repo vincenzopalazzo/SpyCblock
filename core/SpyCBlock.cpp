@@ -11,6 +11,7 @@
 #include "../persistence/IDAOBlockchain.h"
 #include "../persistence/DAOException.h"
 #include "../persistence/json/DAOJson.h"
+#include "../persistence/graph/DAOManagerGraph.h"
 
 using namespace spyCBlock;
 
@@ -39,6 +40,31 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
     pathInput = nameFileSearched(locationBitcoinCore);
   }
 
+}
+
+void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string destinationBitcoinCoreJson)
+{
+  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
+  {
+    LOG(ERROR) << "The input argument are empty";
+    throw exception();
+  }
+
+  int height = 0;
+  string pathInput = nameFileSearched(locationBitcoinCore);
+
+  while(pathInput != "")
+  {
+    LOG(ERROR) << "Current file blk is " + to_string(currentFile);
+
+    string fileNameOutput = getNameFile(pathInput);
+    DAOManagerGraph dao;
+
+    string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
+    dao.saveBlock(pathInput, pathOutput, height);
+    currentFile++;
+    pathInput = nameFileSearched(locationBitcoinCore);
+  }
 }
 
 string SpyCBlock::nameFileSearched(string &pathInput)

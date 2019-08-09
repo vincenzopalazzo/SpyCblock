@@ -62,37 +62,43 @@ TEST(NullDataTransactionTest, testNullDataTransaction) {
     try {
         string path = pathMockRoot + "bitcoin/block/bug/blk32";
         blocks = dao.loadBlocks(path);
-        ASSERT_EQ(blocks.size(), 933);
-    }
-    catch (DAOException exception) {
+
+        //Find opt return
+        bool containsScriptNull = false;
+        for(Block &block : blocks)
+        {
+          LOG(INFO) << "The block: " << block.getBlockHeader().getPreviousBlockHeaderHash().GetHex();
+          for(RawTransaction rawTx: block.getRawTransactions())
+          {
+              LOG(INFO) << "The raw tx: " << rawTx.getLockTime();
+              for(TransactionInput txInput : rawTx.getTxIn())
+              {
+                  LOG(INFO) << "The input tx: " << txInput.getOutpoint().getHash().GetHex();
+                  if(txInput.isScriptNull())
+                  {
+                    containsScriptNull = true;
+                  }
+              }
+
+              for(TransactionOutput txOutput : rawTx.getTxOut())
+              {
+                 LOG(INFO) << "The output tx: " << txOutput.getNValue();
+                 if(txOutput.isScriptNull())
+                 {
+                   containsScriptNull = true;
+                 }
+              }
+          }
+        }
+
+    ASSERT_EQ(blocks.size(), 933);
+    ASSERT_TRUE(containsScriptNull);
+
+    }catch (DAOException exception) {
         FAIL() << "Test fail for this cause" << exception.what();
     }
 
-    //Find opt return
-    bool contains_OPT_RETUTN = false;
-    for(Block &block : blocks)
-    {
-      for(RawTransaction rawTx: block.getRawTransactions())
-      {
-          for(TransactionInput txInput : rawTx.getTxIn())
-          {
-              if(txInput.isOPT_RETURN())
-              {
-                contains_OPT_RETUTN = true;
-              }
-          }
 
-          for(TransactionOutput txOutput : rawTx.getTxOut())
-          {
-             if(txOutput.isOPT_RETURN())
-             {
-               contains_OPT_RETUTN = true;
-             }
-          }
-      }
-    }
-
-    ASSERT_TRUE(contains_OPT_RETUTN);
 }
 
 //Test for block blk00053
@@ -117,30 +123,30 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk53)
     }
 
     //Find the opt return script
-    bool contains_OPT_RETUTN = false;
+    bool containsScriptNull = false;
     for(Block &block : blocks)
     {
       for(RawTransaction rawTx: block.getRawTransactions())
       {
           for(TransactionInput txInput : rawTx.getTxIn())
           {
-              if(txInput.isOPT_RETURN())
+              if(txInput.isScriptNull())
               {
-                contains_OPT_RETUTN = true;
+                containsScriptNull = true;
               }
           }
 
           for(TransactionOutput txOutput : rawTx.getTxOut())
           {
-             if(txOutput.isOPT_RETURN())
+             if(txOutput.isScriptNull())
              {
-               contains_OPT_RETUTN = true;
+               containsScriptNull = true;
              }
           }
       }
     }
 
-    ASSERT_TRUE(contains_OPT_RETUTN);
+    ASSERT_TRUE(containsScriptNull);
 }
 
 //Test for block blk00054
@@ -165,30 +171,30 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk54)
     }
 
     //Find the opt return script
-    bool contains_OPT_RETUTN = false;
+    bool containsScriptNull = false;
     for(Block &block : blocks)
     {
       for(RawTransaction rawTx: block.getRawTransactions())
       {
          for(TransactionInput txInput : rawTx.getTxIn())
          {
-             if(txInput.isOPT_RETURN())
+             if(txInput.isScriptNull())
              {
-               contains_OPT_RETUTN = true;
+               containsScriptNull = true;
              }
          }
 
          for(TransactionOutput txOutput : rawTx.getTxOut())
          {
-            if(txOutput.isOPT_RETURN())
+            if(txOutput.isScriptNull())
             {
-              contains_OPT_RETUTN = true;
+              containsScriptNull = true;
             }
          }
       }
     }
 
-    ASSERT_TRUE(contains_OPT_RETUTN);
+    ASSERT_TRUE(containsScriptNull);
 }
 
 

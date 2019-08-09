@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.9)
 project(SpyCBlock)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 # Locate GTest
 enable_testing()
@@ -14,6 +14,9 @@ find_package(glog 0.3.5 REQUIRED)
 ## Json library
 find_package(nlohmann_json 3.2.0 REQUIRED)
 find_package(RapidJSON) #This find the element in the OS
+
+#bitcoin rpc lib
+find_library(bitcoinapi 0.3 REQUIRED)
 
 # Link runTests with what we want to test and the GTest and pthread library
 add_executable(
@@ -30,6 +33,7 @@ add_executable(
         test/NullDataTransactionsTest.cpp
         test/ExceptionCompactsizeTest.cpp
         test/ConfiguratorSingletonTest.cpp
+        test/DAOManagerGraphTest.cpp
 
         util/uint256.cpp
         util/strencodings.cpp
@@ -50,6 +54,7 @@ add_executable(
         persistence/DAOException.cpp
         persistence/json/DAOJson.cpp
         persistence/SerializationUtil.cpp
+        persistence/graph/DAOManagerGraph.cpp
 
         crypto/UtilCrypto.cpp
         crypto/CryptoCore.cpp
@@ -65,6 +70,16 @@ add_executable(
         include/bitcoin-cryptography-library/cpp/Sha256.cpp
         include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp
         include/bitcoin-cryptography-library/cpp/Utils.cpp
+
+        #include spycblocrpc
+        include/spycblockrpc/core/graph/TransactionGraph.cpp
+        include/spycblockrpc/core/graph/WrapperInformations.cpp
+        include/spycblockrpc/ConfiguratorSingleton.cpp
+
+        include/spycblockrpc/commands/DecodeScriptCommand.cpp
+        include/spycblockrpc/commands/DecodeRawTransaction.cpp
+        include/spycblockrpc/commands/HeightBlockchainCommand.cpp
+        include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp
 
 )
 
@@ -95,6 +110,7 @@ add_executable(
         persistence/DAOException.cpp
         persistence/SerializationUtil.cpp
         persistence/json/DAOJson.cpp
+        persistence/graph/DAOManagerGraph.cpp
 
         crypto/UtilCrypto.cpp
         crypto/CryptoCore.cpp
@@ -109,6 +125,16 @@ add_executable(
         include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp
         include/bitcoin-cryptography-library/cpp/Utils.cpp
 
+        #include spycblocrpc
+        include/spycblockrpc/core/graph/TransactionGraph.cpp
+        include/spycblockrpc/core/graph/WrapperInformations.cpp
+        include/spycblockrpc/ConfiguratorSingleton.cpp
+
+        include/spycblockrpc/commands/DecodeScriptCommand.cpp
+        include/spycblockrpc/commands/DecodeRawTransaction.cpp
+        include/spycblockrpc/commands/HeightBlockchainCommand.cpp
+        include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp
+
 )
 
 #using glog
@@ -121,5 +147,9 @@ target_link_libraries(${PROJECT_NAME} stdc++fs)
 target_link_libraries(SpyCBlockTests stdc++fs)
 ##Json library
 target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
+
+#bitcoin rpc lib
+target_link_libraries(SpyCBlockTests bitcoinapi)
+target_link_libraries(${PROJECT_NAME} bitcoinapi)
 
 

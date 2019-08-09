@@ -4,6 +4,8 @@
 #include <ostream>
 #include <glog/logging.h>
 
+#include "../../include/spycblockrpc/core/graph/WrapperInformations.h"
+
 #include "blockHeader.h"
 #include "../transaction/RawTransaction.h"
 #include "../../persistence/SerializationUtil.h"
@@ -14,6 +16,7 @@
  */
 namespace spyCBlock {
 
+    //TODO moved this enum inside the class and use the enum class
     enum typeBlock{
         NETWORK_MAIN = 3652501241, //0xD9B4BEF9
         NETWORK_TESTNET = 3669344250, //0xDAB5BFFA
@@ -68,11 +71,14 @@ namespace spyCBlock {
 
           std::string toSerealizationForm();
 
+          //can be remove
           nlohmann::json toJsonLite();
 
           nlohmann::json toJsonFat();
 
           void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+
+          void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
     };
 }
 

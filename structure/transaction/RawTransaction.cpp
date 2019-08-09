@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <sstream>
 
+#include "../../include/spycblockrpc/core/graph/TransactionGraph.h"
+
 #include "RawTransaction.h"
 #include "../../persistence/SerializationUtil.h"
 #include "../../crypto/CryptoCore.h"
@@ -75,24 +77,33 @@ void RawTransaction::decode(std::ifstream &stream)
     //Create additional information
     string serializationForm = toSerealizationForm();
     this->hashRawTransaction = CryptoSingleton::getIstance().getHash256(serializationForm);
+    LOG(WARNING) << "Hash tx: " << hashRawTransaction;
 }
 
 string RawTransaction::toSerealizationForm() const
 {
 
   string hexForm = SerializationUtil::toSerealizeForm(this->version);
-  hexForm += SerializationUtil::toSerealizeForm(this->numberTxIn);
+
+  hexForm.append(SerializationUtil::toSerealizeForm(this->numberTxIn));
   for(TransactionInput txInput : this->txIn)
   {
-    hexForm += txInput.toSerealizationForm();
+    hexForm.append(txInput.toSerealizationForm());
   }
-  hexForm += SerializationUtil::toSerealizeForm(this->numberTxOut);
+  hexForm.append(SerializationUtil::toSerealizeForm(this->numberTxOut));
   for(TransactionOutput txOutput : this->txOut)
   {
-     hexForm += txOutput.toSerealizationForm();
+     hexForm.append(txOutput.toSerealizationForm());
   }
-  hexForm += SerializationUtil::toSerealizeForm(this->lockTime);
 
+  hexForm.append(SerializationUtil::toSerealizeForm(this->lockTime));
+  //Debug hex
+  if(this->type == RawTransaction::Type::WITNESS)
+  {
+    LOG(ERROR) << "\n****** HEX segregated witness *************\n"
+                    + hexForm
+                    + "\n****************************";
+  }
   return hexForm;
 }
 
@@ -118,6 +129,7 @@ string RawTransaction::toString() {
     return stringForm;
 }
 
+//can be removed
 json RawTransaction::toJson()
 {
 
@@ -190,6 +202,35 @@ void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writer
   writerJson.Uint(this->lockTime);
 
   writerJson.EndObject();
+}
+
+void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  wrapper.getLinkInformations().emplace_back("RawTxID: " + this->hashRawTransaction);
+  wrapper.getLinkInformations().emplace_back("lockTime: " + to_string(this->lockTime));
+  string witness = "false";
+  if(type == Type::WITNESS)
+  {
+      witness = "true";
+  }
+  wrapper.getLinkInformations().emplace_back("witness: " + witness);
+/* this is more difficulte
+  if(this->txIn.size() > 1 && this->txOut.size() > 1){
+    return;
+  }
+*/
+  for(TransactionInput &txInput : this->txIn)
+  {
+    txInput.toGraphForm(outputStream, wrapper);
+    for(TransactionOutput &txOutput : this->txOut)
+    {
+      txOutput.toGraphForm(outputStream, wrapper);
+      spyCBlockRPC::TransactionGraph transaction;
+      transaction.buildTransaction(wrapper);
+      transaction.serialize(outputStream);
+    }
+  }
+
 }
 
 uint8_t RawTransaction::getFlag() const

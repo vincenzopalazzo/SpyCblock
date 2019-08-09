@@ -21,7 +21,7 @@ void TransactionOutput::decode(ifstream &stream)
     LOG(INFO) << "N value " << nValue;
     script.decode(stream);
     LOG(INFO) << "Script Lenght: " << script.getScriptLenght().getValue();
-    LOG(INFO) << "Script Value: " << script.toString();
+    LOG(WARNING) << "Script Value: " << script.toString();
 
     //Creating hash transaction
     string hexForm = toSerealizationForm();
@@ -38,7 +38,7 @@ string TransactionOutput::toSerealizationForm() const
   return hexForm;
 }
 
-bool TransactionOutput::isOPT_RETURN()
+bool TransactionOutput::isScriptNull()
 {
   return this->script.getRawScriptString().empty();
 }
@@ -72,6 +72,12 @@ void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &wri
    writerJson.String(this->script.getRawScriptString().c_str());
 
    writerJson.EndObject();
+}
+
+void TransactionOutput::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  wrapper.getLinkInformations().emplace_back("Ammount: " + to_string(this->nValue));
+  wrapper.setTo(this->getScript().getRawScriptString());
 }
 
 string TransactionOutput::toString()

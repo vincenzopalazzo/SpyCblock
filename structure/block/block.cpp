@@ -133,6 +133,20 @@ void Block::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
   writerJson.EndObject();
 }
 
+void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  vector<string> information;
+  information.emplace_back("height:" + to_string(this->heightBlock));
+  wrapper.setLinkInformations(information);
+  wrapper.setDelimitator("|-|");
+
+  for(RawTransaction& rawTx : this->rawTransactions)
+  {
+    LOG(INFO) << "Call toGraphForm RawTransaction";
+    rawTx.toGraphForm(outputStream, wrapper);
+  }
+}
+
 string Block::convertMagicNumbar() {
     stringstream stream;
     stream << hex << magicNum;

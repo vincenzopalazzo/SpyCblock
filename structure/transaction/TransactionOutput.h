@@ -6,6 +6,8 @@
 #include <nlohmann/json.hpp>
 #include <rapidjson/writer.h>
 #include <rapidjson/ostreamwrapper.h>
+#include "../../include/spycblockrpc/core/graph/WrapperInformations.h"
+
 #include "../type/DScript.h"
 
 /**
@@ -38,12 +40,14 @@ namespace spyCBlock{
 
           std::string toSerealizationForm() const;
 
-          bool isOPT_RETURN();
+          bool isScriptNull();
 
           //TODO can be removed
           nlohmann::json toJson();
 
           void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+
+          void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
     };
 }
 #endif //PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H

@@ -17,8 +17,8 @@ using namespace nlohmann;
 void TransactionInput::decode(std::ifstream &stream)
 {
     outpoint.Unserialize(stream);
-    LOG(INFO) << "Outopoint Hash" << outpoint.getHash().GetHex();
-    LOG(INFO) << "Outopoint N" << outpoint.getN();
+    LOG(WARNING) << "Outopoint Hash: " << outpoint.getHash().GetHex();
+    LOG(WARNING) << "Outopoint N: " << outpoint.getN();
     this->script.decode(stream);
     LOG(INFO) << "Script Lenght" << script.getScriptLenght().getValue();
     LOG(INFO) << "Script Value" << script.toString();
@@ -34,15 +34,15 @@ void TransactionInput::decode(std::ifstream &stream)
 string TransactionInput::toSerealizationForm()
 {
   string hexForm = SerializationUtil::toSerealizeForm(this->outpoint.getHash());
-  hexForm += SerializationUtil::toSerealizeForm(this->outpoint.getN());
-  hexForm += SerializationUtil::toSerealizeForm(this->getScript().getScriptLenght());
-  hexForm += this->script.getScriptToSerializationForm();
-  hexForm += SerializationUtil::toSerealizeForm(this->sequences);
+  hexForm.append(SerializationUtil::toSerealizeForm(this->outpoint.getN()));
+  hexForm.append(SerializationUtil::toSerealizeForm(this->getScript().getScriptLenght()));
+  hexForm.append(this->script.getScriptToSerializationForm());
+  hexForm.append(SerializationUtil::toSerealizeForm(this->sequences));
 
   return hexForm;
 }
 
-bool TransactionInput::isOPT_RETURN()
+bool TransactionInput::isScriptNull()
 {
   LOG_IF(ERROR, script.getRawScriptString().empty()) << "The scrips is null";
   return this->script.getRawScriptString().empty();
@@ -85,6 +85,12 @@ void TransactionInput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writ
   writerJson.Uint(this->sequences);
 
   writerJson.EndObject();
+}
+
+void TransactionInput::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  wrapper.setHashPreviousTx(this->outpoint.getHash().GetHex());
+  wrapper.setNOutpoint(this->outpoint.getN());
 }
 
 string TransactionInput::toString()

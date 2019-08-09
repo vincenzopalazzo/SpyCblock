@@ -18,9 +18,11 @@ namespace spyCBlock {
 
             void convertBlkIntoJson(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 
+            void convertBlkIntoGraphForm(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+
         private:
 
-            int currentFile = 0;
+            int currentFile = 33;
 
             std::string nameFileSearched(std::string &pathInput);
 
