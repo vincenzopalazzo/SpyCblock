@@ -7,6 +7,3 @@
 [submodule "include/bitcoin-cryptography-library"]
 	path = include/bitcoin-cryptography-library
 	url = https://github.com/vincenzopalazzo/Bitcoin-Cryptography-Library.git
-[submodule "include/spycblockrpc"]
-	path = include/spycblockrpc
-	url = https://github.com/vincenzopalazzo/SpyCBlockRPC.git
