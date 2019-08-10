@@ -133,6 +133,7 @@ void Block::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
   writerJson.EndObject();
 }
 
+//TODO generalize this method, with type if deserialization
 void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
   vector<string> information;
@@ -144,6 +145,20 @@ void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformation
   {
     LOG(INFO) << "Call toGraphForm RawTransaction";
     rawTx.toGraphForm(outputStream, wrapper);
+  }
+}
+
+void Block::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  vector<string> information;
+  information.emplace_back("height:" + to_string(this->heightBlock));
+  wrapper.setLinkInformations(information);
+  wrapper.setDelimitator("|-|");
+
+  for(RawTransaction& rawTx : this->rawTransactions)
+  {
+    LOG(INFO) << "Call toGraphForm RawTransaction";
+    rawTx.toTransactionsGraph(outputStream, wrapper);
   }
 }
 

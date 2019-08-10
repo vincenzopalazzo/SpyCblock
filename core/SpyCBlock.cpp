@@ -10,6 +10,7 @@
 #include "../structure/block/block.h"
 #include "../persistence/IDAOBlockchain.h"
 #include "../persistence/DAOException.h"
+#include "../persistence/graph/transactions/DAOTransactionsGraph.h"
 #include "../persistence/json/DAOJson.h"
 #include "../persistence/graph/DAOManagerGraph.h"
 
@@ -58,7 +59,9 @@ void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string desti
     LOG(ERROR) << "Current file blk is " + to_string(currentFile);
 
     string fileNameOutput = getNameFile(pathInput);
-    DAOManagerGraph dao;
+    //DAOManagerGraph dao;
+
+    DAOTransactionsGraph dao;
 
     string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
     dao.saveBlock(pathInput, pathOutput, height);

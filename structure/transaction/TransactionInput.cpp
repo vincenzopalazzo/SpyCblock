@@ -93,6 +93,11 @@ void TransactionInput::toGraphForm(ofstream &outputStream, spyCBlockRPC::Wrapper
   wrapper.setNOutpoint(this->outpoint.getN());
 }
 
+void TransactionInput::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  wrapper.setFrom(this->outpoint.getHash().GetHex());
+}
+
 string TransactionInput::toString()
 {
     string stringForm = outpoint.ToString();

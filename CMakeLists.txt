@@ -55,6 +55,8 @@ add_executable(
         persistence/json/DAOJson.cpp
         persistence/SerializationUtil.cpp
         persistence/graph/DAOManagerGraph.cpp
+        persistence/graph/transactions/DAOTransactionsGraph.cpp
+        persistence/graph/transactions/TransactionsRawGraph.cpp
 
         crypto/UtilCrypto.cpp
         crypto/CryptoCore.cpp
@@ -111,6 +113,8 @@ add_executable(
         persistence/SerializationUtil.cpp
         persistence/json/DAOJson.cpp
         persistence/graph/DAOManagerGraph.cpp
+        persistence/graph/transactions/DAOTransactionsGraph.cpp
+        persistence/graph/transactions/TransactionsRawGraph.cpp
 
         crypto/UtilCrypto.cpp
         crypto/CryptoCore.cpp

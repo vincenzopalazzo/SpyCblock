@@ -52,6 +52,8 @@ namespace spyCBlock{
 
           void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
+          void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+
     private:
 
           Type type;

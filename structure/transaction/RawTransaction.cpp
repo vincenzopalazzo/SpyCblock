@@ -1,7 +1,6 @@
 //
 // Created by https://github.com/vincenzopalazzo on 1/21/19.
 //
-
 #include <cstdint>
 #include <sstream>
 
@@ -10,6 +9,8 @@
 #include "RawTransaction.h"
 #include "../../persistence/SerializationUtil.h"
 #include "../../crypto/CryptoCore.h"
+#include "../../persistence/graph/transactions/DAOTransactionsGraph.h"
+#include "../../persistence/graph/transactions/TransactionsRawGraph.h"
 
 using namespace spyCBlock;
 using namespace std;
@@ -206,14 +207,19 @@ void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writer
 
 void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  wrapper.getLinkInformations().emplace_back("RawTxID: " + this->hashRawTransaction);
-  wrapper.getLinkInformations().emplace_back("lockTime: " + to_string(this->lockTime));
+  //TODO add method for add information
+ /* vector<string> informations;
+  informations.emplace_back(wrapper.getLinkInformations().begin(), wrapper.getLinkInformations().end());
+  informations.emplace_back("RawTxID: " + this->hashRawTransaction);
+  informations.emplace_back("lockTime: " + to_string(this->lockTime));
   string witness = "false";
   if(type == Type::WITNESS)
   {
       witness = "true";
   }
-  wrapper.getLinkInformations().emplace_back("witness: " + witness);
+  informations.emplace_back("witness: " + witness);
+  wrapper.setLinkInformations(informations);*/
+
 /* this is more difficulte
   if(this->txIn.size() > 1 && this->txOut.size() > 1){
     return;
@@ -229,6 +235,47 @@ void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperIn
       transaction.buildTransaction(wrapper);
       transaction.serialize(outputStream);
     }
+  }
+
+}
+
+void RawTransaction::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  /*
+  vector<string> informations;
+  informations.emplace_back(wrapper.getLinkInformations().begin(), wrapper.getLinkInformations().end());
+  informations.emplace_back("RawTxID: " + this->hashRawTransaction);
+  informations.emplace_back("lockTime: " + to_string(this->lockTime));
+  string witness = "false";
+  if(type == Type::WITNESS)
+  {
+      witness = "true";
+  }
+  informations.emplace_back("witness: " + witness);
+  wrapper.setLinkInformations(informations);*/
+/* this is more difficulte
+  if(this->txIn.size() > 1 && this->txOut.size() > 1){
+    return;
+  }
+*/
+  wrapper.setTo(this->hashRawTransaction);
+  bool setValue = false;
+  for(TransactionOutput txOut : this->txOut)
+  {
+    if(setValue == false)
+    {
+      txOut.toTransactionsGraph(outputStream, wrapper);
+      setValue = true;
+    }
+  }
+
+  for(TransactionInput inputTx : this->txIn)
+  {
+    inputTx.toTransactionsGraph(outputStream, wrapper);
+
+    TransactionsRawGraph transactioGraph;
+    transactioGraph.buildTransaction(wrapper);
+    transactioGraph.serialize(outputStream);
   }
 
 }

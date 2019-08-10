@@ -1,8 +1,6 @@
 #ifndef SERIALIZATIONUTIL_H
 #define SERIALIZATIONUTIL_H
 
-#endif // SERIALIZATIONUTIL_H
-
 #include <string>
 
 #include "../util/serialize.h"
@@ -65,3 +63,5 @@ namespace spyCBlock
   };
 
 }
+
+#endif //SERIALIZATIONUTIL_H

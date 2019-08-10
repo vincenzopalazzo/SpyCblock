@@ -48,6 +48,8 @@ namespace spyCBlock{
           void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 
           void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+
+          void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
     };
 }
 #endif //PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H

@@ -22,7 +22,7 @@ namespace spyCBlock {
 
         private:
 
-            int currentFile = 33;
+            int currentFile = 0;
 
             std::string nameFileSearched(std::string &pathInput);
 
