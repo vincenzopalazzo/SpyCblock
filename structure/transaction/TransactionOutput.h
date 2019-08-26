@@ -3,29 +3,17 @@
 
 #include <cstdint>
 
-#include <nlohmann/json.hpp>
 #include <rapidjson/writer.h>
 #include <rapidjson/ostreamwrapper.h>
 #include "../../include/spycblockrpc/core/graph/WrapperInformations.h"
 
 #include "../type/DScript.h"
 
-/**
- * Created on 1/21/19.
- * @author https://github.com/vincenzopalazzo
- */
-namespace spyCBlock{
-
+//@author https://github.com/vincenzopalazzo
+namespace spyCBlock
+{
     class TransactionOutput
     {
-      private:
-
-          int64_t nValue;
-
-          DScript script;
-          //Addintiona information
-          std::string hashOutputTransaction;
-
       public:
 
           const int64_t& getNValue() const;
@@ -42,14 +30,19 @@ namespace spyCBlock{
 
           bool isScriptNull();
 
-          //TODO can be removed
-          nlohmann::json toJson();
-
           void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 
           void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
           void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+
+      private:
+
+          int64_t nValue;
+
+          DScript script;
+
+          std::string hashOutputTransaction;
     };
 }
 #endif //PARSINGBLOCKCHAIN_TRANSACTIONOUTPUT_H

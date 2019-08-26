@@ -28,6 +28,8 @@
 
 #include "../core/ConfiguratorSingleton.h"
 
+#include "../structure/transaction/RawTransaction.h"
+
 using namespace std;
 using namespace spyCBlock;
 
@@ -38,7 +40,7 @@ using namespace spyCBlock;
   *
   */
 
-TEST(ConfiguratorSingletonTest, inizializeTestWithFileConfig)
+TEST(ConfiguratorSingletonTest, inizialize_test_with_file_config)
 {
   //Init logger
   FLAGS_minloglevel = 2;
@@ -49,6 +51,22 @@ TEST(ConfiguratorSingletonTest, inizializeTestWithFileConfig)
   ASSERT_FALSE(configuration.getPathBlockDat().empty());
 }
 
-//TODO some test
+TEST(ConfiguratorSingletonTest, test_get_height_block_to_start)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
 
+  ConfiguratorSingleton configuration = ConfiguratorSingleton::getInstance();
 
+  ASSERT_TRUE(configuration.getStartHeightBlock() >= 0);
+}
+
+TEST(ConfiguratorSingletonTest, test_get_delimitator_informations_link)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+
+  ConfiguratorSingleton configuration = ConfiguratorSingleton::getInstance();
+
+  ASSERT_FALSE(configuration.getDelimitatorLinkInformations().empty());
+}

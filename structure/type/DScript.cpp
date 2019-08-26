@@ -1,3 +1,5 @@
+// @author https://github.com/vincenzopalazzo
+
 #include <sstream>
 
 #include <glog/logging.h>
@@ -8,11 +10,6 @@
 
 using namespace spyCBlock;
 using namespace std;
-
-//
-// Created on  2/4/19.
-// @author https://github.com/vincenzopalazzo
-//
 
 string DScript::getScriptToSerializationForm() const
 {
@@ -33,9 +30,6 @@ void DScript::decode(std::ifstream &stream)
 {
     this->scriptLenght.decode(stream);
 
-    //LOG_IF(WARNING, (scriptLenght.getValue() == 16)) << "readed a null data transaction The lenght is 16 byte";
-
-    //Convert this declaratino for C++ version >= 11
     char buffer[scriptLenght.getValue()];
     LOG(INFO) << "Dimension script: " << scriptLenght.getValue();
 

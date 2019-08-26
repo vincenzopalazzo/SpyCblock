@@ -1,3 +1,5 @@
+// @author https://github.com/vincenzopalazzo
+
 #include <sstream>
 
 #include <glog/logging.h>
@@ -8,12 +10,7 @@
 
 using namespace spyCBlock;
 using namespace std;
-using namespace nlohmann;
 
-/**
- * Created on 1/21/19.
- * @author https://github.com/vincenzopalazzo
- */
 void TransactionInput::decode(std::ifstream &stream)
 {
     outpoint.Unserialize(stream);
@@ -46,20 +43,6 @@ bool TransactionInput::isScriptNull()
 {
   LOG_IF(ERROR, script.getRawScriptString().empty()) << "The scrips is null";
   return this->script.getRawScriptString().empty();
-}
-
-json TransactionInput::toJson()
-{
-  json jsonTxsInput = json::object({
-                                     {"outputTxHash", this->outpoint.getHash().GetHex()},
-                                     {"ammount", this->outpoint.getN()},
-                                     {"scriptLenght", this->getScript().getScriptLenght().getValue()},
-                                     {"script", this->getScript().getRawScriptString()},
-                                     {"sequences", this->sequences},
-                                     {"hashInputTransaction", this->hashInputTransaction},
-                                   });
-
-  return jsonTxsInput;
 }
 
 void TransactionInput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
@@ -107,45 +90,6 @@ string TransactionInput::toString()
     stringForm += to_string(sequences);
     stringForm += "\n";
     return stringForm;
-}
-
-//TODO non funziona e' stata solo una prova
-//Non cancello il codice perchè potrebbe essere sempre implementata una cosa del genere
-string TransactionInput::decodeIntoStringScriptSing() const
-{
-  string hexScriptSing = this->script.getRawScriptString();
-  if(this->outpoint.getN() == 0xffffffff)
-  {
-    LOG(INFO) << "Method decodeIntoStringScriptSing: This is conibase transacrion";
-    return hexScriptSing;
-  }
-
-  LOG(INFO) << "Method decodeIntoStringScriptSing: The op_code into hex script is " << hexScriptSing.substr(0, 2);
-  //insert this code into util
-  unsigned int op_codeHex;
-  std::stringstream streamHex;
-  streamHex << std::hex << hexScriptSing.substr(0, 2);
-  streamHex >> op_codeHex;
-  LOG(INFO) << "Method decodeIntoStringScriptSing: The op_code after convertionhec into unsigned int is " << op_codeHex;
-
-  op_codeHex *= 2;
-  string scriptPure = hexScriptSing.substr(2, op_codeHex * 2);
-  LOG(INFO) << "Method decodeIntoStringScriptSing: The pure script is " << scriptPure;
-
-  /*After create a class op_code*/
-  //TODO Lo stream per la conversione delle stringhe puo essere un singleton?
-  unsigned int op_type;
-  streamHex.clear();
-  streamHex << std::hex << hexScriptSing.substr(op_codeHex, op_codeHex + 2);
-  if(op_type != 0x1)
-  {
-    //https://bitcoin.org/en/glossary/sighash-all
-    LOG(INFO) << "Method decodeIntoStringScriptSing: " << "the script code not is the SIGHASH_ALL";
-    return hexScriptSing;
-  }
-  string pubKey = hexScriptSing.substr(2 + op_type + 2, 2 + op_type + 2 + 66);
-  LOG(INFO) << "Method decodeIntoStringScriptSing: " << "The public key is " << pubKey;
-  return pubKey;
 }
 
 //getter and setter

@@ -4,7 +4,6 @@
 #include <vector>
 
 #include <glog/logging.h>
-#include <nlohmann/json.hpp>
 #include "../../include/spycblockrpc/core/graph/WrapperInformations.h"
 #include "../../util/serialize.h"
 
@@ -12,8 +11,7 @@
 #include "TransactionInput.h"
 #include "TransactionWitness.h"
 
- // Created on 1/21/19.
- // @author https://github.com/vincenzopalazzo
+// @author https://github.com/vincenzopalazzo
 namespace spyCBlock{
 
     class RawTransaction{
@@ -45,8 +43,6 @@ namespace spyCBlock{
           void decode(std::ifstream &stream);
 
           std::string toSerealizationForm() const;
-
-          nlohmann::json toJson();
 
           void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 

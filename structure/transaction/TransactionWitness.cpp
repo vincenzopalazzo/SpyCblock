@@ -1,18 +1,21 @@
+// @author https://github.com/vincenzopalazzo
+
 #include <glog/logging.h>
 
 #include "TransactionWitness.h"
 #include "../../persistence/SerializationUtil.h"
+
 using namespace spyCBlock;
 using namespace std;
 
 void spyCBlock::TransactionWitness::decode(std::ifstream &stream)
 {
   if(!stream.is_open()){
-    LOG(ERROR) << "The strema is close";
-    //Add exception
+    LOG(ERROR) << "The stream is close";
+    //TODO Add exception
     return;
   }
-  LOG(ERROR) << "FINDED TRANSACTION WITNESS";
+  LOG(WARNING) << "FINDED TRANSACTION WITNESS";
   compactSize.decode(stream);
   LOG(INFO) << "Compact size is: " << compactSize.getValue();
   for(int i = 0; i < static_cast<int>(compactSize.getValue()); i++) {

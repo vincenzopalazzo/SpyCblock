@@ -1,6 +1,5 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/21/19.
-//
+// @author https://github.com/vincenzopalazzo
+
 #include <cstdint>
 #include <sstream>
 
@@ -14,7 +13,6 @@
 
 using namespace spyCBlock;
 using namespace std;
-using namespace nlohmann;
 
 void RawTransaction::decode(std::ifstream &stream)
 {
@@ -101,7 +99,7 @@ string RawTransaction::toSerealizationForm() const
   //Debug hex
   if(this->type == RawTransaction::Type::WITNESS)
   {
-    LOG(ERROR) << "\n****** HEX segregated witness *************\n"
+    LOG(WARNING) << "\n****** HEX segregated witness *************\n"
                     + hexForm
                     + "\n****************************";
   }
@@ -128,39 +126,6 @@ string RawTransaction::toString() {
     }
     stringForm += to_string(this->lockTime);
     return stringForm;
-}
-
-//can be removed
-json RawTransaction::toJson()
-{
-
-  json jsonRawTransaction =  json::object({
-                        {"version", version},
-                        {"numbarTxInput", this->numberTxIn.getValue()},
-                        {"numbarTxInput", this->numberTxOut.getValue()},
-                        {"lockTime", this->lockTime},
-                        {"hashRawTransaction", this->hashRawTransaction},
-                      });
-
-  //TODO this refactoring required more attention on Json form test
-  json txInputjson;
-  for(TransactionInput &txInput : this->txIn)
-  {
-      json txInputJsonSingle = txInput.toJson();
-      txInputjson.emplace_back(txInputJsonSingle);
-  }
-
-  //TODO this refactoring required more attention on Json form test
-  json txOutjson;
-  for(TransactionOutput &txOutput : this->txOut)
-  {
-    json txOutputJsonSingle = txOutput.toJson();
-    txOutjson.emplace_back(txOutputJsonSingle);
-  }
-
-  jsonRawTransaction["inputTransactions"] = txInputjson;
-  jsonRawTransaction["outputTransaction"] = txOutjson;
-  return jsonRawTransaction;
 }
 
 void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
@@ -207,24 +172,14 @@ void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writer
 
 void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  //TODO add method for add information
- /* vector<string> informations;
-  informations.emplace_back(wrapper.getLinkInformations().begin(), wrapper.getLinkInformations().end());
-  informations.emplace_back("RawTxID: " + this->hashRawTransaction);
-  informations.emplace_back("lockTime: " + to_string(this->lockTime));
+  wrapper.addInformationLink("RawTxID: " + this->hashRawTransaction);
+  wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
   string witness = "false";
   if(type == Type::WITNESS)
   {
       witness = "true";
   }
-  informations.emplace_back("witness: " + witness);
-  wrapper.setLinkInformations(informations);*/
-
-/* this is more difficulte
-  if(this->txIn.size() > 1 && this->txOut.size() > 1){
-    return;
-  }
-*/
+  wrapper.addInformationLink("witness: " + witness);
   for(TransactionInput &txInput : this->txIn)
   {
     txInput.toGraphForm(outputStream, wrapper);
@@ -241,24 +196,15 @@ void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperIn
 
 void RawTransaction::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  /*
-  vector<string> informations;
-  informations.emplace_back(wrapper.getLinkInformations().begin(), wrapper.getLinkInformations().end());
-  informations.emplace_back("RawTxID: " + this->hashRawTransaction);
-  informations.emplace_back("lockTime: " + to_string(this->lockTime));
+  wrapper.setTo(this->hashRawTransaction);
+  wrapper.addInformationLink("RawTxID: " + this->hashRawTransaction);
+  wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
   string witness = "false";
   if(type == Type::WITNESS)
   {
       witness = "true";
   }
-  informations.emplace_back("witness: " + witness);
-  wrapper.setLinkInformations(informations);*/
-/* this is more difficulte
-  if(this->txIn.size() > 1 && this->txOut.size() > 1){
-    return;
-  }
-*/
-  wrapper.setTo(this->hashRawTransaction);
+  wrapper.addInformationLink("witness: " + witness);
   bool setValue = false;
   for(TransactionOutput txOut : this->txOut)
   {
@@ -280,6 +226,7 @@ void RawTransaction::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::W
 
 }
 
+//Getter and setter
 uint8_t RawTransaction::getFlag() const
 {
   return flag;
@@ -290,7 +237,6 @@ uint8_t RawTransaction::getMarker() const
   return marker;
 }
 
-//Getter and setter
 int32_t RawTransaction::getVersion() const
 {
     return version;

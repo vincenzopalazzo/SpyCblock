@@ -3,10 +3,7 @@
 
 #include <string>
 
-#include "Properties.h"
-
-using namespace std;
-using namespace cppproperties;
+#include "../include/Properties.h"
 
 namespace spyCBlock {
 
@@ -20,54 +17,63 @@ namespace spyCBlock {
         return SINGLETON;
       }
 
-      string getPathBlockDat() const;
+      std::string getPathBlockDat() const;
 
-      string getPathBlockDecode() const;
+      std::string getPathBlockDecode() const;
 
-      string getFormatFileDecode() const;
+      std::string getFormatFileDecode() const;
 
-      string getPathFileLog();
+      std::string getPathFileLog();
 
-      string getPathFileLogTest();
+      std::string getPathFileLogTest();
 
-      string getPathFileMockTest();
+      std::string getPathFileMockTest();
+
+      std::string getDelimitatorLinkInformations();
+
+      int getStartHeightBlock();
+
+  protected:
+      ConfiguratorSingleton();
 
   private:
 
-      const string PATH_FILE = "/conf.properties";
+      const std::string PATH_FILE = "/conf.properties";
 
-      const string PATH_BLOCK_DAT = "PATH_BLOCK_DAT";
+      const std::string PATH_BLOCK_DAT = "PATH_BLOCK_DAT";
 
-      const string PATH_BLOCK_DECODE = "PATH_BLOCK_DECODE";
+      const std::string PATH_BLOCK_DECODE = "PATH_BLOCK_DECODE";
 
-      const string FORMAT_BLOCK_DECODE = "FORMAT_BLOCK_DECODE";
+      const std::string FORMAT_BLOCK_DECODE = "FORMAT_BLOCK_DECODE";
 
-      const string PATH_FILE_LOG = "PATH_FILE_LOG";
+      const std::string PATH_FILE_LOG = "PATH_FILE_LOG";
 
-      const string PATH_FILE_LOG_TEST = "PATH_FILE_LOG_TEST";
+      const std::string PATH_FILE_LOG_TEST = "PATH_FILE_LOG_TEST";
 
-      const string PATH_FILE_MOCK_TEST = "PATH_FILE_MOCK_TEST";
+      const std::string PATH_FILE_MOCK_TEST = "PATH_FILE_MOCK_TEST";
 
-      ConfiguratorSingleton();
+      const std::string DELIMITATOR_INFORMATION_LINK = "DELIMITATOR_INFORMATION_LINK";
 
-      Properties configuration;
+      const std::string HEIGHT_BLOCK_TO_START = "HEIGHT_BLOCK_TO_START";
 
-      string getRootPath();
+      cppproperties::Properties configuration;
+
+      std::string getRootPath();
 
       void obligatoryVariable();
 
       //Variable proprieties obligatory
-      string pathBlockDat;
+      std::string pathBlockDat;
 
-      string pathBlockDecode;
+      std::string pathBlockDecode;
 
-      string formatFileDecode;
+      std::string formatFileDecode;
 
-      string pathFileLog;
+      std::string pathFileLog;
 
-      string pathFileLogTest;
+      std::string pathFileLogTest;
 
-      string pathFileMockTest;
+      std::string pathFileMockTest;
 
   };
 

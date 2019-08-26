@@ -3,13 +3,12 @@
 
 #include <vector>
 
-
 #include "../type/DVarInt.h"
 #include "../type/DScript.h"
 
+// @author https://github.com/vincenzopalazzo
 namespace spyCBlock
 {
-
     class TransactionWitness
     {
         public:

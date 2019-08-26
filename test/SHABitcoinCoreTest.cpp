@@ -149,7 +149,7 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypo
     hexForm += cAmmount;
     hexForm += publicKeyScriptLenght;
     hexForm += publicKeyScript;
-    hexForm += lockTime;;
+    hexForm += lockTime;
 
     vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 

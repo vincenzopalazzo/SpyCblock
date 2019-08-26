@@ -7,6 +7,8 @@
 
 #include <string>
 
+#include "ConfiguratorSingleton.h"
+
 
 namespace spyCBlock {
 
@@ -22,7 +24,7 @@ namespace spyCBlock {
 
         private:
 
-            int currentFile = 0;
+            int currentFile = ConfiguratorSingleton::getInstance().getStartHeightBlock();
 
             std::string nameFileSearched(std::string &pathInput);
 

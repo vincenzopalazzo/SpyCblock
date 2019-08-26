@@ -7,7 +7,6 @@
 #include "../DAOException.h"
 
 using namespace spyCBlock;
-using namespace nlohmann;
 using namespace rapidjson;
 using namespace std;
 namespace fs = std::experimental::filesystem;

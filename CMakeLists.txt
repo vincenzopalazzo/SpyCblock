@@ -28,7 +28,6 @@ add_executable(
         test/StructureBitcoinCoreTest.cpp
         test/SHABitcoinCoreTest.cpp
         test/SerealizationTest.cpp
-        test/JsonSerializationTest.cpp
         test/DAOJsonTest.cpp
         test/NullDataTransactionsTest.cpp
         test/ExceptionCompactsizeTest.cpp

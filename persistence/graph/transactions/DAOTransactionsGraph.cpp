@@ -6,6 +6,7 @@
 
 #include "DAOTransactionsGraph.h"
 #include "../../DAOException.h"
+#include "../../../core/ConfiguratorSingleton.h"
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
@@ -43,6 +44,7 @@ bool spyCBlock::DAOTransactionsGraph::saveBlock(string inputPath, string outputP
               height++;
               block.setHeightBlock(height);
               spyCBlockRPC::WrapperInformations wrapper;
+              wrapper.setDelimitator(ConfiguratorSingleton::getInstance().getDelimitatorLinkInformations());
               block.toTransactionsGraph(saveBlkToJson, wrapper);
             }
             chrono::milliseconds end = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());

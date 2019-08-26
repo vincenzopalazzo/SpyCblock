@@ -3,7 +3,6 @@
 
 #include <cstdint>
 
-#include <nlohmann/json.hpp>
 #include <rapidjson/writer.h>
 #include <rapidjson/ostreamwrapper.h>
 #include "../type/Outpoint.h"
@@ -11,54 +10,47 @@
 
 #include "../type/DScript.h"
 
-/**
- * Created on 1/21/19.
- * @author https://github.com/vincenzopalazzo
- */
-namespace spyCBlock{
-    //In the coindbase transaction, outpoint is standard, the hash id resiver si 0 and
-    //the n is 2^32 - 1
+
+//@author https://github.com/vincenzopalazzo
+namespace spyCBlock
+{
     class TransactionInput
     {
-    private:
+      public:
 
-        OutPoint outpoint;
-        DScript script;
-        uint32_t sequences;
+          const DScript& getScript() const;
 
-        //Additional finformation
-        std::string hashInputTransaction;
+          uint32_t getSequences() const;
 
-    public:
+          const OutPoint& getOutpoint() const;
 
-        const DScript& getScript() const;
+          void setOutpoint(const OutPoint &outpoint);
 
-        uint32_t getSequences() const;
+          const std::string& getHashInputTransaction() const;
 
-        const OutPoint& getOutpoint() const;
+          std::string toString();
 
-        void setOutpoint(const OutPoint &outpoint);
+          void decode(std::ifstream &stream);
 
-        const std::string& getHashInputTransaction() const;
+          std::string toSerealizationForm();
 
-        std::string decodeIntoStringScriptSing() const; //TODO I added & because I like referiment but it is correct?
+          bool isScriptNull();
 
-        std::string toString();
+          void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 
-        void decode(std::ifstream &stream);
+          void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
-        std::string toSerealizationForm();
+          void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
-        bool isScriptNull();
+      private:
 
-        //TODO can be removed
-        nlohmann::json toJson();
+          OutPoint outpoint;
 
-        void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+          DScript script;
 
-        void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+          uint32_t sequences;
 
-        void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+          std::string hashInputTransaction;
     };
 }
 

@@ -1,3 +1,5 @@
+//@author https://github.com/vincenzopalazzo
+
 #include <sstream>
 
 #include <glog/logging.h>
@@ -9,12 +11,7 @@
 
 using namespace spyCBlock;
 using namespace std;
-using namespace nlohmann;
 
-/**
- * Created on 1/21/19.
- * @author https://github.com/vincenzopalazzo
- */
 void TransactionOutput::decode(ifstream &stream)
 {
     Unserialize(stream, nValue);
@@ -38,23 +35,6 @@ string TransactionOutput::toSerealizationForm() const
   return hexForm;
 }
 
-bool TransactionOutput::isScriptNull()
-{
-  return this->script.getRawScriptString().empty();
-}
-
-json TransactionOutput::toJson()
-{
-  json txOutputjson = json::object({
-                                     {"ammount", this->nValue},
-                                     {"scriptLenght", this->script.getScriptLenght().getValue()},
-                                     {"script", this->getScript().getRawScriptString()},
-                                     {"hashOutputTransaction", this->hashOutputTransaction},
-                                   });
-
-  return txOutputjson;
-}
-
 void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
 {
    writerJson.StartObject();
@@ -76,16 +56,14 @@ void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &wri
 
 void TransactionOutput::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  vector<string> informations;
-  //informations.emplace_back(wrapper.getLinkInformations());
-  informations.emplace_back("Ammount: " + to_string(this->nValue));
-  wrapper.setLinkInformations(informations);
+  wrapper.addInformationLink("Ammount: " + to_string(this->nValue));
   wrapper.setTo(this->getScript().getRawScriptString());
 }
 
 void TransactionOutput::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
   //TODO add ammount to link graph
+  wrapper.addInformationLink("Ammount: " + to_string(this->nValue));
 }
 
 string TransactionOutput::toString()
@@ -97,6 +75,13 @@ string TransactionOutput::toString()
     stringForm += script.getScriptString();
     stringForm += "\n";
     return stringForm;
+}
+
+//Subrutine
+
+bool TransactionOutput::isScriptNull()
+{
+  return this->script.getRawScriptString().empty();
 }
 
 //getter and setter

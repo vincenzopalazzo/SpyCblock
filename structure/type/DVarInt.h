@@ -5,23 +5,21 @@
 
 #include "../../util/serialize.h"
 
-/**
- * Created on 2/4/19.
- * @author https://github.com/vincenzopalazzo
- */
+//@author https://github.com/vincenzopalazzo
 namespace spyCBlock
 {
   class DVarInt
   {
-    private:
-        uint64_t value;
-        //CCompactSize newValue;
-
     public:
 
         uint64_t getValue() const;
 
         void decode(std::ifstream &stream);
+
+
+    private:
+
+      uint64_t value;
   };
 }
 

@@ -1,3 +1,5 @@
+//@author https://github.com/vincenzopalazzo
+
 #include <iostream>
 #include <regex>
 
@@ -6,19 +8,13 @@
 
 using namespace spyCBlock;
 using namespace std;
-using namespace nlohmann;
-
-/**
- * Created on 1/21/19.
- * @author https://github.com/vincenzopalazzo
- */
 
 void Block::decode(std::ifstream &stream) {
     Unserialize(stream, this->magicNum);
     LOG(INFO) << "Magic numbar readed: " << magicNum;
     Unserialize(stream, this->blocksize);
     LOG(INFO) << "Block size readed: " << blocksize;
-    blockHeader.unserialize(stream);
+    blockHeader.decode(stream);
 
     this->numbarRawTransaction.decode(stream);
 
@@ -68,36 +64,6 @@ string Block::toString() {
   return stringForm;
 }
 
-json Block::toJsonLite()
-{
-  return json::object({
-                        {"magicNumbar", magicNum},
-                        {"blockSize", blocksize},
-                        {"blockHeader", blockHeader.toJoson()}
-                      });
-}
-
-json Block::toJsonFat()
-{
-  json jsonTransactionRaw;
-  for (RawTransaction &raw : this->rawTransactions)
-  {
-      jsonTransactionRaw.push_back(raw.toJson());
-  }
-
-  json jsonFat = {
-      {"magicNumbar", magicNum},
-      {"blockSize", blocksize},
-      {"blockHeader", blockHeader.toJoson()},
-      {"numbarRawTransactions", numbarRawTransaction.getValue()},
-      {"heightBlock", heightBlock}, //this value for default is -1
-      {"hashBlock", hashBlock},
-  };
-
-  jsonFat["rawTransactions"] = jsonTransactionRaw;
-  return jsonFat;
-}
-
 void Block::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
 {
   writerJson.StartObject();
@@ -133,13 +99,10 @@ void Block::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
   writerJson.EndObject();
 }
 
-//TODO generalize this method, with type if deserialization
+//TODO generalize this method, with type of deserialization
 void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  vector<string> information;
-  information.emplace_back("height:" + to_string(this->heightBlock));
-  wrapper.setLinkInformations(information);
-  wrapper.setDelimitator("|-|");
+  wrapper.addInformationLink("height:" + to_string(this->heightBlock));
 
   for(RawTransaction& rawTx : this->rawTransactions)
   {
@@ -150,9 +113,7 @@ void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformation
 
 void Block::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  vector<string> information;
-  information.emplace_back("height:" + to_string(this->heightBlock));
-  wrapper.setLinkInformations(information);
+  wrapper.addInformationLink("height:" + to_string(this->heightBlock));
   wrapper.setDelimitator("|-|");
 
   for(RawTransaction& rawTx : this->rawTransactions)

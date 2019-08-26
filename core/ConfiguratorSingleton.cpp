@@ -5,7 +5,8 @@
 #include "PropertiesParser.h"
 
 using namespace spyCBlock;
-
+using namespace std;
+using namespace cppproperties;
 
 ConfiguratorSingleton::ConfiguratorSingleton()
 {
@@ -39,6 +40,16 @@ string ConfiguratorSingleton::getPathFileMockTest()
      LOG(WARNING) << "The path file mock for thest is: " << pathFileLog;
   }
   return pathFileMockTest;
+}
+
+string ConfiguratorSingleton::getDelimitatorLinkInformations()
+{
+  return configuration.GetProperty(DELIMITATOR_INFORMATION_LINK);
+}
+
+int ConfiguratorSingleton::getStartHeightBlock()
+{
+  return stoi(configuration.GetProperty(HEIGHT_BLOCK_TO_START));
 }
 
 string ConfiguratorSingleton::getPathFileLogTest()
