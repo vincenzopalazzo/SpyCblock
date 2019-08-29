@@ -1,8 +1,9 @@
 #include <experimental/filesystem>
+
 #include <glog/logging.h>
+#include "../include/PropertiesParser.h"
 
 #include "ConfiguratorSingleton.h"
-#include "PropertiesParser.h"
 
 using namespace spyCBlock;
 using namespace std;
@@ -49,7 +50,7 @@ string ConfiguratorSingleton::getDelimitatorLinkInformations()
 
 int ConfiguratorSingleton::getStartHeightBlock()
 {
-  return stoi(configuration.GetProperty(HEIGHT_BLOCK_TO_START));
+  return stoi(configuration.GetProperty(NUMBER_FILE_TO_START));
 }
 
 string ConfiguratorSingleton::getPathFileLogTest()

@@ -291,95 +291,95 @@ crypto/UtilCrypto.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/crypto/UtilCrypto.cpp.s
 .PHONY : crypto/UtilCrypto.cpp.s
 
-cryptobitcoin/Sha256.o: cryptobitcoin/Sha256.cpp.o
+include/bitcoin-cryptography-library/cpp/Sha256.o: include/bitcoin-cryptography-library/cpp/Sha256.cpp.o
 
-.PHONY : cryptobitcoin/Sha256.o
-
-# target to build an object file
-cryptobitcoin/Sha256.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/cryptobitcoin/Sha256.cpp.o
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/cryptobitcoin/Sha256.cpp.o
-.PHONY : cryptobitcoin/Sha256.cpp.o
-
-cryptobitcoin/Sha256.i: cryptobitcoin/Sha256.cpp.i
-
-.PHONY : cryptobitcoin/Sha256.i
-
-# target to preprocess a source file
-cryptobitcoin/Sha256.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/cryptobitcoin/Sha256.cpp.i
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/cryptobitcoin/Sha256.cpp.i
-.PHONY : cryptobitcoin/Sha256.cpp.i
-
-cryptobitcoin/Sha256.s: cryptobitcoin/Sha256.cpp.s
-
-.PHONY : cryptobitcoin/Sha256.s
-
-# target to generate assembly for a file
-cryptobitcoin/Sha256.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/cryptobitcoin/Sha256.cpp.s
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/cryptobitcoin/Sha256.cpp.s
-.PHONY : cryptobitcoin/Sha256.cpp.s
-
-cryptobitcoin/Sha256Hash.o: cryptobitcoin/Sha256Hash.cpp.o
-
-.PHONY : cryptobitcoin/Sha256Hash.o
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256.o
 
 # target to build an object file
-cryptobitcoin/Sha256Hash.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/cryptobitcoin/Sha256Hash.cpp.o
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/cryptobitcoin/Sha256Hash.cpp.o
-.PHONY : cryptobitcoin/Sha256Hash.cpp.o
+include/bitcoin-cryptography-library/cpp/Sha256.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/bitcoin-cryptography-library/cpp/Sha256.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/bitcoin-cryptography-library/cpp/Sha256.cpp.o
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256.cpp.o
 
-cryptobitcoin/Sha256Hash.i: cryptobitcoin/Sha256Hash.cpp.i
+include/bitcoin-cryptography-library/cpp/Sha256.i: include/bitcoin-cryptography-library/cpp/Sha256.cpp.i
 
-.PHONY : cryptobitcoin/Sha256Hash.i
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256.i
 
 # target to preprocess a source file
-cryptobitcoin/Sha256Hash.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/cryptobitcoin/Sha256Hash.cpp.i
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/cryptobitcoin/Sha256Hash.cpp.i
-.PHONY : cryptobitcoin/Sha256Hash.cpp.i
+include/bitcoin-cryptography-library/cpp/Sha256.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/bitcoin-cryptography-library/cpp/Sha256.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/bitcoin-cryptography-library/cpp/Sha256.cpp.i
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256.cpp.i
 
-cryptobitcoin/Sha256Hash.s: cryptobitcoin/Sha256Hash.cpp.s
+include/bitcoin-cryptography-library/cpp/Sha256.s: include/bitcoin-cryptography-library/cpp/Sha256.cpp.s
 
-.PHONY : cryptobitcoin/Sha256Hash.s
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256.s
 
 # target to generate assembly for a file
-cryptobitcoin/Sha256Hash.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/cryptobitcoin/Sha256Hash.cpp.s
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/cryptobitcoin/Sha256Hash.cpp.s
-.PHONY : cryptobitcoin/Sha256Hash.cpp.s
+include/bitcoin-cryptography-library/cpp/Sha256.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/bitcoin-cryptography-library/cpp/Sha256.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/bitcoin-cryptography-library/cpp/Sha256.cpp.s
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256.cpp.s
 
-cryptobitcoin/Utils.o: cryptobitcoin/Utils.cpp.o
+include/bitcoin-cryptography-library/cpp/Sha256Hash.o: include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o
 
-.PHONY : cryptobitcoin/Utils.o
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256Hash.o
 
 # target to build an object file
-cryptobitcoin/Utils.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/cryptobitcoin/Utils.cpp.o
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/cryptobitcoin/Utils.cpp.o
-.PHONY : cryptobitcoin/Utils.cpp.o
+include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o
 
-cryptobitcoin/Utils.i: cryptobitcoin/Utils.cpp.i
+include/bitcoin-cryptography-library/cpp/Sha256Hash.i: include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i
 
-.PHONY : cryptobitcoin/Utils.i
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256Hash.i
 
 # target to preprocess a source file
-cryptobitcoin/Utils.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/cryptobitcoin/Utils.cpp.i
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/cryptobitcoin/Utils.cpp.i
-.PHONY : cryptobitcoin/Utils.cpp.i
+include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i
 
-cryptobitcoin/Utils.s: cryptobitcoin/Utils.cpp.s
+include/bitcoin-cryptography-library/cpp/Sha256Hash.s: include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s
 
-.PHONY : cryptobitcoin/Utils.s
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256Hash.s
 
 # target to generate assembly for a file
-cryptobitcoin/Utils.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/cryptobitcoin/Utils.cpp.s
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/cryptobitcoin/Utils.cpp.s
-.PHONY : cryptobitcoin/Utils.cpp.s
+include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s
+.PHONY : include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s
+
+include/bitcoin-cryptography-library/cpp/Utils.o: include/bitcoin-cryptography-library/cpp/Utils.cpp.o
+
+.PHONY : include/bitcoin-cryptography-library/cpp/Utils.o
+
+# target to build an object file
+include/bitcoin-cryptography-library/cpp/Utils.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/bitcoin-cryptography-library/cpp/Utils.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/bitcoin-cryptography-library/cpp/Utils.cpp.o
+.PHONY : include/bitcoin-cryptography-library/cpp/Utils.cpp.o
+
+include/bitcoin-cryptography-library/cpp/Utils.i: include/bitcoin-cryptography-library/cpp/Utils.cpp.i
+
+.PHONY : include/bitcoin-cryptography-library/cpp/Utils.i
+
+# target to preprocess a source file
+include/bitcoin-cryptography-library/cpp/Utils.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/bitcoin-cryptography-library/cpp/Utils.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/bitcoin-cryptography-library/cpp/Utils.cpp.i
+.PHONY : include/bitcoin-cryptography-library/cpp/Utils.cpp.i
+
+include/bitcoin-cryptography-library/cpp/Utils.s: include/bitcoin-cryptography-library/cpp/Utils.cpp.s
+
+.PHONY : include/bitcoin-cryptography-library/cpp/Utils.s
+
+# target to generate assembly for a file
+include/bitcoin-cryptography-library/cpp/Utils.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/bitcoin-cryptography-library/cpp/Utils.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/bitcoin-cryptography-library/cpp/Utils.cpp.s
+.PHONY : include/bitcoin-cryptography-library/cpp/Utils.cpp.s
 
 include/cpp-properties/src/Properties.o: include/cpp-properties/src/Properties.cpp.o
 
@@ -471,35 +471,215 @@ include/cpp-properties/src/PropertiesUtils.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/cpp-properties/src/PropertiesUtils.cpp.s
 .PHONY : include/cpp-properties/src/PropertiesUtils.cpp.s
 
-persistence/DAOBlockchain.o: persistence/DAOBlockchain.cpp.o
+include/spycblockrpc/ConfiguratorSingleton.o: include/spycblockrpc/ConfiguratorSingleton.cpp.o
 
-.PHONY : persistence/DAOBlockchain.o
+.PHONY : include/spycblockrpc/ConfiguratorSingleton.o
 
 # target to build an object file
-persistence/DAOBlockchain.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/DAOBlockchain.cpp.o
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/DAOBlockchain.cpp.o
-.PHONY : persistence/DAOBlockchain.cpp.o
+include/spycblockrpc/ConfiguratorSingleton.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/ConfiguratorSingleton.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/ConfiguratorSingleton.cpp.o
+.PHONY : include/spycblockrpc/ConfiguratorSingleton.cpp.o
 
-persistence/DAOBlockchain.i: persistence/DAOBlockchain.cpp.i
+include/spycblockrpc/ConfiguratorSingleton.i: include/spycblockrpc/ConfiguratorSingleton.cpp.i
 
-.PHONY : persistence/DAOBlockchain.i
+.PHONY : include/spycblockrpc/ConfiguratorSingleton.i
 
 # target to preprocess a source file
-persistence/DAOBlockchain.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/DAOBlockchain.cpp.i
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/DAOBlockchain.cpp.i
-.PHONY : persistence/DAOBlockchain.cpp.i
+include/spycblockrpc/ConfiguratorSingleton.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/ConfiguratorSingleton.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/ConfiguratorSingleton.cpp.i
+.PHONY : include/spycblockrpc/ConfiguratorSingleton.cpp.i
 
-persistence/DAOBlockchain.s: persistence/DAOBlockchain.cpp.s
+include/spycblockrpc/ConfiguratorSingleton.s: include/spycblockrpc/ConfiguratorSingleton.cpp.s
 
-.PHONY : persistence/DAOBlockchain.s
+.PHONY : include/spycblockrpc/ConfiguratorSingleton.s
 
 # target to generate assembly for a file
-persistence/DAOBlockchain.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/DAOBlockchain.cpp.s
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/DAOBlockchain.cpp.s
-.PHONY : persistence/DAOBlockchain.cpp.s
+include/spycblockrpc/ConfiguratorSingleton.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/ConfiguratorSingleton.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/ConfiguratorSingleton.cpp.s
+.PHONY : include/spycblockrpc/ConfiguratorSingleton.cpp.s
+
+include/spycblockrpc/commands/DecodeBlockAtIndexCommand.o: include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.o
+
+.PHONY : include/spycblockrpc/commands/DecodeBlockAtIndexCommand.o
+
+# target to build an object file
+include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.o
+.PHONY : include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.o
+
+include/spycblockrpc/commands/DecodeBlockAtIndexCommand.i: include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.i
+
+.PHONY : include/spycblockrpc/commands/DecodeBlockAtIndexCommand.i
+
+# target to preprocess a source file
+include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.i
+.PHONY : include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.i
+
+include/spycblockrpc/commands/DecodeBlockAtIndexCommand.s: include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.s
+
+.PHONY : include/spycblockrpc/commands/DecodeBlockAtIndexCommand.s
+
+# target to generate assembly for a file
+include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.s
+.PHONY : include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.s
+
+include/spycblockrpc/commands/DecodeRawTransaction.o: include/spycblockrpc/commands/DecodeRawTransaction.cpp.o
+
+.PHONY : include/spycblockrpc/commands/DecodeRawTransaction.o
+
+# target to build an object file
+include/spycblockrpc/commands/DecodeRawTransaction.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/DecodeRawTransaction.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/DecodeRawTransaction.cpp.o
+.PHONY : include/spycblockrpc/commands/DecodeRawTransaction.cpp.o
+
+include/spycblockrpc/commands/DecodeRawTransaction.i: include/spycblockrpc/commands/DecodeRawTransaction.cpp.i
+
+.PHONY : include/spycblockrpc/commands/DecodeRawTransaction.i
+
+# target to preprocess a source file
+include/spycblockrpc/commands/DecodeRawTransaction.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/DecodeRawTransaction.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/DecodeRawTransaction.cpp.i
+.PHONY : include/spycblockrpc/commands/DecodeRawTransaction.cpp.i
+
+include/spycblockrpc/commands/DecodeRawTransaction.s: include/spycblockrpc/commands/DecodeRawTransaction.cpp.s
+
+.PHONY : include/spycblockrpc/commands/DecodeRawTransaction.s
+
+# target to generate assembly for a file
+include/spycblockrpc/commands/DecodeRawTransaction.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/DecodeRawTransaction.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/DecodeRawTransaction.cpp.s
+.PHONY : include/spycblockrpc/commands/DecodeRawTransaction.cpp.s
+
+include/spycblockrpc/commands/DecodeScriptCommand.o: include/spycblockrpc/commands/DecodeScriptCommand.cpp.o
+
+.PHONY : include/spycblockrpc/commands/DecodeScriptCommand.o
+
+# target to build an object file
+include/spycblockrpc/commands/DecodeScriptCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/DecodeScriptCommand.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/DecodeScriptCommand.cpp.o
+.PHONY : include/spycblockrpc/commands/DecodeScriptCommand.cpp.o
+
+include/spycblockrpc/commands/DecodeScriptCommand.i: include/spycblockrpc/commands/DecodeScriptCommand.cpp.i
+
+.PHONY : include/spycblockrpc/commands/DecodeScriptCommand.i
+
+# target to preprocess a source file
+include/spycblockrpc/commands/DecodeScriptCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/DecodeScriptCommand.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/DecodeScriptCommand.cpp.i
+.PHONY : include/spycblockrpc/commands/DecodeScriptCommand.cpp.i
+
+include/spycblockrpc/commands/DecodeScriptCommand.s: include/spycblockrpc/commands/DecodeScriptCommand.cpp.s
+
+.PHONY : include/spycblockrpc/commands/DecodeScriptCommand.s
+
+# target to generate assembly for a file
+include/spycblockrpc/commands/DecodeScriptCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/DecodeScriptCommand.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/DecodeScriptCommand.cpp.s
+.PHONY : include/spycblockrpc/commands/DecodeScriptCommand.cpp.s
+
+include/spycblockrpc/commands/HeightBlockchainCommand.o: include/spycblockrpc/commands/HeightBlockchainCommand.cpp.o
+
+.PHONY : include/spycblockrpc/commands/HeightBlockchainCommand.o
+
+# target to build an object file
+include/spycblockrpc/commands/HeightBlockchainCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.o
+.PHONY : include/spycblockrpc/commands/HeightBlockchainCommand.cpp.o
+
+include/spycblockrpc/commands/HeightBlockchainCommand.i: include/spycblockrpc/commands/HeightBlockchainCommand.cpp.i
+
+.PHONY : include/spycblockrpc/commands/HeightBlockchainCommand.i
+
+# target to preprocess a source file
+include/spycblockrpc/commands/HeightBlockchainCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.i
+.PHONY : include/spycblockrpc/commands/HeightBlockchainCommand.cpp.i
+
+include/spycblockrpc/commands/HeightBlockchainCommand.s: include/spycblockrpc/commands/HeightBlockchainCommand.cpp.s
+
+.PHONY : include/spycblockrpc/commands/HeightBlockchainCommand.s
+
+# target to generate assembly for a file
+include/spycblockrpc/commands/HeightBlockchainCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.s
+.PHONY : include/spycblockrpc/commands/HeightBlockchainCommand.cpp.s
+
+include/spycblockrpc/core/graph/TransactionGraph.o: include/spycblockrpc/core/graph/TransactionGraph.cpp.o
+
+.PHONY : include/spycblockrpc/core/graph/TransactionGraph.o
+
+# target to build an object file
+include/spycblockrpc/core/graph/TransactionGraph.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/core/graph/TransactionGraph.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/core/graph/TransactionGraph.cpp.o
+.PHONY : include/spycblockrpc/core/graph/TransactionGraph.cpp.o
+
+include/spycblockrpc/core/graph/TransactionGraph.i: include/spycblockrpc/core/graph/TransactionGraph.cpp.i
+
+.PHONY : include/spycblockrpc/core/graph/TransactionGraph.i
+
+# target to preprocess a source file
+include/spycblockrpc/core/graph/TransactionGraph.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/core/graph/TransactionGraph.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/core/graph/TransactionGraph.cpp.i
+.PHONY : include/spycblockrpc/core/graph/TransactionGraph.cpp.i
+
+include/spycblockrpc/core/graph/TransactionGraph.s: include/spycblockrpc/core/graph/TransactionGraph.cpp.s
+
+.PHONY : include/spycblockrpc/core/graph/TransactionGraph.s
+
+# target to generate assembly for a file
+include/spycblockrpc/core/graph/TransactionGraph.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/core/graph/TransactionGraph.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/core/graph/TransactionGraph.cpp.s
+.PHONY : include/spycblockrpc/core/graph/TransactionGraph.cpp.s
+
+include/spycblockrpc/core/graph/WrapperInformations.o: include/spycblockrpc/core/graph/WrapperInformations.cpp.o
+
+.PHONY : include/spycblockrpc/core/graph/WrapperInformations.o
+
+# target to build an object file
+include/spycblockrpc/core/graph/WrapperInformations.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/core/graph/WrapperInformations.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/core/graph/WrapperInformations.cpp.o
+.PHONY : include/spycblockrpc/core/graph/WrapperInformations.cpp.o
+
+include/spycblockrpc/core/graph/WrapperInformations.i: include/spycblockrpc/core/graph/WrapperInformations.cpp.i
+
+.PHONY : include/spycblockrpc/core/graph/WrapperInformations.i
+
+# target to preprocess a source file
+include/spycblockrpc/core/graph/WrapperInformations.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/core/graph/WrapperInformations.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/core/graph/WrapperInformations.cpp.i
+.PHONY : include/spycblockrpc/core/graph/WrapperInformations.cpp.i
+
+include/spycblockrpc/core/graph/WrapperInformations.s: include/spycblockrpc/core/graph/WrapperInformations.cpp.s
+
+.PHONY : include/spycblockrpc/core/graph/WrapperInformations.s
+
+# target to generate assembly for a file
+include/spycblockrpc/core/graph/WrapperInformations.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/include/spycblockrpc/core/graph/WrapperInformations.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/include/spycblockrpc/core/graph/WrapperInformations.cpp.s
+.PHONY : include/spycblockrpc/core/graph/WrapperInformations.cpp.s
 
 persistence/DAOException.o: persistence/DAOException.cpp.o
 
@@ -561,35 +741,95 @@ persistence/SerializationUtil.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/SerializationUtil.cpp.s
 .PHONY : persistence/SerializationUtil.cpp.s
 
-persistence/json/DAOBlkToJson.o: persistence/json/DAOBlkToJson.cpp.o
+persistence/graph/DAOManagerGraph.o: persistence/graph/DAOManagerGraph.cpp.o
 
-.PHONY : persistence/json/DAOBlkToJson.o
+.PHONY : persistence/graph/DAOManagerGraph.o
 
 # target to build an object file
-persistence/json/DAOBlkToJson.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/json/DAOBlkToJson.cpp.o
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/json/DAOBlkToJson.cpp.o
-.PHONY : persistence/json/DAOBlkToJson.cpp.o
+persistence/graph/DAOManagerGraph.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/graph/DAOManagerGraph.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/graph/DAOManagerGraph.cpp.o
+.PHONY : persistence/graph/DAOManagerGraph.cpp.o
 
-persistence/json/DAOBlkToJson.i: persistence/json/DAOBlkToJson.cpp.i
+persistence/graph/DAOManagerGraph.i: persistence/graph/DAOManagerGraph.cpp.i
 
-.PHONY : persistence/json/DAOBlkToJson.i
+.PHONY : persistence/graph/DAOManagerGraph.i
 
 # target to preprocess a source file
-persistence/json/DAOBlkToJson.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/json/DAOBlkToJson.cpp.i
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/json/DAOBlkToJson.cpp.i
-.PHONY : persistence/json/DAOBlkToJson.cpp.i
+persistence/graph/DAOManagerGraph.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/graph/DAOManagerGraph.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/graph/DAOManagerGraph.cpp.i
+.PHONY : persistence/graph/DAOManagerGraph.cpp.i
 
-persistence/json/DAOBlkToJson.s: persistence/json/DAOBlkToJson.cpp.s
+persistence/graph/DAOManagerGraph.s: persistence/graph/DAOManagerGraph.cpp.s
 
-.PHONY : persistence/json/DAOBlkToJson.s
+.PHONY : persistence/graph/DAOManagerGraph.s
 
 # target to generate assembly for a file
-persistence/json/DAOBlkToJson.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/json/DAOBlkToJson.cpp.s
-	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/json/DAOBlkToJson.cpp.s
-.PHONY : persistence/json/DAOBlkToJson.cpp.s
+persistence/graph/DAOManagerGraph.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/graph/DAOManagerGraph.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/graph/DAOManagerGraph.cpp.s
+.PHONY : persistence/graph/DAOManagerGraph.cpp.s
+
+persistence/graph/transactions/DAOTransactionsGraph.o: persistence/graph/transactions/DAOTransactionsGraph.cpp.o
+
+.PHONY : persistence/graph/transactions/DAOTransactionsGraph.o
+
+# target to build an object file
+persistence/graph/transactions/DAOTransactionsGraph.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/graph/transactions/DAOTransactionsGraph.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/graph/transactions/DAOTransactionsGraph.cpp.o
+.PHONY : persistence/graph/transactions/DAOTransactionsGraph.cpp.o
+
+persistence/graph/transactions/DAOTransactionsGraph.i: persistence/graph/transactions/DAOTransactionsGraph.cpp.i
+
+.PHONY : persistence/graph/transactions/DAOTransactionsGraph.i
+
+# target to preprocess a source file
+persistence/graph/transactions/DAOTransactionsGraph.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/graph/transactions/DAOTransactionsGraph.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/graph/transactions/DAOTransactionsGraph.cpp.i
+.PHONY : persistence/graph/transactions/DAOTransactionsGraph.cpp.i
+
+persistence/graph/transactions/DAOTransactionsGraph.s: persistence/graph/transactions/DAOTransactionsGraph.cpp.s
+
+.PHONY : persistence/graph/transactions/DAOTransactionsGraph.s
+
+# target to generate assembly for a file
+persistence/graph/transactions/DAOTransactionsGraph.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/graph/transactions/DAOTransactionsGraph.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/graph/transactions/DAOTransactionsGraph.cpp.s
+.PHONY : persistence/graph/transactions/DAOTransactionsGraph.cpp.s
+
+persistence/graph/transactions/TransactionsRawGraph.o: persistence/graph/transactions/TransactionsRawGraph.cpp.o
+
+.PHONY : persistence/graph/transactions/TransactionsRawGraph.o
+
+# target to build an object file
+persistence/graph/transactions/TransactionsRawGraph.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/graph/transactions/TransactionsRawGraph.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/graph/transactions/TransactionsRawGraph.cpp.o
+.PHONY : persistence/graph/transactions/TransactionsRawGraph.cpp.o
+
+persistence/graph/transactions/TransactionsRawGraph.i: persistence/graph/transactions/TransactionsRawGraph.cpp.i
+
+.PHONY : persistence/graph/transactions/TransactionsRawGraph.i
+
+# target to preprocess a source file
+persistence/graph/transactions/TransactionsRawGraph.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/graph/transactions/TransactionsRawGraph.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/graph/transactions/TransactionsRawGraph.cpp.i
+.PHONY : persistence/graph/transactions/TransactionsRawGraph.cpp.i
+
+persistence/graph/transactions/TransactionsRawGraph.s: persistence/graph/transactions/TransactionsRawGraph.cpp.s
+
+.PHONY : persistence/graph/transactions/TransactionsRawGraph.s
+
+# target to generate assembly for a file
+persistence/graph/transactions/TransactionsRawGraph.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/persistence/graph/transactions/TransactionsRawGraph.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/persistence/graph/transactions/TransactionsRawGraph.cpp.s
+.PHONY : persistence/graph/transactions/TransactionsRawGraph.cpp.s
 
 persistence/json/DAOJson.o: persistence/json/DAOJson.cpp.o
 
@@ -801,6 +1041,36 @@ structure/transaction/TransactionOutput.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/structure/transaction/TransactionOutput.cpp.s
 .PHONY : structure/transaction/TransactionOutput.cpp.s
 
+structure/transaction/TransactionWitness.o: structure/transaction/TransactionWitness.cpp.o
+
+.PHONY : structure/transaction/TransactionWitness.o
+
+# target to build an object file
+structure/transaction/TransactionWitness.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/structure/transaction/TransactionWitness.cpp.o
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/structure/transaction/TransactionWitness.cpp.o
+.PHONY : structure/transaction/TransactionWitness.cpp.o
+
+structure/transaction/TransactionWitness.i: structure/transaction/TransactionWitness.cpp.i
+
+.PHONY : structure/transaction/TransactionWitness.i
+
+# target to preprocess a source file
+structure/transaction/TransactionWitness.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/structure/transaction/TransactionWitness.cpp.i
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/structure/transaction/TransactionWitness.cpp.i
+.PHONY : structure/transaction/TransactionWitness.cpp.i
+
+structure/transaction/TransactionWitness.s: structure/transaction/TransactionWitness.cpp.s
+
+.PHONY : structure/transaction/TransactionWitness.s
+
+# target to generate assembly for a file
+structure/transaction/TransactionWitness.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/structure/transaction/TransactionWitness.cpp.s
+	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/structure/transaction/TransactionWitness.cpp.s
+.PHONY : structure/transaction/TransactionWitness.cpp.s
+
 structure/type/DScript.o: structure/type/DScript.cpp.o
 
 .PHONY : structure/type/DScript.o
@@ -918,60 +1188,6 @@ test/ConfiguratorSingletonTest.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/ConfiguratorSingletonTest.cpp.s
 .PHONY : test/ConfiguratorSingletonTest.cpp.s
 
-test/DAOBlkToJsonTest.o: test/DAOBlkToJsonTest.cpp.o
-
-.PHONY : test/DAOBlkToJsonTest.o
-
-# target to build an object file
-test/DAOBlkToJsonTest.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOBlkToJsonTest.cpp.o
-.PHONY : test/DAOBlkToJsonTest.cpp.o
-
-test/DAOBlkToJsonTest.i: test/DAOBlkToJsonTest.cpp.i
-
-.PHONY : test/DAOBlkToJsonTest.i
-
-# target to preprocess a source file
-test/DAOBlkToJsonTest.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOBlkToJsonTest.cpp.i
-.PHONY : test/DAOBlkToJsonTest.cpp.i
-
-test/DAOBlkToJsonTest.s: test/DAOBlkToJsonTest.cpp.s
-
-.PHONY : test/DAOBlkToJsonTest.s
-
-# target to generate assembly for a file
-test/DAOBlkToJsonTest.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOBlkToJsonTest.cpp.s
-.PHONY : test/DAOBlkToJsonTest.cpp.s
-
-test/DAOBlockchainTest.o: test/DAOBlockchainTest.cpp.o
-
-.PHONY : test/DAOBlockchainTest.o
-
-# target to build an object file
-test/DAOBlockchainTest.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOBlockchainTest.cpp.o
-.PHONY : test/DAOBlockchainTest.cpp.o
-
-test/DAOBlockchainTest.i: test/DAOBlockchainTest.cpp.i
-
-.PHONY : test/DAOBlockchainTest.i
-
-# target to preprocess a source file
-test/DAOBlockchainTest.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOBlockchainTest.cpp.i
-.PHONY : test/DAOBlockchainTest.cpp.i
-
-test/DAOBlockchainTest.s: test/DAOBlockchainTest.cpp.s
-
-.PHONY : test/DAOBlockchainTest.s
-
-# target to generate assembly for a file
-test/DAOBlockchainTest.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOBlockchainTest.cpp.s
-.PHONY : test/DAOBlockchainTest.cpp.s
-
 test/DAOJsonTest.o: test/DAOJsonTest.cpp.o
 
 .PHONY : test/DAOJsonTest.o
@@ -999,6 +1215,33 @@ test/DAOJsonTest.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOJsonTest.cpp.s
 .PHONY : test/DAOJsonTest.cpp.s
 
+test/DAOManagerGraphTest.o: test/DAOManagerGraphTest.cpp.o
+
+.PHONY : test/DAOManagerGraphTest.o
+
+# target to build an object file
+test/DAOManagerGraphTest.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOManagerGraphTest.cpp.o
+.PHONY : test/DAOManagerGraphTest.cpp.o
+
+test/DAOManagerGraphTest.i: test/DAOManagerGraphTest.cpp.i
+
+.PHONY : test/DAOManagerGraphTest.i
+
+# target to preprocess a source file
+test/DAOManagerGraphTest.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOManagerGraphTest.cpp.i
+.PHONY : test/DAOManagerGraphTest.cpp.i
+
+test/DAOManagerGraphTest.s: test/DAOManagerGraphTest.cpp.s
+
+.PHONY : test/DAOManagerGraphTest.s
+
+# target to generate assembly for a file
+test/DAOManagerGraphTest.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/DAOManagerGraphTest.cpp.s
+.PHONY : test/DAOManagerGraphTest.cpp.s
+
 test/ExceptionCompactsizeTest.o: test/ExceptionCompactsizeTest.cpp.o
 
 .PHONY : test/ExceptionCompactsizeTest.o
@@ -1025,33 +1268,6 @@ test/ExceptionCompactsizeTest.s: test/ExceptionCompactsizeTest.cpp.s
 test/ExceptionCompactsizeTest.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/ExceptionCompactsizeTest.cpp.s
 .PHONY : test/ExceptionCompactsizeTest.cpp.s
-
-test/JsonSerializationTest.o: test/JsonSerializationTest.cpp.o
-
-.PHONY : test/JsonSerializationTest.o
-
-# target to build an object file
-test/JsonSerializationTest.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/JsonSerializationTest.cpp.o
-.PHONY : test/JsonSerializationTest.cpp.o
-
-test/JsonSerializationTest.i: test/JsonSerializationTest.cpp.i
-
-.PHONY : test/JsonSerializationTest.i
-
-# target to preprocess a source file
-test/JsonSerializationTest.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/JsonSerializationTest.cpp.i
-.PHONY : test/JsonSerializationTest.cpp.i
-
-test/JsonSerializationTest.s: test/JsonSerializationTest.cpp.s
-
-.PHONY : test/JsonSerializationTest.s
-
-# target to generate assembly for a file
-test/JsonSerializationTest.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/JsonSerializationTest.cpp.s
-.PHONY : test/JsonSerializationTest.cpp.s
 
 test/NullDataTransactionsTest.o: test/NullDataTransactionsTest.cpp.o
 
@@ -1160,6 +1376,33 @@ test/StructureBitcoinCoreTest.s: test/StructureBitcoinCoreTest.cpp.s
 test/StructureBitcoinCoreTest.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/StructureBitcoinCoreTest.cpp.s
 .PHONY : test/StructureBitcoinCoreTest.cpp.s
+
+test/util/DAOUtilTest.o: test/util/DAOUtilTest.cpp.o
+
+.PHONY : test/util/DAOUtilTest.o
+
+# target to build an object file
+test/util/DAOUtilTest.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/util/DAOUtilTest.cpp.o
+.PHONY : test/util/DAOUtilTest.cpp.o
+
+test/util/DAOUtilTest.i: test/util/DAOUtilTest.cpp.i
+
+.PHONY : test/util/DAOUtilTest.i
+
+# target to preprocess a source file
+test/util/DAOUtilTest.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/util/DAOUtilTest.cpp.i
+.PHONY : test/util/DAOUtilTest.cpp.i
+
+test/util/DAOUtilTest.s: test/util/DAOUtilTest.cpp.s
+
+.PHONY : test/util/DAOUtilTest.s
+
+# target to generate assembly for a file
+test/util/DAOUtilTest.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/util/DAOUtilTest.cpp.s
+.PHONY : test/util/DAOUtilTest.cpp.s
 
 util/prevector.o: util/prevector.cpp.o
 
@@ -1277,15 +1520,15 @@ help:
 	@echo "... crypto/UtilCrypto.o"
 	@echo "... crypto/UtilCrypto.i"
 	@echo "... crypto/UtilCrypto.s"
-	@echo "... cryptobitcoin/Sha256.o"
-	@echo "... cryptobitcoin/Sha256.i"
-	@echo "... cryptobitcoin/Sha256.s"
-	@echo "... cryptobitcoin/Sha256Hash.o"
-	@echo "... cryptobitcoin/Sha256Hash.i"
-	@echo "... cryptobitcoin/Sha256Hash.s"
-	@echo "... cryptobitcoin/Utils.o"
-	@echo "... cryptobitcoin/Utils.i"
-	@echo "... cryptobitcoin/Utils.s"
+	@echo "... include/bitcoin-cryptography-library/cpp/Sha256.o"
+	@echo "... include/bitcoin-cryptography-library/cpp/Sha256.i"
+	@echo "... include/bitcoin-cryptography-library/cpp/Sha256.s"
+	@echo "... include/bitcoin-cryptography-library/cpp/Sha256Hash.o"
+	@echo "... include/bitcoin-cryptography-library/cpp/Sha256Hash.i"
+	@echo "... include/bitcoin-cryptography-library/cpp/Sha256Hash.s"
+	@echo "... include/bitcoin-cryptography-library/cpp/Utils.o"
+	@echo "... include/bitcoin-cryptography-library/cpp/Utils.i"
+	@echo "... include/bitcoin-cryptography-library/cpp/Utils.s"
 	@echo "... include/cpp-properties/src/Properties.o"
 	@echo "... include/cpp-properties/src/Properties.i"
 	@echo "... include/cpp-properties/src/Properties.s"
@@ -1295,18 +1538,42 @@ help:
 	@echo "... include/cpp-properties/src/PropertiesUtils.o"
 	@echo "... include/cpp-properties/src/PropertiesUtils.i"
 	@echo "... include/cpp-properties/src/PropertiesUtils.s"
-	@echo "... persistence/DAOBlockchain.o"
-	@echo "... persistence/DAOBlockchain.i"
-	@echo "... persistence/DAOBlockchain.s"
+	@echo "... include/spycblockrpc/ConfiguratorSingleton.o"
+	@echo "... include/spycblockrpc/ConfiguratorSingleton.i"
+	@echo "... include/spycblockrpc/ConfiguratorSingleton.s"
+	@echo "... include/spycblockrpc/commands/DecodeBlockAtIndexCommand.o"
+	@echo "... include/spycblockrpc/commands/DecodeBlockAtIndexCommand.i"
+	@echo "... include/spycblockrpc/commands/DecodeBlockAtIndexCommand.s"
+	@echo "... include/spycblockrpc/commands/DecodeRawTransaction.o"
+	@echo "... include/spycblockrpc/commands/DecodeRawTransaction.i"
+	@echo "... include/spycblockrpc/commands/DecodeRawTransaction.s"
+	@echo "... include/spycblockrpc/commands/DecodeScriptCommand.o"
+	@echo "... include/spycblockrpc/commands/DecodeScriptCommand.i"
+	@echo "... include/spycblockrpc/commands/DecodeScriptCommand.s"
+	@echo "... include/spycblockrpc/commands/HeightBlockchainCommand.o"
+	@echo "... include/spycblockrpc/commands/HeightBlockchainCommand.i"
+	@echo "... include/spycblockrpc/commands/HeightBlockchainCommand.s"
+	@echo "... include/spycblockrpc/core/graph/TransactionGraph.o"
+	@echo "... include/spycblockrpc/core/graph/TransactionGraph.i"
+	@echo "... include/spycblockrpc/core/graph/TransactionGraph.s"
+	@echo "... include/spycblockrpc/core/graph/WrapperInformations.o"
+	@echo "... include/spycblockrpc/core/graph/WrapperInformations.i"
+	@echo "... include/spycblockrpc/core/graph/WrapperInformations.s"
 	@echo "... persistence/DAOException.o"
 	@echo "... persistence/DAOException.i"
 	@echo "... persistence/DAOException.s"
 	@echo "... persistence/SerializationUtil.o"
 	@echo "... persistence/SerializationUtil.i"
 	@echo "... persistence/SerializationUtil.s"
-	@echo "... persistence/json/DAOBlkToJson.o"
-	@echo "... persistence/json/DAOBlkToJson.i"
-	@echo "... persistence/json/DAOBlkToJson.s"
+	@echo "... persistence/graph/DAOManagerGraph.o"
+	@echo "... persistence/graph/DAOManagerGraph.i"
+	@echo "... persistence/graph/DAOManagerGraph.s"
+	@echo "... persistence/graph/transactions/DAOTransactionsGraph.o"
+	@echo "... persistence/graph/transactions/DAOTransactionsGraph.i"
+	@echo "... persistence/graph/transactions/DAOTransactionsGraph.s"
+	@echo "... persistence/graph/transactions/TransactionsRawGraph.o"
+	@echo "... persistence/graph/transactions/TransactionsRawGraph.i"
+	@echo "... persistence/graph/transactions/TransactionsRawGraph.s"
 	@echo "... persistence/json/DAOJson.o"
 	@echo "... persistence/json/DAOJson.i"
 	@echo "... persistence/json/DAOJson.s"
@@ -1328,6 +1595,9 @@ help:
 	@echo "... structure/transaction/TransactionOutput.o"
 	@echo "... structure/transaction/TransactionOutput.i"
 	@echo "... structure/transaction/TransactionOutput.s"
+	@echo "... structure/transaction/TransactionWitness.o"
+	@echo "... structure/transaction/TransactionWitness.i"
+	@echo "... structure/transaction/TransactionWitness.s"
 	@echo "... structure/type/DScript.o"
 	@echo "... structure/type/DScript.i"
 	@echo "... structure/type/DScript.s"
@@ -1340,21 +1610,15 @@ help:
 	@echo "... test/ConfiguratorSingletonTest.o"
 	@echo "... test/ConfiguratorSingletonTest.i"
 	@echo "... test/ConfiguratorSingletonTest.s"
-	@echo "... test/DAOBlkToJsonTest.o"
-	@echo "... test/DAOBlkToJsonTest.i"
-	@echo "... test/DAOBlkToJsonTest.s"
-	@echo "... test/DAOBlockchainTest.o"
-	@echo "... test/DAOBlockchainTest.i"
-	@echo "... test/DAOBlockchainTest.s"
 	@echo "... test/DAOJsonTest.o"
 	@echo "... test/DAOJsonTest.i"
 	@echo "... test/DAOJsonTest.s"
+	@echo "... test/DAOManagerGraphTest.o"
+	@echo "... test/DAOManagerGraphTest.i"
+	@echo "... test/DAOManagerGraphTest.s"
 	@echo "... test/ExceptionCompactsizeTest.o"
 	@echo "... test/ExceptionCompactsizeTest.i"
 	@echo "... test/ExceptionCompactsizeTest.s"
-	@echo "... test/JsonSerializationTest.o"
-	@echo "... test/JsonSerializationTest.i"
-	@echo "... test/JsonSerializationTest.s"
 	@echo "... test/NullDataTransactionsTest.o"
 	@echo "... test/NullDataTransactionsTest.i"
 	@echo "... test/NullDataTransactionsTest.s"
@@ -1367,6 +1631,9 @@ help:
 	@echo "... test/StructureBitcoinCoreTest.o"
 	@echo "... test/StructureBitcoinCoreTest.i"
 	@echo "... test/StructureBitcoinCoreTest.s"
+	@echo "... test/util/DAOUtilTest.o"
+	@echo "... test/util/DAOUtilTest.i"
+	@echo "... test/util/DAOUtilTest.s"
 	@echo "... util/prevector.o"
 	@echo "... util/prevector.i"
 	@echo "... util/prevector.s"

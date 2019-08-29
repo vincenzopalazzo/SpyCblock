@@ -12,13 +12,19 @@ include_directories(${GTEST_INCLUDE_DIRS})
 find_package(glog 0.3.5 REQUIRED)
 
 ## Json library
-find_package(nlohmann_json 3.2.0 REQUIRED)
-find_package(RapidJSON) #This find the element in the OS
+#find_package(RapidJSON) #This find the element in the OS
 
 #bitcoin rpc lib
 find_library(bitcoinapi 0.3 REQUIRED)
 
-# Link runTests with what we want to test and the GTest and pthread library
+#target_include_directories(rapidjson PUBLIC include/rapidjson/include)
+
+#target_include_directories(spycblockrpc PUBLIC include/spycblockrpc)
+
+#target_include_directories(btccryptography PUBLIC include/bitcoin-cryptography-library)
+
+#target_include_directories(cppproperties PUBLIC include/cpp-properties/src)
+
 add_executable(
 
         SpyCBlockTests
@@ -140,6 +146,16 @@ add_executable(
 
 )
 
+target_include_directories(${PROJECT_NAME} PUBLIC include/rapidjson/include)
+target_include_directories(${PROJECT_NAME} PUBLIC include/spycblockrpc)
+target_include_directories(${PROJECT_NAME} PUBLIC include/bitcoin-cryptography-library)
+target_include_directories(${PROJECT_NAME} PUBLIC include/cpp-properties/src)
+
+target_include_directories(SpyCBlockTests PUBLIC include/rapidjson/include)
+target_include_directories(SpyCBlockTests PUBLIC include/spycblockrpc)
+target_include_directories(SpyCBlockTests PUBLIC include/bitcoin-cryptography-library)
+target_include_directories(SpyCBlockTests PUBLIC include/cpp-properties/src)
+
 #using glog
 target_link_libraries(${PROJECT_NAME} glog::glog)
 target_link_libraries(SpyCBlockTests glog::glog)
@@ -148,8 +164,6 @@ target_link_libraries(SpyCBlockTests ${GTEST_LIBRARIES} pthread)
 ##using filesystem
 target_link_libraries(${PROJECT_NAME} stdc++fs)
 target_link_libraries(SpyCBlockTests stdc++fs)
-##Json library
-target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
 
 #bitcoin rpc lib
 target_link_libraries(SpyCBlockTests bitcoinapi)

@@ -42,7 +42,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
   }
 
 }
-
+//TODO Factorize the method with one method and add privete function to pass the DAO
 void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
   if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
@@ -62,6 +62,33 @@ void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string desti
     //DAOManagerGraph dao;
 
     DAOTransactionsGraph dao;
+
+    string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
+    dao.saveBlock(pathInput, pathOutput, height);
+    currentFile++;
+    pathInput = nameFileSearched(locationBitcoinCore);
+  }
+}
+
+void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string destinationBitcoinCoreJson)
+{
+  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
+  {
+    LOG(ERROR) << "The input argument are empty";
+    throw exception();
+  }
+
+  int height = 0;
+  string pathInput = nameFileSearched(locationBitcoinCore);
+
+  while(pathInput != "")
+  {
+    LOG(ERROR) << "Current file blk is " + to_string(currentFile);
+
+    string fileNameOutput = getNameFile(pathInput);
+    DAOManagerGraph dao;
+
+   // DAOTransactionsGraph dao;
 
     string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
     dao.saveBlock(pathInput, pathOutput, height);

@@ -38,11 +38,10 @@ using namespace spyCBlock;
 /**
  * This battery of tests was developed for the testing of a bug,
  * in the alpha version of the parser the Null data transactions had not been taken into account,
- * with this battery of tests the fix that fixes this bug was introduced.
+ * with this battery of tests fixes this bugs was introduced.
  *
- * The alpha version of this project reports a big problem in memory allocation
- * and therefore this leads to a subsequent rewrite of the way in which data
- * structures are used and how memory is allocated, so as to decrease the workload on processor and RAM
+ * this battery of tests has a problem with the OPT_return operator, for fix, this problem could be introduced
+ * the parser of the hex script, but in the version beta, it is not supported.
  *
  * @author https://github.com/vincenzopalazzo
  */

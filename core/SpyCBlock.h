@@ -22,6 +22,7 @@ namespace spyCBlock {
 
             void convertBlkIntoGraphForm(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 
+            void convertBlkIntoGraphFormPubKey(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
         private:
 
             int currentFile = ConfiguratorSingleton::getInstance().getStartHeightBlock();

@@ -54,7 +54,7 @@ namespace spyCBlock {
 
       const std::string DELIMITATOR_INFORMATION_LINK = "DELIMITATOR_INFORMATION_LINK";
 
-      const std::string HEIGHT_BLOCK_TO_START = "HEIGHT_BLOCK_TO_START";
+      const std::string NUMBER_FILE_TO_START = "NUMBER_FILE_TO_START";
 
       cppproperties::Properties configuration;
 

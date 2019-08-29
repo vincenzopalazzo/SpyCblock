@@ -78,7 +78,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk976)
     EXPECT_TRUE(blocks.size() > 120);
 
     string pathOut = pathMockRoot + "bitcoin/block/bug/blk976/blk00976.json";
-    ofstream streamOut{pathOut};
+    ofstream streamOut(pathOut);
 
     if(streamOut.is_open()){
 
@@ -122,7 +122,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk975)
     EXPECT_EQ(blocks.size(), 137);
 
     string pathOut = pathMockRoot + "bitcoin/block/bug/blk975/blk00975.json";
-    ofstream streamOut{pathOut};
+    ofstream streamOut(pathOut);
 
     if(streamOut.is_open()){
 
@@ -167,7 +167,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk977)
     EXPECT_EQ(blocks.size(), 141);
 
     string pathOut = pathMockRoot + "bitcoin/block/bug/blk977/blk00977.json";
-    ofstream streamOut{pathOut};
+    ofstream streamOut(pathOut);
 
     if(streamOut.is_open()){
 
@@ -198,10 +198,13 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk1124)
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_FATAL, pathMockRoot.append("test_exception_compactsize_file_blk1124.log").c_str());
 
-    string path = pathMockRoot + "bitcoin/block/bug/blk1124/blk01124.dat";
+    //string path = pathMockRoot + "bitcoin/block/bug/blk1124/blk01124.dat";
+    //TODO find the bug inside the path
+    string path = "/media/vincenzo/Maxtor/BitcoinCore/node/blocks/blk01124.dat";
     ifstream stream{path};
     vector<Block> blocks;
-    while(stream.is_open() && !stream.eof()) {
+    while(stream.is_open() && !stream.eof())
+    {
 
         blocks.emplace_back(Block{});
         Block& block = blocks.back();
@@ -212,9 +215,10 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk1124)
     EXPECT_EQ(blocks.size(), 127);
 
     string pathOut = pathMockRoot + "bitcoin/block/bug/blk1124/blk01124.json";
-    ofstream streamOut{pathOut};
+    ofstream streamOut(pathOut);
 
-    if(streamOut.is_open()){
+    if(streamOut.is_open())
+    {
 
         rapidjson::OStreamWrapper wrapper(streamOut);
         rapidjson::Writer<rapidjson::OStreamWrapper> writer (wrapper);

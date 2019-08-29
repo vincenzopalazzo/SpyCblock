@@ -293,7 +293,7 @@ TEST(StructureBitcoinCoreTest, compare_previus_block_hash)
         string readLine;
         fileWhitHash >> readLine;
         LOG(INFO) << "I have read " << readLine;
-        if(readLine != ""){
+        if(!readLine.empty()){
             priviusHashs.emplace_back(readLine);
         } else{
             LOG(WARNING) << "Line empty";
@@ -327,7 +327,7 @@ TEST(StructureBitcoinCoreTest, compare_previus_block_hash)
         LOG(FATAL) << "Exception generated: " << ore.what();
         FAIL() << "Exception generated: " << ore.what();
     }
-    EXPECT_EQ(coutBlockRead, 119973);
+    EXPECT_EQ(coutBlockRead, 119972);
 
     fileBlk.close();
 }
