@@ -14,7 +14,7 @@ vector<unsigned char> spyCBlock::UtilCrypto::ToHexIntoVectorByte(string &hexData
   for(unsigned i = 0; i < hexData.length(); i += 2)
   {
       string byteSubString = hexData.substr(i, 2);
-      unsigned char byte = (unsigned char)strtol(byteSubString.c_str(), NULL, 16);
+      unsigned char byte = static_cast<unsigned char>(strtol(byteSubString.c_str(), nullptr, 16));
       bytes.push_back(byte);
 
   }

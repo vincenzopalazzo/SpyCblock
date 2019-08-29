@@ -4,35 +4,27 @@
 #include <vector>
 
 #include <glog/logging.h>
-#include <nlohmann/json.hpp>
+#include "../../include/spycblockrpc/core/graph/WrapperInformations.h"
+#include "../../util/serialize.h"
 
 #include "TransactionOutput.h"
 #include "TransactionInput.h"
-#include "../../util/serialize.h"
+#include "TransactionWitness.h"
 
-/**
- * Created on 1/21/19.
- * @author https://github.com/vincenzopalazzo
- */
+// @author https://github.com/vincenzopalazzo
 namespace spyCBlock{
 
     class RawTransaction{
 
-      private:
-
-          int32_t version;
-          DVarInt numberTxIn;
-          std::vector<TransactionInput> txIn; // TODO che cosa cambia nella transazione coind base?
-          DVarInt numberTxOut;
-          std::vector<TransactionOutput> txOut;
-          uint32_t lockTime;
-
-          //Additiona information
-          std::string hashRawTransaction;
-
       public:
 
+          enum class Type{PRIMITIVE = 1, WITNESS = 2};
+
           int32_t getVersion() const;
+
+          uint8_t getFlag() const;
+
+          uint8_t getMarker() const;
 
           const DVarInt& getNumberTxIn() const;
 
@@ -52,9 +44,35 @@ namespace spyCBlock{
 
           std::string toSerealizationForm() const;
 
-          nlohmann::json toJson();
-
           void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+
+          void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+
+          void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+
+    private:
+
+          Type type;
+
+          int32_t version;
+
+          uint8_t marker;
+
+          uint8_t flag;
+
+          DVarInt numberTxIn;
+
+          std::vector<TransactionInput> txIn; // TODO che cosa cambia nella transazione coind base?
+
+          DVarInt numberTxOut;
+
+          std::vector<TransactionOutput> txOut;
+
+          uint32_t lockTime;
+
+          std::string hashRawTransaction;
+
+          std::vector<TransactionWitness> txsWitness;
 
     };
 }

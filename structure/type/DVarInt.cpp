@@ -3,7 +3,6 @@
 // @author https://github.com/vincenzopalazzo
 //
 #include <cmath>
-#include <uv.h>
 
 #include <glog/logging.h>
 #include "../../util/serialize.h"

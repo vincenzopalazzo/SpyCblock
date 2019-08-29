@@ -1,3 +1,5 @@
+//@author https://github.com/vincenzopalazzo
+
 #include <sstream>
 
 #include <glog/logging.h>
@@ -9,19 +11,14 @@
 
 using namespace spyCBlock;
 using namespace std;
-using namespace nlohmann;
 
-/**
- * Created on 1/21/19.
- * @author https://github.com/vincenzopalazzo
- */
 void TransactionOutput::decode(ifstream &stream)
 {
     Unserialize(stream, nValue);
     LOG(INFO) << "N value " << nValue;
     script.decode(stream);
     LOG(INFO) << "Script Lenght: " << script.getScriptLenght().getValue();
-    LOG(INFO) << "Script Value: " << script.toString();
+    LOG(WARNING) << "Script Value: " << script.toString();
 
     //Creating hash transaction
     string hexForm = toSerealizationForm();
@@ -36,18 +33,6 @@ string TransactionOutput::toSerealizationForm() const
   hexForm += this->script.getScriptToSerializationForm();
 
   return hexForm;
-}
-
-json TransactionOutput::toJson()
-{
-  json txOutputjson = json::object({
-                                     {"ammount", this->nValue},
-                                     {"scriptLenght", this->script.getScriptLenght().getValue()},
-                                     {"script", this->getScript().getRawScriptString()},
-                                     {"hashOutputTransaction", this->hashOutputTransaction},
-                                   });
-
-  return txOutputjson;
 }
 
 void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
@@ -69,6 +54,18 @@ void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &wri
    writerJson.EndObject();
 }
 
+void TransactionOutput::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  wrapper.addInformationLink("Ammount: " + to_string(this->nValue));
+  wrapper.setTo(this->getScript().getRawScriptString());
+}
+
+void TransactionOutput::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  //TODO add ammount to link graph
+  wrapper.addInformationLink("Ammount: " + to_string(this->nValue));
+}
+
 string TransactionOutput::toString()
 {
     string stringForm =  "N Value: ";
@@ -78,6 +75,13 @@ string TransactionOutput::toString()
     stringForm += script.getScriptString();
     stringForm += "\n";
     return stringForm;
+}
+
+//Subrutine
+
+bool TransactionOutput::isScriptNull()
+{
+  return this->script.getRawScriptString().empty();
 }
 
 //getter and setter

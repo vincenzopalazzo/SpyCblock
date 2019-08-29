@@ -1,23 +1,41 @@
-//
-// Created by https://github.com/vincenzopalazzo on 1/21/19.
-//
+// @author https://github.com/vincenzopalazzo
 
 #include <cstdint>
 #include <sstream>
 
+#include "../../include/spycblockrpc/core/graph/TransactionGraph.h"
+
 #include "RawTransaction.h"
 #include "../../persistence/SerializationUtil.h"
 #include "../../crypto/CryptoCore.h"
+#include "../../persistence/graph/transactions/DAOTransactionsGraph.h"
+#include "../../persistence/graph/transactions/TransactionsRawGraph.h"
 
 using namespace spyCBlock;
 using namespace std;
-using namespace nlohmann;
 
 void RawTransaction::decode(std::ifstream &stream)
 {
     Unserialize(stream, version);
     LOG(INFO) << "Version raw transaction " << version;
     this->numberTxIn.decode(stream);
+
+    if(numberTxIn.getValue() == 0)
+    {
+      LOG(WARNING) << "Findend the marker";
+
+      this->numberTxIn.decode(stream);
+
+      if(numberTxIn.getValue() == 1)
+      {
+        LOG(WARNING) << "Findend the flag";
+        type = Type::WITNESS;
+         numberTxIn.decode(stream); //With this code I readed the numbar tranaction input in Witnees transaction type;
+      }
+    }else{
+      type = Type::PRIMITIVE;
+    }
+
     LOG(INFO) << "Numbar transaction input in raw transaction " << numberTxIn.getValue();
     txIn.clear();
 
@@ -41,30 +59,50 @@ void RawTransaction::decode(std::ifstream &stream)
         transactionOutput.decode(stream);
 
     }
-    //Create a wrapper
+
+    if(type == Type::WITNESS){
+      txsWitness.reserve(numberTxIn.getValue());
+      for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
+      {
+          txsWitness.emplace_back(TransactionWitness{});
+          TransactionWitness& txw = txsWitness.back();
+          txw.decode(stream);
+      }
+    }
+
+    //TODO Create a wrapper
     Unserialize(stream, this->lockTime);
 
     //Create additional information
     string serializationForm = toSerealizationForm();
     this->hashRawTransaction = CryptoSingleton::getIstance().getHash256(serializationForm);
+    LOG(WARNING) << "Hash tx: " << hashRawTransaction;
 }
 
 string RawTransaction::toSerealizationForm() const
 {
 
   string hexForm = SerializationUtil::toSerealizeForm(this->version);
-  hexForm += SerializationUtil::toSerealizeForm(this->numberTxIn);
+
+  hexForm.append(SerializationUtil::toSerealizeForm(this->numberTxIn));
   for(TransactionInput txInput : this->txIn)
   {
-    hexForm += txInput.toSerealizationForm();
+    hexForm.append(txInput.toSerealizationForm());
   }
-  hexForm += SerializationUtil::toSerealizeForm(this->numberTxOut);
+  hexForm.append(SerializationUtil::toSerealizeForm(this->numberTxOut));
   for(TransactionOutput txOutput : this->txOut)
   {
-     hexForm += txOutput.toSerealizationForm();
+     hexForm.append(txOutput.toSerealizationForm());
   }
-  hexForm += SerializationUtil::toSerealizeForm(this->lockTime);
 
+  hexForm.append(SerializationUtil::toSerealizeForm(this->lockTime));
+  //Debug hex
+  if(this->type == RawTransaction::Type::WITNESS)
+  {
+    LOG(WARNING) << "\n****** HEX segregated witness *************\n"
+                    + hexForm
+                    + "\n****************************";
+  }
   return hexForm;
 }
 
@@ -88,38 +126,6 @@ string RawTransaction::toString() {
     }
     stringForm += to_string(this->lockTime);
     return stringForm;
-}
-
-json RawTransaction::toJson()
-{
-
-  json jsonRawTransaction =  json::object({
-                        {"version", version},
-                        {"numbarTxInput", this->numberTxIn.getValue()},
-                        {"numbarTxInput", this->numberTxOut.getValue()},
-                        {"lockTime", this->lockTime},
-                        {"hashRawTransaction", this->hashRawTransaction},
-                      });
-
-  //TODO this refactoring required more attention on Json form test
-  json txInputjson;
-  for(TransactionInput &txInput : this->txIn)
-  {
-      json txInputJsonSingle = txInput.toJson();
-      txInputjson.emplace_back(txInputJsonSingle);
-  }
-
-  //TODO this refactoring required more attention on Json form test
-  json txOutjson;
-  for(TransactionOutput &txOutput : this->txOut)
-  {
-    json txOutputJsonSingle = txOutput.toJson();
-    txOutjson.emplace_back(txOutputJsonSingle);
-  }
-
-  jsonRawTransaction["inputTransactions"] = txInputjson;
-  jsonRawTransaction["outputTransaction"] = txOutjson;
-  return jsonRawTransaction;
 }
 
 void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
@@ -164,7 +170,73 @@ void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writer
   writerJson.EndObject();
 }
 
+void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  wrapper.addInformationLink("RawTxID: " + this->hashRawTransaction);
+  wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
+  string witness = "false";
+  if(type == Type::WITNESS)
+  {
+      witness = "true";
+  }
+  wrapper.addInformationLink("witness: " + witness);
+  for(TransactionInput &txInput : this->txIn)
+  {
+    txInput.toGraphForm(outputStream, wrapper);
+    for(TransactionOutput &txOutput : this->txOut)
+    {
+      txOutput.toGraphForm(outputStream, wrapper);
+      spyCBlockRPC::TransactionGraph transaction;
+      transaction.buildTransaction(wrapper);
+      transaction.serialize(outputStream);
+    }
+  }
+
+}
+
+void RawTransaction::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  wrapper.setTo(this->hashRawTransaction);
+  wrapper.addInformationLink("RawTxID: " + this->hashRawTransaction);
+  wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
+  string witness = "false";
+  if(type == Type::WITNESS)
+  {
+      witness = "true";
+  }
+  wrapper.addInformationLink("witness: " + witness);
+  bool setValue = false;
+  for(TransactionOutput txOut : this->txOut)
+  {
+    if(setValue == false)
+    {
+      txOut.toTransactionsGraph(outputStream, wrapper);
+      setValue = true;
+    }
+  }
+
+  for(TransactionInput inputTx : this->txIn)
+  {
+    inputTx.toTransactionsGraph(outputStream, wrapper);
+
+    TransactionsRawGraph transactioGraph;
+    transactioGraph.buildTransaction(wrapper);
+    transactioGraph.serialize(outputStream);
+  }
+
+}
+
 //Getter and setter
+uint8_t RawTransaction::getFlag() const
+{
+  return flag;
+}
+
+uint8_t RawTransaction::getMarker() const
+{
+  return marker;
+}
+
 int32_t RawTransaction::getVersion() const
 {
     return version;

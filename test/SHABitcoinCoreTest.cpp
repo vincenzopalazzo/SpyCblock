@@ -34,10 +34,10 @@
 #include <gtest/gtest.h>
 
 #include "../util/strencodings.h"
-#include "../cryptobitcoin/Sha256.hpp"
-#include "../cryptobitcoin/Sha256Hash.hpp"
-#include "../cryptobitcoin/Utils.hpp"
-#include "../cryptobitcoin/TestHelper.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/Sha256.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/Sha256Hash.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/Utils.hpp"
+#include "../include/bitcoin-cryptography-library/cpp/TestHelper.hpp"
 
 #include "../crypto/UtilCrypto.h"
 #include "../structure/block/block.h"
@@ -149,7 +149,7 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypo
     hexForm += cAmmount;
     hexForm += publicKeyScriptLenght;
     hexForm += publicKeyScript;
-    hexForm += lockTime;;
+    hexForm += lockTime;
 
     vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);
 
@@ -478,71 +478,6 @@ TEST(hash_test, hash_genesi_block_test_to_read_file_with_scriptssingleton)
 
   ASSERT_EQ(gettedHash, expectedHash);
 }
-//TODO this method taked more memory
-TEST(hash_test, hash_confront_genesi_block_test_to_read_file_with_scriptssingleton)
-{
-  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
-  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-
-  FLAGS_minloglevel = 2;
-  FLAGS_logtostderr = false;
-  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("hash_confront_genesi_block_test_to_read_file_with_scriptssingleton.log").c_str());
-
-  ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
-
-  ofstream fileSaveBlock(pathMockRoot + "generate_hash_block.txt");
-
-  LOG_IF(ERROR, !fileOut.is_open()) << "File blk00000.dat not open";
-  LOG_IF(ERROR, !fileSaveBlock) << "File fileSaveBlock.txt not cerated";
-
-  while(!fileOut.eof()){
-    Block *block = new Block();
-    block->decode(fileOut);
-
-    string toSerealizeForm = block->toSerealizationForm();
-    string hashCalculate = CryptoSingleton::getIstance().getHash256(toSerealizeForm);
-
-    fileSaveBlock << hashCalculate << endl;
-    delete block;
-  }
-
-  fileSaveBlock.close();
-  fileOut.close();
-
-  //Confront the file created with the file conetenented all previus hash block
-  ifstream fileHashGenerated(pathMockRoot + "file_test/generate_hash_block.txt");
-
-  vector<string> hashGenerated;
-  LOG_IF(ERROR, !fileHashGenerated.is_open()) << "File generate_hash_block.txt not open";
-
-  while(!fileHashGenerated.eof())
-  {
-    string hashReaded;
-    fileHashGenerated >> hashReaded;
-    LOG(INFO) << "The hash readed is: " << hashReaded;
-    hashGenerated.push_back(hashReaded);
-  }
-  fileHashGenerated.close();
-
-  EXPECT_EQ(hashGenerated.size(), 119974); // The file have the hash block genesi and the hash last block, is ok calcule(I hope)
-
-  ifstream preveusHashFile(pathMockRoot.append(pathMockRoot.append("previus_hash_block_header.txt")));
-  LOG_IF(ERROR, !preveusHashFile.is_open()) << "File previus_hash_block_header.txt not open";
-
-  string firstHashAll0;
-  preveusHashFile >> firstHashAll0;
-  LOG(WARNING) << "The fist hash block geneses preveush hash is: " << firstHashAll0;
-  int position = 0;
-  while (!preveusHashFile.eof()) {
-    string preveusHashReaded;
-    preveusHashFile >> preveusHashReaded;
-    string hashGeneratedString = hashGenerated.at(position);
-    LOG_IF(ERROR, preveusHashReaded != hashGeneratedString) << "The hash are different " << preveusHashReaded << " " << hashGeneratedString;
-    position++;
-  }
-  preveusHashFile.close();
-  ASSERT_EQ(position, 119972); // The block not have the first position and the end file
-}
 
 TEST(hash_test, hash_confront_txOut_hash_whit_txInput_hash_contenute_scriptssingleton)
 {
@@ -612,5 +547,20 @@ TEST(hash_test, hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingle
   ASSERT_EQ(hashBlock, expettedHashBlock);
   ASSERT_EQ(heshRawTransaction, expettedHash);
   ASSERT_EQ(heshRawTransaction, expettedHash);
+}
+
+TEST(hash_test, hash_calculate_hash_block_whit_hex_segregated_witness_version)
+{
+  string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
+  string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("hash_calculate_hash_block_whit_fat_raw_transaction_scriptssingleton.log").c_str());
+
+  string hexWitness = "0200000001b2f1a88fbfa36ed3e7337eb4c7b953304774e02f226fc53db5f1bd4b04b3b3c705000000171600149068edae0a20342de05941e5fd4f8c8934f8bd43feffffff02e0937200000000001976a91402b36c1beae18deed8698ba427573739419a4ec088ac66541800000000001976a914dd729b4126b5dfc861d3afcfa91cfdc5742eda8d88ac7b5a0700";
+
+  LOG(ERROR) << CryptoSingleton::getIstance().getHash256(hexWitness);
+  //TODO find the solution for testing existence oh explorer online
 }
 

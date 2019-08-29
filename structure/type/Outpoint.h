@@ -13,23 +13,10 @@
 #include "../../util/serialize.h"
 #include "../../util/uint256.h"
 
-//TODO refactoring the tipe
-//An outpoint - a combination of a transaction hash and an index n into its vout
-/**
- * Created on 2/4/19.
- * The type is type bitcoin core implementation
- * @author https://github.com/vincenzopalazzo
- */
 namespace spyCBlock
 {
   class OutPoint
   {
-    private:
-
-        uint256 hash;
-
-        uint32_t n;
-
     public:
 
         static constexpr uint32_t NULL_INDEX = std::numeric_limits<uint32_t>::max();
@@ -55,6 +42,12 @@ namespace spyCBlock
         friend bool operator!=(const OutPoint& a, const OutPoint& b);
 
         std::string ToString() const;
+
+    private:
+
+        uint256 hash;
+
+        uint32_t n;
   };
 }
 

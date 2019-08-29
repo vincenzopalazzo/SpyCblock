@@ -24,9 +24,10 @@
 
 #include <gtest/gtest.h>
 #include <utility>
+#include <rapidjson/ostreamwrapper.h>
+#include <rapidjson/writer.h>
 
 #include "../structure/block/block.h"
-#include "../persistence/DAOBlockchain.h"
 #include "../persistence/DAOException.h"
 #include "../core/ConfiguratorSingleton.h"
 
@@ -47,6 +48,8 @@ using namespace spyCBlock;
  * subsequent rewrite of the way in which data structures are used and how memory is allocated,
  * so as to decrease the workload on processor and RAM
  *
+ * This test suit init the support to Seregrated Witness transaction tipe
+ *
  * @author https://github.com/vincenzopalazzo
  */
 
@@ -56,21 +59,43 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk976)
     string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
     string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
 
-    FLAGS_minloglevel = 0;
+    FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
     google::SetLogDestination(google::GLOG_INFO, pathLogRoot.append("test_exception_compactsize_file_blk976.log").c_str());
 
-    DAOBlockchain daoBlockchain;
-    try {
-        string path = pathMockRoot.append("bitcoin/block/bug/blk976");
+    string path = pathMockRoot +  "bitcoin/block/bug/blk976/blk00976.dat";
+    ifstream stream{path};
 
-        vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
-        ASSERT_TRUE(allBlocks.size() > 120);
-    }
-    catch (DAOException exception) {
-        FAIL() << "Test fail for this cause" << exception.what();
+    vector<Block> blocks;
+    while(stream.is_open() && !stream.eof()) {
+
+        blocks.emplace_back(Block{});
+        Block& block = blocks.back();
+        block.decode(stream);
     }
 
+    stream.close();
+    EXPECT_TRUE(blocks.size() > 120);
+
+    string pathOut = pathMockRoot + "bitcoin/block/bug/blk976/blk00976.json";
+    ofstream streamOut(pathOut);
+
+    if(streamOut.is_open()){
+
+        rapidjson::OStreamWrapper wrapper(streamOut);
+        rapidjson::Writer<rapidjson::OStreamWrapper> writer (wrapper);
+
+        writer.StartObject();
+        writer.Key("blocks");
+        writer.StartArray();
+        for(Block b : blocks)
+        {
+          b.toJson(writer);
+        }
+        writer.EndArray();
+        writer.EndObject();
+      streamOut.close();
+    }
 }
 
 //Test for the last file blk that generated exception
@@ -80,19 +105,41 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk975)
     string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
     FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_ERROR, pathLogRoot.append("test_exception_compactsize_file_blk975.log").c_str());
+    google::SetLogDestination(google::GLOG_FATAL, pathLogRoot.append("test_exception_compactsize_file_blk975.log").c_str());
 
-    DAOBlockchain daoBlockchain;
-    try {
-        string path = pathMockRoot.append("bitcoin/block/bug/blk975");
+    string path = pathMockRoot +  "bitcoin/block/bug/blk975/blk00975.dat";
+    ifstream stream{path};
 
-        vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
-        ASSERT_EQ(135, allBlocks.size());
+    vector<Block> blocks;
+    while(stream.is_open() && !stream.eof()) {
+
+        blocks.emplace_back(Block{});
+        Block& block = blocks.back();
+        block.decode(stream);
     }
-    catch (DAOException exception) {
-        FAIL() << "Test fail for this cause" << exception.what();
-    }
 
+    stream.close();
+    EXPECT_EQ(blocks.size(), 137);
+
+    string pathOut = pathMockRoot + "bitcoin/block/bug/blk975/blk00975.json";
+    ofstream streamOut(pathOut);
+
+    if(streamOut.is_open()){
+
+        rapidjson::OStreamWrapper wrapper(streamOut);
+        rapidjson::Writer<rapidjson::OStreamWrapper> writer (wrapper);
+
+        writer.StartObject();
+        writer.Key("blocks");
+        writer.StartArray();
+        for(Block b : blocks)
+        {
+          b.toJson(writer);
+        }
+        writer.EndArray();
+        writer.EndObject();
+      streamOut.close();
+    }
 }
 
 //Test for the another file blk that generated exception
@@ -101,19 +148,42 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk977)
     string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
     string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
 
-    FLAGS_minloglevel = 0;
+    FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_INFO, pathLogRoot.append("test_exception_compactsize_file_blk977.log").c_str());
+    google::SetLogDestination(google::GLOG_FATAL, pathLogRoot.append("test_exception_compactsize_file_blk977.log").c_str());
 
-    DAOBlockchain daoBlockchain;
-    try {
-        string path = pathMockRoot.append("bitcoin/block/bug/blk977");
+    string path = pathMockRoot +  "bitcoin/block/bug/blk977/blk00977.dat";
+    ifstream stream{path};
 
-        vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
-        ASSERT_TRUE(allBlocks.size() > 120);
+    vector<Block> blocks;
+    while(stream.is_open() && !stream.eof()) {
+
+        blocks.emplace_back(Block{});
+        Block& block = blocks.back();
+        block.decode(stream);
     }
-    catch (DAOException exception) {
-        FAIL() << "Test fail for this cause" << exception.what();
+
+    stream.close();
+    EXPECT_EQ(blocks.size(), 141);
+
+    string pathOut = pathMockRoot + "bitcoin/block/bug/blk977/blk00977.json";
+    ofstream streamOut(pathOut);
+
+    if(streamOut.is_open()){
+
+        rapidjson::OStreamWrapper wrapper(streamOut);
+        rapidjson::Writer<rapidjson::OStreamWrapper> writer (wrapper);
+
+        writer.StartObject();
+        writer.Key("blocks");
+        writer.StartArray();
+        for(Block b : blocks)
+        {
+          b.toJson(writer);
+        }
+        writer.EndArray();
+        writer.EndObject();
+      streamOut.close();
     }
 
 }
@@ -124,19 +194,47 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk1124)
     string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
     string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
 
-    FLAGS_minloglevel = 0;
+    FLAGS_minloglevel = 2;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_INFO, pathMockRoot.append("test_exception_compactsize_file_blk1124.log").c_str());
+    google::SetLogDestination(google::GLOG_FATAL, pathMockRoot.append("test_exception_compactsize_file_blk1124.log").c_str());
 
-    DAOBlockchain daoBlockchain;
-    try {
-        string path = pathMockRoot.append("bitcoin/block/bug/blk1124");
+    //string path = pathMockRoot + "bitcoin/block/bug/blk1124/blk01124.dat";
+    //TODO find the bug inside the path
+    string path = "/media/vincenzo/Maxtor/BitcoinCore/node/blocks/blk01124.dat";
+    ifstream stream{path};
+    vector<Block> blocks;
+    while(stream.is_open() && !stream.eof())
+    {
 
-        vector<unique_ptr<Block>> allBlocks = daoBlockchain.loadBlocks(path);
-        ASSERT_TRUE(allBlocks.size() > 50);
+        blocks.emplace_back(Block{});
+        Block& block = blocks.back();
+        block.decode(stream);
     }
-    catch (DAOException exception) {
-        FAIL() << "Test fail for this cause" << exception.what();
+
+    stream.close();
+    EXPECT_EQ(blocks.size(), 127);
+
+    string pathOut = pathMockRoot + "bitcoin/block/bug/blk1124/blk01124.json";
+    ofstream streamOut(pathOut);
+
+    if(streamOut.is_open())
+    {
+
+        rapidjson::OStreamWrapper wrapper(streamOut);
+        rapidjson::Writer<rapidjson::OStreamWrapper> writer (wrapper);
+        writer.StartObject();
+
+        writer.StartObject();
+        writer.Key("blocks");
+        writer.StartArray();
+        for(Block b : blocks)
+        {
+          b.toJson(writer);
+        }
+        writer.EndArray();
+        writer.EndObject();
+
+        streamOut.close();
     }
 
 }

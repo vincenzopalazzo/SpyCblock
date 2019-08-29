@@ -9,59 +9,12 @@
 #include "SpyCBlock.h"
 #include "../structure/block/block.h"
 #include "../persistence/IDAOBlockchain.h"
-#include "../persistence/DAOBlockchain.h"
-#include "../persistence/json/DAOBlkToJson.h"
 #include "../persistence/DAOException.h"
+#include "../persistence/graph/transactions/DAOTransactionsGraph.h"
 #include "../persistence/json/DAOJson.h"
+#include "../persistence/graph/DAOManagerGraph.h"
 
 using namespace spyCBlock;
-
-/*
- This method have problem with a memory, for the moment I don't refactoring this code because this is only a prototype of the parser
- This method is replaced with convertBlkIntoJson() method
-*/
-void SpyCBlock::read(string pathBlockchain) {
-
-  ifstream stream(pathBlockchain);
-
-  ofstream outStream("/home/vincenzo/Desktop/deserealize_file/blk00450.txt");
-
-  while (!stream.eof()) {
-    Block block;
-    block.decode(stream);
-    outStream << block.toString();
-  }
-}
-
-/*
- This method have problem with a memory, for the moment I don't refactoring this code because this is only a prototype of the parser
- This method is replaced with convertBlkIntoJson() method
-
- This method used DAOFileBlkJson
-*/
-bool SpyCBlock::convertBlockchainToJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
-{
-  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
-  {
-    LOG(ERROR) << "The input/s method are/is null";
-    throw "Input are null";
-  }
-
-  DAOFileBlkJson dao;
-
-  bool resultConversion = false;
-
-  resultConversion = dao.saveBlock(locationBitcoinCore, destinationBitcoinCoreJson);
-
-  if(resultConversion)
-  {
-      LOG(INFO) << "Conversion bitcoin-core into json O.K";
-      return resultConversion;
-  }
-   LOG(INFO) << "Conversion bitcoin-core into json K.O";
-  return resultConversion;
-
-}
 
 //This method used DAOJson
 void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
@@ -72,6 +25,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
     throw exception();
   }
 
+  int height = 0;
   string pathInput = nameFileSearched(locationBitcoinCore);
 
   while(pathInput != "")
@@ -82,12 +36,65 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
     DAOJson dao;
 
     string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".json";
-    dao.saveBlock(pathInput, pathOutput);
-
+    dao.saveBlock(pathInput, pathOutput, height);
     currentFile++;
     pathInput = nameFileSearched(locationBitcoinCore);
   }
 
+}
+//TODO Factorize the method with one method and add privete function to pass the DAO
+void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string destinationBitcoinCoreJson)
+{
+  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
+  {
+    LOG(ERROR) << "The input argument are empty";
+    throw exception();
+  }
+
+  int height = 0;
+  string pathInput = nameFileSearched(locationBitcoinCore);
+
+  while(pathInput != "")
+  {
+    LOG(ERROR) << "Current file blk is " + to_string(currentFile);
+
+    string fileNameOutput = getNameFile(pathInput);
+    //DAOManagerGraph dao;
+
+    DAOTransactionsGraph dao;
+
+    string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
+    dao.saveBlock(pathInput, pathOutput, height);
+    currentFile++;
+    pathInput = nameFileSearched(locationBitcoinCore);
+  }
+}
+
+void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string destinationBitcoinCoreJson)
+{
+  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
+  {
+    LOG(ERROR) << "The input argument are empty";
+    throw exception();
+  }
+
+  int height = 0;
+  string pathInput = nameFileSearched(locationBitcoinCore);
+
+  while(pathInput != "")
+  {
+    LOG(ERROR) << "Current file blk is " + to_string(currentFile);
+
+    string fileNameOutput = getNameFile(pathInput);
+    DAOManagerGraph dao;
+
+   // DAOTransactionsGraph dao;
+
+    string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
+    dao.saveBlock(pathInput, pathOutput, height);
+    currentFile++;
+    pathInput = nameFileSearched(locationBitcoinCore);
+  }
 }
 
 string SpyCBlock::nameFileSearched(string &pathInput)

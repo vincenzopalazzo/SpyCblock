@@ -7,27 +7,29 @@
 
 #include <string>
 
-using namespace std;
+#include "ConfiguratorSingleton.h"
+
 
 namespace spyCBlock {
 
     class SpyCBlock {
 
-    public:
-        //TODO this method refactoring
-        void read(string pathBlockchain);
+        public:
+            //TODO this method refactoring
+            void read(std::string pathBlockchain);
 
-        bool convertBlockchainToJson(string locationBitcoinCore, string destinationBitcoinCoreJson);
+            void convertBlkIntoJson(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 
-        void convertBlkIntoJson(string locationBitcoinCore, string destinationBitcoinCoreJson);
+            void convertBlkIntoGraphForm(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 
-    private:
+            void convertBlkIntoGraphFormPubKey(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+        private:
 
-        int currentFile = 0;
+            int currentFile = ConfiguratorSingleton::getInstance().getStartHeightBlock();
 
-        string nameFileSearched(string &pathInput);
+            std::string nameFileSearched(std::string &pathInput);
 
-        string getNameFile(string &path);
+            std::string getNameFile(std::string &path);
     };
 
 }
