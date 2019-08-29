@@ -1,0 +1,16 @@
+2019-08-30 00:00:55
+Running ./SpyCBlock-benchmarck
+Run on (8 X 4000 MHz CPU s)
+CPU Caches:
+  L1 Data 32K (x4)
+  L1 Instruction 32K (x4)
+  L2 Unified 256K (x4)
+  L3 Unified 8192K (x1)
+Load Average: 0.46, 1.12, 0.93
+***WARNING*** CPU scaling is enabled, the benchmark real time measurements may be noisy and will incur extra overhead.
+***WARNING*** Library was built as DEBUG. Timings may be affected.
+--------------------------------------------------------------------
+Benchmark                          Time             CPU   Iterations
+--------------------------------------------------------------------
+BM_createGraphTxOneFile/8 72692494211 ns   69107442436 ns            1
+BM_decodeJsonOneFile/8    57735236813 ns   57586004736 ns            1
