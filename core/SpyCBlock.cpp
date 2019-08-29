@@ -27,18 +27,30 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
 
   int height = 0;
   string pathInput = nameFileSearched(locationBitcoinCore);
-
+  bool isBitcoinDirectory = false;
   while(pathInput != "")
   {
-    LOG(ERROR) << "Current file blk is " + to_string(currentFile);
+    try
+    {
+      LOG(ERROR) << "Current file blk is " + to_string(currentFile);
 
-    string fileNameOutput = getNameFile(pathInput);
-    DAOJson dao;
+      string fileNameOutput = getNameFile(pathInput);
+      DAOJson dao;
 
-    string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".json";
-    dao.saveBlock(pathInput, pathOutput, height);
-    currentFile++;
-    pathInput = nameFileSearched(locationBitcoinCore);
+      string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".json";
+      dao.saveBlock(pathInput, pathOutput, height);
+      currentFile++;
+      pathInput = nameFileSearched(locationBitcoinCore);
+      isBitcoinDirectory = true;
+    } catch (DAOException daoEx){
+      if(isBitcoinDirectory)
+      {
+        LOG(ERROR) << "The blk files are finished";
+      }else {
+        LOG(ERROR) << daoEx.what();
+      }
+      return;
+    }
   }
 
 }
@@ -53,20 +65,32 @@ void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string desti
 
   int height = 0;
   string pathInput = nameFileSearched(locationBitcoinCore);
-
+  bool isBitcoinDirectory = false;
   while(pathInput != "")
   {
-    LOG(ERROR) << "Current file blk is " + to_string(currentFile);
+    try
+    {
+      LOG(ERROR) << "Current file blk is " + to_string(currentFile);
 
-    string fileNameOutput = getNameFile(pathInput);
-    //DAOManagerGraph dao;
+      string fileNameOutput = getNameFile(pathInput);
+      //DAOManagerGraph dao;
 
-    DAOTransactionsGraph dao;
+      DAOTransactionsGraph dao;
 
-    string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
-    dao.saveBlock(pathInput, pathOutput, height);
-    currentFile++;
-    pathInput = nameFileSearched(locationBitcoinCore);
+      string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
+      dao.saveBlock(pathInput, pathOutput, height);
+      currentFile++;
+      pathInput = nameFileSearched(locationBitcoinCore);
+      isBitcoinDirectory = true;
+    } catch (DAOException daoEx){
+      if(isBitcoinDirectory)
+      {
+        LOG(ERROR) << "The blk files are finished";
+      }else {
+        LOG(ERROR) << daoEx.what();
+      }
+      return;
+    }
   }
 }
 
@@ -80,20 +104,33 @@ void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string
 
   int height = 0;
   string pathInput = nameFileSearched(locationBitcoinCore);
-
+  bool isBitcoinDirectory = false;
   while(pathInput != "")
   {
-    LOG(ERROR) << "Current file blk is " + to_string(currentFile);
+      try
+      {
+        LOG(ERROR) << "Current file blk is " + to_string(currentFile);
 
-    string fileNameOutput = getNameFile(pathInput);
-    DAOManagerGraph dao;
+        string fileNameOutput = getNameFile(pathInput);
+        DAOManagerGraph dao;
 
-   // DAOTransactionsGraph dao;
+       // DAOTransactionsGraph dao;
 
-    string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
-    dao.saveBlock(pathInput, pathOutput, height);
-    currentFile++;
-    pathInput = nameFileSearched(locationBitcoinCore);
+        string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
+        dao.saveBlock(pathInput, pathOutput, height);
+        currentFile++;
+        pathInput = nameFileSearched(locationBitcoinCore);
+        isBitcoinDirectory = true;
+      } catch (DAOException daoEx){
+        if(isBitcoinDirectory)
+        {
+          LOG(ERROR) << "The blk files are finished";
+        }else {
+          LOG(ERROR) << daoEx.what();
+        }
+        return;
+      }
+
   }
 }
 
