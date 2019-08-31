@@ -12,18 +12,10 @@ include_directories(${GTEST_INCLUDE_DIRS})
 find_package(glog 0.3.5 REQUIRED)
 
 ## Json library
-#find_package(RapidJSON) #This find the element in the OS
+find_package(RapidJSON) #This find the element in the OS
 
 #bitcoin rpc lib
 find_library(bitcoinapi 0.3 REQUIRED)
-
-#target_include_directories(rapidjson PUBLIC include/rapidjson/include)
-
-#target_include_directories(spycblockrpc PUBLIC include/spycblockrpc)
-
-#target_include_directories(btccryptography PUBLIC include/bitcoin-cryptography-library)
-
-#target_include_directories(cppproperties PUBLIC include/cpp-properties/src)
 
 add_executable(
 
@@ -40,33 +32,33 @@ add_executable(
         test/ConfiguratorSingletonTest.cpp
         test/DAOManagerGraphTest.cpp
 
-        util/uint256.cpp
-        util/strencodings.cpp
-        util/prevector.cpp
+        src/util/uint256.cpp
+        src/util/strencodings.cpp
+        src/util/prevector.cpp
 
-        structure/block/block.cpp
-        structure/block/blockHeader.cpp
-        structure/transaction/RawTransaction.cpp
-        structure/transaction/TransactionOutput.cpp
-        structure/transaction/TransactionInput.cpp
-        structure/transaction/TransactionWitness.cpp
-        structure/script/scriptCode.cpp
-        structure/type/Outpoint.cpp
-        structure/type/DVarInt.cpp
-        structure/type/DScript.cpp
-        structure/type/Outpoint.cpp
+        src/structure/block/block.cpp
+        src/structure/block/blockHeader.cpp
+        src/structure/transaction/RawTransaction.cpp
+        src/structure/transaction/TransactionOutput.cpp
+        src/structure/transaction/TransactionInput.cpp
+        src/structure/transaction/TransactionWitness.cpp
+        src/structure/script/scriptCode.cpp
+        src/structure/type/Outpoint.cpp
+        src/structure/type/DVarInt.cpp
+        src/structure/type/DScript.cpp
+        src/structure/type/Outpoint.cpp
 
-        persistence/DAOException.cpp
-        persistence/json/DAOJson.cpp
-        persistence/SerializationUtil.cpp
-        persistence/graph/DAOManagerGraph.cpp
-        persistence/graph/transactions/DAOTransactionsGraph.cpp
-        persistence/graph/transactions/TransactionsRawGraph.cpp
+        src/persistence/DAOException.cpp
+        src/persistence/json/DAOJson.cpp
+        src/persistence/SerializationUtil.cpp
+        src/persistence/graph/DAOManagerGraph.cpp
+        src/persistence/graph/transactions/DAOTransactionsGraph.cpp
+        src/persistence/graph/transactions/TransactionsRawGraph.cpp
 
-        crypto/UtilCrypto.cpp
-        crypto/CryptoCore.cpp
+        src/crypto/UtilCrypto.cpp
+        src/crypto/CryptoCore.cpp
 
-        core/ConfiguratorSingleton.cpp
+        src/core/ConfiguratorSingleton.cpp
 
         #cpp-properties file include
         include/cpp-properties/src/Properties.cpp
@@ -94,35 +86,35 @@ add_executable(
 
         ${PROJECT_NAME}
 
-        core/ParserMain.cpp
-        core/SpyCBlock.cpp
-        core/ConfiguratorSingleton.cpp
+        src/core/ParserMain.cpp
+        src/core/SpyCBlock.cpp
+        src/core/ConfiguratorSingleton.cpp
 
-        util/uint256.cpp
-        util/strencodings.cpp
-        util/prevector.cpp
+        src/util/uint256.cpp
+        src/util/strencodings.cpp
+        src/util/prevector.cpp
 
-        structure/block/block.cpp
-        structure/block/blockHeader.cpp
-        structure/transaction/RawTransaction.cpp
-        structure/transaction/TransactionOutput.cpp
-        structure/transaction/TransactionInput.cpp
-        structure/transaction/TransactionWitness.cpp
-        structure/script/scriptCode.cpp
-        structure/type/Outpoint.cpp
-        structure/type/DVarInt.cpp
-        structure/type/DScript.cpp
-        structure/type/Outpoint.cpp
+        src/structure/block/block.cpp
+        src/structure/block/blockHeader.cpp
+        src/structure/transaction/RawTransaction.cpp
+        src/structure/transaction/TransactionOutput.cpp
+        src/structure/transaction/TransactionInput.cpp
+        src/structure/transaction/TransactionWitness.cpp
+        src/structure/script/scriptCode.cpp
+        src/structure/type/Outpoint.cpp
+        src/structure/type/DVarInt.cpp
+        src/structure/type/DScript.cpp
+        src/structure/type/Outpoint.cpp
 
-        persistence/DAOException.cpp
-        persistence/SerializationUtil.cpp
-        persistence/json/DAOJson.cpp
-        persistence/graph/DAOManagerGraph.cpp
-        persistence/graph/transactions/DAOTransactionsGraph.cpp
-        persistence/graph/transactions/TransactionsRawGraph.cpp
+        src/persistence/DAOException.cpp
+        src/persistence/SerializationUtil.cpp
+        src/persistence/json/DAOJson.cpp
+        src/persistence/graph/DAOManagerGraph.cpp
+        src/persistence/graph/transactions/DAOTransactionsGraph.cpp
+        src/persistence/graph/transactions/TransactionsRawGraph.cpp
 
-        crypto/UtilCrypto.cpp
-        crypto/CryptoCore.cpp
+        src/crypto/UtilCrypto.cpp
+        src/crypto/CryptoCore.cpp
 
         #cpp-properties file include
         include/cpp-properties/src/Properties.cpp
@@ -145,16 +137,6 @@ add_executable(
         include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp
 
 )
-
-target_include_directories(${PROJECT_NAME} PUBLIC include/rapidjson/include)
-target_include_directories(${PROJECT_NAME} PUBLIC include/spycblockrpc)
-target_include_directories(${PROJECT_NAME} PUBLIC include/bitcoin-cryptography-library)
-target_include_directories(${PROJECT_NAME} PUBLIC include/cpp-properties/src)
-
-target_include_directories(SpyCBlockTests PUBLIC include/rapidjson/include)
-target_include_directories(SpyCBlockTests PUBLIC include/spycblockrpc)
-target_include_directories(SpyCBlockTests PUBLIC include/bitcoin-cryptography-library)
-target_include_directories(SpyCBlockTests PUBLIC include/cpp-properties/src)
 
 #using glog
 target_link_libraries(${PROJECT_NAME} glog::glog)

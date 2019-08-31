@@ -21,34 +21,34 @@ add_executable(
 
         src/BanckMerchSerializationGraph.cpp
 
-        ../core/SpyCBlock.cpp
-        ../core/ConfiguratorSingleton.cpp
+        ../src/core/SpyCBlock.cpp
+        ../src/core/ConfiguratorSingleton.cpp
 
-        ../util/uint256.cpp
-        ../util/strencodings.cpp
-        ../util/prevector.cpp
+        ../src/util/uint256.cpp
+        ../src/util/strencodings.cpp
+        ../src/util/prevector.cpp
 
-        ../structure/block/block.cpp
-        ../structure/block/blockHeader.cpp
-        ../structure/transaction/RawTransaction.cpp
-        ../structure/transaction/TransactionOutput.cpp
-        ../structure/transaction/TransactionInput.cpp
-        ../structure/transaction/TransactionWitness.cpp
-        ../structure/script/scriptCode.cpp
-        ../structure/type/Outpoint.cpp
-        ../structure/type/DVarInt.cpp
-        ../structure/type/DScript.cpp
-        ../structure/type/Outpoint.cpp
+        ../src/structure/block/block.cpp
+        ../src/structure/block/blockHeader.cpp
+        ../src/structure/transaction/RawTransaction.cpp
+        ../src/structure/transaction/TransactionOutput.cpp
+        ../src/structure/transaction/TransactionInput.cpp
+        ../src/structure/transaction/TransactionWitness.cpp
+        ../src/structure/script/scriptCode.cpp
+        ../src/structure/type/Outpoint.cpp
+        ../src/structure/type/DVarInt.cpp
+        ../src/structure/type/DScript.cpp
+        ../src/structure/type/Outpoint.cpp
 
-        ../persistence/DAOException.cpp
-        ../persistence/SerializationUtil.cpp
-        ../persistence/json/DAOJson.cpp
-        ../persistence/graph/DAOManagerGraph.cpp
-        ../persistence/graph/transactions/DAOTransactionsGraph.cpp
-        ../persistence/graph/transactions/TransactionsRawGraph.cpp
+        ../src/persistence/DAOException.cpp
+        ../src/persistence/SerializationUtil.cpp
+        ../src/persistence/json/DAOJson.cpp
+        ../src/persistence/graph/DAOManagerGraph.cpp
+        ../src/persistence/graph/transactions/DAOTransactionsGraph.cpp
+        ../src/persistence/graph/transactions/TransactionsRawGraph.cpp
 
-        ../crypto/UtilCrypto.cpp
-        ../crypto/CryptoCore.cpp
+        ../src/crypto/UtilCrypto.cpp
+        ../src/crypto/CryptoCore.cpp
 
         #cpp-properties file include
         ../include/cpp-properties/src/Properties.cpp
