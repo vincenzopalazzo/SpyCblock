@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.9)
-project(spyCblock)
+project(SpyCBlock)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 # Locate GTest
 enable_testing()
@@ -12,38 +12,143 @@ include_directories(${GTEST_INCLUDE_DIRS})
 find_package(glog 0.3.5 REQUIRED)
 
 ## Json library
-find_package(nlohmann_json 3.2.0 REQUIRED)
+find_package(RapidJSON) #This find the element in the OS
 
+#bitcoin rpc lib
+find_library(bitcoinapi 0.3 REQUIRED)
 
-# Link runTests with what we want to test and the GTest and pthread library
-add_executable(runTests test/RunTest.cpp util/uint256.cpp structure/block/block.cpp structure/block/blockHeader.cpp
-        structure/transaction/RawTransaction.cpp structure/transaction/TransactionOutput.cpp
-        structure/transaction/TransactionInput.cpp structure/script/scriptCode.cpp
-        structure/type/Outpoint.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp
-        structure/type/Outpoint.cpp util/strencodings.cpp util/prevector.cpp test/DAOBlockchainTest.cpp persistence/DAOBlockchain.cpp
-        persistence/DAOException.cpp test/SHABitcoinCoreTest.cpp crypto/cryptosingleton.cpp
-        cryptobitcoin/Sha256.cpp cryptobitcoin/Sha256Hash.cpp cryptobitcoin/Utils.cpp crypto/utilcrypto.cpp persistence/serializationutil.cpp
-        test/serealizationtest.cpp test/jsonserializationtest.cpp persistence/json/DAOBlkToJson.cpp test/DAOBlkToJsonTest.cpp
-        persistence/json/DAOJson.cpp test/daojsontest.cpp test/nulldatatransactiontest.cpp)
+add_executable(
 
-add_executable(${PROJECT_NAME} core/ParserMain.cpp util/uint256.cpp structure/block/block.cpp structure/block/blockHeader.cpp
-        structure/transaction/RawTransaction.cpp structure/transaction/TransactionOutput.cpp
-        structure/transaction/TransactionInput.cpp structure/script/scriptCode.cpp
-        structure/type/Outpoint.cpp core/SpyCBlock.cpp structure/type/DVarInt.cpp structure/type/DScript.cpp
-        structure/type/Outpoint.cpp util/strencodings.cpp util/prevector.cpp persistence/DAOException.cpp persistence/DAOBlockchain.cpp
-        persistence/DAOException.cpp crypto/cryptosingleton.cpp cryptobitcoin/Sha256.cpp cryptobitcoin/Sha256Hash.cpp
-        cryptobitcoin/Utils.cpp crypto/utilcrypto.cpp persistence/serializationutil.cpp persistence/json/DAOBlkToJson.cpp
-        persistence/json/DAOJson.cpp)
+        SpyCBlockTests
+
+        test/util/DAOUtilTest.cpp
+
+        test/StructureBitcoinCoreTest.cpp
+        test/SHABitcoinCoreTest.cpp
+        test/SerealizationTest.cpp
+        test/DAOJsonTest.cpp
+        test/NullDataTransactionsTest.cpp
+        test/ExceptionCompactsizeTest.cpp
+        test/ConfiguratorSingletonTest.cpp
+        test/DAOManagerGraphTest.cpp
+
+        src/util/uint256.cpp
+        src/util/strencodings.cpp
+        src/util/prevector.cpp
+
+        src/structure/block/block.cpp
+        src/structure/block/blockHeader.cpp
+        src/structure/transaction/RawTransaction.cpp
+        src/structure/transaction/TransactionOutput.cpp
+        src/structure/transaction/TransactionInput.cpp
+        src/structure/transaction/TransactionWitness.cpp
+        src/structure/script/scriptCode.cpp
+        src/structure/type/Outpoint.cpp
+        src/structure/type/DVarInt.cpp
+        src/structure/type/DScript.cpp
+        src/structure/type/Outpoint.cpp
+
+        src/persistence/DAOException.cpp
+        src/persistence/json/DAOJson.cpp
+        src/persistence/SerializationUtil.cpp
+        src/persistence/graph/DAOManagerGraph.cpp
+        src/persistence/graph/transactions/DAOTransactionsGraph.cpp
+        src/persistence/graph/transactions/TransactionsRawGraph.cpp
+
+        src/crypto/UtilCrypto.cpp
+        src/crypto/CryptoCore.cpp
+
+        src/core/ConfiguratorSingleton.cpp
+
+        #cpp-properties file include
+        include/cpp-properties/src/Properties.cpp
+        include/cpp-properties/src/PropertiesParser.cpp
+        include/cpp-properties/src/PropertiesUtils.cpp
+
+        #include bitcoin-cryptography-library
+        include/bitcoin-cryptography-library/cpp/Sha256.cpp
+        include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp
+        include/bitcoin-cryptography-library/cpp/Utils.cpp
+
+        #include spycblocrpc
+        include/spycblockrpc/core/graph/TransactionGraph.cpp
+        include/spycblockrpc/core/graph/WrapperInformations.cpp
+        include/spycblockrpc/ConfiguratorSingleton.cpp
+
+        include/spycblockrpc/commands/DecodeScriptCommand.cpp
+        include/spycblockrpc/commands/DecodeRawTransaction.cpp
+        include/spycblockrpc/commands/HeightBlockchainCommand.cpp
+        include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp
+
+)
+
+add_executable(
+
+        ${PROJECT_NAME}
+
+        src/core/ParserMain.cpp
+        src/core/SpyCBlock.cpp
+        src/core/ConfiguratorSingleton.cpp
+
+        src/util/uint256.cpp
+        src/util/strencodings.cpp
+        src/util/prevector.cpp
+
+        src/structure/block/block.cpp
+        src/structure/block/blockHeader.cpp
+        src/structure/transaction/RawTransaction.cpp
+        src/structure/transaction/TransactionOutput.cpp
+        src/structure/transaction/TransactionInput.cpp
+        src/structure/transaction/TransactionWitness.cpp
+        src/structure/script/scriptCode.cpp
+        src/structure/type/Outpoint.cpp
+        src/structure/type/DVarInt.cpp
+        src/structure/type/DScript.cpp
+        src/structure/type/Outpoint.cpp
+
+        src/persistence/DAOException.cpp
+        src/persistence/SerializationUtil.cpp
+        src/persistence/json/DAOJson.cpp
+        src/persistence/graph/DAOManagerGraph.cpp
+        src/persistence/graph/transactions/DAOTransactionsGraph.cpp
+        src/persistence/graph/transactions/TransactionsRawGraph.cpp
+
+        src/crypto/UtilCrypto.cpp
+        src/crypto/CryptoCore.cpp
+
+        #cpp-properties file include
+        include/cpp-properties/src/Properties.cpp
+        include/cpp-properties/src/PropertiesParser.cpp
+        include/cpp-properties/src/PropertiesUtils.cpp
+
+        #include bitcoin-cryptography-library
+        include/bitcoin-cryptography-library/cpp/Sha256.cpp
+        include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp
+        include/bitcoin-cryptography-library/cpp/Utils.cpp
+
+        #include spycblocrpc
+        include/spycblockrpc/core/graph/TransactionGraph.cpp
+        include/spycblockrpc/core/graph/WrapperInformations.cpp
+        include/spycblockrpc/ConfiguratorSingleton.cpp
+
+        include/spycblockrpc/commands/DecodeScriptCommand.cpp
+        include/spycblockrpc/commands/DecodeRawTransaction.cpp
+        include/spycblockrpc/commands/HeightBlockchainCommand.cpp
+        include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp
+
+)
 
 #using glog
 target_link_libraries(${PROJECT_NAME} glog::glog)
-target_link_libraries(runTests glog::glog)
+target_link_libraries(SpyCBlockTests glog::glog)
 #using gtest
-target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
+target_link_libraries(SpyCBlockTests ${GTEST_LIBRARIES} pthread)
 ##using filesystem
 target_link_libraries(${PROJECT_NAME} stdc++fs)
-target_link_libraries(runTests stdc++fs)
-##Json library
-target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
+target_link_libraries(SpyCBlockTests stdc++fs)
+
+#bitcoin rpc lib
+target_link_libraries(SpyCBlockTests bitcoinapi)
+target_link_libraries(${PROJECT_NAME} bitcoinapi)
 
 

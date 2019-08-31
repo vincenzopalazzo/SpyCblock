@@ -9,3 +9,9 @@ cmake-build-debug/
 .idea/
 /CMakeCache.txt
 *.cmake
+
+build-benchmark-Desktop-Default/
+
+build-benchmark-Desktop-Release/
+
+CMakeLists.txt.user
