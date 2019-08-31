@@ -2,7 +2,7 @@
 #include <chrono>
 
 #include <glog/logging.h>
-#include "../../include/spycblockrpc/core/graph/WrapperInformations.h"
+#include "../../../include/spycblockrpc/core/graph/WrapperInformations.h"
 
 #include "../DAOException.h"
 #include "DAOManagerGraph.h"

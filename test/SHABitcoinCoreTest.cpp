@@ -33,16 +33,16 @@
 #include <glog/logging.h>
 #include <gtest/gtest.h>
 
-#include "../util/strencodings.h"
+#include "../src/util/strencodings.h"
 #include "../include/bitcoin-cryptography-library/cpp/Sha256.hpp"
 #include "../include/bitcoin-cryptography-library/cpp/Sha256Hash.hpp"
 #include "../include/bitcoin-cryptography-library/cpp/Utils.hpp"
 #include "../include/bitcoin-cryptography-library/cpp/TestHelper.hpp"
 
-#include "../crypto/UtilCrypto.h"
-#include "../structure/block/block.h"
-#include "../crypto/CryptoCore.h"
-#include "../core/ConfiguratorSingleton.h"
+#include "../src/crypto/UtilCrypto.h"
+#include "../src/structure/block/block.h"
+#include "../src/crypto/CryptoCore.h"
+#include "../src/core/ConfiguratorSingleton.h"
 
 using namespace std;
 using namespace spyCBlock;

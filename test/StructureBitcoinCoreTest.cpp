@@ -27,13 +27,13 @@
 
 #include <gtest/gtest.h>
 #include <glog/logging.h>
-#include "../util/uint256.h"
-#include "../util/strencodings.h"
+#include "../src/util/uint256.h"
+#include "../src/util/strencodings.h"
 
-#include "../structure/block/block.h"
-#include "../persistence/IDAOBlockchain.h"
-#include "../persistence/DAOException.h"
-#include "../core/ConfiguratorSingleton.h"
+#include "../src/structure/block/block.h"
+#include "../src/persistence/IDAOBlockchain.h"
+#include "../src/persistence/DAOException.h"
+#include "../src/core/ConfiguratorSingleton.h"
 
 using namespace spyCBlock;
 

@@ -1,7 +1,7 @@
 #include <glog/logging.h>
 
 #include "DAOUtilTest.h"
-#include "../../persistence/DAOException.h"
+#include "../../src/persistence/DAOException.h"
 
 namespace fs = std::experimental::filesystem;
 using namespace spyCBlock;

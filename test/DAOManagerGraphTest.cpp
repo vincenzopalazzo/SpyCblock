@@ -28,12 +28,12 @@
 #include <bitcoinapi/bitcoinapi.h>
 #include <bitcoinapi/exception.h>
 
-#include "../structure/block/block.h"
-#include "../persistence/graph/DAOManagerGraph.h"
-#include "../persistence/graph/transactions/DAOTransactionsGraph.h"
-#include "../persistence/DAOException.h"
-#include "../persistence/graph/DAOManagerGraph.h"
-#include "../core/ConfiguratorSingleton.h"
+#include "../src/structure/block/block.h"
+#include "../src/persistence/graph/DAOManagerGraph.h"
+#include "../src/persistence/graph/transactions/DAOTransactionsGraph.h"
+#include "../src/persistence/DAOException.h"
+#include "../src/persistence/graph/DAOManagerGraph.h"
+#include "../src/core/ConfiguratorSingleton.h"
 
 using namespace std;
 using namespace spyCBlock;

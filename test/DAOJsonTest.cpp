@@ -25,10 +25,10 @@
 #include <gtest/gtest.h>
 #include <utility>
 
-#include "../structure/block/block.h"
-#include "../persistence/json/DAOJson.h"
-#include "../persistence/DAOException.h"
-#include "../core/ConfiguratorSingleton.h"
+#include "../src/structure/block/block.h"
+#include "../src/persistence/json/DAOJson.h"
+#include "../src/persistence/DAOException.h"
+#include "../src/core/ConfiguratorSingleton.h"
 
 using namespace std;
 using namespace spyCBlock;

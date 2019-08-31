@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <sstream>
 
-#include "../../include/spycblockrpc/core/graph/TransactionGraph.h"
+#include "../../../include/spycblockrpc/core/graph/TransactionGraph.h"
 
 #include "RawTransaction.h"
 #include "../../persistence/SerializationUtil.h"

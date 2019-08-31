@@ -4,7 +4,7 @@
 #include <ostream>
 #include <glog/logging.h>
 
-#include "../../include/spycblockrpc/core/graph/WrapperInformations.h"
+#include "../../../include/spycblockrpc/core/graph/WrapperInformations.h"
 
 #include "blockHeader.h"
 #include "../transaction/RawTransaction.h"

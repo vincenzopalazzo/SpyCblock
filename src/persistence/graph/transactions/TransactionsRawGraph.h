@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "../../../include/spycblockrpc/core/graph/ITransactionGraph.h"
+#include "../../../../include/spycblockrpc/core/graph/ITransactionGraph.h"
 
 namespace  spyCBlock
 {

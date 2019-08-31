@@ -27,9 +27,9 @@
 
 #include <gtest/gtest.h>
 
-#include "../structure/block/block.h"
-#include "../persistence/DAOException.h"
-#include "../core/ConfiguratorSingleton.h"
+#include "../src/structure/block/block.h"
+#include "../src/persistence/DAOException.h"
+#include "../src/core/ConfiguratorSingleton.h"
 #include "util/DAOUtilTest.h"
 
 using namespace std;

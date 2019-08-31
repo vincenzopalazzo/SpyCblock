@@ -26,9 +26,9 @@
 #include <utility>
 #include <glog/logging.h>
 
-#include "../core/ConfiguratorSingleton.h"
+#include "../src/core/ConfiguratorSingleton.h"
 
-#include "../structure/transaction/RawTransaction.h"
+#include "../src/structure/transaction/RawTransaction.h"
 
 using namespace std;
 using namespace spyCBlock;

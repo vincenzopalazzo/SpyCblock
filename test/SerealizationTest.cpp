@@ -27,10 +27,10 @@
 #include <gtest/gtest.h>
 #include <glog/logging.h>
 
-#include "../util/strencodings.h"
+#include "../src/util/strencodings.h"
 
-#include "../structure/block/block.h"
-#include "../core/ConfiguratorSingleton.h"
+#include "../src/structure/block/block.h"
+#include "../src/core/ConfiguratorSingleton.h"
 
 using namespace spyCBlock;
 using namespace std;
