@@ -3,8 +3,8 @@
 #include <benchmark/benchmark.h>
 #include <glog/logging.h>
 
-#include "../../core/ConfiguratorSingleton.h"
-#include "../../core/SpyCBlock.h"
+#include "../../src/core/ConfiguratorSingleton.h"
+#include "../../src/core/SpyCBlock.h"
 
 using namespace spyCBlock;
 using namespace std;
@@ -37,8 +37,17 @@ void BM_decodeJsonOneFile(benchmark::State& state)
     }
 }
 
+void BM_decodeIDWalletOneFile(benchmark::State& state)
+{
+    while (state.KeepRunning())
+    {
+        createGraphIdWalletOneFile();
+    }
+}
+
 BENCHMARK(BM_createGraphTxOneFile)->Arg(8);
 BENCHMARK(BM_decodeJsonOneFile)->Arg(8);
+//BENCHMARK(BM_decodeIDWalletOneFile)->Arg(8);
 
 void createGraphTxOneFile()
 {

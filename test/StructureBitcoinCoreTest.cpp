@@ -63,7 +63,7 @@ TEST(StructureBitcoinCoreTest, unserialize_one_block)
 
     EXPECT_EQ(block.getMagicNum(), Block::Type::NETWORK_MAIN); //This is equal to "d9b4bef9"
     EXPECT_EQ(block.getBlocksize(), 285);
-    EXPECT_EQ(block.getNumbarRawTransaction().getValue(), 1);
+    EXPECT_EQ(block.getNumberRawTransaction().getValue(), 1);
 
     BlockHeader blockHeader = block.getBlockHeader();
 
@@ -138,7 +138,7 @@ TEST(StructureBitcoinCoreTest, unserialize_two_block)
 
     EXPECT_EQ(block.getMagicNum(), Block::Type::NETWORK_MAIN);
     EXPECT_EQ(block.getBlocksize(), 285);
-    EXPECT_EQ(block.getNumbarRawTransaction().getValue(), 1);
+    EXPECT_EQ(block.getNumberRawTransaction().getValue(), 1);
 
     BlockHeader blockHeader = block.getBlockHeader();
 
@@ -192,7 +192,7 @@ TEST(StructureBitcoinCoreTest, unserialize_two_block)
     EXPECT_EQ(blockHeader.getNBits(), 486604799);
     EXPECT_EQ(blockHeader.getNonce(), 2573394689);
 
-    EXPECT_EQ(block_two.getNumbarRawTransaction().getValue(), 1);
+    EXPECT_EQ(block_two.getNumberRawTransaction().getValue(), 1);
 
     //rawTransaction = block_two->getRawTransactions().at(0)->;
 
@@ -235,7 +235,7 @@ TEST(StructureBitcoinCoreTest, all_Read_file_dat)
         if (stream.is_open())
           {
             LOG(INFO) << "Stream is open";
-            int numbarBlock = 0;
+            int numberBlock = 0;
 
             while (!stream.eof()) {
 
@@ -246,9 +246,9 @@ TEST(StructureBitcoinCoreTest, all_Read_file_dat)
                  //   LOG(WARNING) << "block is null -> " << block.getBlockHeader().getPreviousBlockHeaderHash().GetHex();
                // }else{
                     outStream << block.toString();
-                    numbarBlock++;
+                    numberBlock++;
                     blocks.emplace_back(block);
-                    LOG(INFO) << "Numbar block read now " << numbarBlock;
+                    LOG(INFO) << "Number block read now " << numberBlock;
                 //}
             }
             EXPECT_EQ(blocks.size(), 119973); //TODO qualcosa alla fine del blocco fa i capricci sono in realtà 19973
@@ -269,7 +269,7 @@ TEST(StructureBitcoinCoreTest, all_Read_file_dat)
     stream.close();
     outStream.close();
 
-}/*Test Read all file dat error numbar file read*/
+}/*Test Read all file dat error number file read*/
 
 //First test compare hash previus block whit the previus block generated another parser
 TEST(StructureBitcoinCoreTest, compare_previus_block_hash)
@@ -367,7 +367,7 @@ TEST(StructureBitcoinCoreTest, read_first_block_another_file_blk)
     ASSERT_EQ(blockHeader.getNonce(), 261426184);
 
     /* ----------- TEST RAW TRANSACTION -------------*/
-    ASSERT_EQ(block.getNumbarRawTransaction().getValue(), 2461);
+    ASSERT_EQ(block.getNumberRawTransaction().getValue(), 2461);
     ASSERT_EQ(block.getRawTransactions().size(), 2461);
     //RawTransaction rawTransaction = block->getRawTransactions().at(0);
     //unique_ptr<RawTransaction> rawTransaction = block->getRawTransactions().at(0);
@@ -426,7 +426,7 @@ TEST(StructureBitcoinCoreTest, read_two_consecutive_block_another_file_blk)
     ASSERT_EQ(blockHeader.getNonce(), 261426184);
 
     /* ----------- TEST RAW TRANSACTION -------------*/
-    ASSERT_EQ(block.getNumbarRawTransaction().getValue(), 2461);
+    ASSERT_EQ(block.getNumberRawTransaction().getValue(), 2461);
     ASSERT_EQ(block.getRawTransactions().size(), 2461);
 
     //RawTransaction rawTransaction = block->getRawTransactions().at(0);
@@ -479,10 +479,10 @@ TEST(StructureBitcoinCoreTest, read_two_consecutive_block_another_file_blk)
     ASSERT_EQ(blockHeaderTwo.getNonce(), 2516415794);
 
     /* ----------- TEST RAW TRANSACTION -------------*/
-    ASSERT_EQ(blockTwo.getNumbarRawTransaction().getValue(), 2237);
+    ASSERT_EQ(blockTwo.getNumberRawTransaction().getValue(), 2237);
     ASSERT_EQ(blockTwo.getRawTransactions().size(), 2237);
 
-    //RawTransaction rawTransactionTwo = blockTwo->getNumbarRawTransaction().at(0->);
+    //RawTransaction rawTransactionTwo = blockTwo->getNumberRawTransaction().at(0->);
 
     ASSERT_EQ(blockTwo.getRawTransactions().at(0).getVersion(), 1);
     ASSERT_EQ(blockTwo.getRawTransactions().at(0).getNumberTxIn().getValue(), 1);

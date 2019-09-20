@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <sstream>
 
-#include "../../../include/spycblockrpc/core/graph/TransactionGraph.h"
+#include "../../../include/spycblockrpc/src/core/graph/TransactionGraph.h"
 
 #include "RawTransaction.h"
 #include "../../persistence/SerializationUtil.h"
@@ -30,13 +30,13 @@ void RawTransaction::decode(std::ifstream &stream)
       {
         LOG(WARNING) << "Findend the flag";
         type = Type::WITNESS;
-         numberTxIn.decode(stream); //With this code I readed the numbar tranaction input in Witnees transaction type;
+         numberTxIn.decode(stream); //With this code I readed the number tranaction input in Witnees transaction type;
       }
     }else{
       type = Type::PRIMITIVE;
     }
 
-    LOG(INFO) << "Numbar transaction input in raw transaction " << numberTxIn.getValue();
+    LOG(INFO) << "Number transaction input in raw transaction " << numberTxIn.getValue();
     txIn.clear();
 
     txIn.reserve(numberTxIn.getValue());
@@ -47,7 +47,7 @@ void RawTransaction::decode(std::ifstream &stream)
         transaction.decode(stream);
     }
     this->numberTxOut.decode(stream);
-    LOG(INFO) << "Numbar transaction output in raw transaction " << numberTxOut.getValue();
+    LOG(INFO) << "Number transaction output in raw transaction " << numberTxOut.getValue();
 
     txOut.clear();
     txOut.reserve(numberTxOut.getValue());
@@ -138,7 +138,7 @@ void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writer
   writerJson.Key("version");
   writerJson.Int(this->version);
 
-  writerJson.Key("numbarTxInput");
+  writerJson.Key("numberTxInput");
   writerJson.Uint64(this->numberTxIn.getValue());
 
   writerJson.Key("txInput");
@@ -151,7 +151,7 @@ void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writer
 
   writerJson.EndArray();
 
-  writerJson.Key("numbarTxOutput");
+  writerJson.Key("numberTxOutput");
   writerJson.Uint64(this->numberTxOut.getValue());
 
   writerJson.Key("txOutput");

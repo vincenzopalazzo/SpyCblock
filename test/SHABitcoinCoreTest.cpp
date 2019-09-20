@@ -128,24 +128,24 @@ TEST(hash_test, first_test_double_sha_bit_genesi_block_transaction_bitcoin_crypo
     google::SetLogDestination(google::GLOG_ERROR,  pathLogRoot.append("first_test_sha_not_on_bitcoin_protocolo.log").c_str());
 
     string versionRawTransaction = "01000000";
-    string numbarTransactionInput = "01";
+    string numberTransactionInput = "01";
     string output = "0000000000000000000000000000000000000000000000000000000000000000ffffffff";
     string scriptLenght = "4d";
     string scriptSing = "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73";
     string sequences = "ffffffff";
-    string numbarTransactionOutput = "01";
+    string numberTransactionOutput = "01";
     string cAmmount = "00f2052a01000000";
     string publicKeyScriptLenght = "43";
     string publicKeyScript = "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac";
     string lockTime = "00000000";
 
     string hexForm = versionRawTransaction;
-    hexForm += numbarTransactionInput;
+    hexForm += numberTransactionInput;
     hexForm += output;
     hexForm += scriptLenght;
     hexForm += scriptSing;
     hexForm += sequences;
-    hexForm += numbarTransactionOutput;
+    hexForm += numberTransactionOutput;
     hexForm += cAmmount;
     hexForm += publicKeyScriptLenght;
     hexForm += publicKeyScript;

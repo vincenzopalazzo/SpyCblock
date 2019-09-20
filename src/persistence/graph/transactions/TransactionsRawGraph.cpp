@@ -2,7 +2,7 @@
 #include <glog/logging.h>
 
 #include "TransactionsRawGraph.h"
-#include "../../../../include/spycblockrpc/core/graph/WrapperInformations.h"
+#include "../../../../include/spycblockrpc/src/core/graph/WrapperInformations.h"
 
 using namespace std;
 using namespace spyCBlockRPC;

@@ -20,7 +20,7 @@ void TransactionInput::decode(std::ifstream &stream)
     LOG(INFO) << "Script Lenght" << script.getScriptLenght().getValue();
     LOG(INFO) << "Script Value" << script.toString();
     Unserialize(stream, this->sequences);
-    LOG(INFO) << "Numbar sequences " << sequences;
+    LOG(INFO) << "Number sequences " << sequences;
 
     //Create hash transaction
     string hexInputTransaction = toSerealizationForm();
@@ -55,7 +55,7 @@ void TransactionInput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writ
   writerJson.Key("outputTxHash");
   writerJson.String(outpoint.getHash().ToString().c_str());
 
-  writerJson.Key("ammount");
+  writerJson.Key("aamount");
   writerJson.Uint(outpoint.getN());
 
   writerJson.Key("scriptLenght");

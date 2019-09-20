@@ -42,7 +42,7 @@ void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &wri
    writerJson.Key("hashOutputTransaction");
    writerJson.String(this->hashOutputTransaction.c_str());
 
-   writerJson.Key("ammount");
+   writerJson.Key("aamount");
    writerJson.Int64(this->nValue);
 
    writerJson.Key("scriptLenght");
@@ -56,14 +56,14 @@ void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &wri
 
 void TransactionOutput::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  wrapper.addInformationLink("Ammount: " + to_string(this->nValue));
+  wrapper.addInformationLink("Aamount: " + to_string(this->nValue));
   wrapper.setTo(this->getScript().getRawScriptString());
 }
 
 void TransactionOutput::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  //TODO add ammount to link graph
-  wrapper.addInformationLink("Ammount: " + to_string(this->nValue));
+  //TODO add aamount to link graph
+  wrapper.addInformationLink("Aamount: " + to_string(this->nValue));
 }
 
 string TransactionOutput::toString()

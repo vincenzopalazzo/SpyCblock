@@ -5,7 +5,7 @@
 
 #include <rapidjson/writer.h>
 #include <rapidjson/ostreamwrapper.h>
-#include "../../../include/spycblockrpc/core/graph/WrapperInformations.h"
+#include "../../../include/spycblockrpc/src/core/graph/WrapperInformations.h"
 
 #include "../type/DScript.h"
 

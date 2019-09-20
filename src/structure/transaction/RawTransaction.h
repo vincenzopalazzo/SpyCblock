@@ -4,7 +4,7 @@
 #include <vector>
 
 #include <glog/logging.h>
-#include "../../../include/spycblockrpc/core/graph/WrapperInformations.h"
+#include "../../../include/spycblockrpc/src/core/graph/WrapperInformations.h"
 #include "../../../src/util/serialize.h"
 
 #include "TransactionOutput.h"

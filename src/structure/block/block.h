@@ -4,7 +4,7 @@
 #include <ostream>
 #include <glog/logging.h>
 
-#include "../../../include/spycblockrpc/core/graph/WrapperInformations.h"
+#include "../../../include/spycblockrpc/src/core/graph/WrapperInformations.h"
 
 #include "blockHeader.h"
 #include "../transaction/RawTransaction.h"
@@ -30,7 +30,7 @@ namespace spyCBlock
 
           const BlockHeader &getBlockHeader() const;
 
-          const DVarInt &getNumbarRawTransaction() const;
+          const DVarInt &getNumberRawTransaction() const;
 
           const vector<RawTransaction> &getRawTransactions() const;
 
@@ -64,7 +64,7 @@ namespace spyCBlock
 
           BlockHeader blockHeader;
 
-          DVarInt numbarRawTransaction;
+          DVarInt numberRawTransaction;
 
           vector<RawTransaction> rawTransactions;
 
@@ -72,7 +72,7 @@ namespace spyCBlock
 
           string hashBlock;
 
-          string convertMagicNumbar();
+          string convertMagicNumber();
     };
 }
 
