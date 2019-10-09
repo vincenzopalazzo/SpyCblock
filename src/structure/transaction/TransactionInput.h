@@ -1,3 +1,7 @@
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
+
 #ifndef PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
 #define PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
 
@@ -10,8 +14,6 @@
 
 #include "../type/DScript.h"
 
-
-//@author https://github.com/vincenzopalazzo
 namespace spyCBlock
 {
     class TransactionInput

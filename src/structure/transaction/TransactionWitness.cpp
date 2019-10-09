@@ -1,4 +1,6 @@
-// @author https://github.com/vincenzopalazzo
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
 
 #include <glog/logging.h>
 
@@ -35,6 +37,20 @@ std::string TransactionWitness::toSerealizationForm() const
       hexForm.append(script.getScriptToSerializationForm());
   }
   return hexForm;
+}
+
+string TransactionWitness::toString()
+{
+  string stringForm =  "Dimension script:";
+  stringForm += to_string(compactSize.getValue());
+  stringForm += "\n";
+  for(auto elementStack : witnessStack)
+  {
+      stringForm += elementStack.getScriptString();
+      stringForm += "\n";
+  }
+
+  return stringForm;
 }
 
 //Getter and setter

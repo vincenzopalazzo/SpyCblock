@@ -1,6 +1,6 @@
-//
-// Created by https://github.com/vincenzopalazzo on 2/7/19.
-//
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
 
 #ifndef SPYCBLOCK_SPYCBLOCK_H
 #define SPYCBLOCK_SPYCBLOCK_H
@@ -15,8 +15,6 @@ namespace spyCBlock {
     class SpyCBlock {
 
         public:
-            //TODO this method refactoring
-            void read(std::string pathBlockchain);
 
             void convertBlkIntoJson(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 

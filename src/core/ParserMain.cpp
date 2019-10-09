@@ -1,6 +1,6 @@
-//
-// @author https://github.com/vincenzopalazzo
-//
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
 
 #include <glog/logging.h>
 
@@ -31,8 +31,7 @@ int main(int argc, char* argv[])
     std::string settingDecodeType = ConfiguratorSingleton::getInstance().getFormatFileDecode();
     LOG(ERROR) << "The type of decode is: " << settingDecodeType;
 
-    if(settingDecodeType == JSON_DECODE)
-    {
+    if(settingDecodeType == JSON_DECODE){
         spyCBlock.convertBlkIntoJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
         return 0;
     }else if (settingDecodeType == GRAPH_TX){
@@ -42,5 +41,6 @@ int main(int argc, char* argv[])
         spyCBlock.convertBlkIntoGraphFormPubKey(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
         return 0;
     }
+
     throw exception();
 }

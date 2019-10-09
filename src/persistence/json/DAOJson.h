@@ -1,3 +1,7 @@
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
+
 #ifndef DAOJSON_H
 #define DAOJSON_H
 
@@ -17,13 +21,6 @@ namespace spyCBlock {
 
       bool saveBlock(string inputPath, string outputPath, int &height) override;
 
-    private:
-
-      void convertToJson(vector<Block> &blocks, ofstream &outputPath);
-
-      void convertToJsonRapidJson(vector<Block> &blocks, ofstream &outputPath);
-
-      void serializeBlock(Block &block, rapidjson::Writer<rapidjson::OStreamWrapper> &writer);
   };
 
 }

@@ -1,3 +1,7 @@
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
+
 #include <glog/logging.h>
 
 #include "DAOUtilTest.h"
@@ -9,17 +13,14 @@ using namespace std;
 
 std::vector<spyCBlock::Block> spyCBlock::DAOUtilTest::loadBlocks(string pathInput)
 {
-  if(pathInput.empty())
-  {
+  if(pathInput.empty()){
     LOG(ERROR) << "The path is empty";
   }
 
   vector<Block> blockchainBloks;
 
-      if (fs::exists(pathInput))
-      {
-          if (fs::is_directory(pathInput))
-          {
+      if (fs::exists(pathInput)){
+          if (fs::is_directory(pathInput)){
               fs::path pathObject = pathInput;
               LOG(INFO) << "Path exits and the path is the directory, the path is:  " << pathInput;
               for (auto &p: fs::directory_iterator(pathObject))
@@ -27,8 +28,7 @@ std::vector<spyCBlock::Block> spyCBlock::DAOUtilTest::loadBlocks(string pathInpu
                   LOG(INFO) << "The file examinad is: " << p;
                   vector<Block> container = readBlocks(p);
 
-                  if (!container.empty())
-                  {
+                  if (!container.empty()){
                       LOG(INFO) << "I added block readed in this file " << pathInput;
                       LOG(INFO) << "Dimension blockchain before join " << blockchainBloks.size();
                       for(auto& block : container)
@@ -61,15 +61,13 @@ bool DAOUtilTest::isBlockFileBlk(experimental::filesystem::__cxx11::directory_en
 }
 
 std::vector<Block> DAOUtilTest::readBlocks(fs::directory_entry entry) {
-    if (!isBlockFileBlk(entry))
-    {
+    if (!isBlockFileBlk(entry)){
         LOG(INFO) << "This path not contain a file blk";
         return vector<Block>();
     }
     ifstream stream(entry.path());
 
-    if (stream.is_open())
-    {
+    if (stream.is_open()){
         LOG(INFO) << "File in this path " << entry.path() << " is open";
         vector<Block> blocksFile;
         while (!stream.eof())

@@ -1,3 +1,7 @@
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
+
 #ifndef SERIALIZATIONUTIL_H
 #define SERIALIZATIONUTIL_H
 
@@ -17,8 +21,6 @@ using namespace std;
  * https://bitcoin.stackexchange.com/questions/2063/why-does-the-bitcoin-protocol-use-the-little-endian-notation
  * @author https://github.com/vincenzopalazzo
  */
-//Trasforma questa classe in una classe statica, il patter singleton non
-//e' una buona idea in questo caso
 namespace spyCBlock
 {
 

@@ -10,6 +10,9 @@ cmake-build-debug/
 /CMakeCache.txt
 *.cmake
 
+#file big
+benchmark/file
+
 build-benchmark-Desktop-Default/
 
 build-benchmark-Desktop-Release/

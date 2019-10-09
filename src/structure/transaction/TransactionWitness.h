@@ -1,3 +1,7 @@
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
+
 #ifndef TRANSACTIONWITNESS_H
 #define TRANSACTIONWITNESS_H
 
@@ -6,7 +10,6 @@
 #include "../type/DVarInt.h"
 #include "../type/DScript.h"
 
-// @author https://github.com/vincenzopalazzo
 namespace spyCBlock
 {
     class TransactionWitness
@@ -20,6 +23,8 @@ namespace spyCBlock
           void decode(std::ifstream &stream);
 
           std::string toSerealizationForm() const;
+
+          std::string toString();
 
         private:
 

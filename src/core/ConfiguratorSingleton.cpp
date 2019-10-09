@@ -1,3 +1,7 @@
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
+
 #include <experimental/filesystem>
 
 #include <glog/logging.h>
@@ -35,8 +39,7 @@ void ConfiguratorSingleton::obligatoryVariable()
 
 string ConfiguratorSingleton::getPathFileMockTest()
 {
-  if(pathFileMockTest.empty())
-  {
+  if(pathFileMockTest.empty()){
     pathFileMockTest = configuration.GetProperty(PATH_FILE_MOCK_TEST);
      LOG(WARNING) << "The path file mock for thest is: " << pathFileLog;
   }
@@ -55,8 +58,7 @@ int ConfiguratorSingleton::getStartHeightBlock()
 
 string ConfiguratorSingleton::getPathFileLogTest()
 {
-  if(pathFileLogTest.empty())
-  {
+  if(pathFileLogTest.empty()){
     pathFileLogTest = configuration.GetProperty(PATH_FILE_LOG_TEST);
      LOG(WARNING) << "The path file log for thest is: " << pathFileLog;
   }
@@ -65,15 +67,12 @@ string ConfiguratorSingleton::getPathFileLogTest()
 
 string ConfiguratorSingleton::getPathFileLog()
 {
-  if(pathFileLog.empty())
-  {
+  if(pathFileLog.empty()){
     pathFileLog = configuration.GetProperty(PATH_FILE_LOG);
     LOG(WARNING) << "The path file logger is: " << pathFileLog;
   }
   return pathFileLog;
 }
-
-
 
 string ConfiguratorSingleton::getFormatFileDecode() const
 {

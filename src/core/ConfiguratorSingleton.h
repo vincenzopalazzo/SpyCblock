@@ -1,3 +1,7 @@
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
+
 #ifndef CONFIGURATORSINGLETON_H
 #define CONFIGURATORSINGLETON_H
 
@@ -10,6 +14,7 @@ namespace spyCBlock {
   class ConfiguratorSingleton
   {
     public:
+
       static ConfiguratorSingleton& getInstance()
       {
         static ConfiguratorSingleton SINGLETON;
@@ -34,6 +39,7 @@ namespace spyCBlock {
       int getStartHeightBlock();
 
   protected:
+
       ConfiguratorSingleton();
 
   private:

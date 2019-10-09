@@ -1,3 +1,7 @@
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
+
 #ifndef PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 #define PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 
@@ -11,7 +15,6 @@
 #include "TransactionInput.h"
 #include "TransactionWitness.h"
 
-// @author https://github.com/vincenzopalazzo
 namespace spyCBlock{
 
     class RawTransaction{
@@ -62,7 +65,7 @@ namespace spyCBlock{
 
           DVarInt numberTxIn;
 
-          std::vector<TransactionInput> txIn; // TODO che cosa cambia nella transazione coind base?
+          std::vector<TransactionInput> txIn;
 
           DVarInt numberTxOut;
 

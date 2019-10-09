@@ -1,26 +1,7 @@
-/*
- * MIT License
- *
- * Copyright (c) 2019 Vincenzo Palazzo vincenzopalazzodev@gmail.com
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
+
 
 #include <fstream>
 #include <utility>
@@ -230,26 +211,19 @@ TEST(StructureBitcoinCoreTest, all_Read_file_dat)
     ofstream outStream(pathMockRoot + "file_test_readl_all_file_dat_uno.txt");
 
     vector<Block> blocks;
-    try
-    {
-        if (stream.is_open())
-          {
+    try{
+        if (stream.is_open()){
             LOG(INFO) << "Stream is open";
             int numberBlock = 0;
 
-            while (!stream.eof()) {
-
+            while (!stream.eof())
+            {
                 Block block;
                 block.decode(stream);
-               // if(block.getBlockHeader().getVersion() == 0)//TODO dare un occhiata qui qualcosa non va con i numeri di blocchi
-                //{
-                 //   LOG(WARNING) << "block is null -> " << block.getBlockHeader().getPreviousBlockHeaderHash().GetHex();
-               // }else{
-                    outStream << block.toString();
-                    numberBlock++;
-                    blocks.emplace_back(block);
-                    LOG(INFO) << "Number block read now " << numberBlock;
-                //}
+                outStream << block.toString();
+                numberBlock++;
+                blocks.emplace_back(block);
+                LOG(INFO) << "Number block read now " << numberBlock;
             }
             EXPECT_EQ(blocks.size(), 119973); //TODO qualcosa alla fine del blocco fa i capricci sono in realtà 19973
         } else{
@@ -285,11 +259,11 @@ TEST(StructureBitcoinCoreTest, compare_previus_block_hash)
     ifstream fileWhitHash (pathMockRoot + "previus_hash_block_header.txt");
 
     vector<string> priviusHashs;
-    if(!fileWhitHash.is_open())
-    {
+    if(!fileWhitHash.is_open()){
         FAIL() << "File previus_hash_block_header.txt not open";
     }
-    while (!fileWhitHash.eof()) {
+    while (!fileWhitHash.eof())
+    {
         string readLine;
         fileWhitHash >> readLine;
         LOG(INFO) << "I have read " << readLine;
@@ -301,7 +275,6 @@ TEST(StructureBitcoinCoreTest, compare_previus_block_hash)
 
     }
     fileWhitHash.close();
-  //TODO in this position exist an bug
     LOG(INFO) << "Hashs readted: " << priviusHashs.size();
     ASSERT_EQ(priviusHashs.size(), 119972);
 

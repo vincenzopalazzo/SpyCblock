@@ -1,4 +1,6 @@
-// @author https://github.com/vincenzopalazzo
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
 
 #include <cstdint>
 #include <sstream>
@@ -20,17 +22,15 @@ void RawTransaction::decode(std::ifstream &stream)
     LOG(INFO) << "Version raw transaction " << version;
     this->numberTxIn.decode(stream);
 
-    if(numberTxIn.getValue() == 0)
-    {
+    if(numberTxIn.getValue() == 0){
       LOG(WARNING) << "Findend the marker";
 
       this->numberTxIn.decode(stream);
 
-      if(numberTxIn.getValue() == 1)
-      {
+      if(numberTxIn.getValue() == 1){
         LOG(WARNING) << "Findend the flag";
         type = Type::WITNESS;
-         numberTxIn.decode(stream); //With this code I readed the number tranaction input in Witnees transaction type;
+        numberTxIn.decode(stream); //With this code I readed the number tranaction input in Witnees transaction type;
       }
     }else{
       type = Type::PRIMITIVE;
@@ -57,7 +57,6 @@ void RawTransaction::decode(std::ifstream &stream)
         txOut.emplace_back(TransactionOutput{});
         TransactionOutput& transactionOutput = txOut.back();
         transactionOutput.decode(stream);
-
     }
 
     if(type == Type::WITNESS){
@@ -97,8 +96,7 @@ string RawTransaction::toSerealizationForm() const
 
   hexForm.append(SerializationUtil::toSerealizeForm(this->lockTime));
   //Debug hex
-  if(this->type == RawTransaction::Type::WITNESS)
-  {
+  if(this->type == RawTransaction::Type::WITNESS){
     LOG(WARNING) << "\n****** HEX segregated witness *************\n"
                     + hexForm
                     + "\n****************************";
@@ -113,16 +111,22 @@ string RawTransaction::toString() {
     stringForm += "---------- Transaction Input ----------\n";
     stringForm += "Number Transaction In: ";
     stringForm += to_string(numberTxIn.getValue());
-    for(TransactionInput txInput : this->txIn)
+    for(auto txInput : this->txIn)
     {
         stringForm += txInput.toString();
     }
     stringForm += "---------- Transaction Output ----------\n";
     stringForm += "Number Transaction out: ";
     stringForm += to_string(numberTxOut.getValue());
-    for(TransactionOutput txOutput : this->txOut)
+    for(auto txOutput : this->txOut)
     {
         stringForm += txOutput.toString();
+    }
+    if(type == Type::WITNESS){
+        for(auto signatureStack : txsWitness)
+        {
+           stringForm += signatureStack.toString();
+        }
     }
     stringForm += to_string(this->lockTime);
     return stringForm;
@@ -174,12 +178,11 @@ void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperIn
 {
   wrapper.addInformationLink("RawTxID: " + this->hashRawTransaction);
   wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
-  string witness = "false";
-  if(type == Type::WITNESS)
-  {
-      witness = "true";
+  bool witness = false;
+  if(type == Type::WITNESS){
+      witness = true;
   }
-  wrapper.addInformationLink("witness: " + witness);
+  wrapper.addInformationLink("witness: " + to_string(witness));
   for(TransactionInput &txInput : this->txIn)
   {
     txInput.toGraphForm(outputStream, wrapper);
@@ -199,17 +202,17 @@ void RawTransaction::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::W
   wrapper.setTo(this->hashRawTransaction);
   wrapper.addInformationLink("RawTxID: " + this->hashRawTransaction);
   wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
-  string witness = "false";
-  if(type == Type::WITNESS)
-  {
-      witness = "true";
+  bool witness = false;
+  if(type == Type::WITNESS){
+      witness = true;
   }
-  wrapper.addInformationLink("witness: " + witness);
+  wrapper.addInformationLink("witness: " + to_string(witness));
+  // TODO this serealize all transaztion input to one transaction output
+  //This is wrong, decide if deserialize all transazions or all transaction without many to many.
   bool setValue = false;
   for(TransactionOutput txOut : this->txOut)
   {
-    if(setValue == false)
-    {
+    if(setValue == false){
       txOut.toTransactionsGraph(outputStream, wrapper);
       setValue = true;
     }
@@ -218,7 +221,6 @@ void RawTransaction::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::W
   for(TransactionInput inputTx : this->txIn)
   {
     inputTx.toTransactionsGraph(outputStream, wrapper);
-
     TransactionsRawGraph transactioGraph;
     transactioGraph.buildTransaction(wrapper);
     transactioGraph.serialize(outputStream);

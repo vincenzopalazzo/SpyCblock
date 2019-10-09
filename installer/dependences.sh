@@ -2,7 +2,7 @@
 echo '----------------------| SpyCBlock |---------------------------'
 echo 'Welcome into installer SpyCBlock a simple bicoin-core parser'
 echo 'Author https://github.com/vincenzopalazzo'
-
+wait 2000
 git --version
 GIT_IS_AVAILABLE=$?
 if [ $GIT_IS_AVAILABLE -eq 0 ]; then

@@ -1,6 +1,6 @@
-//
-// Created by https://github.com/vincenzopalazzo on 2/7/19.
-//
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
 
 #include <fstream>
 #include <iostream>
@@ -16,11 +16,9 @@
 
 using namespace spyCBlock;
 
-//This method used DAOJson
 void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
-  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
-  {
+  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty()){
     LOG(ERROR) << "The input argument ar null";
     throw exception();
   }
@@ -30,8 +28,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
   bool isBitcoinDirectory = false;
   while(pathInput != "")
   {
-    try
-    {
+    try{
       LOG(ERROR) << "Current file blk is " + to_string(currentFile);
 
       string fileNameOutput = getNameFile(pathInput);
@@ -42,11 +39,10 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
       currentFile++;
       pathInput = nameFileSearched(locationBitcoinCore);
       isBitcoinDirectory = true;
-    } catch (DAOException daoEx){
-      if(isBitcoinDirectory)
-      {
+    }catch (DAOException daoEx){
+      if(isBitcoinDirectory){
         LOG(ERROR) << "The blk files are finished";
-      }else {
+      }else{
         LOG(ERROR) << daoEx.what();
       }
       return;
@@ -57,8 +53,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
 //TODO Factorize the method with one method and add privete function to pass the DAO
 void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
-  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
-  {
+  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty()){
     LOG(ERROR) << "The input argument are empty";
     throw exception();
   }
@@ -68,13 +63,11 @@ void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string desti
   bool isBitcoinDirectory = false;
   while(pathInput != "")
   {
-    try
-    {
+    try{
       LOG(ERROR) << "Current file blk is " + to_string(currentFile);
 
       string fileNameOutput = getNameFile(pathInput);
       //DAOManagerGraph dao;
-
       DAOTransactionsGraph dao;
 
       string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
@@ -82,9 +75,8 @@ void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string desti
       currentFile++;
       pathInput = nameFileSearched(locationBitcoinCore);
       isBitcoinDirectory = true;
-    } catch (DAOException daoEx){
-      if(isBitcoinDirectory)
-      {
+    }catch (DAOException daoEx){
+      if(isBitcoinDirectory){
         LOG(ERROR) << "The blk files are finished";
       }else {
         LOG(ERROR) << daoEx.what();
@@ -96,8 +88,7 @@ void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string desti
 
 void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
-  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty())
-  {
+  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty()){
     LOG(ERROR) << "The input argument are empty";
     throw exception();
   }
@@ -107,8 +98,7 @@ void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string
   bool isBitcoinDirectory = false;
   while(pathInput != "")
   {
-      try
-      {
+      try{
         LOG(ERROR) << "Current file blk is " + to_string(currentFile);
 
         string fileNameOutput = getNameFile(pathInput);
@@ -121,11 +111,10 @@ void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string
         currentFile++;
         pathInput = nameFileSearched(locationBitcoinCore);
         isBitcoinDirectory = true;
-      } catch (DAOException daoEx){
-        if(isBitcoinDirectory)
-        {
+      }catch(DAOException daoEx){
+        if(isBitcoinDirectory){
           LOG(ERROR) << "The blk files are finished";
-        }else {
+        }else{
           LOG(ERROR) << daoEx.what();
         }
         return;
@@ -136,28 +125,22 @@ void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string
 
 string SpyCBlock::nameFileSearched(string &pathInput)
 {
-  if(pathInput.empty())
-  {
+  if(pathInput.empty()){
     LOG(ERROR) << "Input function null";
     throw exception();
   }
   LOG(ERROR) << "Attual value current file blk: " << currentFile;
   //Search file blk.dat
-  if(currentFile < 10) //TODO Il path input deve avere per forza il /
-  {
+  //TODO The path must be have the /, this is an future fix
+  if(currentFile < 10){
      return pathInput + "blk0000" + to_string(currentFile) + ".dat";
-
-  }else if(currentFile < 100)
-  {
+  }else if(currentFile < 100){
       return pathInput + "blk000" + to_string(currentFile) + ".dat";
-  }else if (currentFile < 1000)
-  {
+  }else if (currentFile < 1000){
       return pathInput + "blk00" + to_string(currentFile) + ".dat";
-  }else if (currentFile < 10000)
-  {
+  }else if (currentFile < 10000){
       return pathInput + "blk0" + to_string(currentFile) + ".dat";
   }else if (currentFile < 100000) {
-
       return pathInput + "blk0" + to_string(currentFile) + ".dat";
   }
   LOG(ERROR) << "The current file is greater to 100000, the value current file is:" << currentFile;

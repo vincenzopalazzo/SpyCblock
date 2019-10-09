@@ -1,4 +1,6 @@
-//@author https://github.com/vincenzopalazzo
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
 
 #include <sstream>
 
@@ -62,8 +64,7 @@ void TransactionOutput::toGraphForm(ofstream &outputStream, spyCBlockRPC::Wrappe
 
 void TransactionOutput::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  //TODO add aamount to link graph
-  wrapper.addInformationLink("Aamount: " + to_string(this->nValue));
+  wrapper.addInformationLink("Amount: " + to_string(this->nValue));
 }
 
 string TransactionOutput::toString()
@@ -77,10 +78,8 @@ string TransactionOutput::toString()
     return stringForm;
 }
 
-//Subrutine
-
 bool TransactionOutput::isScriptNull()
-{
+{ //This isn't null but containt the OP_RETURN, before introduce it, some transaction are null.
   return this->script.getRawScriptString().empty();
 }
 

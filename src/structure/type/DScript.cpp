@@ -1,4 +1,6 @@
-// @author https://github.com/vincenzopalazzo
+// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
 
 #include <sstream>
 
@@ -15,12 +17,8 @@ string DScript::getScriptToSerializationForm() const
 {
   if(rawScriptString.empty())
   {
+      //Before introducing the OP_RETURN some script was null.
       LOG(WARNING) << "The raw script is null " +  rawScriptString;
-      //TODO create a exception general for all parser
-      //throw  exception();
-      // I don't launch exception because some script are null
-      //Look this example https://www.blockchain.com/it/btc/tx/c78854360663aa585b0400df7297afc458521bf858e6c93b34d4ca696ae30f29
-      //and look te test NullDataTrasaction
       return rawScriptString;
   }
   return rawScriptString.substr(0, (this->scriptLenght.getValue() * 2));
