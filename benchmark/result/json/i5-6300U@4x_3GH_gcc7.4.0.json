@@ -1,6 +1,6 @@
 {
   "context": {
-    "date": "2019-09-20 20:23:27",
+    "date": "2019-10-11 19:58:55",
     "host_name": "vincenzo",
     "executable": "./SpyCBlock-benchmarck",
     "num_cpus": 4,
@@ -32,33 +32,7 @@
         "num_sharing": 4
       }
     ],
-    "load_avg": [2.01,1.67,1.8],
+    "load_avg": [2.1,2.31,2.52],
     "library_build_type": "debug"
   },
   "benchmarks": [
-    {
-      "name": "BM_createGraphTxOneFile/8",
-      "run_name": "BM_createGraphTxOneFile/8",
-      "run_type": "iteration",
-      "repetitions": 0,
-      "repetition_index": 0,
-      "threads": 1,
-      "iterations": 1,
-      "real_time": 1.5634459013000015e+11,
-      "cpu_time": 1.5495989063700000e+11,
-      "time_unit": "ns"
-    },
-    {
-      "name": "BM_decodeJsonOneFile/8",
-      "run_name": "BM_decodeJsonOneFile/8",
-      "run_type": "iteration",
-      "repetitions": 0,
-      "repetition_index": 0,
-      "threads": 1,
-      "iterations": 1,
-      "real_time": 1.9378052880600446e+11,
-      "cpu_time": 1.8018651470500000e+11,
-      "time_unit": "ns"
-    }
-  ]
-}

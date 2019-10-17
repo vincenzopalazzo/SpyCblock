@@ -14,6 +14,9 @@ find_package(glog 0.3.5 REQUIRED)
 #bitcoin rpc lib
 find_library(bitcoinapi 0.3 REQUIRED)
 
+#ZLIB
+find_package(ZLIB)
+
 add_executable(
 
         SpyCBlockTests
@@ -28,6 +31,7 @@ add_executable(
         test/ExceptionCompactsizeTest.cpp
         test/ConfiguratorSingletonTest.cpp
         test/DAOManagerGraphTest.cpp
+        test/SerializationDataCompressedZLib.cpp
 
         src/util/uint256.cpp
         src/util/strencodings.cpp
@@ -147,5 +151,9 @@ target_link_libraries(SpyCBlockTests stdc++fs)
 #bitcoin rpc lib
 target_link_libraries(SpyCBlockTests bitcoinapi)
 target_link_libraries(${PROJECT_NAME} bitcoinapi)
+
+#ZLIB
+target_link_libraries(${PROJECT_NAME}  ${ZLIB_LIBRARIES})
+target_link_libraries(SpyCBlockTests  ${ZLIB_LIBRARIES})
 
 

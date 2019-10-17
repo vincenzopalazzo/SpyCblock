@@ -61,14 +61,14 @@ add_executable(
         ../include/bitcoin-cryptography-library/cpp/Utils.cpp
 
         #include spycblocrpc
-        ../include/spycblockrpc/core/graph/TransactionGraph.cpp
-        ../include/spycblockrpc/core/graph/WrapperInformations.cpp
-       ../include/spycblockrpc/ConfiguratorSingleton.cpp
+        ../include/spycblockrpc/src/core/graph/TransactionGraph.cpp
+        ../include/spycblockrpc/src/core/graph/WrapperInformations.cpp
+       ../include/spycblockrpc/src/ConfiguratorSingleton.cpp
 
-       ../include/spycblockrpc/commands/DecodeScriptCommand.cpp
-       ../include/spycblockrpc/commands/DecodeRawTransaction.cpp
-        ../include/spycblockrpc/commands/HeightBlockchainCommand.cpp
-        ../include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp
+       ../include/spycblockrpc/src/commands/DecodeScriptCommand.cpp
+       ../include/spycblockrpc/src/commands/DecodeRawTransaction.cpp
+        ../include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp
+        ../include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp
 
 )
 

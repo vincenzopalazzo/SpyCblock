@@ -10,6 +10,7 @@
 
 #include "../DAOException.h"
 #include "DAOManagerGraph.h"
+#include "../../core/ConfiguratorSingleton.h"
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
@@ -40,7 +41,9 @@ bool spyCBlock::DAOManagerGraph::saveBlock(string inputPath, string outputPath, 
               height++;
               block.setHeightBlock(height);
               spyCBlockRPC::WrapperInformations wrapper;
+              wrapper.setDelimitator(ConfiguratorSingleton::getInstance().getDelimitatorLinkInformations());
               block.toGraphForm(saveBlkToGraph, wrapper);
+              wrapper.clean();
             }
             chrono::milliseconds end = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());
             milliseconds duration = (end - start);

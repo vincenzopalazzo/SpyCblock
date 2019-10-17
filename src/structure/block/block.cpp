@@ -111,12 +111,35 @@ void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformation
 void Block::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
   wrapper.addInformationLink("height:" + to_string(this->heightBlock));
-  wrapper.setDelimitator("|-|");
 
   for(RawTransaction& rawTx : this->rawTransactions)
   {
     LOG(INFO) << "Call toGraphForm RawTransaction";
     rawTx.toTransactionsGraph(outputStream, wrapper);
+  }
+}
+
+void Block::toOptimiziongTransactionGraph(gzFile &file, const string delimitator, string &descriptRow, std::string &informations)
+{
+  informations.append(delimitator + "height:" + to_string(this->heightBlock));
+
+  for(auto rawTx : this->rawTransactions)
+  {
+    rawTx.toOptimiziongTransactionGraph(file, delimitator, descriptRow, informations);
+  }
+
+
+}
+
+void Block::toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  wrapper.addInformationLink("height:" + to_string(this->heightBlock));
+  wrapper.setDelimitator("|-|");
+
+  for(RawTransaction& rawTx : this->rawTransactions)
+  {
+    LOG(INFO) << "Call toGraphForm RawTransaction";
+    rawTx.toCompressedTransactionsGraph(file, wrapper);
   }
 }
 
