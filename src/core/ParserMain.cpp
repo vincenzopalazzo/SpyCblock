@@ -6,6 +6,10 @@
 
 #include "SpyCBlock.h"
 #include "ConfiguratorSingleton.h"
+#include "../persistence/IDAOBlockchain.h"
+#include "../persistence/json/DAOJson.h"
+#include "../persistence/graph/transactions/DAOTransactionsGraph.h"
+#include "../persistence/graph/DAOManagerGraph.h"
 
 using namespace google;
 using namespace spyCBlock;
@@ -30,17 +34,22 @@ int main(int argc, char* argv[])
 
     std::string settingDecodeType = ConfiguratorSingleton::getInstance().getFormatFileDecode();
     LOG(ERROR) << "The type of decode is: " << settingDecodeType;
-
     if(settingDecodeType == JSON_DECODE){
-        spyCBlock.convertBlkIntoJson(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
-        return 0;
+        DAOJson dao;
+        spyCBlock.convertData(dao, ConfiguratorSingleton::getInstance().getPathBlockDat() + "/",
+                              ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+        return EXIT_SUCCESS;
     }else if (settingDecodeType == GRAPH_TX){
-        spyCBlock.convertBlkIntoGraphForm(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
-        return 0;
+        DAOTransactionsGraph dao;
+        spyCBlock.convertData(dao, ConfiguratorSingleton::getInstance().getPathBlockDat() + "/",
+                                 ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+        return EXIT_SUCCESS;
     }else if(settingDecodeType == GRAPH_PUB_KEY){
-        spyCBlock.convertBlkIntoGraphFormPubKey(ConfiguratorSingleton::getInstance().getPathBlockDat() + "/", ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
-        return 0;
+        DAOManagerGraph dao;
+        spyCBlock.convertData(dao, ConfiguratorSingleton::getInstance().getPathBlockDat() + "/",
+                              ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+        return EXIT_SUCCESS;
     }
 
-    throw exception();
+    return EXIT_FAILURE;
 }

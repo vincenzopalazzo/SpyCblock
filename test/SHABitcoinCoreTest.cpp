@@ -253,8 +253,10 @@ TEST(hash_test, first_test_comparable_hash_value_readed)
     fileOut.close();
 
     EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getVersion()), "01000000");
-    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash()), "0000000000000000000000000000000000000000000000000000000000000000");
-    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getMerkleRoot()), "3ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getPreviousBlockHeaderHash()),
+              "0000000000000000000000000000000000000000000000000000000000000000");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getMerkleRoot()),
+              "3ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a");
     EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getTime()), "29ab5f49");
     EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getNBits()), "ffff001d");
     EXPECT_EQ(SerializationUtil::toSerealizeForm(block->getBlockHeader().getNonce()), "1dac2b7c");
@@ -271,7 +273,8 @@ TEST(hash_test, first_test_comparable_hash_value_readed)
     Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
     LOG(INFO) << "The hash example documantation bitcoin block converting with double sha256: " << shaHash.ToStringForProtocol();
-    ASSERT_EQ(shaHash.ToStringForProtocol(), "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
+    ASSERT_EQ(shaHash.ToStringForProtocol(),
+              "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
 
 }
 

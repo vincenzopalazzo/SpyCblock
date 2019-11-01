@@ -4,6 +4,8 @@
 
 #include <fstream>
 #include <iostream>
+#include <type_traits>
+
 #include <glog/logging.h>
 
 #include "SpyCBlock.h"
@@ -16,6 +18,43 @@
 
 using namespace spyCBlock;
 
+template<typename T>
+void SpyCBlock::convertData(T dao, const string &locationBitcoinCore, const string &destinationBitcoinCoreJson)
+{
+  static_assert(std::is_base_of<IDAOBlockchain, T>::value, "T must inherit from IDAOBlockchain");
+
+  if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty()){
+    LOG(ERROR) << "The input argument are empty";
+    throw exception();
+  }
+
+  int height = 0;
+  string pathInput;
+  bool isBitcoinDirectory = false;
+  string fileExstension = exstensionFile(dao);
+  LOG(ERROR) << "Exstension file " << fileExstension;
+  while((pathInput = nameFileSearched(locationBitcoinCore)) != "")
+  {
+      try{
+        LOG(ERROR) << "Current file blk is " + to_string(currentFile);
+        currentFile++;
+        string fileNameOutput = getNameFile(pathInput);
+        string pathOutput = destinationBitcoinCoreJson + fileNameOutput + fileExstension;
+        dao.saveBlock(pathInput, pathOutput, height);
+        isBitcoinDirectory = true;
+      }catch(DAOException daoEx){
+        if(isBitcoinDirectory){
+          LOG(ERROR) << "The blk files are finished";
+        }else{
+          LOG(ERROR) << daoEx.what();
+        }
+        //break; //If I introducing this I have introducing a condition on the value of block.
+        //If i introducing the value break I don't have the possibility to read the value with irregular index
+      }
+  }
+}
+
+//Deprecated
 void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
   if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty()){
@@ -26,6 +65,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
   int height = 0;
   string pathInput = nameFileSearched(locationBitcoinCore);
   bool isBitcoinDirectory = false;
+
   while(pathInput != "")
   {
     try{
@@ -50,6 +90,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
   }
 
 }
+//Deprecated
 //TODO Factorize the method with one method and add privete function to pass the DAO
 void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
@@ -85,7 +126,7 @@ void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string desti
     }
   }
 }
-
+//Deprecated
 void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
   if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty()){
@@ -123,7 +164,8 @@ void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string
   }
 }
 
-string SpyCBlock::nameFileSearched(string &pathInput)
+//I can remove this method and add support to the library of C++17 <filesystem>
+string SpyCBlock::nameFileSearched(const string &pathInput)
 {
   if(pathInput.empty()){
     LOG(ERROR) << "Input function null";
@@ -147,7 +189,7 @@ string SpyCBlock::nameFileSearched(string &pathInput)
   return "";
 }
 
-string SpyCBlock::getNameFile(string &path)
+string SpyCBlock::getNameFile(const string &path)
 {
   LOG(INFO) << "Path File is " << path;
   string nameFile = path.substr((path.size() - 12), 8);
@@ -155,3 +197,25 @@ string SpyCBlock::getNameFile(string &path)
   LOG_IF(ERROR, nameFile.empty()) << "Name file empity";
   return nameFile;
 }
+
+template<typename T>
+string SpyCBlock::exstensionFile(T dao)
+{
+  if(std::is_base_of<DAOJson, T>::value){
+      return ".json";
+  }else{
+      return ".txt";
+    }
+}
+
+
+template void SpyCBlock::convertData<DAOManagerGraph>(DAOManagerGraph dao, const string &locationBitcoinCore, const string &destinationBitcoinCoreJson);
+template void SpyCBlock::convertData<DAOJson>(DAOJson dao, const string &locationBitcoinCore, const string &destinationBitcoinCoreJson);
+template void SpyCBlock::convertData<DAOTransactionsGraph>(DAOTransactionsGraph dao,
+                                                              const string &locationBitcoinCore,
+                                                                const string &destinationBitcoinCoreJson);
+
+template string SpyCBlock::exstensionFile<DAOManagerGraph>(DAOManagerGraph dao);
+template string SpyCBlock::exstensionFile<DAOJson>(DAOJson dao);
+template string SpyCBlock::exstensionFile<DAOTransactionsGraph>(DAOTransactionsGraph dao);
+

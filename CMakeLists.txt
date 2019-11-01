@@ -17,6 +17,8 @@ find_library(bitcoinapi 0.3 REQUIRED)
 #ZLIB
 find_package(ZLIB)
 
+find_package(OpenMP)
+
 add_executable(
 
         SpyCBlockTests
@@ -156,4 +158,5 @@ target_link_libraries(${PROJECT_NAME} bitcoinapi)
 target_link_libraries(${PROJECT_NAME}  ${ZLIB_LIBRARIES})
 target_link_libraries(SpyCBlockTests  ${ZLIB_LIBRARIES})
 
+target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_CXX)
 

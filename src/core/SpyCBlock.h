@@ -8,7 +8,7 @@
 #include <string>
 
 #include "ConfiguratorSingleton.h"
-
+#include "../persistence/IDAOBlockchain.h"
 
 namespace spyCBlock {
 
@@ -16,18 +16,24 @@ namespace spyCBlock {
 
         public:
 
-            void convertBlkIntoJson(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+            [[deprecated]] void convertBlkIntoJson(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 
-            void convertBlkIntoGraphForm(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+            [[deprecated]] void convertBlkIntoGraphForm(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 
-            void convertBlkIntoGraphFormPubKey(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+            [[deprecated]] void convertBlkIntoGraphFormPubKey(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+
+            template<typename T>
+            void convertData(T dao, const std::string &locationBitcoinCore, const std::string &destinationBitcoinCoreJson);
+
+            template<typename T>
+            std::string exstensionFile(T dao);
         private:
 
             int currentFile = ConfiguratorSingleton::getInstance().getStartHeightBlock();
 
-            std::string nameFileSearched(std::string &pathInput);
+            std::string nameFileSearched(const std::string &pathInput);
 
-            std::string getNameFile(std::string &path);
+            std::string getNameFile(const std::string &path);
     };
 
 }

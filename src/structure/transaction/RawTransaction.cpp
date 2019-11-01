@@ -6,6 +6,7 @@
 #include <sstream>
 
 #include "../../../include/spycblockrpc/src/core/graph/TransactionGraph.h"
+#include "../../../include/spycblockrpc/src/SpyCBlockRPCException.h"
 
 #include "RawTransaction.h"
 #include "../../persistence/SerializationUtil.h"
@@ -182,18 +183,19 @@ void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperIn
   if(type == Type::WITNESS){
       witness = "true";
   }
-  wrapper.addInformationLink("witness: " + witness);
   for(TransactionInput &txInput : this->txIn)
   {
-    txInput.toGraphForm(outputStream, wrapper);
     for(TransactionOutput &txOutput : this->txOut)
     {
-        try {
+        try { //TODO contains another bug, the value inside the link for the block are loase when run weapper.clean();
+          wrapper.addInformationLink("witness: " + witness);
+          txInput.toGraphForm(outputStream, wrapper);
           txOutput.toGraphForm(outputStream, wrapper);
           spyCBlockRPC::TransactionGraph transaction;
           transaction.buildTransaction(wrapper);
           transaction.serialize(outputStream);
-        } catch (exception ex) {
+          wrapper.clean();
+        } catch (spyCBlockRPC::SpyCBlockRPCException ex) {
           LOG(ERROR) << "Exception Generated " << ex.what();
           return;
         }

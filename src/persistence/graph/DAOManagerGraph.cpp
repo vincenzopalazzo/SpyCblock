@@ -38,12 +38,12 @@ bool spyCBlock::DAOManagerGraph::saveBlock(string inputPath, string outputPath, 
             while(!loadFileDat.eof())
             {
               block.decode(loadFileDat);
-              height++;
               block.setHeightBlock(height);
               spyCBlockRPC::WrapperInformations wrapper;
               wrapper.setDelimitator(ConfiguratorSingleton::getInstance().getDelimitatorLinkInformations());
               block.toGraphForm(saveBlkToGraph, wrapper);
               wrapper.clean();
+              height++;
             }
             chrono::milliseconds end = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());
             milliseconds duration = (end - start);

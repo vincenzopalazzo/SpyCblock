@@ -15,6 +15,9 @@ find_library(bitcoinapi 0.3 REQUIRED)
 #GoogleBenchmark
 find_package(benchmark)
 
+#ZLIB
+find_package(ZLIB)
+
 add_executable(
 
         ${PROJECT_NAME}
@@ -79,5 +82,7 @@ target_link_libraries(${PROJECT_NAME} stdc++fs)
 #bitcoin rpc lib
 target_link_libraries(${PROJECT_NAME} bitcoinapi)
 target_link_libraries(${PROJECT_NAME} benchmark)
+#ZLIB
+target_link_libraries(${PROJECT_NAME}  ${ZLIB_LIBRARIES})
 
 
