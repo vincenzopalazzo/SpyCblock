@@ -50,3 +50,43 @@ TEST(ConfiguratorSingletonTest, test_get_delimitator_informations_link)
 
   ASSERT_FALSE(configuration.getDelimitatorLinkInformations().empty());
 }
+
+TEST(ConfiguratorSingletonTest, test_log_level)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+
+  ConfiguratorSingleton configuration = ConfiguratorSingleton::getInstance();
+
+  ASSERT_TRUE(configuration.getLevelLog() == 2);
+}
+
+TEST(ConfiguratorSingletonTest, test_parallel_execution)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+
+  ConfiguratorSingleton configuration = ConfiguratorSingleton::getInstance();
+
+  ASSERT_FALSE(configuration.isParallelExecution());
+}
+
+TEST(ConfiguratorSingletonTest, test_compression_data)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+
+  ConfiguratorSingleton configuration = ConfiguratorSingleton::getInstance();
+
+  ASSERT_FALSE(configuration.isCompressionResult());
+}
+
+TEST(ConfiguratorSingletonTest, test_how_many_file_will_be_read)
+{
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+
+  ConfiguratorSingleton configuration = ConfiguratorSingleton::getInstance();
+
+  ASSERT_EQ(-1, configuration.getHowManyFileWouldBeRead());
+}

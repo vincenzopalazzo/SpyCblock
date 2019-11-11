@@ -22,11 +22,17 @@ const std::string GRAPH_PUB_KEY = "graphpubkey";
 
 int main(int argc, char* argv[])
 {
-    FLAGS_minloglevel = 2; //TODO configure  the log from file configuration
+    int logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
+
+    FLAGS_minloglevel = logLevel;
     FLAGS_logtostderr = false;
-    google::InitGoogleLogging("2");
+    google::InitGoogleLogging(std::to_string(logLevel).c_str());
     string pathLogFile = ConfiguratorSingleton::getInstance().getPathFileLog() + "/main_log.log";
     google::SetLogDestination(google::GLOG_ERROR, pathLogFile.c_str());
+
+    bool paralelExecution = ConfiguratorSingleton::getInstance().isParallelExecution();
+    string fromPath = ConfiguratorSingleton::getInstance().getPathBlockDat() + "/";
+    string toPath = ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/";
 
     SpyCBlock spyCBlock = SpyCBlock();
 
@@ -36,18 +42,27 @@ int main(int argc, char* argv[])
     LOG(ERROR) << "The type of decode is: " << settingDecodeType;
     if(settingDecodeType == JSON_DECODE){
         DAOJson dao;
-        spyCBlock.convertData(dao, ConfiguratorSingleton::getInstance().getPathBlockDat() + "/",
-                              ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+        if(!paralelExecution){
+          spyCBlock.convertData<DAOJson>(dao, fromPath, toPath);
+        }else{
+          spyCBlock.convertDataParallel<DAOJson>(dao, fromPath, toPath);
+        }
         return EXIT_SUCCESS;
     }else if (settingDecodeType == GRAPH_TX){
         DAOTransactionsGraph dao;
-        spyCBlock.convertData(dao, ConfiguratorSingleton::getInstance().getPathBlockDat() + "/",
-                                 ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+        if(!paralelExecution){
+          spyCBlock.convertData<DAOTransactionsGraph>(dao, fromPath, toPath);
+        }else{
+          spyCBlock.convertDataParallel<DAOTransactionsGraph>(dao, fromPath, toPath);
+        }
         return EXIT_SUCCESS;
     }else if(settingDecodeType == GRAPH_PUB_KEY){
         DAOManagerGraph dao;
-        spyCBlock.convertData(dao, ConfiguratorSingleton::getInstance().getPathBlockDat() + "/",
-                              ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/");
+        if(!paralelExecution){
+          spyCBlock.convertData<DAOManagerGraph>(dao, fromPath, toPath);
+        }else{
+          spyCBlock.convertDataParallel<DAOManagerGraph>(dao, fromPath, toPath);
+        }
         return EXIT_SUCCESS;
     }
 

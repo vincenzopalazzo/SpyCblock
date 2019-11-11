@@ -6,6 +6,8 @@
 #define CONFIGURATORSINGLETON_H
 
 #include <string>
+#include <algorithm>
+#include <assert.h>
 
 #include "../include/Properties.h"
 
@@ -38,6 +40,16 @@ namespace spyCBlock {
 
       int getStartHeightBlock();
 
+      //if the value of this propriety is "all" the getter will return -1 value
+      int getHowManyFileWouldBeRead();
+
+      bool isParallelExecution();
+
+      bool isCompressionResult();
+
+      //if the value is < 0 and > 2 the catter value result is 2 with an print error value
+      int getLevelLog();
+
   protected:
 
       ConfiguratorSingleton();
@@ -54,6 +66,8 @@ namespace spyCBlock {
 
       const std::string PATH_FILE_LOG = "PATH_FILE_LOG";
 
+      const std::string LEVEL_LOG = "LEVEL_LOG";
+
       const std::string PATH_FILE_LOG_TEST = "PATH_FILE_LOG_TEST";
 
       const std::string PATH_FILE_MOCK_TEST = "PATH_FILE_MOCK_TEST";
@@ -61,6 +75,12 @@ namespace spyCBlock {
       const std::string DELIMITATOR_INFORMATION_LINK = "DELIMITATOR_INFORMATION_LINK";
 
       const std::string NUMBER_FILE_TO_START = "NUMBER_FILE_TO_START";
+
+      const std::string HOW_MANY_FILES_WOULD_BE_READ = "HOW_MANY_FILES_WOULD_BE_READ";
+
+      const std::string PARALEL_EXCECUTION = "PARALEL_EXCECUTION";
+
+      const std::string COMPRESSION_RESULT = "COMPRESSION_RESULT";
 
       cppproperties::Properties configuration;
 
@@ -80,6 +100,23 @@ namespace spyCBlock {
       std::string pathFileLogTest;
 
       std::string pathFileMockTest;
+
+      //Variable by default
+
+      int howManyFileWouldBeRead = -100;
+
+      int levelLog = -1;
+
+      inline bool isNumber(const std::string& s)
+      {
+          return !s.empty() && std::find_if(s.begin(),s.end(), [](char c) {
+              return !std::isdigit(c);
+            }) == s.end();
+      }
+
+      inline bool isBoolean(const std::string& s){
+        return ((s == "true" || s == "TRUE") || s == "false" || s == "FALSE");
+      }
 
   };
 
