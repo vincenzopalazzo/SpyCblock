@@ -11,7 +11,6 @@
 #include <rapidjson/ostreamwrapper.h>
 
 #include "../IDAOBlockchain.h"
-#include "../../structure/block/block.h"
 
 namespace spyCBlock {
 
@@ -19,8 +18,10 @@ namespace spyCBlock {
   {
     public:
 
-      bool saveBlock(string inputPath, string outputPath, int &height) override;
+      bool saveBlock(const std::string &inputPath, const std::string &outputPath, int &height) override;
 
+      //not implemented for the moment
+      virtual bool saveBlockCompress(const string &inputPath, const string &outputPath, int &height);
   };
 
 }

@@ -3,11 +3,13 @@
 // see https://www.apache.org/licenses/LICENSE-2.0.txt
 
 #include <experimental/filesystem>
+#include <iostream>
 
 #include <glog/logging.h>
 #include "../include/PropertiesParser.h"
 
 #include "ConfiguratorSingleton.h"
+#include "../DefinitionMacro.h"
 
 using namespace spyCBlock;
 using namespace std;
@@ -54,6 +56,58 @@ string ConfiguratorSingleton::getDelimitatorLinkInformations()
 int ConfiguratorSingleton::getStartHeightBlock()
 {
   return stoi(configuration.GetProperty(NUMBER_FILE_TO_START));
+}
+
+int ConfiguratorSingleton::getHowManyFileWouldBeRead()
+{
+  if(this->howManyFileWouldBeRead != -100){
+    return this->howManyFileWouldBeRead;
+  }
+  string value = configuration.GetProperty(HOW_MANY_FILES_WOULD_BE_READ);
+  if(value == "all" || value == "ALL"){
+    return -1;
+  }
+  assertf(isNumber(value) == true, "The propriety inside the file HOW_MANY_FILES_WOULD_BE_READ not is valid");
+  return stoi(value);
+}
+
+bool ConfiguratorSingleton::isParallelExecution()
+{
+  string value = configuration.GetProperty(PARALEL_EXCECUTION);
+  assertf(isBoolean(value) == true, "The propriety inside the file PARALEL_EXCECUTION not is valid");
+
+  if(value == "TRUE" || value == "true"){
+      return true;
+  }
+  return false;
+}
+
+bool ConfiguratorSingleton::isCompressionResult()
+{
+  string value = configuration.GetProperty(COMPRESSION_RESULT);
+  assertf(isBoolean(value) == true, "The propriety inside the file COMPRESSION_RESULT not is valid");
+
+  if(value == "TRUE" || value == "true"){
+      return true;
+  }
+  return false;
+}
+
+int ConfiguratorSingleton::getLevelLog()
+{
+  if(this->levelLog != -1){
+      return this->levelLog;
+  }
+
+  string value = configuration.GetProperty(LEVEL_LOG);
+  assertf(isNumber(value) == true, "The propriety inside the file LEVEL_LOG not is valid");
+
+  int level = stoi(value);
+  if(level < 0 || level > 2){
+      cout << "******************** The propriety LEVEL_LOG not is valid, now the value is 2, only error log";
+  }
+  this->levelLog = level;
+  return this->levelLog;
 }
 
 string ConfiguratorSingleton::getPathFileLogTest()

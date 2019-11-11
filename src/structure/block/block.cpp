@@ -127,8 +127,6 @@ void Block::toOptimiziongTransactionGraph(gzFile &file, const string delimitator
   {
     rawTx.toOptimiziongTransactionGraph(file, delimitator, descriptRow, informations);
   }
-
-
 }
 
 void Block::toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper)

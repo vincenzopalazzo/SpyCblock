@@ -5,6 +5,9 @@
 
 #include "../../src/core/ConfiguratorSingleton.h"
 #include "../../src/core/SpyCBlock.h"
+#include "../../src/persistence/graph/DAOManagerGraph.h"
+#include "../../src/persistence/graph/transactions/DAOTransactionsGraph.h"
+#include "../../src/persistence/json/DAOJson.h"
 
 using namespace spyCBlock;
 using namespace std;
@@ -59,9 +62,10 @@ void createGraphTxOneFile()
 
 
     SpyCBlock spyCBlock;
-    spyCBlock.convertBlkIntoGraphForm(FILE_DIR, FILE_DIR);
+    DAOTransactionsGraph dao;
+    spyCBlock.convertData(dao, FILE_DIR, FILE_DIR);
     benchmark::DoNotOptimize(pathLogRoot);
-    benchmark::DoNotOptimize(spyCBlock);
+    //benchmark::DoNotOptimize(spyCBlock);
 }
 
 //for this I need configure bitcoind with mainet
@@ -73,10 +77,11 @@ void createGraphIdWalletOneFile()
     google::SetLogDestination(google::ERROR, pathLogRoot.append("unserialize_block_test.log").c_str());
 
     SpyCBlock spyCBlock;
-    spyCBlock.convertBlkIntoGraphFormPubKey(FILE_DIR, FILE_DIR);
+    DAOManagerGraph dao;
+    spyCBlock.convertData(dao, FILE_DIR, FILE_DIR);
 
     benchmark::DoNotOptimize(pathLogRoot);
-    benchmark::DoNotOptimize(spyCBlock);
+    //benchmark::DoNotOptimize(spyCBlock);
 }
 
 void decodeJsonOneFile()
@@ -89,9 +94,10 @@ void decodeJsonOneFile()
     google::SetLogDestination(google::ERROR, pathLogRoot.append("unserialize_block_test.log").c_str());
 
     SpyCBlock spyCBlock;
-    spyCBlock.convertBlkIntoJson(FILE_DIR, FILE_DIR);
+    DAOJson dao;
+    spyCBlock.convertData(dao, FILE_DIR, FILE_DIR);
     benchmark::DoNotOptimize(pathLogRoot);
-    benchmark::DoNotOptimize(spyCBlock);
+    //benchmark::DoNotOptimize(spyCBlock);
 }
 
 
