@@ -100,35 +100,35 @@ string SerializationUtil::toSerealizeForm(int64_t value64)
   return formLiteEndian;
 }
 
+//Look the template void WriteCompactSize(Stream& os, uint64_t nSize)
+// inside the serialize.h
 string SerializationUtil::toSerealizeForm(DVarInt valueVarInt)
 {
   string hexConvert;
-  stringstream *stream = new stringstream();
+  /*stringstream *stream = new stringstream();
   *stream << std::hex << valueVarInt.getValue();
-  hexConvert = stream->str();
+  hexConvert = stream->str();*/
+  hexConvert = HexStr(to_string(valueVarInt.getValue()));
   LOG(INFO) << "spyCBlock::SerializationUtil: " << "The form convertion varint with hexadecimal form is: " << hexConvert;
-  delete stream;
+  //delete stream;
 
   unsigned int dimensioVarInt = GetSizeOfCompactSize(valueVarInt.getValue());
   LOG_IF(ERROR, dimensioVarInt < 0) << "Error in the readed dimension of compact size, the dimension eraded is: " << dimensioVarInt;
-  if( dimensioVarInt <= sizeof (unsigned char)){
-    int8_t value8 = valueVarInt.getValue();
+  if(dimensioVarInt <= sizeof (unsigned char)){
+    int8_t value8 = static_cast<int8_t>(valueVarInt.getValue());
     return SerializationUtil::toSerealizeForm(value8);
-  }else if (dimensioVarInt <= sizeof (unsigned short) + sizeof (unsigned char)) {
-    int16_t value16 = valueVarInt.getValue();
-    stringstream stream;
-    stream << SerializationUtil::toSerealizeForm(253) << SerializationUtil::toSerealizeForm(value16);
-    return stream.str();
-  }else if (dimensioVarInt <= sizeof (unsigned int) + sizeof (unsigned char)) {
-      int32_t value32 = valueVarInt.getValue();
-      stringstream stream;
-      stream << SerializationUtil::toSerealizeForm(254) << SerializationUtil::toSerealizeForm(value32);
-      return stream.str();
+  }else if (dimensioVarInt <= sizeof(unsigned char) + sizeof(unsigned short)) {
+    int16_t value16 = static_cast<int16_t>(valueVarInt.getValue());
+    int8_t tmp = static_cast<int8_t>(253);
+    return SerializationUtil::toSerealizeForm(tmp) + SerializationUtil::toSerealizeForm(value16);
+  }else if (dimensioVarInt <= sizeof(unsigned char) + sizeof(unsigned int)) {
+      int32_t value32 = static_cast<int32_t>(valueVarInt.getValue());
+      int8_t tmp = static_cast<int8_t>(254);
+      return SerializationUtil::toSerealizeForm(tmp) + SerializationUtil::toSerealizeForm(value32);
   }else{
-      int64_t value64 = valueVarInt.getValue();
-      stringstream stream;
-      stream << SerializationUtil::toSerealizeForm(255) << SerializationUtil::toSerealizeForm(value64);
-      return stream.str();
+      int64_t value64 = static_cast<int64_t>(valueVarInt.getValue());
+      int8_t tmp = static_cast<int8_t>(255);
+      return  SerializationUtil::toSerealizeForm(tmp) + SerializationUtil::toSerealizeForm(value64);
   }
   LOG_IF(ERROR, true) << "The dimension not corret, There is no suitable type";
 }

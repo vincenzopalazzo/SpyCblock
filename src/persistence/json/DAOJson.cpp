@@ -49,7 +49,6 @@ bool DAOJson::saveBlock(const string &inputPath, const string &outputPath, int &
               }
               block.setHeightBlock(height);
               block.toJson(writer);
-
             }
             chrono::milliseconds end = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());
             milliseconds duration = (end - start);

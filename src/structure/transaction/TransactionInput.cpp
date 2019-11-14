@@ -29,7 +29,7 @@ void TransactionInput::decode(std::ifstream &stream)
     this->hashInputTransaction = CryptoSingleton::getIstance().getHash256(hexInputTransaction);*/
 }
 
-string TransactionInput::toSerealizationForm()
+string TransactionInput::toSerealizationForm() const
 {
   string hexForm = SerializationUtil::toSerealizeForm(this->outpoint.getHash());
   hexForm.append(SerializationUtil::toSerealizeForm(this->outpoint.getN()));

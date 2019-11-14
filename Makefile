@@ -67,17 +67,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -88,6 +77,17 @@ test:
 test/fast: test
 
 .PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -1251,6 +1251,33 @@ src/util/uint256.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock.dir/build.make CMakeFiles/SpyCBlock.dir/src/util/uint256.cpp.s
 .PHONY : src/util/uint256.cpp.s
 
+test/BugHashTructureBlockTest.o: test/BugHashTructureBlockTest.cpp.o
+
+.PHONY : test/BugHashTructureBlockTest.o
+
+# target to build an object file
+test/BugHashTructureBlockTest.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/BugHashTructureBlockTest.cpp.o
+.PHONY : test/BugHashTructureBlockTest.cpp.o
+
+test/BugHashTructureBlockTest.i: test/BugHashTructureBlockTest.cpp.i
+
+.PHONY : test/BugHashTructureBlockTest.i
+
+# target to preprocess a source file
+test/BugHashTructureBlockTest.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/BugHashTructureBlockTest.cpp.i
+.PHONY : test/BugHashTructureBlockTest.cpp.i
+
+test/BugHashTructureBlockTest.s: test/BugHashTructureBlockTest.cpp.s
+
+.PHONY : test/BugHashTructureBlockTest.s
+
+# target to generate assembly for a file
+test/BugHashTructureBlockTest.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlockTests.dir/build.make CMakeFiles/SpyCBlockTests.dir/test/BugHashTructureBlockTest.cpp.s
+.PHONY : test/BugHashTructureBlockTest.cpp.s
+
 test/ConfiguratorSingletonTest.o: test/ConfiguratorSingletonTest.cpp.o
 
 .PHONY : test/ConfiguratorSingletonTest.o
@@ -1528,9 +1555,9 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... SpyCBlockTests"
 	@echo "... test"
+	@echo "... SpyCBlockTests"
+	@echo "... edit_cache"
 	@echo "... SpyCBlock"
 	@echo "... include/bitcoin-cryptography-library/cpp/Sha256.o"
 	@echo "... include/bitcoin-cryptography-library/cpp/Sha256.i"
@@ -1643,6 +1670,9 @@ help:
 	@echo "... src/util/uint256.o"
 	@echo "... src/util/uint256.i"
 	@echo "... src/util/uint256.s"
+	@echo "... test/BugHashTructureBlockTest.o"
+	@echo "... test/BugHashTructureBlockTest.i"
+	@echo "... test/BugHashTructureBlockTest.s"
 	@echo "... test/ConfiguratorSingletonTest.o"
 	@echo "... test/ConfiguratorSingletonTest.i"
 	@echo "... test/ConfiguratorSingletonTest.s"

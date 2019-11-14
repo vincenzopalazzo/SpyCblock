@@ -35,13 +35,15 @@ void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore, const str
   bool isBitcoinDirectory = false;
   string fileExstension = exstensionFile(dao);
   LOG(ERROR) << "Exstension file " << fileExstension;
+  int end = -1;
+  if(howFileWilBeRead != -1){
+      end = currentFile + howFileWilBeRead;
+  }
   while((pathInput = nameFileSearched(locationBitcoinCore, currentFile)) != "")
   {
-      if(howFileWilBeRead != -1 && fileToStartRead == howFileWilBeRead){
+      if(howFileWilBeRead != -1 && currentFile == end){
           LOG(ERROR) << "Readed " << howFileWilBeRead << " files ";
           break;
-      }else if(howFileWilBeRead != -1){
-          fileToStartRead++;
       }
 
       try{
@@ -95,8 +97,14 @@ void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, c
   }
 
   bool isBitcoinDirectory = false;
+  if(howFileWilBeRead != -1){
+      fileCount = currentFile + howFileWilBeRead;
+      LOG(ERROR) << "from file " << currentFile  << " to file " << fileCount;
+  }else{
+      fileCount += currentFile;
+  }
   #pragma omp parallel for
-  for(int i = 0; i < fileCount; i++){
+  for(int i = currentFile; i < fileCount; i++){
       //TODO this file not stopped
     try{
       string pathInput = nameFileSearched(locationBitcoinCore, i);

@@ -55,15 +55,17 @@ BENCHMARK(BM_decodeJsonOneFile)->Arg(8);
 void createGraphTxOneFile()
 {
     string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
-    FLAGS_minloglevel = 2;
+    int logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
+    FLAGS_minloglevel = logLevel;
     FLAGS_logtostderr = false;
+    google::InitGoogleLogging(std::to_string(logLevel).c_str());
     google::SetLogDestination(google::ERROR, pathLogRoot.append("unserialize_block_test.log").c_str());
 
 
 
     SpyCBlock spyCBlock;
     DAOTransactionsGraph dao;
-    spyCBlock.convertData(dao, FILE_DIR, FILE_DIR);
+    spyCBlock.convertData<DAOTransactionsGraph>(dao, FILE_DIR, FILE_DIR);
     benchmark::DoNotOptimize(pathLogRoot);
     //benchmark::DoNotOptimize(spyCBlock);
 }
@@ -72,8 +74,10 @@ void createGraphTxOneFile()
 void createGraphIdWalletOneFile()
 {
     string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
-    FLAGS_minloglevel = 2;
+    int logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
+    FLAGS_minloglevel = logLevel;
     FLAGS_logtostderr = false;
+    google::InitGoogleLogging(std::to_string(logLevel).c_str());
     google::SetLogDestination(google::ERROR, pathLogRoot.append("unserialize_block_test.log").c_str());
 
     SpyCBlock spyCBlock;
@@ -88,10 +92,11 @@ void decodeJsonOneFile()
 {
     string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
     string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLogTest() + "/";
-
-    FLAGS_minloglevel = 2;
+    int logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
+    FLAGS_minloglevel = logLevel;
     FLAGS_logtostderr = false;
-    google::SetLogDestination(google::ERROR, pathLogRoot.append("unserialize_block_test.log").c_str());
+    google::InitGoogleLogging(std::to_string(logLevel).c_str());
+    google::SetLogDestination(google::ERROR, pathLogRoot.append("benchmark_single_file.log").c_str());
 
     SpyCBlock spyCBlock;
     DAOJson dao;

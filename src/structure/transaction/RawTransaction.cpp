@@ -85,14 +85,18 @@ string RawTransaction::toSerealizationForm() const
   string hexForm = SerializationUtil::toSerealizeForm(this->version);
 
   hexForm.append(SerializationUtil::toSerealizeForm(this->numberTxIn));
-  for(TransactionInput txInput : this->txIn)
+  //for(TransactionInput txInput : this->txIn)
+  for(size_t i = 0; i < txIn.size(); i++)
   {
-    hexForm.append(txInput.toSerealizationForm());
+      hexForm.append(txIn.at(i).toSerealizationForm());
+   // hexForm.append(txInput.toSerealizationForm());
   }
   hexForm.append(SerializationUtil::toSerealizeForm(this->numberTxOut));
-  for(TransactionOutput txOutput : this->txOut)
+  //for(TransactionOutput txOutput : this->txOut)
+  for(size_t i = 0; i < this->txOut.size(); i++)
   {
-     hexForm.append(txOutput.toSerealizationForm());
+      hexForm.append(txOut.at(i).toSerealizationForm());
+     //hexForm.append(txOutput.toSerealizationForm());
   }
 
   hexForm.append(SerializationUtil::toSerealizeForm(this->lockTime));

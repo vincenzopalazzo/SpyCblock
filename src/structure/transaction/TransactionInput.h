@@ -34,7 +34,7 @@ namespace spyCBlock
 
           void decode(std::ifstream &stream);
 
-          std::string toSerealizationForm();
+          std::string toSerealizationForm() const;
 
           bool isScriptNull();
 

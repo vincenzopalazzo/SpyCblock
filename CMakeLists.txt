@@ -34,6 +34,7 @@ add_executable(
         test/ConfiguratorSingletonTest.cpp
         test/DAOManagerGraphTest.cpp
         test/SerializationDataCompressedZLib.cpp
+        test/BugHashStructureBlockTest.cpp
 
         src/util/uint256.cpp
         src/util/strencodings.cpp

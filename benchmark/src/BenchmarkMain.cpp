@@ -15,6 +15,7 @@
 #include "../../src/persistence/graph/DAOManagerGraph.h"
 #include "../../src/persistence/graph/transactions/DAOTransactionsGraph.h"
 #include "../../src/persistence/json/DAOJson.h"
+#include "../../src/core/ConfiguratorSingleton.h"
 
 #include "ResultBenchMark.h"
 
@@ -23,9 +24,12 @@ void toJson(std::vector<spyCBlock::ResultBenchMark> &results);
 
 int main()
 {
-  FLAGS_minloglevel = 3;
+
+  const int logLevel = spyCBlock::ConfiguratorSingleton::getInstance().getLevelLog();
+
+  FLAGS_minloglevel = logLevel;
   FLAGS_logtostderr = false;
-  google::InitGoogleLogging(std::to_string(3).c_str());
+  google::InitGoogleLogging(std::to_string(logLevel).c_str());
   displayInformation();
    std::vector<spyCBlock::ResultBenchMark> result;
    std::vector<std::string> typeDeserializzation = {
@@ -54,17 +58,17 @@ int main()
          spyCBlock.setHowFileWilBeRead(numFile);
          spyCBlock.resetFileToStartReadNum();
          cout << "Nex number file will be read: " << numFile << endl;
-         int parallel = false;
+         int parallel = true; //TODO change this to false, this is setted to true because now I want data only for testing the paralel esecution
          spyCBlock::ResultBenchMark resultBenchmark;
          int i = 0;
-         while(i < 5 )//|| parallel == false)
+         while(i < 5 || parallel == false)
          {
             spyCBlock.resetFileToStartReadNum();
             if(typeAnlisis == "uncompressed-tx"){
                spyCBlock.setCompressed(false);
                cout << "Uncompressed-tx\n";
                spyCBlock::DAOTransactionsGraph dao;
-               std::string name = std::to_string(numFile) + (parallel == false ? "" : "-parallel");
+               std::string name = std::to_string(numFile) + "-"  + typeAnlisis + (parallel == false ? "" : "-parallel");
                resultBenchmark.setNameBenchmark(name);
                cout << "Iteration " << i + 1 << " for benchmark " << name << endl;
                if(parallel){
@@ -128,14 +132,14 @@ int main()
                 }
             }
             i++;
-            /*if(i >= 5 && parallel == false){
+            if(i >= 5 && parallel == false){
               parallel = true;
               i = 0;
               result.emplace_back(resultBenchmark);
               spyCBlock::ResultBenchMark resultBenchmarkTmp;
               resultBenchmark = resultBenchmarkTmp;
               cout << "Number benckmark: " << result.size() << endl;
-            }*/
+            }
 
          }
          result.emplace_back(resultBenchmark);

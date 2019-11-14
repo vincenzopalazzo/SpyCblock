@@ -1,6 +1,6 @@
 {
   "context": {
-    "date": "2019-10-18 11:59:31",
+    "date": "2019-11-14 16:42:40",
     "host_name": "vincenzo",
     "executable": "./SpyCBlock-benchmarck",
     "num_cpus": 4,
@@ -32,7 +32,7 @@
         "num_sharing": 4
       }
     ],
-    "load_avg": [4.08,3.55,3.49],
+    "load_avg": [1.91,1.68,1.62],
     "library_build_type": "debug"
   },
   "benchmarks": [
@@ -44,8 +44,8 @@
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 9.3179311048996170e+10,
-      "cpu_time": 9.2905159339000000e+10,
+      "real_time": 5.9909320235998169e+10,
+      "cpu_time": 5.9621637457000000e+10,
       "time_unit": "ns"
     },
     {
@@ -56,8 +56,8 @@
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 9.1446632342005615e+10,
-      "cpu_time": 9.1194616860000015e+10,
+      "real_time": 6.2845187726998123e+10,
+      "cpu_time": 6.2261379713000000e+10,
       "time_unit": "ns"
     }
   ]

@@ -18,6 +18,8 @@ find_package(benchmark)
 #ZLIB
 find_package(ZLIB)
 
+find_package(OpenMP)
+
 add_executable(
 
         ${PROJECT_NAME}
@@ -138,6 +140,8 @@ target_link_libraries(BenckmarkMain bitcoinapi)
 target_link_libraries(BenckmarkMain benchmark)
 #ZLIB
 target_link_libraries(BenckmarkMain  ${ZLIB_LIBRARIES})
+
+target_link_libraries(BenckmarkMain OpenMP::OpenMP_CXX)
 
 #using glog
 target_link_libraries(${PROJECT_NAME} glog::glog)
