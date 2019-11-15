@@ -7,3 +7,6 @@
 [submodule "include/spycblockrpc"]
 	path = include/spycblockrpc
 	url = https://github.com/vincenzopalazzo/SpyCBlockRPC.git
+[submodule "include/progressbar"]
+	path = include/progressbar
+	url = https://github.com/vincenzopalazzo/progressbar.git

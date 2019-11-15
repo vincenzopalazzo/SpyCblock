@@ -8,7 +8,8 @@
 #include <experimental/filesystem>
 
 #include <glog/logging.h>
-
+#include "../../include/progressbar/include/progressbar/progressbar.h"
+#include "../../include/progressbar/include/progressbar/statusbar.h"
 #include "SpyCBlock.h"
 #include "../structure/block/block.h"
 #include "../persistence/IDAOBlockchain.h"
@@ -28,6 +29,16 @@ void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore, const str
   if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty()){
     LOG(ERROR) << "The input argument are empty";
     throw exception();
+  }
+
+
+  fs::path bitcoinBlockPath(locationBitcoinCore);
+  int fileCount = numbarFileInsideThePaht(bitcoinBlockPath);
+
+  bool logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
+  progressbar *progress = NULL;
+  if(logLevel < 3){
+      progress = progressbar_new("Progress", fileCount);
   }
 
   int height = 0;
@@ -56,7 +67,9 @@ void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore, const str
         }else{
             dao.saveBlock(pathInput, pathOutput, height);
         }
-
+        if(logLevel < 3 && progress != NULL){
+            progressbar_inc(progress);
+        }
         isBitcoinDirectory = true;
       }catch(DAOException daoEx){
         if(isBitcoinDirectory){
@@ -68,6 +81,14 @@ void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore, const str
         //If i introducing the value break I don't have the possibility to read the value with irregular index
       }
   }
+  if(logLevel < 3 && progress != NULL){
+    progressbar_finish(progress);
+  }else{
+      //If the level log is enabled the progress is not inizialized
+      //but in declarated how the pointer, in an better procedure delete it
+      delete progress;
+  }
+
 }
 
 template<typename T>
@@ -86,14 +107,11 @@ void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, c
   fs::path bitcoinBlockPath(locationBitcoinCore);
   std::string fileExstension = exstensionFile(dao);
   int height = -1;
-  int fileCount = 0;
-  for(auto fileBlk : fs::directory_iterator(bitcoinBlockPath))
-  {
-      std::string fileName = fileBlk.path().filename();
-
-      if(!fs::is_directory(fileBlk) && fileName.find("blk") != std::string::npos){
-         fileCount++;
-      }
+  int fileCount = numbarFileInsideThePaht(bitcoinBlockPath);
+  bool logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
+  progressbar *progress = NULL;
+  if(logLevel < 3){
+      progress = progressbar_new("Progress", fileCount);
   }
 
   bool isBitcoinDirectory = false;
@@ -103,9 +121,9 @@ void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, c
   }else{
       fileCount += currentFile;
   }
+
   #pragma omp parallel for
   for(int i = currentFile; i < fileCount; i++){
-      //TODO this file not stopped
     try{
       string pathInput = nameFileSearched(locationBitcoinCore, i);
       LOG(INFO) << pathInput;
@@ -118,6 +136,14 @@ void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, c
           dao.saveBlock(pathInput, pathOutput, height);
       }
       isBitcoinDirectory = true;
+      if(logLevel < 3 && progress != NULL){
+        #pragma omp critical
+        {
+          progressbar_inc(progress);
+        }
+      }
+
+
     }catch(DAOException daoEx){
       if(isBitcoinDirectory){
         LOG(ERROR) << "The blk files are finished";
@@ -127,6 +153,13 @@ void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, c
       //break; //If I introducing this I have introducing a condition on the value of block.
       //If i introducing the value break I don't have the possibility to read the value with irregular index
     }
+  }
+  if(logLevel < 3 && progress != NULL){
+    progressbar_finish(progress);
+  }else{
+      //If the level log is enabled the progress is not inizialized
+      //but in declarated how the pointer, in an better procedure delete it
+      delete progress;
   }
 }
 
@@ -164,10 +197,9 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
       return;
     }
   }
-
 }
+
 //Deprecated
-//TODO Factorize the method with one method and add privete function to pass the DAO
 void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string destinationBitcoinCoreJson)
 {
   if(locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty()){

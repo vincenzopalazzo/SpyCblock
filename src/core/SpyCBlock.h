@@ -6,9 +6,11 @@
 #define SPYCBLOCK_SPYCBLOCK_H
 
 #include <string>
+#include <experimental/filesystem>
 
 #include "ConfiguratorSingleton.h"
 #include "../persistence/IDAOBlockchain.h"
+#include "../DefinitionMacro.h"
 
 namespace spyCBlock
 {
@@ -57,6 +59,20 @@ namespace spyCBlock
             int howFileWilBeRead = ConfiguratorSingleton::getInstance().getHowManyFileWouldBeRead();
 
             bool compressionForm = ConfiguratorSingleton::getInstance().isCompressionResult();
+
+            inline int numbarFileInsideThePaht(experimental::filesystem::path path){
+              assertf(!path.empty(), "The path is empty");
+              int fileCount = 0;
+              for(auto fileBlk : experimental::filesystem::directory_iterator(path))
+              {
+                  std::string fileName = fileBlk.path().filename();
+
+                  if(!experimental::filesystem::is_directory(fileBlk) && fileName.find("blk") != std::string::npos){
+                     fileCount++;
+                  }
+              }
+              return fileCount;
+            }
     };
 
 }

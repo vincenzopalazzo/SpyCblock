@@ -10,7 +10,6 @@
 #include "../transaction/RawTransaction.h"
 #include "../../persistence/SerializationUtil.h"
 
-//@author https://github.com/vincenzopalazzo
 namespace spyCBlock
 {
     class Block

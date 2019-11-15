@@ -13,7 +13,6 @@ using namespace spyCBlockRPC;
 void spyCBlock::TransactionsRawGraph::serialize(ofstream &stream)
 {
   LOG(INFO) << "************ Serialization this information ************\n";
-  //Not serialize the transaction many to many
   string serializeTransaction;
   //Serialization informations input
   serializeTransaction += from;

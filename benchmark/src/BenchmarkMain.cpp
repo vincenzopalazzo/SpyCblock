@@ -90,7 +90,7 @@ int main()
                spyCBlock.setCompressed(true);
                cout << "Compressed-tx\n";
                spyCBlock::DAOTransactionsGraph dao;
-               std::string name = std::to_string(numFile) + (parallel == false ? "" : "-parallel");
+               std::string name = std::to_string(numFile) + "-"  + typeAnlisis + (parallel == false ? "" : "-parallel");
                resultBenchmark.setNameBenchmark(name);
                cout << "Iteration " << i + 1 << " for benchmark " << name << endl;
                if(parallel){
@@ -112,7 +112,7 @@ int main()
                 cout << "JSON-uncompressed\n";
                 spyCBlock.setCompressed(false);
                 spyCBlock::DAOJson dao;
-                std::string name = std::to_string(numFile) + (parallel == false ? "" : "-parallel");
+                std::string name = std::to_string(numFile) + "-"  + typeAnlisis + (parallel == false ? "" : "-parallel");
                 resultBenchmark.setNameBenchmark(name);
                 cout << "Iteration " << i + 1 << " for benchmark " << name << endl;
                 if(parallel){

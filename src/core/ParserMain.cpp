@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
     string fromPath = ConfiguratorSingleton::getInstance().getPathBlockDat() + "/";
     string toPath = ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/";
 
-    SpyCBlock spyCBlock = SpyCBlock();
+    SpyCBlock spyCBlock;
 
     //TODO add configuration to command line
 

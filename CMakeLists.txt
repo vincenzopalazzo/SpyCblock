@@ -19,6 +19,9 @@ find_package(ZLIB)
 
 find_package(OpenMP)
 
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
+
 add_executable(
 
         SpyCBlockTests
@@ -140,6 +143,9 @@ add_executable(
         include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp
         include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp
 
+        #inlcude progressbar
+        include/progressbar/bin/progressbar.c
+        include/progressbar/bin/statusbar.c
 )
 
 #using glog
@@ -160,4 +166,6 @@ target_link_libraries(${PROJECT_NAME}  ${ZLIB_LIBRARIES})
 target_link_libraries(SpyCBlockTests  ${ZLIB_LIBRARIES})
 
 target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_CXX)
+
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
 
