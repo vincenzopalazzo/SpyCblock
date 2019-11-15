@@ -17,7 +17,9 @@ namespace spyCBlock
 
       public:
 
-          virtual bool saveBlock(std::string inputPath, std::string outputPath, int &height) = 0;
+          virtual bool saveBlock(const std::string &inputPath, const std::string &outputPath, int &height) = 0;
+
+          virtual bool saveBlockCompress(const std::string &inputPath, const std::string &outputPath, int &height) = 0;
 
     };
 }

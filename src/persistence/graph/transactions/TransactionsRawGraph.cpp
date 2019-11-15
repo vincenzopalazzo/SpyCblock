@@ -13,13 +13,12 @@ using namespace spyCBlockRPC;
 void spyCBlock::TransactionsRawGraph::serialize(ofstream &stream)
 {
   LOG(INFO) << "************ Serialization this information ************\n";
-  //Not serialize the transaction many to many
   string serializeTransaction;
   //Serialization informations input
   serializeTransaction += from;
-  for(string &information: this->linkInformations)
+  for (auto iterator = linkInformations.begin(); iterator != linkInformations.end();  ++iterator)
   {
-    serializeTransaction += (delimitator + information);
+    serializeTransaction += (delimitator + *iterator);
   }
   serializeTransaction += (delimitator + to);
   LOG(WARNING) << serializeTransaction;
@@ -44,4 +43,5 @@ void spyCBlock::TransactionsRawGraph::buildTransaction(spyCBlockRPC::WrapperInfo
 
   this->linkInformations = wrapper.getLinkInformations();
   LOG(INFO) << "Numbar information link: " << linkInformations.size();
+  wrapper.clean();
 }

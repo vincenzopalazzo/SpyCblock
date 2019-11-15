@@ -8,7 +8,8 @@
 #include <string>
 #include <stdexcept>
 
-namespace spyCBlock{
+namespace spyCBlock
+{
 
     class DAOException : public std::runtime_error
     {

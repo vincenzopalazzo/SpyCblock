@@ -6,7 +6,7 @@
 #define TRANSACTIONSRAWGRAPH_H
 
 #include <string>
-#include <vector>
+#include <set>
 
 #include "../../../../include/spycblockrpc/src/core/graph/ITransactionGraph.h"
 
@@ -26,7 +26,7 @@ namespace  spyCBlock
 
             std::string to;
 
-            std::vector<std::string> linkInformations;
+            std::set<std::string> linkInformations;
 
             std::string delimitator;
     };

@@ -123,6 +123,19 @@ SpyCBlock-benchmarck/fast:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/build
 .PHONY : SpyCBlock-benchmarck/fast
 
+#=============================================================================
+# Target rules for targets named BenckmarkMain
+
+# Build rule for target.
+BenckmarkMain: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BenckmarkMain
+.PHONY : BenckmarkMain
+
+# fast build rule for target.
+BenckmarkMain/fast:
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/build
+.PHONY : BenckmarkMain/fast
+
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.o: home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.o
 
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.o
@@ -130,6 +143,7 @@ home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.o
 # target to build an object file
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.o
 
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.i: home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.i
@@ -139,6 +153,7 @@ home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.i
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.i
 
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.s: home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.s
@@ -148,6 +163,7 @@ home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.s
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.cpp.s
 
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.o: home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o
@@ -157,6 +173,7 @@ home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Ha
 # target to build an object file
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.o
 
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.i: home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i
@@ -166,6 +183,7 @@ home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Ha
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.i
 
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.s: home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s
@@ -175,6 +193,7 @@ home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Ha
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256Hash.cpp.s
 
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.o: home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.o
@@ -184,6 +203,7 @@ home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.o:
 # target to build an object file
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.o
 
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.i: home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.i
@@ -193,6 +213,7 @@ home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.i:
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.i
 
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.s: home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.s
@@ -202,6 +223,7 @@ home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.s:
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Utils.cpp.s
 
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.o: home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.o
@@ -211,6 +233,7 @@ home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.o: home/vin
 # target to build an object file
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.o
 
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.i: home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.i
@@ -220,6 +243,7 @@ home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.i: home/vin
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.i
 
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.s: home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.s
@@ -229,6 +253,7 @@ home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.s: home/vin
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/include/cpp-properties/src/Properties.cpp.s
 
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.o: home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.o
@@ -238,6 +263,7 @@ home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.o: ho
 # target to build an object file
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.o
 
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.i: home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.i
@@ -247,6 +273,7 @@ home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.i: ho
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.i
 
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.s: home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.s
@@ -256,6 +283,7 @@ home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.s: ho
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesParser.cpp.s
 
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.o: home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.o
@@ -265,6 +293,7 @@ home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.o: hom
 # target to build an object file
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.o
 
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.i: home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.i
@@ -274,6 +303,7 @@ home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.i: hom
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.i
 
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.s: home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.s
@@ -283,196 +313,218 @@ home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.s: hom
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.cpp.s
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.o
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.o
-
-# target to build an object file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.o
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.o
-
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.i
-
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.i
-
-# target to preprocess a source file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.i
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.i
-
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.s
-
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.s
-
-# target to generate assembly for a file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.s
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.cpp.s
-
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.o
-
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.o
 
 # target to build an object file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.o
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.o
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.i
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.i
 
 # target to preprocess a source file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.i
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.i
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.s
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.s
 
 # target to generate assembly for a file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.s
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.cpp.s
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.o
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.o
 
 # target to build an object file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.o
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.o
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.i
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.i
 
 # target to preprocess a source file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.i
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.i
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.s
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.s
 
 # target to generate assembly for a file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.s
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp.s
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.o
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.o
 
 # target to build an object file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.o
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.o
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.i
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.i
 
 # target to preprocess a source file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.i
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.i
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.s
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.s
 
 # target to generate assembly for a file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.s
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.cpp.s
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.o
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.o
 
 # target to build an object file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.o
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.o
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.i
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.i
 
 # target to preprocess a source file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.i
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.i
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.s
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.s
 
 # target to generate assembly for a file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.s
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.cpp.s
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.o
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.o
 
 # target to build an object file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.o
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.o
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.i
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.i
 
 # target to preprocess a source file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.i
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.i
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.s
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.s
 
 # target to generate assembly for a file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.s
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp.s
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.o
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.o
 
 # target to build an object file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.o:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.o
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.o
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.o
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.i
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.i
 
 # target to preprocess a source file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.i:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.i
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.i
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.i
 
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.s
 
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.s
 
 # target to generate assembly for a file
-home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.s:
-	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.s
-.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.cpp.s
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.cpp.s
+
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.o: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.o
+
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.o
+
+# target to build an object file
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.o:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.o
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.o
+
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.i: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.i
+
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.i
+
+# target to preprocess a source file
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.i:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.i
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.i
+
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.s: home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.s
+
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.s
+
+# target to generate assembly for a file
+home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.s:
+	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.s
+.PHONY : home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.o: home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.o
 
@@ -481,6 +533,7 @@ home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.o: home/vincenzo/G
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.i: home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.i
@@ -490,6 +543,7 @@ home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.i: home/vincenzo/G
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.s: home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.s
@@ -499,6 +553,7 @@ home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.s: home/vincenzo/G
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.o: home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.o
@@ -508,6 +563,7 @@ home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.o: home/vincenzo/Github/SpyCbl
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.i: home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.i
@@ -517,6 +573,7 @@ home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.i: home/vincenzo/Github/SpyCbl
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.s: home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.s
@@ -526,6 +583,7 @@ home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.s: home/vincenzo/Github/SpyCbl
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/core/SpyCBlock.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.o: home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.o
@@ -535,6 +593,7 @@ home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.o: home/vincenzo/Github/Spy
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.i: home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.i
@@ -544,6 +603,7 @@ home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.i: home/vincenzo/Github/Spy
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.s: home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.s
@@ -553,6 +613,7 @@ home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.s: home/vincenzo/Github/Spy
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/crypto/CryptoCore.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.o: home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.o
@@ -562,6 +623,7 @@ home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.o: home/vincenzo/Github/Spy
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.i: home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.i
@@ -571,6 +633,7 @@ home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.i: home/vincenzo/Github/Spy
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.s: home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.s
@@ -580,6 +643,7 @@ home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.s: home/vincenzo/Github/Spy
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/crypto/UtilCrypto.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/persistence/DAOException.o: home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.o
@@ -589,6 +653,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/DAOException.o: home/vincenzo/Git
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/persistence/DAOException.i: home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.i
@@ -598,6 +663,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/DAOException.i: home/vincenzo/Git
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/persistence/DAOException.s: home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.s
@@ -607,6 +673,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/DAOException.s: home/vincenzo/Git
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/DAOException.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.o: home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.o
@@ -616,6 +683,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.o: home/vincenz
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.i: home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.i
@@ -625,6 +693,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.i: home/vincenz
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.s: home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.s
@@ -634,6 +703,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.s: home/vincenz
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/SerializationUtil.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.o: home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.o
@@ -643,6 +713,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.o: home/vin
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.i: home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.i
@@ -652,6 +723,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.i: home/vin
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.s: home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.s
@@ -661,6 +733,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.s: home/vin
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/graph/DAOManagerGraph.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.o: home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.o
@@ -670,6 +743,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransaction
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.i: home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.i
@@ -679,6 +753,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransaction
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.s: home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.s
@@ -688,6 +763,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransaction
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/DAOTransactionsGraph.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.o: home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.o
@@ -697,6 +773,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRa
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.i: home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.i
@@ -706,6 +783,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRa
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.s: home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.s
@@ -715,6 +793,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRa
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/graph/transactions/TransactionsRawGraph.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.o: home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.o
@@ -724,6 +803,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.o: home/vincenzo/Git
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.i: home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.i
@@ -733,6 +813,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.i: home/vincenzo/Git
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.s: home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.s
@@ -742,6 +823,7 @@ home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.s: home/vincenzo/Git
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/persistence/json/DAOJson.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/block/block.o: home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.o
@@ -751,6 +833,7 @@ home/vincenzo/Github/SpyCblock/src/structure/block/block.o: home/vincenzo/Github
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/block/block.i: home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.i
@@ -760,6 +843,7 @@ home/vincenzo/Github/SpyCblock/src/structure/block/block.i: home/vincenzo/Github
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/block/block.s: home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.s
@@ -769,6 +853,7 @@ home/vincenzo/Github/SpyCblock/src/structure/block/block.s: home/vincenzo/Github
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/block/block.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.o: home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.o
@@ -778,6 +863,7 @@ home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.o: home/vincenzo/
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.i: home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.i
@@ -787,6 +873,7 @@ home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.i: home/vincenzo/
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.s: home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.s
@@ -796,6 +883,7 @@ home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.s: home/vincenzo/
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/block/blockHeader.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.o: home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.o
@@ -805,6 +893,7 @@ home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.o: home/vincenzo/
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.i: home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.i
@@ -814,6 +903,7 @@ home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.i: home/vincenzo/
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.s: home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.s
@@ -823,6 +913,7 @@ home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.s: home/vincenzo/
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/script/scriptCode.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.o: home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.o
@@ -832,6 +923,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.o: home/
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.i: home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.i
@@ -841,6 +933,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.i: home/
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.s: home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.s
@@ -850,6 +943,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.s: home/
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/RawTransaction.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.o: home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.o
@@ -859,6 +953,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.o: hom
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.i: home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.i
@@ -868,6 +963,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.i: hom
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.s: home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.s
@@ -877,6 +973,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.s: hom
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionInput.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.o: home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.o
@@ -886,6 +983,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.o: ho
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.i: home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.i
@@ -895,6 +993,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.i: ho
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.s: home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.s
@@ -904,6 +1003,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.s: ho
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionOutput.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.o: home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.o
@@ -913,6 +1013,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.o: h
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.i: home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.i
@@ -922,6 +1023,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.i: h
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.s: home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.s
@@ -931,6 +1033,7 @@ home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.s: h
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/transaction/TransactionWitness.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/type/DScript.o: home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.o
@@ -940,6 +1043,7 @@ home/vincenzo/Github/SpyCblock/src/structure/type/DScript.o: home/vincenzo/Githu
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/type/DScript.i: home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.i
@@ -949,6 +1053,7 @@ home/vincenzo/Github/SpyCblock/src/structure/type/DScript.i: home/vincenzo/Githu
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/type/DScript.s: home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.s
@@ -958,6 +1063,7 @@ home/vincenzo/Github/SpyCblock/src/structure/type/DScript.s: home/vincenzo/Githu
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/type/DScript.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.o: home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.o
@@ -967,6 +1073,7 @@ home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.o: home/vincenzo/Githu
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.i: home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.i
@@ -976,6 +1083,7 @@ home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.i: home/vincenzo/Githu
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.s: home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.s
@@ -985,6 +1093,7 @@ home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.s: home/vincenzo/Githu
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/type/DVarInt.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.o: home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.o
@@ -994,6 +1103,7 @@ home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.o: home/vincenzo/Gith
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.i: home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.i
@@ -1003,6 +1113,7 @@ home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.i: home/vincenzo/Gith
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.s: home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.s
@@ -1012,6 +1123,7 @@ home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.s: home/vincenzo/Gith
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/structure/type/Outpoint.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/util/prevector.o: home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.o
@@ -1021,6 +1133,7 @@ home/vincenzo/Github/SpyCblock/src/util/prevector.o: home/vincenzo/Github/SpyCbl
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/util/prevector.i: home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.i
@@ -1030,6 +1143,7 @@ home/vincenzo/Github/SpyCblock/src/util/prevector.i: home/vincenzo/Github/SpyCbl
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/util/prevector.s: home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.s
@@ -1039,6 +1153,7 @@ home/vincenzo/Github/SpyCblock/src/util/prevector.s: home/vincenzo/Github/SpyCbl
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/util/prevector.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/util/strencodings.o: home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.o
@@ -1048,6 +1163,7 @@ home/vincenzo/Github/SpyCblock/src/util/strencodings.o: home/vincenzo/Github/Spy
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/util/strencodings.i: home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.i
@@ -1057,6 +1173,7 @@ home/vincenzo/Github/SpyCblock/src/util/strencodings.i: home/vincenzo/Github/Spy
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/util/strencodings.s: home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.s
@@ -1066,6 +1183,7 @@ home/vincenzo/Github/SpyCblock/src/util/strencodings.s: home/vincenzo/Github/Spy
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/util/strencodings.cpp.s
 
 home/vincenzo/Github/SpyCblock/src/util/uint256.o: home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.o
@@ -1075,6 +1193,7 @@ home/vincenzo/Github/SpyCblock/src/util/uint256.o: home/vincenzo/Github/SpyCbloc
 # target to build an object file
 home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.o:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.o
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.o
 .PHONY : home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.o
 
 home/vincenzo/Github/SpyCblock/src/util/uint256.i: home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.i
@@ -1084,6 +1203,7 @@ home/vincenzo/Github/SpyCblock/src/util/uint256.i: home/vincenzo/Github/SpyCbloc
 # target to preprocess a source file
 home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.i:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.i
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.i
 .PHONY : home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.i
 
 home/vincenzo/Github/SpyCblock/src/util/uint256.s: home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.s
@@ -1093,6 +1213,7 @@ home/vincenzo/Github/SpyCblock/src/util/uint256.s: home/vincenzo/Github/SpyCbloc
 # target to generate assembly for a file
 home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.s
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.s
 .PHONY : home/vincenzo/Github/SpyCblock/src/util/uint256.cpp.s
 
 src/BanckMerchSerializationGraph.o: src/BanckMerchSerializationGraph.cpp.o
@@ -1122,6 +1243,33 @@ src/BanckMerchSerializationGraph.cpp.s:
 	$(MAKE) -f CMakeFiles/SpyCBlock-benchmarck.dir/build.make CMakeFiles/SpyCBlock-benchmarck.dir/src/BanckMerchSerializationGraph.cpp.s
 .PHONY : src/BanckMerchSerializationGraph.cpp.s
 
+src/BenchmarkMain.o: src/BenchmarkMain.cpp.o
+
+.PHONY : src/BenchmarkMain.o
+
+# target to build an object file
+src/BenchmarkMain.cpp.o:
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/src/BenchmarkMain.cpp.o
+.PHONY : src/BenchmarkMain.cpp.o
+
+src/BenchmarkMain.i: src/BenchmarkMain.cpp.i
+
+.PHONY : src/BenchmarkMain.i
+
+# target to preprocess a source file
+src/BenchmarkMain.cpp.i:
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/src/BenchmarkMain.cpp.i
+.PHONY : src/BenchmarkMain.cpp.i
+
+src/BenchmarkMain.s: src/BenchmarkMain.cpp.s
+
+.PHONY : src/BenchmarkMain.s
+
+# target to generate assembly for a file
+src/BenchmarkMain.cpp.s:
+	$(MAKE) -f CMakeFiles/BenckmarkMain.dir/build.make CMakeFiles/BenckmarkMain.dir/src/BenchmarkMain.cpp.s
+.PHONY : src/BenchmarkMain.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1129,8 +1277,9 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... SpyCBlock-benchmarck"
 	@echo "... edit_cache"
+	@echo "... SpyCBlock-benchmarck"
+	@echo "... BenckmarkMain"
 	@echo "... home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.o"
 	@echo "... home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.i"
 	@echo "... home/vincenzo/Github/SpyCblock/include/bitcoin-cryptography-library/cpp/Sha256.s"
@@ -1149,27 +1298,27 @@ help:
 	@echo "... home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.o"
 	@echo "... home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.i"
 	@echo "... home/vincenzo/Github/SpyCblock/include/cpp-properties/src/PropertiesUtils.s"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.o"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.i"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/ConfiguratorSingleton.s"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.o"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.i"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeBlockAtIndexCommand.s"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.o"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.i"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeRawTransaction.s"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.o"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.i"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/DecodeScriptCommand.s"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.o"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.i"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/commands/HeightBlockchainCommand.s"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.o"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.i"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/TransactionGraph.s"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.o"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.i"
-	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/core/graph/WrapperInformations.s"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.o"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.i"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/ConfiguratorSingleton.s"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.o"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.i"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.s"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.o"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.i"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeRawTransaction.s"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.o"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.i"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/DecodeScriptCommand.s"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.o"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.i"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/commands/HeightBlockchainCommand.s"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.o"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.i"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/TransactionGraph.s"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.o"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.i"
+	@echo "... home/vincenzo/Github/SpyCblock/include/spycblockrpc/src/core/graph/WrapperInformations.s"
 	@echo "... home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.o"
 	@echo "... home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.i"
 	@echo "... home/vincenzo/Github/SpyCblock/src/core/ConfiguratorSingleton.s"
@@ -1242,6 +1391,9 @@ help:
 	@echo "... src/BanckMerchSerializationGraph.o"
 	@echo "... src/BanckMerchSerializationGraph.i"
 	@echo "... src/BanckMerchSerializationGraph.s"
+	@echo "... src/BenchmarkMain.o"
+	@echo "... src/BenchmarkMain.i"
+	@echo "... src/BenchmarkMain.s"
 .PHONY : help
 
 

@@ -25,11 +25,11 @@ void TransactionInput::decode(std::ifstream &stream)
     LOG(INFO) << "Number sequences " << sequences;
 
     //Create hash transaction
-    string hexInputTransaction = toSerealizationForm();
-    this->hashInputTransaction = CryptoSingleton::getIstance().getHash256(hexInputTransaction);
+    /*string hexInputTransaction = toSerealizationForm();
+    this->hashInputTransaction = CryptoSingleton::getIstance().getHash256(hexInputTransaction);*/
 }
 
-string TransactionInput::toSerealizationForm()
+string TransactionInput::toSerealizationForm() const
 {
   string hexForm = SerializationUtil::toSerealizeForm(this->outpoint.getHash());
   hexForm.append(SerializationUtil::toSerealizeForm(this->outpoint.getN()));
@@ -50,8 +50,8 @@ void TransactionInput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writ
 {
   writerJson.StartObject();
 
-  writerJson.Key("hashInputTransaction");
-  writerJson.String(this->hashInputTransaction.c_str());
+  /*writerJson.Key("hashInputTransaction");
+  writerJson.String(this->hashInputTransaction.c_str());*/
 
   writerJson.Key("outputTxHash");
   writerJson.String(outpoint.getHash().ToString().c_str());

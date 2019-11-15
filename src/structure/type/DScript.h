@@ -16,8 +16,6 @@ namespace spyCBlock
     {
       public:
 
-          const char* getScriptRaw() const;
-
           const std::string &getRawScriptString() const;
 
           const DVarInt &getScriptLenght() const;

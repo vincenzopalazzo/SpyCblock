@@ -16,7 +16,7 @@ using namespace std;
 using namespace chrono;
 namespace fs = std::experimental::filesystem;
 
-bool DAOJson::saveBlock(string inputPath, string outputPath, int &height)
+bool DAOJson::saveBlock(const string &inputPath, const string &outputPath, int &height)
 {
   if(inputPath.empty() || outputPath.empty()){
     LOG(WARNING) << "Error, the input arguments are empty";
@@ -43,10 +43,12 @@ bool DAOJson::saveBlock(string inputPath, string outputPath, int &height)
             {
 
               block.decode(loadFileDat);
-              height++;
+              if(height != -1){
+                block.setHeightBlock(height);
+                height++;
+              }
               block.setHeightBlock(height);
               block.toJson(writer);
-
             }
             chrono::milliseconds end = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());
             milliseconds duration = (end - start);
@@ -65,4 +67,9 @@ bool DAOJson::saveBlock(string inputPath, string outputPath, int &height)
   }
   LOG(ERROR) << "The file input not exist" << inputPath;
   throw DAOException("The file input not exist " + inputPath);
+}
+
+bool DAOJson::saveBlockCompress(const string &inputPath, const string &outputPath, int &height)
+{
+  //Do nothing
 }

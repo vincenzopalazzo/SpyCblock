@@ -23,8 +23,8 @@ void TransactionOutput::decode(ifstream &stream)
     LOG(WARNING) << "Script Value: " << script.toString();
 
     //Creating hash transaction
-    string hexForm = toSerealizationForm();
-    this->hashOutputTransaction = CryptoSingleton::getIstance().getHash256(hexForm);
+  /*  string hexForm = toSerealizationForm();
+    this->hashOutputTransaction = CryptoSingleton::getIstance().getHash256(hexForm);*/
 
 }
 
@@ -41,8 +41,8 @@ void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &wri
 {
    writerJson.StartObject();
 
-   writerJson.Key("hashOutputTransaction");
-   writerJson.String(this->hashOutputTransaction.c_str());
+   /*writerJson.Key("hashOutputTransaction");
+   writerJson.String(this->hashOutputTransaction.c_str());*/
 
    writerJson.Key("aamount");
    writerJson.Int64(this->nValue);
@@ -58,13 +58,13 @@ void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &wri
 
 void TransactionOutput::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  wrapper.addInformationLink("Aamount: " + to_string(this->nValue));
+  wrapper.addInformationLink("amount: " + to_string(this->nValue));
   wrapper.setTo(this->getScript().getRawScriptString());
 }
 
 void TransactionOutput::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  wrapper.addInformationLink("Amount: " + to_string(this->nValue));
+  wrapper.addInformationLink("Amount: " + to_string(this->nValue)); //Not is the ammount of transaction
 }
 
 string TransactionOutput::toString()

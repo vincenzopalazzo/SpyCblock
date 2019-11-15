@@ -6,8 +6,10 @@
 #define PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 
 #include <vector>
+#include <string.h>
 
 #include <glog/logging.h>
+#include <zlib.h>
 #include "../../../include/spycblockrpc/src/core/graph/WrapperInformations.h"
 #include "../../../src/util/serialize.h"
 
@@ -52,6 +54,11 @@ namespace spyCBlock{
           void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
           void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+
+          void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
+
+          //Test
+          void toOptimiziongTransactionGraph(gzFile &file, const std::string delimitator, std::string &descriptRow, std::string &informations);
 
     private:
 

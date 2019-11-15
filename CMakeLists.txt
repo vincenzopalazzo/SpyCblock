@@ -14,6 +14,14 @@ find_package(glog 0.3.5 REQUIRED)
 #bitcoin rpc lib
 find_library(bitcoinapi 0.3 REQUIRED)
 
+#ZLIB
+find_package(ZLIB)
+
+find_package(OpenMP)
+
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
+
 add_executable(
 
         SpyCBlockTests
@@ -28,6 +36,8 @@ add_executable(
         test/ExceptionCompactsizeTest.cpp
         test/ConfiguratorSingletonTest.cpp
         test/DAOManagerGraphTest.cpp
+        test/SerializationDataCompressedZLib.cpp
+        test/BugHashStructureBlockTest.cpp
 
         src/util/uint256.cpp
         src/util/strencodings.cpp
@@ -133,6 +143,9 @@ add_executable(
         include/spycblockrpc/src/commands/HeightBlockchainCommand.cpp
         include/spycblockrpc/src/commands/DecodeBlockAtIndexCommand.cpp
 
+        #inlcude progressbar
+        include/progressbar/bin/progressbar.c
+        include/progressbar/bin/statusbar.c
 )
 
 #using glog
@@ -148,4 +161,11 @@ target_link_libraries(SpyCBlockTests stdc++fs)
 target_link_libraries(SpyCBlockTests bitcoinapi)
 target_link_libraries(${PROJECT_NAME} bitcoinapi)
 
+#ZLIB
+target_link_libraries(${PROJECT_NAME}  ${ZLIB_LIBRARIES})
+target_link_libraries(SpyCBlockTests  ${ZLIB_LIBRARIES})
+
+target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_CXX)
+
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
 

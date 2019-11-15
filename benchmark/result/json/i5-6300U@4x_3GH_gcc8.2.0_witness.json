@@ -1,0 +1,64 @@
+{
+  "context": {
+    "date": "2019-11-14 16:54:38",
+    "host_name": "vincenzo",
+    "executable": "./SpyCBlock-benchmarck",
+    "num_cpus": 4,
+    "mhz_per_cpu": 3000,
+    "cpu_scaling_enabled": true,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 256000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 3072000000,
+        "num_sharing": 4
+      }
+    ],
+    "load_avg": [2.46,2.33,1.94],
+    "library_build_type": "debug"
+  },
+  "benchmarks": [
+    {
+      "name": "BM_createGraphTxOneFile/8",
+      "run_name": "BM_createGraphTxOneFile/8",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 5.8948677071999557e+10,
+      "cpu_time": 5.8847585282000000e+10,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_decodeJsonOneFile/8",
+      "run_name": "BM_decodeJsonOneFile/8",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.9443210927998734e+10,
+      "cpu_time": 6.8608111791000000e+10,
+      "time_unit": "ns"
+    }
+  ]
+}

@@ -6,28 +6,73 @@
 #define SPYCBLOCK_SPYCBLOCK_H
 
 #include <string>
+#include <experimental/filesystem>
 
 #include "ConfiguratorSingleton.h"
+#include "../persistence/IDAOBlockchain.h"
+#include "../DefinitionMacro.h"
 
-
-namespace spyCBlock {
-
-    class SpyCBlock {
-
+namespace spyCBlock
+{
+    class SpyCBlock
+    {
         public:
 
-            void convertBlkIntoJson(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+            [[deprecated]] void convertBlkIntoJson(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 
-            void convertBlkIntoGraphForm(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+            [[deprecated]] void convertBlkIntoGraphForm(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
 
-            void convertBlkIntoGraphFormPubKey(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+            [[deprecated]] void convertBlkIntoGraphFormPubKey(std::string locationBitcoinCore, std::string destinationBitcoinCoreJson);
+
+            template<typename T>
+            void convertData(T &dao, const std::string &locationBitcoinCore, const std::string &destinationBitcoinCoreJson);
+
+            template<typename T>
+            void convertDataParallel(T &dao, const std::string &locationBitcoinCore, const std::string &destinationBitcoinCoreJson);
+
+            template<typename T>
+            std::string exstensionFile(T &dao);
+
+            inline void setHowFileWilBeRead(int value){
+              this->howFileWilBeRead = value;
+            }
+
+            inline void resetFileToStartReadNum(){
+              fileToStartRead = 0;
+              currentFile = ConfiguratorSingleton::getInstance().getStartHeightBlock();
+            }
+
+            inline void setCompressed(bool value){
+                 this->compressionForm = value;
+            }
+
         private:
 
             int currentFile = ConfiguratorSingleton::getInstance().getStartHeightBlock();
 
-            std::string nameFileSearched(std::string &pathInput);
+            int fileToStartRead = 0;
 
-            std::string getNameFile(std::string &path);
+            std::string nameFileSearched(const std::string &pathInput, int &currentFile);
+
+            std::string getNameFile(const std::string &path);
+
+            int howFileWilBeRead = ConfiguratorSingleton::getInstance().getHowManyFileWouldBeRead();
+
+            bool compressionForm = ConfiguratorSingleton::getInstance().isCompressionResult();
+
+            inline int numbarFileInsideThePaht(experimental::filesystem::path path){
+              assertf(!path.empty(), "The path is empty");
+              int fileCount = 0;
+              for(auto fileBlk : experimental::filesystem::directory_iterator(path))
+              {
+                  std::string fileName = fileBlk.path().filename();
+
+                  if(!experimental::filesystem::is_directory(fileBlk) && fileName.find("blk") != std::string::npos){
+                     fileCount++;
+                  }
+              }
+              return fileCount;
+            }
     };
 
 }

@@ -8,15 +8,14 @@
 #include "../crypto/UtilCrypto.h"
 #include "../../include/bitcoin-cryptography-library/cpp/Sha256Hash.hpp"
 #include "../../include/bitcoin-cryptography-library/cpp/Sha256.hpp"
+#include "../DefinitionMacro.h"
 
 using namespace spyCBlock;
-//TODO create an exception for this
+
 string CryptoSingleton::getHash256(string baseHash)
 {
-  if(baseHash.length() <= 0)
-  {
-    throw "Argument function getHash256 of CryptoSingleton is not valid";
-  }
+  assertf(baseHash.length() > 0, "Argument function getHash256 of CryptoSingleton is not valid");
+
   LOG(INFO) << "The baseHash is " << baseHash;
 
   vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(baseHash);
