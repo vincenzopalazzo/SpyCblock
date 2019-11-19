@@ -171,6 +171,6 @@ target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_CXX)
 target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
 
 #todo test this
-target_include_directories(SpyCBlockTests INTERFACE "include/rapidjson/include/rapidjson")
-target_include_directories(${PROJECT_NAME} INTERFACE "include/rapidjson/include/rapidjson")
+target_include_directories(SpyCBlockTests PUBLIC include/rapidjson/include)
+target_include_directories(${PROJECT_NAME} PUBLIC include/rapidjson/include)
 

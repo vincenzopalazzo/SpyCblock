@@ -3,6 +3,7 @@
 #sudo get update && apt-get install build-essential
 #apt-get install zlib1g-dev
 #sudo apt-get install libncurses-dev
+#sudo apt install cmake
 sleep 5
 git --version
 GIT_IS_AVAILABLE=$?
@@ -14,9 +15,9 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 sleep 10
-echo '----------- Install gtest library --------------------'
-echo 'The library for testing application by google'
-echo 'Link repo: https://github.com/google/googletest\n\n\n'
+print '----------- Install gtest library --------------------'
+print 'The library for testing application by google'
+print 'Link repo: https://github.com/google/googletest\n\n\n'
 sleep 5
 
 git clone https://github.com/google/googletest.git
@@ -30,11 +31,11 @@ cd ..
 sudo rm -r googletest
 
 sleep 5
-echo '-------------- Install glog library -------------------'
-echo 'The library for loggin application by google'
-echo 'Link repo: https://github.com/google/glog'
-echo ''
-echo ''
+print '-------------- Install glog library -------------------'
+print 'The library for loggin application by google'
+print 'Link repo: https://github.com/google/glog'
+print ''
+print ''
 
 sudo apt-get purge libgflags-dev -y
 sudo apt install libgflags-dev -y
@@ -57,9 +58,9 @@ sudo rm -r glog
 
 sleep 5
 #This is obsolete now the parser used the rapidjson
-#echo '-------------- Install json library -------------------'
-#echo 'The library for json,  by nlohmann'
-#echo 'Link repo: https://github.com/nlohmann/json'
+#print '-------------- Install json library -------------------'
+#print 'The library for json,  by nlohmann'
+#print 'Link repo: https://github.com/nlohmann/json'
 
 #git clone https://github.com/nlohmann/json.git
 #cd json
@@ -70,5 +71,27 @@ sleep 5
 #cd ..
 #sudo rm -r json
 
+sleep 5
+print '-------------- Install bitcoin-api-cpp library -------------------'
+print 'The library for wrapper rpc bitcoin core framework by minium'
+print 'Link repo: https://github.com/minium/bitcoin-api-cpp'
+print ''
+print ''
 
-echo 'The dependecis are OK'
+sudo apt-get install libcurl4-openssl-dev libjsoncpp-dev -y
+sudo apt-get install libjsonrpccpp-dev libjsonrpccpp-tools -y
+
+git clone https://github.com/minium/bitcoin-api-cpp.git
+cd bitcoin-api-cpp
+
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+sudo ldconfig
+cd ..
+sudo rm -r bitcoin-api-cpp
+
+
+print 'The dependecis are OK'
