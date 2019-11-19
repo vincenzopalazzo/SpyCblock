@@ -17,6 +17,7 @@
 using namespace spyCBlock;
 using namespace std;
 
+
 void RawTransaction::decode(std::ifstream &stream)
 {
     Unserialize(stream, version);
@@ -41,7 +42,7 @@ void RawTransaction::decode(std::ifstream &stream)
     txIn.clear();
 
     txIn.reserve(numberTxIn.getValue());
-    for(int i = 0; i < static_cast<int>(this->numberTxIn.getValue()); i++)
+    for(size_t i = 0; i < this->numberTxIn.getValue(); i++)
     {
         txIn.emplace_back(TransactionInput{});
         TransactionInput& transaction = txIn.back();
@@ -53,7 +54,7 @@ void RawTransaction::decode(std::ifstream &stream)
     txOut.clear();
     txOut.reserve(numberTxOut.getValue());
 
-    for(int i = 0; i < static_cast<int>(numberTxOut.getValue()); i++)
+    for(size_t i = 0; i < numberTxOut.getValue(); i++)
     {
         txOut.emplace_back(TransactionOutput{});
         TransactionOutput& transactionOutput = txOut.back();
@@ -62,7 +63,7 @@ void RawTransaction::decode(std::ifstream &stream)
 
     if(type == Type::WITNESS){
       txsWitness.reserve(numberTxIn.getValue());
-      for(int i = 0; i < static_cast<int>(numberTxIn.getValue()); i++)
+      for(size_t i = 0; i < numberTxIn.getValue(); i++)
       {
           txsWitness.emplace_back(TransactionWitness{});
           TransactionWitness& txw = txsWitness.back();
@@ -181,8 +182,6 @@ void RawTransaction::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writer
 
 void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  //wrapper.addInformationLink("RawTxID: " + this->hashRawTransaction);
-  //wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
   string witness = "false";
   if(type == Type::WITNESS){
       witness = "true";
@@ -191,17 +190,22 @@ void RawTransaction::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperIn
   {
     for(TransactionOutput &txOutput : this->txOut)
     {
-        try { //TODO contains another bug, the value inside the link for the block are loase when run weapper.clean();
-          wrapper.addInformationLink("witness: " + witness);
+        try {
+          wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION, "RawTxID: " + this->hashRawTransaction);
+          wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION, "lockTime: " + to_string(this->lockTime));
+          wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION, "witness: " + witness);
+
           txInput.toGraphForm(outputStream, wrapper);
           txOutput.toGraphForm(outputStream, wrapper);
+
           spyCBlockRPC::TransactionGraph transaction;
           transaction.buildTransaction(wrapper);
           transaction.serialize(outputStream);
-          wrapper.clean();
+
+          wrapper.clean(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION);
         } catch (spyCBlockRPC::SpyCBlockRPCException ex) {
           LOG(ERROR) << "Exception Generated " << ex.what();
-          return;
+          return; //TODOcreare a new excption;
         }
 
     }
@@ -213,21 +217,21 @@ void RawTransaction::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::W
 {
   wrapper.setTo(this->hashRawTransaction);
 
-  //TODO this code create the duplicate inside the vector information
-  /*wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
   string witness = "false";
   if(type == Type::WITNESS){
       witness = "true";
   }
-  wrapper.addInformationLink("witness: " + witness);*/
 
 
   for(auto txInput : this->txIn)
   {
+     wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION, "lockTime: " + to_string(this->lockTime));
+     wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION, "witness: " + witness);
      txInput.toTransactionsGraph(outputStream, wrapper);
      TransactionsRawGraph transactioGraph;
      transactioGraph.buildTransaction(wrapper);
      transactioGraph.serialize(outputStream);
+     wrapper.clean(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION);
   }
 }
 
@@ -235,56 +239,29 @@ void RawTransaction::toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::W
 {
   wrapper.setTo(this->hashRawTransaction);
 
-  //TODO this code create the duplicate inside the vector information
-  /*wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
   string witness = "false";
   if(type == Type::WITNESS){
       witness = "true";
   }
-  wrapper.addInformationLink("witness: " + witness);*/
 
   //I can give the total bitcoin inside the raw transaction if sum the value transaction output inside the OUTPOINT
   //not inside the output transaction contains in this raw transaction
-  //new version
-  for(auto txInput : this->txIn)
+  for(auto &txInput : this->txIn)
   {
-     wrapper.setFrom(txInput.getOutpoint().getHash().GetHex());
+     wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION, "lockTime: " + to_string(this->lockTime));
+     wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION, "witness: " + witness);
 
-     LOG(INFO) << "************ Serialization this information ************\n";
+     txInput.toCompressedTransactionsGraph(file, wrapper);
 
-     string serializeTransaction;
-     //Serialization informations input
-     serializeTransaction += wrapper.getFrom();
-     for(auto &information: wrapper.getLinkInformations())
-     {
-       serializeTransaction += (wrapper.getDelimitator() + information);
-     }
-     serializeTransaction += (wrapper.getDelimitator() + wrapper.getTo() + ".");
-     LOG(WARNING) << serializeTransaction;
-     gzwrite(file, serializeTransaction.c_str(), serializeTransaction.size());
+     //TODO add the amount from transaction output
+     //this is an problem, what is the amount of bitcoin inside the transaction?
+     //how I can find the exchange-transaction?
+
+     TransactionsRawGraph transactionBuilder;
+     transactionBuilder.buildTransaction(wrapper);
+     transactionBuilder.serialize(file);
+     wrapper.clean(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION);
  }
-}
-
-void RawTransaction::toOptimiziongTransactionGraph(gzFile &file, const string delimitator, string &descriptRow, std::string &informations)
-{
-  descriptRow.append(this->hashRawTransaction);
-
-  //TODO this code create the duplicate inside the vector information
-  /*wrapper.addInformationLink("lockTime: " + to_string(this->lockTime));
-  string witness = "false";
-  if(type == Type::WITNESS){
-      witness = "true";
-  }
-  wrapper.addInformationLink("witness: " + witness);*/
-  for(auto inputTx: this->txIn)
-  {
-     string copyScriptor;
-     copyScriptor.append(inputTx.getOutpoint().getHash().GetHex());
-
-     copyScriptor.append(delimitator + this->hashRawTransaction + ".");
-     LOG(INFO) << "Serialization: " << copyScriptor;
-     gzwrite(file, copyScriptor.c_str(), copyScriptor.size());
-  }
 }
 
 //Getter and setter

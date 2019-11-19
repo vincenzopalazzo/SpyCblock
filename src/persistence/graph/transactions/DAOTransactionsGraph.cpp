@@ -47,6 +47,7 @@ bool spyCBlock::DAOTransactionsGraph::saveBlock(const string &inputPath, const s
               spyCBlockRPC::WrapperInformations wrapper;
               wrapper.setDelimitator(ConfiguratorSingleton::getInstance().getDelimitatorLinkInformations());
               block.toTransactionsGraph(saveBlk, wrapper);
+              wrapper.clean(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK);
             }
             chrono::milliseconds end = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());
             milliseconds duration = (end - start);

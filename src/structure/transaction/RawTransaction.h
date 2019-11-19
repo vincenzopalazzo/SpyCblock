@@ -57,9 +57,6 @@ namespace spyCBlock{
 
           void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
 
-          //Test
-          void toOptimiziongTransactionGraph(gzFile &file, const std::string delimitator, std::string &descriptRow, std::string &informations);
-
     private:
 
           Type type;

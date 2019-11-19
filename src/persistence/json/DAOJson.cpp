@@ -72,4 +72,5 @@ bool DAOJson::saveBlock(const string &inputPath, const string &outputPath, int &
 bool DAOJson::saveBlockCompress(const string &inputPath, const string &outputPath, int &height)
 {
   //Do nothing
+  return false;
 }

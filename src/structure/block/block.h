@@ -53,8 +53,6 @@ namespace spyCBlock
 
           void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
-          void toOptimiziongTransactionGraph(gzFile &file, const std::string delimitator, std::string &descriptRow, std::string &informations);
-
           void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
 
           std::string toString();

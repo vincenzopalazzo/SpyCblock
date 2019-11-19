@@ -45,7 +45,7 @@ bool spyCBlock::DAOManagerGraph::saveBlock(const string &inputPath, const string
               spyCBlockRPC::WrapperInformations wrapper;
               wrapper.setDelimitator(ConfiguratorSingleton::getInstance().getDelimitatorLinkInformations());
               block.toGraphForm(saveBlkToGraph, wrapper);
-              wrapper.clean();
+              wrapper.clean(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK);
             }
             chrono::milliseconds end = duration_cast<milliseconds>(chrono::system_clock::now().time_since_epoch());
             milliseconds duration = (end - start);

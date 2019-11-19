@@ -32,8 +32,9 @@ void spyCBlock::TransactionsRawGraph::buildTransaction(spyCBlockRPC::WrapperInfo
   string hashRawTx = wrapper.getTo();
   LOG(WARNING) << "Script public key: " << hashRawTx;
 
-  this->linkInformations = wrapper.getLinkInformations();
-  LOG(WARNING) << "Information size: " << linkInformations.size();
+  //TODO this is UTIL?
+ /* this->linkInformations = wrapper.getLinkInformations();
+  LOG(WARNING) << "Information size: " << linkInformations.size();*/
 
   this->delimitator = wrapper.getDelimitator();
   LOG(INFO) << "Delimitator: " << delimitator;
@@ -41,7 +42,28 @@ void spyCBlock::TransactionsRawGraph::buildTransaction(spyCBlockRPC::WrapperInfo
   this->from = wrapper.getFrom();
   this->to = wrapper.getTo();
 
-  this->linkInformations = wrapper.getLinkInformations();
+  this->linkInformations.insert(wrapper.getLinkInformationsBlock().begin(),
+                                wrapper.getLinkInformationsBlock().end());
+
+  this->linkInformations.insert(wrapper.getLinkInformationsTransaction().begin(),
+                                wrapper.getLinkInformationsTransaction().end());
+
   LOG(INFO) << "Numbar information link: " << linkInformations.size();
-  wrapper.clean();
+}
+
+void spyCBlock::TransactionsRawGraph::serialize(gzFile &file)
+{
+  LOG(INFO) << "************ Serialization this information ************\n";
+
+  string serializeTransaction;
+  //Serialization informations input
+  serializeTransaction += this->from;
+
+  for(auto &information: linkInformations)
+  {
+    serializeTransaction += (this->delimitator + information);
+  }
+  serializeTransaction += (this->delimitator  + this->to + "."); //LOOK here the . not is the refuse but is the delimitator for compression file
+  LOG(INFO) << serializeTransaction;
+  gzwrite(file, serializeTransaction.c_str(), serializeTransaction.size());
 }

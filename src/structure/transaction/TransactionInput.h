@@ -9,8 +9,10 @@
 
 #include <rapidjson/writer.h>
 #include <rapidjson/ostreamwrapper.h>
+#include <zlib.h>
 #include "../type/Outpoint.h"
 #include "../../../include/spycblockrpc/src/core/graph/WrapperInformations.h"
+
 
 #include "../type/DScript.h"
 
@@ -43,6 +45,8 @@ namespace spyCBlock
           void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
           void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+
+          void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
 
       private:
 

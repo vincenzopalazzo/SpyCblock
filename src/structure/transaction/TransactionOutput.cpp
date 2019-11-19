@@ -58,13 +58,13 @@ void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &wri
 
 void TransactionOutput::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  wrapper.addInformationLink("amount: " + to_string(this->nValue));
+  wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION, "amount: " + to_string(this->nValue));
   wrapper.setTo(this->getScript().getRawScriptString());
 }
 
 void TransactionOutput::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  wrapper.addInformationLink("Amount: " + to_string(this->nValue)); //Not is the ammount of transaction
+  wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION, "amount: " + to_string(this->nValue)); //Not is the ammount of transaction
 }
 
 string TransactionOutput::toString()

@@ -1,8 +1,9 @@
 #!/bin/bash
-echo '----------------------| SpyCBlock |---------------------------'
-echo 'Welcome into installer SpyCBlock a simple bicoin-core parser'
-echo 'Author https://github.com/vincenzopalazzo'
-wait 2000
+#OPTIONAL
+#sudo get update && apt-get install build-essential
+#apt-get install zlib1g-dev
+#sudo apt-get install libncurses-dev
+sleep 5
 git --version
 GIT_IS_AVAILABLE=$?
 if [ $GIT_IS_AVAILABLE -eq 0 ]; then
@@ -12,12 +13,11 @@ else
     # Original PS1 Line
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
-
+sleep 10
 echo '----------- Install gtest library --------------------'
 echo 'The library for testing application by google'
-echo 'Link repo: https://github.com/google/googletest'
-echo ''
-echo ''
+echo 'Link repo: https://github.com/google/googletest\n\n\n'
+sleep 5
 
 git clone https://github.com/google/googletest.git
 cd googletest
@@ -29,7 +29,7 @@ cd ..
 cd ..
 sudo rm -r googletest
 
-
+sleep 5
 echo '-------------- Install glog library -------------------'
 echo 'The library for loggin application by google'
 echo 'Link repo: https://github.com/google/glog'
@@ -55,32 +55,20 @@ sudo make install
 cd ..
 sudo rm -r glog
 
-echo '-------------- Install json library -------------------'
-echo 'The library for json,  by nlohmann'
-echo 'Link repo: https://github.com/nlohmann/json'
-echo ''
-echo ''
+sleep 5
+#This is obsolete now the parser used the rapidjson
+#echo '-------------- Install json library -------------------'
+#echo 'The library for json,  by nlohmann'
+#echo 'Link repo: https://github.com/nlohmann/json'
 
-git clone https://github.com/nlohmann/json.git
-cd json
-mkdir build && cd build
-cmake ..
-sudo make install
-cd ..
-cd ..
-sudo rm -r json
+#git clone https://github.com/nlohmann/json.git
+#cd json
+#mkdir build && cd build
+#cmake ..
+#sudo make install
+#cd ..
+#cd ..
+#sudo rm -r json
 
-echo '-------------- Install cpp-properties library -------------------'
-echo 'The library for file configuration properties,  by fredyw'
-echo 'Link repo: https://github.com/fredyw/cpp-properties'
-echo ''
-echo ''
-
-git clone https://github.com/fredyw/cpp-properties
-cd cpp-properties
-mkdir build && cd build
-cmake ..
-sudo make install
-sudo rm -r cpp-properties
 
 echo 'The dependecis are OK'

@@ -3,6 +3,9 @@ log/*.*
 test/log/*.*
 test/file_test/*.*
 
+#build dir
+build
+
 #file costruction ide
 CMakeFiles/
 cmake-build-debug/

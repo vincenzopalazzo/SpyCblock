@@ -22,6 +22,7 @@ find_package(OpenMP)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
 
+
 add_executable(
 
         SpyCBlockTests
@@ -168,4 +169,8 @@ target_link_libraries(SpyCBlockTests  ${ZLIB_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_CXX)
 
 target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
+
+#todo test this
+target_include_directories(SpyCBlockTests INTERFACE "include/rapidjson/include/rapidjson")
+target_include_directories(${PROJECT_NAME} INTERFACE "include/rapidjson/include/rapidjson")
 

@@ -82,6 +82,11 @@ void TransactionInput::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC:
   wrapper.setFrom(this->outpoint.getHash().GetHex());
 }
 
+void TransactionInput::toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper)
+{
+  wrapper.setFrom(this->outpoint.getHash().GetHex());
+}
+
 string TransactionInput::toString()
 {
     string stringForm = outpoint.ToString();

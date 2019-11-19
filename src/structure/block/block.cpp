@@ -95,11 +95,17 @@ void Block::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
 
   writerJson.EndObject();
 }
-
 //TODO generalize this method, with type of deserialization
 void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  wrapper.addInformationLink("height:" + to_string(this->heightBlock));
+  //If the height block is equal to -1
+  //the execution is parallel and the height block is difficulte to calculate
+  if(heightBlock != -1){
+    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "height:" + to_string(this->heightBlock));
+  }else{
+    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "hashBlock:" + this->hashBlock);
+  }
+
 
   for(RawTransaction& rawTx : this->rawTransactions)
   {
@@ -110,7 +116,13 @@ void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformation
 
 void Block::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  wrapper.addInformationLink("height:" + to_string(this->heightBlock));
+  //If the height block is equal to -1
+  //the execution is parallel and the height block is difficulte to calculate
+  if(heightBlock != -1){
+    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "height:" + to_string(this->heightBlock));
+  }else{
+    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "hashBlock:" + this->hashBlock);
+  }
 
   for(RawTransaction& rawTx : this->rawTransactions)
   {
@@ -119,20 +131,16 @@ void Block::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInf
   }
 }
 
-void Block::toOptimiziongTransactionGraph(gzFile &file, const string delimitator, string &descriptRow, std::string &informations)
-{
-  informations.append(delimitator + "height:" + to_string(this->heightBlock));
-
-  for(auto rawTx : this->rawTransactions)
-  {
-    rawTx.toOptimiziongTransactionGraph(file, delimitator, descriptRow, informations);
-  }
-}
 
 void Block::toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  wrapper.addInformationLink("height:" + to_string(this->heightBlock));
-  wrapper.setDelimitator("|-|");
+  //If the height block is equal to -1
+  //the execution is parallel and the height block is difficulte to calculate
+  if(heightBlock != -1){
+    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "height:" + to_string(this->heightBlock));
+  }else{
+    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "hashBlock:" + this->hashBlock);
+  }
 
   for(RawTransaction& rawTx : this->rawTransactions)
   {
