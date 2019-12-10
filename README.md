@@ -1,76 +1,71 @@
-# SpyCblock
-[![Codacy Badge](https://img.shields.io/codacy/grade/13c697b9a6864ec8af152b5c7186bb3e.svg?style=for-the-badge)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vincenzopalazzo/spyCblock&amp;utm_campaign=Badge_Grade)
-![Build Status](https://img.shields.io/travis/com/vincenzopalazzo/SpyCblock.svg?style=for-the-badge)
+# <p align=center> :mortar_board: SpyCBlock :microscope: </p>
 
-A small parser for blk files of bitcoin core, this parser also calculates the transaction hash so it can build a graph.
+SpyCBlock is an accademics software for analiaze the blk file of Bitcoin blockchain Mainet.
+This is an explerimental version and it want to demostration that is possible work with only file blk.
 
-The transactions graph is serialized in the following way
+SpyCBlo is a simple parser bitcoin blk file, with this parser is possible do some serialization, how:
 
-The general form
+- Serialization Transaction Graph (:heavy_check_mark:);
+- Serialization complete Blockchain to JSON (:heavy_check_mark:);
+- Serialization Address Graph (:warning:).
 
-```
-txOringin|otherInformation|otherInformation|txArrival
-```
+For reduce the space of serialization Transaction graph, is possible use the library [ZLib](https://github.com/madler/zlib) for compress the information; with this code is possible uncompressed the data.
 
-An example
-
-```
-Coinbase|5000000000|4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b|1231006505|1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
-```
-The parser offers a module for decrypting information in json, converts the entire structure to json, with a result of a blk.dat file inf a blk.json.
-
-This is an example of decoding
-
-```
+```c++
+void decompressFileWithZLib()
 {
-  "hashBlock": "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
-  "height": 0,
-  "magicNumbar": -642466055,
-  "blockSize": 285,
-  "blockHeader": {
-    "version": 1,
-    "previusBlockHeaderHash": "0000000000000000000000000000000000000000000000000000000000000000",
-    "markleRoot": "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
-    "time": 1231006505,
-    "nBits": 486604799,
-    "nonce": 2083236893
-  },
-  "numbarRawTransactions": 1,
-  "rawTransactions": [
-    {
-      "hashRawTransaction": "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
-      "version": 1,
-      "numbarTxInput": 1,
-      "txInput": [
-        {
-          "hashInputTransaction": "f06a1dc939b97efd459de09236b426bcb61236280fd0cd1f869399cfd8d39aae",
-          "outputTxHash": "0000000000000000000000000000000000000000000000000000000000000000",
-          "ammount": 4294967295,
-          "scriptLenght": 77,
-          "script": "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73",
-          "sequences": 4294967295
-        }
-      ],
-      "numbarTxOutput": 1,
-      "txOutput": [
-        {
-          "hashOutputTransaction": "4c2224d8c6c869cf49805d1e4376fd7475b085e04b7ab75fc0d1afeb323a41be",
-          "ammount": 5000000000,
-          "scriptLenght": 67,
-          "script": "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac"
-        }
-      ],
-      "lockTime": 0
+    std::string filename = "YOUR_PATH/blkXXXXX.dat";
+    gzFile inFileZ = gzopen(filename.c_str(), "rb");
+
+    if(inFileZ == NULL){
+        printf("Error: Failed to gzopen %s\n", filename.c_str());
+        exit(0);
     }
-  ]
+    unsigned char unzipBuffer[8192];
+    unsigned int unzippedBytes;
+    std::vector<unsigned char> unzippedData;
+    while (true)
+    {
+        unzippedBytes = gzread(inFileZ, unzipBuffer, 8192);
+        if(unzippedBytes > 0) {
+            unzippedData.insert(unzippedData.end(), unzipBuffer, unzipBuffer + unzippedBytes);
+        }else{
+            break;
+        }
+    }
+
+    for(auto &character : unzippedData)
+    {
+        if(character == '.'){
+            std::cout << "\n";
+        }else{
+            std::cout << character;
+        }
+    }
 }
 ```
 
-## License
-![GitHub](https://img.shields.io/github/license/vincenzopalazzo/SpyCblock.svg?style=for-the-badge)
+Is possible execute the parser with the library [OpenMP](https://www.openmp.org/) for execution data with multi-core an this is a simple velocity benchmark.
 
-## Contributors
-![GitHub contributors](https://img.shields.io/github/contributors/vincenzopalazzo/SpyCblock.svg?color=blue&style=for-the-badge)
+_PS: for the moment the parser use all core of the CPU is the multicore propriety is enabled._
 
-## Status
-The alpha version is revisited in the following [branch](https://github.com/vincenzopalazzo/SpyCblock/tree/version_beta_work)
+![benchmark_image](imgs/benchmark.png)
+
+
+The graph of transactions form is describe [here](#todo) and this is an example for visualize this with Web app, [this is](https://github.com/vincenzopalazzo/SpyJSBlock.react) an simple demo.
+
+_The screenshot of transaction graph_
+
+![transaction_graph](imgs/graph_tx.png)
+
+_The screenshot of address graph subdivise to class (with luvain algorithm)_
+
+![address_graph](imgs/address_graph.png)
+
+## JSON version Bitcoin Blockchain
+
+Have the version of Bitcoin blockchain to JSON is parwerfool because is possible work on the JSON format, With this is possible create easy analisis on Bitcoin network.
+
+An example: I have create a simple analisis with [AnalytcsPyBlock](https://github.com/vincenzopalazzo/AnalyticsPyBlock) to get information from type of script utilized in the Bitcoin blockchain; this is the result and [here](https://vincenzopalazzo.github.io/AnalyticsPyBlock/) is avaible the web version
+
+![analisis_script](imgs/result-global.png)

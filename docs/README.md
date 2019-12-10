@@ -1,4 +1,4 @@
-# <p align=center> :mortar_board: SpyCBlock :microscope: </p>
+# :mortar_board: SpyCBlock :microscope:
 
 SpyCBlock is an accademics software for analiaze the blk file of Bitcoin blockchain Mainet.
 This is an explerimental version and it want to demostration that is possible work with only file blk.
