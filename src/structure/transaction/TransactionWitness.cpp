@@ -6,17 +6,15 @@
 
 #include "TransactionWitness.h"
 #include "../../persistence/SerializationUtil.h"
+#include "../../DefinitionMacro.h"
 
 using namespace spyCBlock;
 using namespace std;
 
 void spyCBlock::TransactionWitness::decode(std::ifstream &stream)
 {
-  if(!stream.is_open()){
-    LOG(ERROR) << "The stream is close";
-    //TODO Add exception
-    return;
-  }
+  assertf(stream.is_open(), "The stream is close");
+
   LOG(WARNING) << "FINDED TRANSACTION WITNESS";
   compactSize.decode(stream);
   LOG(INFO) << "Compact size is: " << compactSize.getValue();
@@ -33,7 +31,7 @@ std::string TransactionWitness::toSerealizationForm() const
   string hexForm = SerializationUtil::toSerealizeForm(this->compactSize.getValue());
   for(DScript script : witnessStack)
   {
-      hexForm.append(SerializationUtil::toSerealizeForm(script.getScriptLenght()));
+      hexForm.append(SerializationUtil::toSerealizeForm(script.getScriptLength()));
       hexForm.append(script.getScriptToSerializationForm());
   }
   return hexForm;

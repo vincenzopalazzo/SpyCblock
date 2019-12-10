@@ -19,7 +19,7 @@ void TransactionOutput::decode(ifstream &stream)
     Unserialize(stream, nValue);
     LOG(INFO) << "N value " << nValue;
     script.decode(stream);
-    LOG(INFO) << "Script Lenght: " << script.getScriptLenght().getValue();
+    LOG(INFO) << "Script Lenght: " << script.getScriptLength().getValue();
     LOG(WARNING) << "Script Value: " << script.toString();
 
     //Creating hash transaction
@@ -31,7 +31,7 @@ void TransactionOutput::decode(ifstream &stream)
 string TransactionOutput::toSerealizationForm() const
 {
   string hexForm = SerializationUtil::toSerealizeForm(this->nValue);
-  hexForm += SerializationUtil::toSerealizeForm(this->getScript().getScriptLenght());
+  hexForm += SerializationUtil::toSerealizeForm(this->getScript().getScriptLength());
   hexForm += this->script.getScriptToSerializationForm();
 
   return hexForm;
@@ -44,11 +44,11 @@ void TransactionOutput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &wri
    /*writerJson.Key("hashOutputTransaction");
    writerJson.String(this->hashOutputTransaction.c_str());*/
 
-   writerJson.Key("aamount");
+   writerJson.Key("amount");
    writerJson.Int64(this->nValue);
 
-   writerJson.Key("scriptLenght");
-   writerJson.Uint64(this->script.getScriptLenght().getValue());
+   writerJson.Key("scriptLength");
+   writerJson.Uint64(this->script.getScriptLength().getValue());
 
    writerJson.Key("script");
    writerJson.String(this->script.getRawScriptString().c_str());

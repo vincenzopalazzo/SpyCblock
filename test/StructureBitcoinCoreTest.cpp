@@ -65,7 +65,7 @@ TEST(StructureBitcoinCoreTest, unserialize_one_block)
 
     EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getHash().GetHex(),"0000000000000000000000000000000000000000000000000000000000000000");
     EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getN(), 4294967295); // 4294967295 equival at 0xffffff
-    EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght().getValue(), 77);
+    EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength().getValue(), 77);
     EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptString().size(), 77);
     string data = "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73";
                  //04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73
@@ -73,7 +73,7 @@ TEST(StructureBitcoinCoreTest, unserialize_one_block)
               .getRawScriptString()
               .substr(0,
                        block.getRawTransactions().at(0).getTxIn().at(0)
-                            .getScript().getScriptLenght().getValue() * 2), data);
+                            .getScript().getScriptLength().getValue() * 2), data);
 
     //EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).decodeIntoStringScriptSing(), data);
     EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getSequences(), 4294967295);
@@ -82,19 +82,19 @@ TEST(StructureBitcoinCoreTest, unserialize_one_block)
     EXPECT_EQ(block.getRawTransactions().at(0).getNumberTxOut().getValue(), 1);
     //TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
     EXPECT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getNValue(), 5000000000);
-    EXPECT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght().getValue(), 67);
+    EXPECT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLength().getValue(), 67);
     //TODO the pure script not calculate with the substr(0, (transactionOutput.getScript().getScriptLenght().getValue()) * 2)
     EXPECT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getScript()
               .getRawScriptString().substr(0,
                                            (block.getRawTransactions().at(0).getTxOut().at(0)
-                                                 .getScript().getScriptLenght().getValue()) * 2),
+                                                 .getScript().getScriptLength().getValue()) * 2),
               "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
     //TODO this lengh scritp contains the value opt code and this is wrong, wich I have minus two
              //4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac68c39c059c6100
     //Testing a pure script
     EXPECT_EQ(block.getRawTransactions().at(0).getTxOut().at(0)
               .getScript().getRawScriptString().substr(2, (block.getRawTransactions().at(0)
-                                                                .getTxOut().at(0).getScript().getScriptLenght().getValue() - 2) * 2),
+                                                                .getTxOut().at(0).getScript().getScriptLength().getValue() - 2) * 2),
               "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f");
              //04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5facac
     EXPECT_EQ(block.getRawTransactions().at(0).getLockTime(), 0);
@@ -142,7 +142,7 @@ TEST(StructureBitcoinCoreTest, unserialize_two_block)
     EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getHash().GetHex(),
               "0000000000000000000000000000000000000000000000000000000000000000");
     EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getN(), 4294967295);
-    EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght().getValue(), 77);
+    EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength().getValue(), 77);
     EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getSequences(), 4294967295);
 
     //Transaction Output
@@ -151,7 +151,7 @@ TEST(StructureBitcoinCoreTest, unserialize_two_block)
 
     //TransactionOutput transactionOutput = block->getRawTransactions().at(0)->getTxOut().at(0)->;
     EXPECT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getNValue(), 5000000000);
-    EXPECT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght().getValue(), 67);
+    EXPECT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLength().getValue(), 67);
     EXPECT_EQ(block.getRawTransactions().at(0).getLockTime(), 0);
 
     Block block_two;
@@ -185,14 +185,14 @@ TEST(StructureBitcoinCoreTest, unserialize_two_block)
     EXPECT_EQ(block_two.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getHash().GetHex(),
               "0000000000000000000000000000000000000000000000000000000000000000");
     EXPECT_EQ(block_two.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getN(), 4294967295);
-    EXPECT_EQ(block_two.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght().getValue(), 7);
+    EXPECT_EQ(block_two.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength().getValue(), 7);
     EXPECT_EQ(block_two.getRawTransactions().at(0).getTxIn().at(0).getSequences(), 4294967295);
 
     //Transaction Output
     EXPECT_EQ(block_two.getRawTransactions().at(0).getNumberTxOut().getValue(), 1);
     //transactionOutput = block_two->getRawTransactions().at(0)->getTxInd().at(0)->getTxOut().at(0);
     EXPECT_EQ(block_two.getRawTransactions().at(0).getTxOut().at(0).getNValue(), 5000000000);
-    EXPECT_EQ(block_two.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght().getValue(), 67);
+    EXPECT_EQ(block_two.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLength().getValue(), 67);
     EXPECT_EQ(block_two.getRawTransactions().at(0).getLockTime(), 0);
 }
 
@@ -355,14 +355,14 @@ TEST(StructureBitcoinCoreTest, read_first_block_another_file_blk)
     //TransactionInput transactionInput = rawTransaction.getTxInd().at(0);
     ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
     ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
-    ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght().getValue(), 42);
+    ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength().getValue(), 42);
     ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getSequences(), 4294967295);
 
     /* ----------- TEST OUT TRANSACTION -------------*/
     ASSERT_EQ(block.getRawTransactions().at(0).getNumberTxOut().getValue(), 1);
     ASSERT_EQ(block.getRawTransactions().at(0).getTxOut().size(), 1);
     //TransactionOutput transactionOutput = block->getRawTransactions().at(0)->getTxOut().at(0);
-    ASSERT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght().getValue(), 25);
+    ASSERT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLength().getValue(), 25);
     ASSERT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getNValue(), 2549850141); // satoshi
 }
 
@@ -417,7 +417,7 @@ TEST(StructureBitcoinCoreTest, read_two_consecutive_block_another_file_blk)
 
     ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
     ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
-    ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght().getValue(), 42);
+    ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength().getValue(), 42);
     ASSERT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getSequences(), 4294967295);
 
     /* ----------- TEST OUT TRANSACTION -------------*/
@@ -427,7 +427,7 @@ TEST(StructureBitcoinCoreTest, read_two_consecutive_block_another_file_blk)
 
     //TransactionOutput transactionOutput = rawTransaction.getTxOut().at(0);
 
-    ASSERT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght().getValue(), 25);
+    ASSERT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLength().getValue(), 25);
     ASSERT_EQ(block.getRawTransactions().at(0).getTxOut().at(0).getNValue(), 2549850141); // satoshiBlock *block = new Block();
 
     /* ----------| SECOND BLOCK |---------- */
@@ -470,7 +470,7 @@ TEST(StructureBitcoinCoreTest, read_two_consecutive_block_another_file_blk)
 
     ASSERT_EQ(blockTwo.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getN(), 4294967295); // 4294967295 equival ffffffff
     ASSERT_EQ(blockTwo.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getHash().GetHex(), "0000000000000000000000000000000000000000000000000000000000000000");
-    ASSERT_EQ(blockTwo.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght().getValue(), 42);
+    ASSERT_EQ(blockTwo.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength().getValue(), 42);
     ASSERT_EQ(blockTwo.getRawTransactions().at(0).getTxIn().at(0).getSequences(), 4294967295);
 
     /* ----------- TEST OUT TRANSACTION -------------*/
@@ -479,7 +479,7 @@ TEST(StructureBitcoinCoreTest, read_two_consecutive_block_another_file_blk)
 
     //TransactionOutput transactionOutputTwo = blockTwo->getRawTransactions().at(0)->getTxOut().at(0);
 
-    ASSERT_EQ(blockTwo.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght().getValue(), 25);
+    ASSERT_EQ(blockTwo.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLength().getValue(), 25);
     ASSERT_EQ(blockTwo.getRawTransactions().at(0).getTxOut().at(0).getNValue(), 2542408827); // satoshi
 
     stream.close();

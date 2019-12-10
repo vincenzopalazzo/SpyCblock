@@ -49,26 +49,26 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
     stream.close();
 
     RawTransaction raw = blockChecked.getRawTransactions().at(106);
-    LOG(ERROR) << raw.toSerealizationForm();
+    LOG(INFO) << raw.toSerealizationForm();
     ASSERT_EQ(30, raw.getNumberTxOut().getValue());
     ASSERT_EQ(3, raw.getNumberTxIn().getValue());
 
     // ----- TEST TX INPUT
     ASSERT_EQ("2a27348a0320d632460c87cc6732f78b96072f498bc5df8b1d38cedbbb397456", raw.getTxIn().at(0).getOutpoint().getHash().GetHex());
     ASSERT_EQ(0, raw.getTxIn().at(0).getOutpoint().getN());
-    ASSERT_EQ(252, raw.getTxIn().at(0).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(252, raw.getTxIn().at(0).getScript().getScriptLength().getValue());
     ASSERT_EQ("0047304402204019206b38075e308633c7ce1ec0e9d82aa42da216f93d9ee0557486fd320007022070568e2f0a607cf19b05a6ca70993c8eef496aba61ddbbac7d6298c138961f430147304402201e8928d5f0d47e05e8b8c23c9196e3eff347a0acfa77ac4bd2cf0874727d7b4602206096ddb026821c66bd2d5a92e55de8d10abb6fa88b88ff7400e2ff8b431d184e014c69522102d3c6abf94e08b389bc60dc6feb4f1eefe2244fc459a3fabb08f0cecf2b7c3cdc210301b601dfcdbe32d1b9f75f9f4851c374dc6381f7da0c3fd7a6432043159eb26521039b9f33d76aecbd6fbdb7f8a1f1a498403a8bc3fc76f24000ec1b4114b9017d2553ae",
               raw.getTxIn().at(0).getScript().getRawScriptString());
-
+    LOG(ERROR) << raw.getTxIn().at(0).toSerealizationForm();
     ASSERT_EQ("b7d979000a063dade6c69fe9adcd2e6cb0da34c21c8974e9e9b73d0287524314", raw.getTxIn().at(1).getOutpoint().getHash().GetHex());
     ASSERT_EQ(1, raw.getTxIn().at(1).getOutpoint().getN());
-    ASSERT_EQ(252, raw.getTxIn().at(1).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(252, raw.getTxIn().at(1).getScript().getScriptLength().getValue());
     ASSERT_EQ("00473044022070cf7b804b37effe1025cecc278216f2093fbbbc6ae91b950b7acae44e38e2ef02200673a311b70f69e1e6276664dd002e58f38711cdb1d1ce3fd7e446beefdad3af014730440220407723e46a94f16878e50e4726e2c0aba79fbcca6f3b14d4777179c71d455f41022052a3abcb565f4ed3468c3b27d90b074c1655fa6fd062a23b3026afc7c2838ff6014c69522102d3c6abf94e08b389bc60dc6feb4f1eefe2244fc459a3fabb08f0cecf2b7c3cdc210301b601dfcdbe32d1b9f75f9f4851c374dc6381f7da0c3fd7a6432043159eb26521039b9f33d76aecbd6fbdb7f8a1f1a498403a8bc3fc76f24000ec1b4114b9017d2553ae",
               raw.getTxIn().at(1).getScript().getRawScriptString());
 
     ASSERT_EQ("bc89ce3f31b649d9f5f2680654136a1a8a1414e6b8bb26f0932f492ddc0e6c38", raw.getTxIn().at(2).getOutpoint().getHash().GetHex());
     ASSERT_EQ(0, raw.getTxIn().at(2).getOutpoint().getN());
-    ASSERT_EQ(253, raw.getTxIn().at(2).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(253, raw.getTxIn().at(2).getScript().getScriptLength().getValue());
     ASSERT_EQ("0047304402202b4afe04209cdb17a67a1b4881396ef44eaedad7ac663a555d2a845c809bc24e02202456bc52d49c1c5550cd4bd2db648e96352e388f0cce040792df5ca528e9a9c1014830450221008819ed1f425826ba739b49478375b4dfd1e5443503fc0d20ee67a4d904be325f022007a2f9ed0b519bdcac327d5227045d1c348b80ee7ceeb1102ef01d2560c26ead014c69522102d3c6abf94e08b389bc60dc6feb4f1eefe2244fc459a3fabb08f0cecf2b7c3cdc210301b601dfcdbe32d1b9f75f9f4851c374dc6381f7da0c3fd7a6432043159eb26521039b9f33d76aecbd6fbdb7f8a1f1a498403a8bc3fc76f24000ec1b4114b9017d2553ae",
               raw.getTxIn().at(2).getScript().getRawScriptString());
 
@@ -81,7 +81,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 76a914e3c7203bf45802c9de1d90d8960399c2dc5bf4ef88ac
      */
     ASSERT_EQ("76a914e3c7203bf45802c9de1d90d8960399c2dc5bf4ef88ac", raw.getTxOut().at(0).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(0).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(0).getScript().getScriptLength().getValue());
     ASSERT_EQ(13000, raw.getTxOut().at(0).getNValue());
 
     /**
@@ -94,7 +94,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
 
 
     ASSERT_EQ("76a91451ea27804b44d6085ce1f885ae16e74436913b9b88ac", raw.getTxOut().at(1).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(1).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(1).getScript().getScriptLength().getValue());
     ASSERT_EQ(940000, raw.getTxOut().at(1).getNValue());
 
     /**
@@ -105,7 +105,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 76a914c40fd4ceec58366f60b8b73ac6e38d69ad245b5a88ac
      */
     ASSERT_EQ("76a914c40fd4ceec58366f60b8b73ac6e38d69ad245b5a88ac", raw.getTxOut().at(2).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(2).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(2).getScript().getScriptLength().getValue());
     ASSERT_EQ(1012600, raw.getTxOut().at(2).getNValue());
 
     /**
@@ -116,7 +116,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 76a914898fd12245586a4030ae2becbe3d32028ba9dcea88ac
      */
     ASSERT_EQ("76a914898fd12245586a4030ae2becbe3d32028ba9dcea88ac", raw.getTxOut().at(3).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(3).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(3).getScript().getScriptLength().getValue());
     ASSERT_EQ(1088000, raw.getTxOut().at(3).getNValue());
 
     /**
@@ -127,7 +127,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 a9143fa5f3e2d311a9925a0f43a6af24a8203aa4c47287
      */
     ASSERT_EQ("a9143fa5f3e2d311a9925a0f43a6af24a8203aa4c47287", raw.getTxOut().at(4).getScript().getRawScriptString());
-    ASSERT_EQ(23, raw.getTxOut().at(4).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(23, raw.getTxOut().at(4).getScript().getScriptLength().getValue());
     ASSERT_EQ(1199730, raw.getTxOut().at(4).getNValue());
 
     /**
@@ -139,7 +139,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     ASSERT_EQ("76a9140dad867765f83dae4672d35f715e3376a957ee8a88ac", raw.getTxOut().at(5).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(5).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(5).getScript().getScriptLength().getValue());
     ASSERT_EQ(1250000, raw.getTxOut().at(5).getNValue());
 
     /**
@@ -150,7 +150,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 a914b92c970fac1eed7d6f2bef2848f11b8f0ab3bf0387
      */
     ASSERT_EQ("a914b92c970fac1eed7d6f2bef2848f11b8f0ab3bf0387", raw.getTxOut().at(6).getScript().getRawScriptString());
-    ASSERT_EQ(23, raw.getTxOut().at(6).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(23, raw.getTxOut().at(6).getScript().getScriptLength().getValue());
     ASSERT_EQ(1280000, raw.getTxOut().at(6).getNValue());
 
     /*
@@ -161,7 +161,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 76a91480aadad1a04336e23b4d95e9fc98cad18c5178f488ac
       */
     ASSERT_EQ("76a91480aadad1a04336e23b4d95e9fc98cad18c5178f488ac", raw.getTxOut().at(7).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(7).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(7).getScript().getScriptLength().getValue());
     ASSERT_EQ(1290000, raw.getTxOut().at(7).getNValue());
 
     /*
@@ -173,7 +173,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
     */
 
     ASSERT_EQ("76a91478c13605093a36e309c7d1c277330635114e942288ac", raw.getTxOut().at(8).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(8).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(8).getScript().getScriptLength().getValue());
     ASSERT_EQ(1326000, raw.getTxOut().at(8).getNValue());
 
     /**
@@ -185,7 +185,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     ASSERT_EQ("76a9140dad867765f83dae4672d35f715e3376a957ee8a88ac", raw.getTxOut().at(9).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(9).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(9).getScript().getScriptLength().getValue());
     ASSERT_EQ(1410000, raw.getTxOut().at(9).getNValue());
 
     /**
@@ -197,7 +197,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     ASSERT_EQ("76a91451ea27804b44d6085ce1f885ae16e74436913b9b88ac", raw.getTxOut().at(10).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(10).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(10).getScript().getScriptLength().getValue());
     ASSERT_EQ(1410000, raw.getTxOut().at(10).getNValue());
 
     /**
@@ -208,7 +208,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 76a91451ea27804b44d6085ce1f885ae16e74436913b9b88ac
      */
     ASSERT_EQ("76a91451ea27804b44d6085ce1f885ae16e74436913b9b88ac", raw.getTxOut().at(11).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(11).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(11).getScript().getScriptLength().getValue());
     ASSERT_EQ(1410000, raw.getTxOut().at(11).getNValue());
 
     /**
@@ -219,7 +219,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 a914ece573b37df3e225cacedca8bdda281ffa4821a687
      */
     ASSERT_EQ("a914ece573b37df3e225cacedca8bdda281ffa4821a687", raw.getTxOut().at(12).getScript().getRawScriptString());
-    ASSERT_EQ(23, raw.getTxOut().at(12).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(23, raw.getTxOut().at(12).getScript().getScriptLength().getValue());
     ASSERT_EQ(1410000, raw.getTxOut().at(12).getNValue());
 
     /**
@@ -230,7 +230,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 a914fee7a4f36c10be14f2fee86ede0b4e20f74b8b3587
      */
     ASSERT_EQ("a914fee7a4f36c10be14f2fee86ede0b4e20f74b8b3587", raw.getTxOut().at(13).getScript().getRawScriptString());
-    ASSERT_EQ(23, raw.getTxOut().at(13).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(23, raw.getTxOut().at(13).getScript().getScriptLength().getValue());
     ASSERT_EQ(1410000, raw.getTxOut().at(13).getNValue());
 
     /**
@@ -241,7 +241,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 76a914e3c7203bf45802c9de1d90d8960399c2dc5bf4ef88ac
      */
     ASSERT_EQ("76a914e3c7203bf45802c9de1d90d8960399c2dc5bf4ef88ac", raw.getTxOut().at(14).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(14).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(14).getScript().getScriptLength().getValue());
     ASSERT_EQ(1647000, raw.getTxOut().at(14).getNValue());
 
     /**
@@ -252,7 +252,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 a914b0bfb114c92a28db0b3d0a93815cf0e22343872987
      */
     ASSERT_EQ("a914b0bfb114c92a28db0b3d0a93815cf0e22343872987", raw.getTxOut().at(15).getScript().getRawScriptString());
-    ASSERT_EQ(23, raw.getTxOut().at(15).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(23, raw.getTxOut().at(15).getScript().getScriptLength().getValue());
     ASSERT_EQ(1647000, raw.getTxOut().at(15).getNValue());
 
     /**
@@ -264,7 +264,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     ASSERT_EQ("76a91413192ab5b60be76455e1f1539533aa1f58dc07c888ac", raw.getTxOut().at(16).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(16).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(16).getScript().getScriptLength().getValue());
     ASSERT_EQ(2250000, raw.getTxOut().at(16).getNValue());
 
     /**
@@ -276,7 +276,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     ASSERT_EQ("76a914692316b5684153f35b245f55ded4183c276df7a388ac", raw.getTxOut().at(17).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(17).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(17).getScript().getScriptLength().getValue());
     ASSERT_EQ(2273000, raw.getTxOut().at(17).getNValue());
 
     /**
@@ -288,7 +288,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     ASSERT_EQ("76a914af7d5f688b1760255f0c522fed16e7ded5ff314a88ac", raw.getTxOut().at(18).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(18).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(18).getScript().getScriptLength().getValue());
     ASSERT_EQ(2374000, raw.getTxOut().at(18).getNValue());
 
     /**
@@ -300,7 +300,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     ASSERT_EQ("76a914e7bc58ab367f021dff913c38c55894e415306f4688ac", raw.getTxOut().at(19).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(19).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(19).getScript().getScriptLength().getValue());
     ASSERT_EQ(3570000, raw.getTxOut().at(19).getNValue());
 
     /**
@@ -312,7 +312,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     ASSERT_EQ("76a914d070fdc4539046a6fcd2b1194588b56bd78148ee88ac", raw.getTxOut().at(20).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(20).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(20).getScript().getScriptLength().getValue());
     ASSERT_EQ(5232000, raw.getTxOut().at(20).getNValue());
 
     /**
@@ -324,7 +324,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     ASSERT_EQ("76a91488fce37fce66b56bf759d8b52b01c147627fabd888ac", raw.getTxOut().at(21).getScript().getRawScriptString());
-    ASSERT_EQ(25, raw.getTxOut().at(21).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(21).getScript().getScriptLength().getValue());
     ASSERT_EQ(6295000, raw.getTxOut().at(21).getNValue());
 
     /**
@@ -335,7 +335,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 76a914d5de03f5e78843e139222d68f491f25b6f5ac5b088ac
      */
     size_t index = 22;
-    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ(6951000, raw.getTxOut().at(index).getNValue());
     ASSERT_EQ("76a914d5de03f5e78843e139222d68f491f25b6f5ac5b088ac", raw.getTxOut().at(index).getScript().getRawScriptString());
 
@@ -348,7 +348,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      */
 
     index = 23;
-    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ(6979000, raw.getTxOut().at(index).getNValue());
     ASSERT_EQ("76a91451ea27804b44d6085ce1f885ae16e74436913b9b88ac", raw.getTxOut().at(index).getScript().getRawScriptString());
 
@@ -360,7 +360,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
         ScriptPubkey:	 76a9145eb9cb524c326d03d30240ddc64405e4453976ca88ac
       */
     index = 24;
-    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ(7013000, raw.getTxOut().at(index).getNValue());
     ASSERT_EQ("76a9145eb9cb524c326d03d30240ddc64405e4453976ca88ac", raw.getTxOut().at(index).getScript().getRawScriptString());
 
@@ -373,7 +373,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
       */
 
     index = 25;
-    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ(8276000, raw.getTxOut().at(index).getNValue());
     ASSERT_EQ("76a91451ea27804b44d6085ce1f885ae16e74436913b9b88ac", raw.getTxOut().at(index).getScript().getRawScriptString());
 
@@ -387,7 +387,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
       */
 
     index = 26;
-    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ(8505000, raw.getTxOut().at(index).getNValue());
     ASSERT_EQ("76a91478c13605093a36e309c7d1c277330635114e942288ac", raw.getTxOut().at(index).getScript().getRawScriptString());
 
@@ -400,7 +400,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
       */
 
     index = 27;
-    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ(15654000, raw.getTxOut().at(index).getNValue());
     ASSERT_EQ("76a91484f292a49dfd25bcd1797b6827a9a770629d359788ac", raw.getTxOut().at(index).getScript().getRawScriptString());
 
@@ -413,7 +413,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
      * */
 
     index = 28;
-    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ(21539000, raw.getTxOut().at(index).getNValue());
     ASSERT_EQ("76a91451ea27804b44d6085ce1f885ae16e74436913b9b88ac", raw.getTxOut().at(index).getScript().getRawScriptString());
 
@@ -426,7 +426,7 @@ TEST(StructureBitcoinCoreTest, test_for_analisis_structure)
     */
 
     index = 29;
-    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(25, raw.getTxOut().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ(55423000, raw.getTxOut().at(index).getNValue());
     ASSERT_EQ("76a91451ea27804b44d6085ce1f885ae16e74436913b9b88ac", raw.getTxOut().at(index).getScript().getRawScriptString());
     LOG(ERROR) << raw.toSerealizationForm();
@@ -517,7 +517,7 @@ TEST(StructureBitcoinCoreTest, test_for_structure_txs_input)
     size_t index = 0;
     ASSERT_EQ("2a27348a0320d632460c87cc6732f78b96072f498bc5df8b1d38cedbbb397456", raw.getTxIn().at(index).getOutpoint().getHash().GetHex());
     ASSERT_EQ(0, raw.getTxIn().at(index).getOutpoint().getN());
-    ASSERT_EQ(252, raw.getTxIn().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(252, raw.getTxIn().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ("0047304402204019206b38075e308633c7ce1ec0e9d82aa42da216f93d9ee0557486fd320007022070568e2f0a607cf19b05a6ca70993c8eef496aba61ddbbac7d6298c138961f430147304402201e8928d5f0d47e05e8b8c23c9196e3eff347a0acfa77ac4bd2cf0874727d7b4602206096ddb026821c66bd2d5a92e55de8d10abb6fa88b88ff7400e2ff8b431d184e014c69522102d3c6abf94e08b389bc60dc6feb4f1eefe2244fc459a3fabb08f0cecf2b7c3cdc210301b601dfcdbe32d1b9f75f9f4851c374dc6381f7da0c3fd7a6432043159eb26521039b9f33d76aecbd6fbdb7f8a1f1a498403a8bc3fc76f24000ec1b4114b9017d2553ae",
               raw.getTxIn().at(index).getScript().getRawScriptString());
      ASSERT_EQ(4294967295, raw.getTxIn().at(index).getSequences());
@@ -525,7 +525,7 @@ TEST(StructureBitcoinCoreTest, test_for_structure_txs_input)
     index = 1;
     ASSERT_EQ("b7d979000a063dade6c69fe9adcd2e6cb0da34c21c8974e9e9b73d0287524314", raw.getTxIn().at(index).getOutpoint().getHash().GetHex());
     ASSERT_EQ(1, raw.getTxIn().at(index).getOutpoint().getN());
-    ASSERT_EQ(252, raw.getTxIn().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(252, raw.getTxIn().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ("00473044022070cf7b804b37effe1025cecc278216f2093fbbbc6ae91b950b7acae44e38e2ef02200673a311b70f69e1e6276664dd002e58f38711cdb1d1ce3fd7e446beefdad3af014730440220407723e46a94f16878e50e4726e2c0aba79fbcca6f3b14d4777179c71d455f41022052a3abcb565f4ed3468c3b27d90b074c1655fa6fd062a23b3026afc7c2838ff6014c69522102d3c6abf94e08b389bc60dc6feb4f1eefe2244fc459a3fabb08f0cecf2b7c3cdc210301b601dfcdbe32d1b9f75f9f4851c374dc6381f7da0c3fd7a6432043159eb26521039b9f33d76aecbd6fbdb7f8a1f1a498403a8bc3fc76f24000ec1b4114b9017d2553ae",
               raw.getTxIn().at(index).getScript().getRawScriptString());
     ASSERT_EQ(4294967295, raw.getTxIn().at(index).getSequences());
@@ -533,7 +533,7 @@ TEST(StructureBitcoinCoreTest, test_for_structure_txs_input)
     index = 2;
     ASSERT_EQ("bc89ce3f31b649d9f5f2680654136a1a8a1414e6b8bb26f0932f492ddc0e6c38", raw.getTxIn().at(index).getOutpoint().getHash().GetHex());
     ASSERT_EQ(0, raw.getTxIn().at(index).getOutpoint().getN());
-    ASSERT_EQ(253, raw.getTxIn().at(index).getScript().getScriptLenght().getValue());
+    ASSERT_EQ(253, raw.getTxIn().at(index).getScript().getScriptLength().getValue());
     ASSERT_EQ("0047304402202b4afe04209cdb17a67a1b4881396ef44eaedad7ac663a555d2a845c809bc24e02202456bc52d49c1c5550cd4bd2db648e96352e388f0cce040792df5ca528e9a9c1014830450221008819ed1f425826ba739b49478375b4dfd1e5443503fc0d20ee67a4d904be325f022007a2f9ed0b519bdcac327d5227045d1c348b80ee7ceeb1102ef01d2560c26ead014c69522102d3c6abf94e08b389bc60dc6feb4f1eefe2244fc459a3fabb08f0cecf2b7c3cdc210301b601dfcdbe32d1b9f75f9f4851c374dc6381f7da0c3fd7a6432043159eb26521039b9f33d76aecbd6fbdb7f8a1f1a498403a8bc3fc76f24000ec1b4114b9017d2553ae",
               raw.getTxIn().at(index).getScript().getRawScriptString());
     ASSERT_EQ(4294967295, raw.getTxIn().at(index).getSequences());
@@ -621,7 +621,7 @@ TEST(StructureBitcoinCoreTest, test_for_serialization_tx_input)
     string indexHex = SerializationUtil::toSerealizeForm(input.getOutpoint().getN());
     ASSERT_EQ("00000000", indexHex);
 
-    string scripSigLenght = SerializationUtil::toSerealizeForm(input.getScript().getScriptLenght());
+    string scripSigLenght = SerializationUtil::toSerealizeForm(input.getScript().getScriptLength());
     ASSERT_EQ("fdfd00", scripSigLenght);
 }
 

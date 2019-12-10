@@ -39,8 +39,7 @@ TEST(DAOManagerGraphTest, test_dao_blk_to_graph_transaction__test_with_blk00000)
     bool result = false;
     try
     {
-      int height = 0;
-      result = dao.saveBlock(pathMockRoot + "bitcoin/block/blk00000.dat", pathMockRoot + "bitcoin/blockGraphtx/blk00000_tx.txt", height);
+      result = dao.saveBlock(pathMockRoot + "bitcoin/block/blk00000.dat", pathMockRoot + "bitcoin/blockGraphtx/blk00000_tx.txt");
     } catch (DAOException ex) {
       FAIL() << "Test falied because was do exception generated, the caused is: " << ex.what();
     }catch(BitcoinException btcEx){
@@ -65,8 +64,7 @@ TEST(DAOManagerGraphTest, test_dao_blk_to_graph_transaction__test_with_blk00032)
     bool result = false;
     try
     {
-      int height = 0;
-      result = dao.saveBlock(pathMockRoot + "bitcoin/block/bug/blk32/blk00032.dat", pathMockRoot + "bitcoin/blockGraphtx/blk00032_tx.txt", height);
+      result = dao.saveBlock(pathMockRoot + "bitcoin/block/bug/blk32/blk00032.dat", pathMockRoot + "bitcoin/blockGraphtx/blk00032_tx.txt");
     } catch (DAOException ex) {
       FAIL() << "Test falied because was do exception generated, the caused is: " << ex.what();
     }catch(BitcoinException btcEx){

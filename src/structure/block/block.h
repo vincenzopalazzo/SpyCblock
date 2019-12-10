@@ -33,8 +33,6 @@ namespace spyCBlock
 
           const vector<RawTransaction> &getRawTransactions() const;
 
-          int32_t getHeightBlock() const;
-
           void setHeightBlock(int32_t heightBlock);
 
           std::string getHashBlock() const;
@@ -68,8 +66,6 @@ namespace spyCBlock
           DVarInt numberRawTransaction;
 
           vector<RawTransaction> rawTransactions;
-
-          int32_t heightBlock = -1;
 
           string hashBlock;
 

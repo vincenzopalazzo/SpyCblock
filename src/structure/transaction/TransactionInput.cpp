@@ -19,7 +19,7 @@ void TransactionInput::decode(std::ifstream &stream)
     LOG(WARNING) << "Outopoint Hash: " << outpoint.getHash().GetHex();
     LOG(WARNING) << "Outopoint N: " << outpoint.getN();
     this->script.decode(stream);
-    LOG(INFO) << "Script Lenght" << script.getScriptLenght().getValue();
+    LOG(INFO) << "Script Length" << script.getScriptLength().getValue();
     LOG(INFO) << "Script Value" << script.toString();
     Unserialize(stream, this->sequences);
     LOG(INFO) << "Number sequences " << sequences;
@@ -33,7 +33,7 @@ string TransactionInput::toSerealizationForm() const
 {
   string hexForm = SerializationUtil::toSerealizeForm(this->outpoint.getHash());
   hexForm.append(SerializationUtil::toSerealizeForm(this->outpoint.getN()));
-  hexForm.append(SerializationUtil::toSerealizeForm(this->getScript().getScriptLenght()));
+  hexForm.append(SerializationUtil::toSerealizeForm(this->getScript().getScriptLength()));
   hexForm.append(this->script.getScriptToSerializationForm());
   hexForm.append(SerializationUtil::toSerealizeForm(this->sequences));
 
@@ -56,11 +56,11 @@ void TransactionInput::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writ
   writerJson.Key("outputTxHash");
   writerJson.String(outpoint.getHash().ToString().c_str());
 
-  writerJson.Key("aamount");
+  writerJson.Key("amount");
   writerJson.Uint(outpoint.getN());
 
-  writerJson.Key("scriptLenght");
-  writerJson.Uint64(this->getScript().getScriptLenght().getValue());
+  writerJson.Key("scriptLength");
+  writerJson.Uint64(this->getScript().getScriptLength().getValue());
 
   writerJson.Key("script");
   writerJson.String(this->script.getRawScriptString().c_str());

@@ -18,7 +18,7 @@ namespace spyCBlock
 
           const std::string &getRawScriptString() const;
 
-          const DVarInt &getScriptLenght() const;
+          const DVarInt &getScriptLength() const;
 
           std::string getScriptToSerializationForm() const;
 

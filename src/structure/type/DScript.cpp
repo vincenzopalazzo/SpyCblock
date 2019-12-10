@@ -52,7 +52,7 @@ string DScript::toString()
 }
 
 //getter and setter
-const DVarInt &DScript::getScriptLenght() const
+const DVarInt &DScript::getScriptLength() const
 {
   return scriptLenght;
 }

@@ -80,9 +80,9 @@ TEST(serealization_test, serealization_util_test_to_read_file)
   string lietEndiaConversionNumTxIn = SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0).getNumberTxIn());
   string lietEndiaConversionNumTxOut = SerializationUtil::toSerealizeForm(block->getRawTransactions().at(0).getNumberTxOut());
   string lietEndiaConversionNumScriptLenghtTxIn = SerializationUtil::toSerealizeForm(
-        block->getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght());
+        block->getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength());
   string lietEndiaConversionNumScriptLenghtTxOut = SerializationUtil::toSerealizeForm(
-        block->getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght());
+        block->getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLength());
 
   delete block.release();
 

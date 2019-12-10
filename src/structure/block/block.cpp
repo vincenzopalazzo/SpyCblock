@@ -5,6 +5,7 @@
 
 #include "block.h"
 #include "../../crypto/CryptoCore.h"
+#include "../../DefinitionMacro.h"
 
 using namespace spyCBlock;
 using namespace std;
@@ -20,12 +21,8 @@ void Block::decode(std::ifstream &stream) {
 
     LOG(INFO) << "number raw transanctions into blok whit previous hash " << this->blockHeader.getPreviousBlockHeaderHash().GetHex();
 
-    if (static_cast<int>(numberRawTransaction.getValue()) == -1) {
+    assertf(numberRawTransaction.getValue() != -1, "Error numberRaw Transaction");
 
-        LOG_IF(FATAL, (static_cast<int>(numberRawTransaction.getValue()) == -1)) << "Error numberRaw Transaction = " << numberRawTransaction.getValue();
-        //TODO segnalare errore lanciando un eccezione
-        return;
-    }
     rawTransactions.clear();
     rawTransactions.reserve(numberRawTransaction.getValue());
     for (int i = 0; i < static_cast<int>(numberRawTransaction.getValue()); i++) {
@@ -65,13 +62,10 @@ void Block::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
 {
   writerJson.StartObject();
 
-  writerJson.Key("hashBlock");
+  writerJson.Key("blockHash");
   writerJson.String(this->hashBlock.c_str());
 
-  writerJson.Key("height");
-  writerJson.Int(this->heightBlock);
-
-  writerJson.Key("magicnumber");
+  writerJson.Key("magicNumber");
   writerJson.Int(this->magicNum);
 
   writerJson.Key("blockSize");
@@ -95,16 +89,12 @@ void Block::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
 
   writerJson.EndObject();
 }
+
 //TODO generalize this method, with type of deserialization
 void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  //If the height block is equal to -1
-  //the execution is parallel and the height block is difficulte to calculate
-  if(heightBlock != -1){
-    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "height:" + to_string(this->heightBlock));
-  }else{
-    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "hashBlock:" + this->hashBlock);
-  }
+  wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "hashBlock:" + this->hashBlock);
+
 
 
   for(RawTransaction& rawTx : this->rawTransactions)
@@ -116,13 +106,8 @@ void Block::toGraphForm(ofstream &outputStream, spyCBlockRPC::WrapperInformation
 
 void Block::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  //If the height block is equal to -1
-  //the execution is parallel and the height block is difficulte to calculate
-  if(heightBlock != -1){
-    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "height:" + to_string(this->heightBlock));
-  }else{
-    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "hashBlock:" + this->hashBlock);
-  }
+
+  wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "hashBlock:" + this->hashBlock);
 
   for(RawTransaction& rawTx : this->rawTransactions)
   {
@@ -134,13 +119,8 @@ void Block::toTransactionsGraph(ofstream &outputStream, spyCBlockRPC::WrapperInf
 
 void Block::toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper)
 {
-  //If the height block is equal to -1
-  //the execution is parallel and the height block is difficulte to calculate
-  if(heightBlock != -1){
-    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "height:" + to_string(this->heightBlock));
-  }else{
-    wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "hashBlock:" + this->hashBlock);
-  }
+
+  wrapper.addInformationLink(spyCBlockRPC::WrapperInformations::TypeInsert::BLOCK, "hashBlock:" + this->hashBlock);
 
   for(RawTransaction& rawTx : this->rawTransactions)
   {
@@ -175,16 +155,6 @@ const DVarInt &Block::getNumberRawTransaction() const {
 
 const vector<RawTransaction> &Block::getRawTransactions() const {
   return rawTransactions;
-}
-
-int32_t Block::getHeightBlock() const
-{
-  return heightBlock;
-}
-
-void Block::setHeightBlock(int32_t heightBlock)
-{
-  this->heightBlock = heightBlock;
 }
 
 string Block::getHashBlock() const

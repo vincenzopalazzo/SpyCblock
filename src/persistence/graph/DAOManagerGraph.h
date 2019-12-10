@@ -13,9 +13,9 @@ namespace spyCBlock
     {
        public:
 
-           bool saveBlock(const std::string &inputPath, const std::string &outputPath, int &height) override;
+           bool saveBlock(const std::string &inputPath, const std::string &outputPath) override;
 
-           bool saveBlockCompress(const string &inputPath, const string &outputPath, int &height) override;
+           bool saveBlockCompress(const string &inputPath, const string &outputPath) override;
     };
 }
 

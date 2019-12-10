@@ -16,7 +16,7 @@ using namespace std;
 namespace fs = std::experimental::filesystem;
 using namespace chrono;
 
-bool spyCBlock::DAOManagerGraph::saveBlock(const string &inputPath, const string &outputPath, int &height)
+bool spyCBlock::DAOManagerGraph::saveBlock(const string &inputPath, const string &outputPath)
 {
   if(inputPath.empty() || outputPath.empty()){
     LOG(ERROR) << "Error, the input argument are empty";
@@ -38,10 +38,6 @@ bool spyCBlock::DAOManagerGraph::saveBlock(const string &inputPath, const string
             while(!loadFileDat.eof())
             {
               block.decode(loadFileDat);
-              if(height != -1){
-                block.setHeightBlock(height);
-                height++;
-              }
               spyCBlockRPC::WrapperInformations wrapper;
               wrapper.setDelimitator(ConfiguratorSingleton::getInstance().getDelimitatorLinkInformations());
               block.toGraphForm(saveBlkToGraph, wrapper);
@@ -63,7 +59,7 @@ bool spyCBlock::DAOManagerGraph::saveBlock(const string &inputPath, const string
   throw DAOException("The file input not exist " + inputPath);
 }
 
-bool spyCBlock::DAOManagerGraph::saveBlockCompress(const string &inputPath, const string &outputPath, int &height)
+bool spyCBlock::DAOManagerGraph::saveBlockCompress(const string &inputPath, const string &outputPath)
 {
   if(inputPath.empty() || outputPath.empty()){
     LOG(ERROR) << "Error, the input argument are empty";
@@ -86,10 +82,6 @@ bool spyCBlock::DAOManagerGraph::saveBlockCompress(const string &inputPath, cons
             while(!loadFileDat.eof())
             {
               block.decode(loadFileDat);
-              if(height != -1){
-                block.setHeightBlock(height);
-                height++;
-              }
               spyCBlockRPC::WrapperInformations wrapper;
               wrapper.setDelimitator(ConfiguratorSingleton::getInstance().getDelimitatorLinkInformations());
               block.toCompressedTransactionsGraph(saveBlk, wrapper);

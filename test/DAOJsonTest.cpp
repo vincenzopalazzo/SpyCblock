@@ -39,8 +39,7 @@ TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_b
 
     DAOJson dao;
     try {
-        int height = 0;
-        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/blk00000.dat", pathMockRoot + "bitcoin/blockJson/blk00000.json", height);
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/blk00000.dat", pathMockRoot + "bitcoin/blockJson/blk00000.json");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {
@@ -60,8 +59,7 @@ TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_b
 
     DAOJson dao;
     try {
-        int height = 0;
-        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00975.dat", pathMockRoot + "bitcoin/blockJson/blk00975.json", height);
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00975.dat", pathMockRoot + "bitcoin/blockJson/blk00975.json");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {
@@ -81,8 +79,7 @@ TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_b
 
     DAOJson dao;
     try {
-        int height = 0;
-        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00974.dat", pathMockRoot + "bitcoin/blockJson/blk00974.json", height);
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00974.dat", pathMockRoot + "bitcoin/blockJson/blk00974.json");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {
@@ -102,8 +99,7 @@ TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_b
 
     DAOJson dao;
     try {
-        int height = 0;
-        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00032.dat", pathMockRoot + "bitcoin/blockJson/blk00032.json", height);
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00032.dat", pathMockRoot + "bitcoin/blockJson/blk00032.json");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {
@@ -123,8 +119,7 @@ TEST(DAOJsonTest, test_dao_blk_to_json_blockchain_give_file_data_dao_json_test_b
 
     DAOJson dao;
     try {
-        int height = 0;
-        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00053.dat", pathMockRoot + "bitcoin/blockJson/blk00053.json", height);
+        bool result = dao.saveBlock(pathMockRoot + "bitcoin/block/serialization_test/blk00053.dat", pathMockRoot + "bitcoin/blockJson/blk00053.json");
         ASSERT_TRUE(result); // are inclusind left block in the file blk
     }
     catch (DAOException exception) {

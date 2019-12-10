@@ -306,16 +306,16 @@ TEST(hash_test, first_test_comparable_transaction_value_readed)
                 block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getN()), "ffffffff");
 
     EXPECT_EQ(SerializationUtil::toSerealizeForm(
-                block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght()), "4d");
+                block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength()), "4d");
     EXPECT_EQ(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getRawScriptString(),
               "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73");
     EXPECT_EQ(SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxIn().at(0).getSequences()), "ffffffff");
     EXPECT_EQ(SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getNumberTxOut()), "01");
     EXPECT_EQ(SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxOut().at(0).getNValue()), "00f2052a01000000");
-    EXPECT_EQ(SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght()), "43");
+    EXPECT_EQ(SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLength()), "43");
     EXPECT_EQ(block.getRawTransactions().at(0).getTxOut().at(0)
                    .getScript().getRawScriptString().substr(0, block.getRawTransactions().at(0).getTxOut().at(0)
-                                                                     .getScript().getScriptLenght().getValue() * 2),
+                                                                     .getScript().getScriptLength().getValue() * 2),
               "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac");
     EXPECT_EQ(SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getLockTime()), "00000000");
 }
@@ -341,16 +341,16 @@ TEST(hash_test, first_test_comparable_transaction_hash_value_readed)
     hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getNumberTxIn());
     hexForm += block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getHash().GetHex();
     hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxIn().at(0).getOutpoint().getN());
-    hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght());
+    hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength());
     hexForm += block.getRawTransactions().at(0).getTxIn().at(0)
-                    .getScript().getRawScriptString().substr(0, block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLenght().getValue() * 2);
+                    .getScript().getRawScriptString().substr(0, block.getRawTransactions().at(0).getTxIn().at(0).getScript().getScriptLength().getValue() * 2);
     hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxIn().at(0).getSequences());
     hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getNumberTxOut());
     hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxOut().at(0).getNValue());
-    hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLenght());
+    hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getTxOut().at(0).getScript().getScriptLength());
     hexForm += block.getRawTransactions().at(0).getTxOut().at(0)
                     .getScript().getRawScriptString().substr(0, block.getRawTransactions().at(0).getTxOut().at(0)
-                                                                      .getScript().getScriptLenght().getValue() * 2);
+                                                                      .getScript().getScriptLength().getValue() * 2);
     hexForm += SerializationUtil::toSerealizeForm(block.getRawTransactions().at(0).getLockTime());
 
     vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(hexForm);

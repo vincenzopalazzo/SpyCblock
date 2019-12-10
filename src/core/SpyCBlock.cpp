@@ -37,11 +37,12 @@ void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore, const str
 
   bool logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
   progressbar *progress = NULL;
+
   if(logLevel < 3){
       progress = progressbar_new("Progress", fileCount);
   }
 
-  int height = 0;
+
   string pathInput;
   bool isBitcoinDirectory = false;
   string fileExstension = exstensionFile(dao);
@@ -63,9 +64,9 @@ void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore, const str
         string fileNameOutput = getNameFile(pathInput);
         string pathOutput = destinationBitcoinCoreJson + fileNameOutput + fileExstension;
         if(compressionForm && !std::is_same<T, DAOJson>::value){
-            dao.saveBlockCompress(pathInput, pathOutput, height);
+            dao.saveBlockCompress(pathInput, pathOutput);
         }else{
-            dao.saveBlock(pathInput, pathOutput, height);
+            dao.saveBlock(pathInput, pathOutput);
         }
         if(logLevel < 3 && progress != NULL){
             progressbar_inc(progress);
@@ -131,9 +132,9 @@ void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, c
       string pathOutput = destinationBitcoinCoreJson + fileNameOutput + fileExstension;
       LOG(INFO) << pathOutput;
       if(compressionForm && !std::is_same<T, DAOJson>::value){
-          dao.saveBlockCompress(pathInput, pathOutput, height);
+          dao.saveBlockCompress(pathInput, pathOutput);
       }else{
-          dao.saveBlock(pathInput, pathOutput, height);
+          dao.saveBlock(pathInput, pathOutput);
       }
       isBitcoinDirectory = true;
       if(logLevel < 3 && progress != NULL){
@@ -184,7 +185,7 @@ void SpyCBlock::convertBlkIntoJson(string locationBitcoinCore, string destinatio
       DAOJson dao;
 
       string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".json";
-      dao.saveBlock(pathInput, pathOutput, height);
+      dao.saveBlock(pathInput, pathOutput);
       currentFile++;
       pathInput = nameFileSearched(locationBitcoinCore, currentFile);
       isBitcoinDirectory = true;
@@ -220,7 +221,7 @@ void SpyCBlock::convertBlkIntoGraphForm(string locationBitcoinCore, string desti
       DAOTransactionsGraph dao;
 
       string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
-      dao.saveBlock(pathInput, pathOutput, height);
+      dao.saveBlock(pathInput, pathOutput);
       currentFile++;
       pathInput = nameFileSearched(locationBitcoinCore, currentFile);
       isBitcoinDirectory = true;
@@ -256,7 +257,7 @@ void SpyCBlock::convertBlkIntoGraphFormPubKey(string locationBitcoinCore, string
        // DAOTransactionsGraph dao;
 
         string pathOutput = destinationBitcoinCoreJson + fileNameOutput + ".txt";
-        dao.saveBlock(pathInput, pathOutput, height);
+        dao.saveBlock(pathInput, pathOutput);
         currentFile++;
         pathInput = nameFileSearched(locationBitcoinCore, currentFile);
         isBitcoinDirectory = true;
