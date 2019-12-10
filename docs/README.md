@@ -1,13 +1,13 @@
-# :mortar_board: SpyCBlock :microscope:
+# SpyCBlock
 
 SpyCBlock is an accademics software for analiaze the blk file of Bitcoin blockchain Mainet.
 This is an explerimental version and it want to demostration that is possible work with only file blk.
 
 SpyCBlo is a simple parser bitcoin blk file, with this parser is possible do some serialization, how:
 
-- Serialization Transaction Graph (:heavy_check_mark:);
-- Serialization complete Blockchain to JSON (:heavy_check_mark:);
-- Serialization Address Graph (:warning:).
+- Serialization Transaction Graph;
+- Serialization complete Blockchain to JSON;
+- Serialization Address Graph.
 
 For reduce the space of serialization Transaction graph, is possible use the library [ZLib](https://github.com/madler/zlib) for compress the information; with this code is possible uncompressed the data.
 
