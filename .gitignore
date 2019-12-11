@@ -5,6 +5,7 @@ test/file_test/*.*
 
 #build dir
 build
+bin
 
 #file costruction ide
 CMakeFiles/

@@ -128,7 +128,7 @@ string SerializationUtil::toSerealizeForm(DVarInt valueVarInt)
   }else{
       int64_t value64 = static_cast<int64_t>(valueVarInt.getValue());
       int8_t tmp = static_cast<int8_t>(255);
-      return  SerializationUtil::toSerealizeForm(tmp) + SerializationUtil::toSerealizeForm(value64);
+      return SerializationUtil::toSerealizeForm(tmp) + SerializationUtil::toSerealizeForm(value64);
   }
   LOG_IF(ERROR, true) << "The dimension not corret, There is no suitable type";
 }
