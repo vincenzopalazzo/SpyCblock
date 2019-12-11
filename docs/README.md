@@ -1,15 +1,15 @@
 # SpyCBlock
 
-SpyCBlock is an accademics software for analiaze the blk file of Bitcoin blockchain Mainet.
-This is an explerimental version and it want to demostration that is possible work with only file blk.
+SpyCBlock is an accademics software that analyses the blk file of Bitcoin blockchain Mainet.
+This is an explerimental version and it wants  to demostrate that it is possible to work with only file blk.
 
-SpyCBlo is a simple parser bitcoin blk file, with this parser is possible do some serialization, how:
+SpyCBlock is a simple parser bitcoin blk file, with this parser it is possible to do some serialization, like:
 
 - Serialization Transaction Graph;
 - Serialization complete Blockchain to JSON;
 - Serialization Address Graph.
 
-For reduce the space of serialization Transaction graph, is possible use the library [ZLib](https://github.com/madler/zlib) for compress the information; with this code is possible uncompressed the data.
+To reduce the space of serialization Transaction graph, it is possible to use the library [ZLib](https://github.com/madler/zlib) to compress the information; with this code it is possible to uncompress the data.
 
 ```c++
 void decompressFileWithZLib()
@@ -45,14 +45,14 @@ void decompressFileWithZLib()
 }
 ```
 
-Is possible execute the parser with the library [OpenMP](https://www.openmp.org/) for execution data with multi-core an this is a simple velocity benchmark.
+It Is possible to execute the parser with the library [OpenMP](https://www.openmp.org/) for execution data with multi-core and this is a simple velocity benchmark.
 
-_PS: for the moment the parser use all core of the CPU is the multicore propriety is enabled._
+_PS: at the moment the parser uses all core of the CPU is the multicore propriety is enabled._
 
 ![benchmark_image](imgs/benchmark.png)
 
 
-The graph of transactions form is describe [here](#todo) and this is an example for visualize this with Web app, [this is](https://github.com/vincenzopalazzo/SpyJSBlock.react) an simple demo.
+The graph of transactions form is describe [here](#todo) and this is an example to visualise this with Web app, [this is](https://github.com/vincenzopalazzo/SpyJSBlock.react) a simple demo.
 
 _The screenshot of transaction graph_
 
@@ -64,8 +64,8 @@ _The screenshot of address graph subdivise to class (with luvain algorithm)_
 
 ## JSON version Bitcoin Blockchain
 
-Have the version of Bitcoin blockchain to JSON is parwerfool because is possible work on the JSON format, With this is possible create easy analisis on Bitcoin network.
+Having the version of Bitcoin blockchain to JSON is powerful because it is possible to work on the JSON format, With this is possible to create easy analysis on Bitcoin network.
 
-An example: I have create a simple analisis with [AnalytcsPyBlock](https://github.com/vincenzopalazzo/AnalyticsPyBlock) to get information from type of script utilized in the Bitcoin blockchain; this is the result and [here](https://vincenzopalazzo.github.io/AnalyticsPyBlock/) is avaible the web version
+An example: I created a simple analysis with [AnalytcsPyBlock](https://github.com/vincenzopalazzo/AnalyticsPyBlock) to get informations from type of script used in the Bitcoin blockchain; this is the result and [here](https://vincenzopalazzo.github.io/AnalyticsPyBlock/) is avaible the web version.
 
 ![analisis_script](imgs/result-global.png)
