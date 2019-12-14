@@ -1,3 +1,4 @@
+![GitHub](https://img.shields.io/github/license/vincenzopalazzo/SpyCblock?color=%23ffab00&style=flat-square)
 # <p align=center> :mortar_board: SpyCBlock :microscope: </p>
 
 SpyCBlock is an accademics software that analyses the blk file of Bitcoin blockchain Mainet.
@@ -70,3 +71,7 @@ Having the version of Bitcoin blockchain to JSON is powerful because it is possi
 An example: I created a simple analysis with [AnalytcsPyBlock](https://github.com/vincenzopalazzo/AnalyticsPyBlock) to get informations from type of script used in the Bitcoin blockchain; this is the result and [here](https://vincenzopalazzo.github.io/AnalyticsPyBlock/) is avaible the web version.
 
 ![analisis_script](docs/imgs/result-global.png)
+
+## IRC channels
+
+- IRC dev channel: _#spycblock-dev_

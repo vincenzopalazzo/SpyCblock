@@ -18,7 +18,7 @@ using namespace cppproperties;
 ConfiguratorSingleton::ConfiguratorSingleton()
 {
   string pathConfiguration = getRootPath() + PATH_FILE;
-  LOG(INFO) << "Path congiration file is: " << pathConfiguration;
+  LOG(INFO) << "Path configuration file is: " << pathConfiguration;
   configuration = PropertiesParser::Read(pathConfiguration);
   obligatoryVariable();
 }
