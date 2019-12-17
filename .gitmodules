@@ -10,6 +10,3 @@
 [submodule "include/progressbar"]
 	path = include/progressbar
 	url = https://github.com/vincenzopalazzo/progressbar.git
-[submodule "include/rapidjson"]
-	path = include/rapidjson
-	url = https://github.com/Tencent/rapidjson.git
