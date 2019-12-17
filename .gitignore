@@ -24,3 +24,6 @@ build-benchmark-Desktop-Release/
 CMakeLists.txt.user
 
 build-test-Desktop-Debug/
+
+#bin 
+*.tar.gz
