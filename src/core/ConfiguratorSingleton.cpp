@@ -6,7 +6,7 @@
 #include <iostream>
 
 #include <glog/logging.h>
-#include "../include/PropertiesParser.h"
+#include "../../include/cpp-properties/include/PropertiesParser.h"
 
 #include "ConfiguratorSingleton.h"
 #include "../DefinitionMacro.h"

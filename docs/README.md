@@ -69,3 +69,5 @@ Having the version of Bitcoin blockchain to JSON is powerful because it is possi
 An example: I created a simple analysis with [AnalytcsPyBlock](https://github.com/vincenzopalazzo/AnalyticsPyBlock) to get informations from type of script used in the Bitcoin blockchain; this is the result and [here](https://vincenzopalazzo.github.io/AnalyticsPyBlock/) is avaible the web version.
 
 ![analisis_script](imgs/result-global.png)
+
+## [Install SpyCBlock](install.md)

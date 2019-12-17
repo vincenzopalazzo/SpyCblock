@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <assert.h>
 
-#include "../include/Properties.h"
+#include "../../include/cpp-properties/include/Properties.h"
 
 namespace spyCBlock {
 
