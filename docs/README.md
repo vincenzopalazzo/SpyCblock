@@ -70,4 +70,6 @@ An example: I created a simple analysis with [AnalytcsPyBlock](https://github.co
 
 ![analisis_script](imgs/result-global.png)
 
-## [Install SpyCBlock](install.md)
+## Build SpyCBlock
+
+Follow the [link](install.md)

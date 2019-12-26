@@ -64,7 +64,7 @@ _The screenshot of address graph subdivise to class (with luvain algorithm)_
 
 ![address_graph](docs/imgs/address_graph.png)
 
-## JSON version Bitcoin Blockchain
+## <p align=center> :star: JSON version Bitcoin Blockchain :octocat: </p>
 
 Having the version of Bitcoin blockchain to JSON is powerful because it is possible to work on the JSON format, With this is possible to create easy analysis on Bitcoin network.
 
@@ -72,6 +72,22 @@ An example: I created a simple analysis with [AnalytcsPyBlock](https://github.co
 
 ![analisis_script](docs/imgs/result-global.png)
 
-## IRC channels
+## <p align=center> :collision: Build SpyCBlock :octocat: </p>
 
-- IRC dev channel: _#spycblock-dev_
+Following this [guide](docs/install.md)
+
+## <p align=center> :running: Configure SpyCBlock :octocat: </p>
+
+Following this [guide](#TODO)
+
+## <p align=center> :speech_balloon: IRC channels :octocat: </p>
+
+ - IRC dev channel: _#spycblock-dev_ :neckbeard:
+
+## <p align=center> :beer: Buy me a beer :beer: </p>
+
+<p align=center> :beer: 39juEyTGSNfD9JHCZdQKAjkzC3yiudce7b :beer: </p>
+
+<p align=center>
+  <img src="https://vincenzopalazzo.github.io/material-ui-swing-donations/page/vincenzopalazzo/images/id_bitcoin.png"/>
+</p>
