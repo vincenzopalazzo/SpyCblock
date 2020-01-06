@@ -74,11 +74,11 @@ An example: I created a simple analysis with [AnalytcsPyBlock](https://github.co
 
 ## <p align=center> :collision: Build SpyCBlock :octocat: </p>
 
-Following this [guide](docs/install.md)
+Follow this [guide](docs/install.md)
 
 ## <p align=center> :running: Configure SpyCBlock :octocat: </p>
 
-Following this [guide](#TODO)
+Follow this [guide](#TODO)
 
 ## <p align=center> :speech_balloon: IRC channels :octocat: </p>
 

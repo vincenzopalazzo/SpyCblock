@@ -13,7 +13,7 @@ Inside the directory **installer** exist some script for different type system b
 
 - **compile.sh**: This script is for the first operation build, it will call the dependences.sh and update-submodule.sh; compile.sh create the new directory inside the root project called **build**;
 - **compile-without-dependence.sh**: this script suppose that the dependencies are installed and it was created the build directory; when running the script you create the executable with the executable;
-- **compile-test.sh**: this script supposes that the dependences are install corrected and it will create the test inside the directory **test/build/**. For run the test you have the need to the directory test structure, you can download it [here](#todo) or if you want to use the onionShare you can download it [here](#todo);
+- **compile-test.sh**: this script supposes that the dependences are install corrected and it will create the test inside the directory **test/build/**. For run the test you have the need to the directory test structure, you can download it [here](https://drive.google.com/file/d/1Yh708tte3R0HtwoGXqy8szXk6nOP4Hrq/view?usp=sharing) or if you want to use the onionShare you can download it [here](#todo);
 - **dependences.sh**: You can use this script to install the dependence, if it doesn't work see [here](#todo) to install dependence manually
 - **update-submodule.sh**: you can use this script for initialized the git submodules.
 
@@ -27,7 +27,7 @@ If you want recompiling only the binary you can run the script `./compile-withou
 
 ## Build SpyCblock tests for scripts
 
-If you want to compile the SpyCblock test you can run the `./compile.sh` and if it ran without error you can run also the command `./compile-test.sh`; if the compile-test.sh run without error you have needed the structure of the directory for the test, you can find it [here](#TODO) or on [OnionShare](#TODO)
+If you want to compile the SpyCblock test you can run the `./compile.sh` and if it ran without error you can run also the command `./compile-test.sh`; if the compile-test.sh run without error you have needed the structure of the directory for the test, you can find it [here](https://drive.google.com/file/d/1Yh708tte3R0HtwoGXqy8szXk6nOP4Hrq/view?usp=sharing) or on [OnionShare](#TODO)
 
 After this, you can jump to the [configure section](#TODO)
 
