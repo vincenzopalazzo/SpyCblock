@@ -37,7 +37,7 @@ If the script doesn't work and you can use the console for installing it (**The 
 
 ##  Dependencies for the develop
 
-- `sudo get update && apt-get install build-essential -y`
+- `sudo apt-get update && sudo apt-get install build-essential -y`
 - `sudo apt-get install zlib1g-dev -y`
 - `sudo apt-get install libncurses-dev -y`
 - `sudo apt install cmake -y`
