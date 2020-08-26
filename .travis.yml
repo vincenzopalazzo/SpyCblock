@@ -3,6 +3,8 @@ dist: bionic
 language: cpp
 compiler: gcc
 
+notifications:
+  email: false
 git:
   submodules: false
 addons:
@@ -12,7 +14,6 @@ addons:
     packages:
       - gcc-6
       - g++-6
-    
 before_script: cd installer
 script:
   - export CC=gcc-7
