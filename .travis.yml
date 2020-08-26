@@ -1,8 +1,10 @@
-dist: trusty
+dist: bionic
 
 language: cpp
 compiler: gcc
 
+git:
+  submodules: false
 addons:
   apt:
     sources:
@@ -10,7 +12,9 @@ addons:
     packages:
       - gcc-6
       - g++-6
-
+    
+before_script: cd installer
 script:
   - export CC=gcc-7
   - export CXX=g++-7
+  - bash compile.sh
