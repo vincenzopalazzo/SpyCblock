@@ -12,6 +12,9 @@ find_library(bitcoinapi 0.3 REQUIRED)
 #ZLIB
 find_package(ZLIB)
 
+#levelbd
+find_package(leveldb)
+
 find_package(OpenMP)
 
 find_package(Curses REQUIRED)
@@ -91,6 +94,8 @@ target_link_libraries(${PROJECT_NAME}  ${ZLIB_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_CXX)
 
 target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
+
+target_link_libraries(${PROJECT_NAME} leveldb)
 
 #todo test this
 target_include_directories(${PROJECT_NAME} PUBLIC include/rapidjson/include)
