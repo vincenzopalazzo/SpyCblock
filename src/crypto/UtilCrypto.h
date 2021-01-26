@@ -13,9 +13,8 @@ using namespace std;
 
 namespace spyCBlock {
 
-    class UtilCrypto
-    {
-     public:
+    class UtilCrypto {
+    public:
         static vector<unsigned char> ToHexIntoVectorByte(string &hexData);
     };
 

@@ -9,24 +9,20 @@
 
 using namespace std;
 
-namespace spyCBlock
-{
-    class CryptoSingleton
-    {
-        public:
+namespace spyCBlock {
+    class CryptoSingleton {
+    public:
 
-          static CryptoSingleton& getIstance(){
+        static CryptoSingleton &getIstance() {
+            static CryptoSingleton SINGLETON;
+            return SINGLETON;
+        }
 
-              static CryptoSingleton SINGLETON;
+        string getHash256(string baseHash);
 
-              return SINGLETON;
-          }
+    private:
 
-          string getHash256(string baseHash);
-
-        private:
-
-          CryptoSingleton(){}
+        CryptoSingleton() {}
     };
 }
 

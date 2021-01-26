@@ -11,7 +11,7 @@
 #include "../src/util/uint256.h"
 #include "../src/util/strencodings.h"
 
-#include "../src/structure/block/block.h"
+#include "../src/structure/block/Block.h"
 #include "../src/persistence/IDAOBlockchain.h"
 #include "../src/persistence/DAOException.h"
 #include "../src/core/ConfiguratorSingleton.h"

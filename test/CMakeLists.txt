@@ -44,8 +44,8 @@ add_executable(
         ../src/util/strencodings.cpp
         ../src/util/prevector.cpp
 
-        ../src/structure/block/block.cpp
-        ../src/structure/block/blockHeader.cpp
+        ../src/structure/block/Block.cpp
+        ../src/structure/block/BlockHeader.cpp
         ../src/structure/transaction/RawTransaction.cpp
         ../src/structure/transaction/TransactionOutput.cpp
         ../src/structure/transaction/TransactionInput.cpp
@@ -67,7 +67,7 @@ add_executable(
         ../src/crypto/CryptoCore.cpp
 
         ../src/core/ConfiguratorSingleton.cpp
-        
+
         #cpp-properties file include
         ../include/cpp-properties/src/Properties.cpp
         ../include/cpp-properties/src/PropertiesParser.cpp

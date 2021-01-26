@@ -8,7 +8,7 @@
 #include <rapidjson/ostreamwrapper.h>
 #include <rapidjson/writer.h>
 
-#include "../src/structure/block/block.h"
+#include "../src/structure/block/Block.h"
 #include "../src/persistence/DAOException.h"
 #include "../src/core/ConfiguratorSingleton.h"
 

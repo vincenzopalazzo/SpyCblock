@@ -1,5 +1,6 @@
-//@author https://github.com/vincenzopalazzo
-
+// Copyright (c) 2018-2021Vincenzo Palazzo vincenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
 #include <cstdint>
 #include <fstream>
 #include <iostream>
@@ -8,14 +9,13 @@
 #include <locale>
 #include <cmath>
 
-#include "blockHeader.h"
+#include "BlockHeader.h"
 #include "../../persistence/SerializationUtil.h"
 
 using namespace spyCBlock;
 using namespace std;
 
-void BlockHeader::decode(std::ifstream &stream)
-{
+void BlockHeader::decode(std::ifstream &stream) {
     Unserialize(stream, version);
     LOG(INFO) << "Version block header readed: " << version;
     this->previousBlockHeaderHash.Unserialize(stream);
@@ -30,45 +30,42 @@ void BlockHeader::decode(std::ifstream &stream)
     LOG(INFO) << "Nonce block readed: " << nonce;
 }
 
-string BlockHeader::toSerealizationForm()
-{
-  string hexForm = SerializationUtil::toSerealizeForm(this->version);
-  hexForm += SerializationUtil::toSerealizeForm(this->getPreviousBlockHeaderHash());
-  hexForm += SerializationUtil::toSerealizeForm(this->getMerkleRoot());
-  hexForm += SerializationUtil::toSerealizeForm(this->time);
-  hexForm += SerializationUtil::toSerealizeForm(this->nBits);
-  hexForm += SerializationUtil::toSerealizeForm(this->nonce);
-  return hexForm;
+string BlockHeader::toSerealizationForm() {
+    string hexForm = SerializationUtil::toSerealizeForm(this->version);
+    hexForm += SerializationUtil::toSerealizeForm(this->getPreviousBlockHeaderHash());
+    hexForm += SerializationUtil::toSerealizeForm(this->getMerkleRoot());
+    hexForm += SerializationUtil::toSerealizeForm(this->time);
+    hexForm += SerializationUtil::toSerealizeForm(this->nBits);
+    hexForm += SerializationUtil::toSerealizeForm(this->nonce);
+    return hexForm;
 }
 
-void BlockHeader::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson)
-{
-  writerJson.StartObject();
+void BlockHeader::toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson) {
+    writerJson.StartObject();
 
-  writerJson.Key("version");
-  writerJson.Int(this->version);
+    writerJson.Key("version");
+    writerJson.Int(this->version);
 
-  writerJson.Key("previusBlockHeaderHash");
-  writerJson.String(this->previousBlockHeaderHash.ToString().c_str());
+    writerJson.Key("previusBlockHeaderHash");
+    writerJson.String(this->previousBlockHeaderHash.ToString().c_str());
 
-  writerJson.Key("markleRoot");
-  writerJson.String(this->merkleRoot.ToString().c_str());
+    writerJson.Key("markleRoot");
+    writerJson.String(this->merkleRoot.ToString().c_str());
 
-  writerJson.Key("time");
-  writerJson.Int(this->time);
+    writerJson.Key("time");
+    writerJson.Int(this->time);
 
-  writerJson.Key("nBits");
-  writerJson.Uint(this->nBits);
+    writerJson.Key("nBits");
+    writerJson.Uint(this->nBits);
 
-  writerJson.Key("nonce");
-  writerJson.Uint(this->nonce);
+    writerJson.Key("nonce");
+    writerJson.Uint(this->nonce);
 
-  writerJson.EndObject();
+    writerJson.EndObject();
 }
 
-string BlockHeader::toString()
-{
-    string stringForm =  "---------- Block Header ---------- \n";
+string BlockHeader::toString() {
+    string stringForm = "---------- Block Header ---------- \n";
     stringForm += "Version: ";
     stringForm += to_string(version);
     stringForm += "\n";
@@ -89,34 +86,29 @@ string BlockHeader::toString()
     return stringForm;
 }
 
-string BlockHeader::convertTimeStamp()
-{
+string BlockHeader::convertTimeStamp() {
     char data[30];
     time_t timeToValue = time;
     tm *tmTime = gmtime(&timeToValue);
-    strftime (data,30,"%F %T", tmTime);
+    strftime(data, 30, "%F %T", tmTime);
     string dataString = string(data);
     return dataString;
 }
 
 //Getter and Setter
-int32_t BlockHeader::getVersion() const
-{
+int32_t BlockHeader::getVersion() const {
     return version;
 }
 
-uint32_t BlockHeader::getTime() const
-{
+uint32_t BlockHeader::getTime() const {
     return static_cast<const uint32_t>(time);
 }
 
-uint32_t BlockHeader::getNBits() const
-{
+uint32_t BlockHeader::getNBits() const {
     return nBits;
 }
 
-uint32_t BlockHeader::getNonce() const
-{
+uint32_t BlockHeader::getNonce() const {
     return nonce;
 }
 
@@ -128,8 +120,7 @@ const uint256 &BlockHeader::getMerkleRoot() const {
     return merkleRoot;
 }
 
-bool BlockHeader::operator==(const BlockHeader &rhs) const
-{
+bool BlockHeader::operator==(const BlockHeader &rhs) const {
     return version == rhs.version &&
            previousBlockHeaderHash == rhs.previousBlockHeaderHash &&
            merkleRoot == rhs.merkleRoot &&
@@ -138,8 +129,7 @@ bool BlockHeader::operator==(const BlockHeader &rhs) const
            nonce == rhs.nonce;
 }
 
-bool BlockHeader::operator!=(const BlockHeader &rhs) const
-{
+bool BlockHeader::operator!=(const BlockHeader &rhs) const {
     return !(rhs == *this);
 }
 

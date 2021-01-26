@@ -1,3 +1,6 @@
+// Copyright (c) 2018-2021Vincenzo Palazzo vincenzopalazzodev@gmail.com
+// Distributed under the Apache License Version 2.0 software license,
+// see https://www.apache.org/licenses/LICENSE-2.0.txt
 #ifndef PARSINGBLOCKCHAIN_BLOCKHEADER_H
 #define PARSINGBLOCKCHAIN_BLOCKHEADER_H
 
@@ -7,11 +10,8 @@
 #include "../../util/uint256.h"
 #include "../../util/serialize.h"
 
-//@author https://github.com/vincenzopalazzo
-namespace spyCBlock
-{
-  class BlockHeader
-  {
+namespace spyCBlock {
+    class BlockHeader {
     private:
 
         int32_t version;
@@ -30,7 +30,7 @@ namespace spyCBlock
 
     public:
 
-        int32_t getVersion() const ;
+        int32_t getVersion() const;
 
         uint32_t getTime() const;
 
@@ -38,9 +38,9 @@ namespace spyCBlock
 
         uint32_t getNonce() const;
 
-        const uint256& getPreviousBlockHeaderHash() const;
+        const uint256 &getPreviousBlockHeaderHash() const;
 
-        const uint256& getMerkleRoot() const;
+        const uint256 &getMerkleRoot() const;
 
         bool operator==(const BlockHeader &rhs) const;
 
@@ -54,7 +54,7 @@ namespace spyCBlock
 
         void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 
-  };
+    };
 }
 
 #endif //PARSINGBLOCKCHAIN_BLOCKHEADER_H

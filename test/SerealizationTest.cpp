@@ -10,7 +10,7 @@
 
 #include "../src/util/strencodings.h"
 
-#include "../src/structure/block/block.h"
+#include "../src/structure/block/Block.h"
 #include "../src/core/ConfiguratorSingleton.h"
 
 using namespace spyCBlock;

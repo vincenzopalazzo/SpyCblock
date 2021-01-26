@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Copyright (c) 2018-2021Vincenzo Palazzo vincenzopalazzodev@gmail.com
 // Distributed under the Apache License Version 2.0 software license,
 // see https://www.apache.org/licenses/LICENSE-2.0.txt
 
@@ -10,32 +10,30 @@
 
 #include "DVarInt.h"
 
-namespace spyCBlock
-{
-    class DScript
-    {
-      public:
+namespace spyCBlock {
+    class DScript {
+    public:
 
-          const std::string &getRawScriptString() const;
+        const std::string &getRawScriptString() const;
 
-          const DVarInt &getScriptLength() const;
+        const DVarInt &getScriptLength() const;
 
-          std::string getScriptToSerializationForm() const;
+        std::string getScriptToSerializationForm() const;
 
-          std::string toString();
+        std::string toString();
 
-          const std::string &getScriptString() const;
+        const std::string &getScriptString() const;
 
-          void decode(std::ifstream &stream);
+        void decode(std::ifstream &stream);
 
-      private:
+    private:
 
         DVarInt scriptLenght;
 
         std::string scriptString;
 
         std::string rawScriptString;
-      };
+    };
 }
 
 

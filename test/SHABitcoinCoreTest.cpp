@@ -21,7 +21,7 @@
 #include "../include/bitcoin-cryptography-library/cpp/TestHelper.hpp"
 
 #include "../src/crypto/UtilCrypto.h"
-#include "../src/structure/block/block.h"
+#include "../src/structure/block/Block.h"
 #include "../src/crypto/CryptoCore.h"
 #include "../src/core/ConfiguratorSingleton.h"
 

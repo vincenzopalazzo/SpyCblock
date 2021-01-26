@@ -6,7 +6,7 @@
 #include <gtest/gtest.h>
 #include <utility>
 
-#include "../src/structure/block/block.h"
+#include "../src/structure/block/Block.h"
 #include "../src/persistence/json/DAOJson.h"
 #include "../src/persistence/DAOException.h"
 #include "../src/core/ConfiguratorSingleton.h"

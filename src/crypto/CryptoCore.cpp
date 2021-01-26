@@ -12,15 +12,14 @@
 
 using namespace spyCBlock;
 
-string CryptoSingleton::getHash256(string baseHash)
-{
-  assertf(baseHash.length() > 0, "Argument function getHash256 of CryptoSingleton is not valid");
+string CryptoSingleton::getHash256(string baseHash) {
+    assertf(baseHash.length() > 0, "Argument function getHash256 of CryptoSingleton is not valid");
 
-  LOG(INFO) << "The baseHash is " << baseHash;
+    LOG(INFO) << "The baseHash is " << baseHash;
 
-  vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(baseHash);
-  Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
+    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(baseHash);
+    Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
-  return shaHash.ToStringForProtocol();
+    return shaHash.ToStringForProtocol();
 }
 

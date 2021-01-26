@@ -9,7 +9,7 @@
 #include <bitcoinapi/bitcoinapi.h>
 #include <bitcoinapi/exception.h>
 
-#include "../src/structure/block/block.h"
+#include "../src/structure/block/Block.h"
 #include "../src/persistence/graph/DAOManagerGraph.h"
 #include "../src/persistence/graph/transactions/DAOTransactionsGraph.h"
 #include "../src/persistence/DAOException.h"

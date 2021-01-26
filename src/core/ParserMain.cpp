@@ -19,6 +19,7 @@ using namespace std;
 const std::string JSON_DECODE = "jsondecode";
 const std::string GRAPH_TX = "graphtx";
 const std::string GRAPH_PUB_KEY = "graphpubkey";
+const std::string CHAINSTATE_KEY = "chainstate";
 
 int main(int argc, char* argv[])
 {
@@ -62,6 +63,14 @@ int main(int argc, char* argv[])
           spyCBlock.convertData<DAOManagerGraph>(dao, fromPath, toPath);
         }else{
           spyCBlock.convertDataParallel<DAOManagerGraph>(dao, fromPath, toPath);
+        }
+        return EXIT_SUCCESS;
+    }else if(settingDecodeType == GRAPH_PUB_KEY){
+        DAOManagerGraph dao;
+        if(!paralelExecution){
+            spyCBlock.convertData<DAOManagerGraph>(dao, fromPath, toPath);
+        }else{
+            throw "Unsupported decoding type";
         }
         return EXIT_SUCCESS;
     }

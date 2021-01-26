@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Copyright (c) 2018-2021Vincenzo Palazzo vincenzopalazzodev@gmail.com
 // Distributed under the Apache License Version 2.0 software license,
 // see https://www.apache.org/licenses/LICENSE-2.0.txt
 
@@ -9,10 +9,8 @@
 
 #include "../../util/serialize.h"
 
-namespace spyCBlock
-{
-  class DVarInt
-  {
+namespace spyCBlock {
+    class DVarInt {
     public:
 
         uint64_t getValue() const;
@@ -22,8 +20,8 @@ namespace spyCBlock
 
     private:
 
-      uint64_t value;
-  };
+        uint64_t value;
+    };
 }
 
 #endif //PARSINGBLOCKCHAIN_CVARINT_H

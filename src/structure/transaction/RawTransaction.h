@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Copyright (c) 2018-2021Vincenzo Palazzo vincenzopalazzodev@gmail.com
 // Distributed under the Apache License Version 2.0 software license,
 // see https://www.apache.org/licenses/LICENSE-2.0.txt
 
@@ -17,69 +17,71 @@
 #include "TransactionInput.h"
 #include "TransactionWitness.h"
 
-namespace spyCBlock{
+namespace spyCBlock {
 
-    class RawTransaction{
+    class RawTransaction {
 
-      public:
+    public:
 
-          enum class Type{PRIMITIVE = 1, WITNESS = 2};
+        enum class Type {
+            PRIMITIVE = 1, WITNESS = 2
+        };
 
-          int32_t getVersion() const;
+        int32_t getVersion() const;
 
-          uint8_t getFlag() const;
+        uint8_t getFlag() const;
 
-          uint8_t getMarker() const;
+        uint8_t getMarker() const;
 
-          const DVarInt& getNumberTxIn() const;
+        const DVarInt &getNumberTxIn() const;
 
-          const std::vector<TransactionInput> &getTxIn() const;
+        const std::vector<TransactionInput> &getTxIn() const;
 
-          const DVarInt& getNumberTxOut() const;
+        const DVarInt &getNumberTxOut() const;
 
-          const std::vector<TransactionOutput> &getTxOut() const;
+        const std::vector<TransactionOutput> &getTxOut() const;
 
-          std::string getHashRawTransaction() const;
+        std::string getHashRawTransaction() const;
 
-          uint32_t getLockTime() const;
+        uint32_t getLockTime() const;
 
-          std::string toString();
+        std::string toString();
 
-          void decode(std::ifstream &stream);
+        void decode(std::ifstream &stream);
 
-          std::string toSerealizationForm() const;
+        std::string toSerealizationForm() const;
 
-          void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+        void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 
-          void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+        void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
-          void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+        void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
-          void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
+        void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
 
     private:
 
-          Type type;
+        Type type;
 
-          int32_t version;
+        int32_t version;
 
-          uint8_t marker;
+        uint8_t marker;
 
-          uint8_t flag;
+        uint8_t flag;
 
-          DVarInt numberTxIn;
+        DVarInt numberTxIn;
 
-          std::vector<TransactionInput> txIn;
+        std::vector<TransactionInput> txIn;
 
-          DVarInt numberTxOut;
+        DVarInt numberTxOut;
 
-          std::vector<TransactionOutput> txOut;
+        std::vector<TransactionOutput> txOut;
 
-          uint32_t lockTime;
+        uint32_t lockTime;
 
-          std::string hashRawTransaction;
+        std::string hashRawTransaction;
 
-          std::vector<TransactionWitness> txsWitness;
+        std::vector<TransactionWitness> txsWitness;
 
     };
 }

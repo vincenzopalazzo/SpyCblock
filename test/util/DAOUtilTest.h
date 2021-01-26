@@ -8,7 +8,7 @@
 #include <vector>
 #include<experimental/filesystem>
 
-#include "../../src/structure/block/block.h"
+#include "../../src/structure/block/Block.h"
 
 namespace spyCBlock
 {

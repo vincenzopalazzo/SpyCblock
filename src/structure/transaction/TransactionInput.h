@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Copyright (c) 2018-2021Vincenzo Palazzo vincenzopalazzodev@gmail.com
 // Distributed under the Apache License Version 2.0 software license,
 // see https://www.apache.org/licenses/LICENSE-2.0.txt
 
@@ -16,47 +16,45 @@
 
 #include "../type/DScript.h"
 
-namespace spyCBlock
-{
-    class TransactionInput
-    {
-      public:
+namespace spyCBlock {
+    class TransactionInput {
+    public:
 
-          const DScript& getScript() const;
+        const DScript &getScript() const;
 
-          uint32_t getSequences() const;
+        uint32_t getSequences() const;
 
-          const OutPoint& getOutpoint() const;
+        const OutPoint &getOutpoint() const;
 
-          void setOutpoint(const OutPoint &outpoint);
+        void setOutpoint(const OutPoint &outpoint);
 
-          const std::string& getHashInputTransaction() const;
+        const std::string &getHashInputTransaction() const;
 
-          std::string toString();
+        std::string toString();
 
-          void decode(std::ifstream &stream);
+        void decode(std::ifstream &stream);
 
-          std::string toSerealizationForm() const;
+        std::string toSerealizationForm() const;
 
-          bool isScriptNull();
+        bool isScriptNull();
 
-          void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+        void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 
-          void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+        void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
-          void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+        void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
 
-          void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
+        void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
 
-      private:
+    private:
 
-          OutPoint outpoint;
+        OutPoint outpoint;
 
-          DScript script;
+        DScript script;
 
-          uint32_t sequences;
+        uint32_t sequences;
 
-          std::string hashInputTransaction;
+        std::string hashInputTransaction;
     };
 }
 

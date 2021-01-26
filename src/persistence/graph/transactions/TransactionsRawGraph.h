@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 Vincenzo Palazzo vicenzopalazzodev@gmail.com
+// Copyright (c) 2018-2021Vincenzo Palazzo vincenzopalazzodev@gmail.com
 // Distributed under the Apache License Version 2.0 software license,
 // see https://www.apache.org/licenses/LICENSE-2.0.txt
 
@@ -11,29 +11,27 @@
 
 #include "../../../../include/spycblockrpc/src/core/graph/ITransactionGraph.h"
 
-namespace  spyCBlock
-{
-    class TransactionsRawGraph : spyCBlockRPC::ITransactionGraph
-    {
-        public:
+namespace spyCBlock {
+    class TransactionsRawGraph : spyCBlockRPC::ITransactionGraph {
+    public:
 
-            void serialize(std::ofstream &stream) override;
+        void serialize(std::ofstream &stream) override;
 
-            void buildTransaction(spyCBlockRPC::WrapperInformations &wrapper) override;
+        void buildTransaction(spyCBlockRPC::WrapperInformations &wrapper) override;
 
-            //TODO this could containt inside the interface?
-            //I think yes
-            void serialize(gzFile &file);
+        //TODO this could containt inside the interface?
+        //I think yes
+        void serialize(gzFile &file);
 
-        private:
+    private:
 
-            std::string from;
+        std::string from;
 
-            std::string to;
+        std::string to;
 
-            std::set<std::string> linkInformations;
+        std::set<std::string> linkInformations;
 
-            std::string delimitator;
+        std::string delimitator;
     };
 }
 

@@ -8,7 +8,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../src/structure/block/block.h"
+#include "../src/structure/block/Block.h"
 #include "../src/persistence/DAOException.h"
 #include "../src/core/ConfiguratorSingleton.h"
 #include "util/DAOUtilTest.h"

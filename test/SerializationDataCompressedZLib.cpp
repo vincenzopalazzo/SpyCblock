@@ -8,7 +8,7 @@
 #include <gtest/gtest.h>
 #include <glog/logging.h>
 
-#include "../src/structure/block/block.h"
+#include "../src/structure/block/Block.h"
 #include "../src/core/ConfiguratorSingleton.h"
 #include "../src/persistence/graph/transactions/TransactionsRawGraph.h"
 
