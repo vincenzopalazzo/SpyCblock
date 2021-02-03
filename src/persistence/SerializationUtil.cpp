@@ -132,6 +132,7 @@ string SerializationUtil::toSerealizeForm(DVarInt valueVarInt) {
         return SerializationUtil::toSerealizeForm(tmp) + SerializationUtil::toSerealizeForm(value64);
     }
     LOG_IF(ERROR, true) << "The dimension not corret, There is no suitable type";
+    return nullptr;
 }
 
 string SerializationUtil::toSerealizeForm(uint256 value256) {

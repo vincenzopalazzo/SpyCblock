@@ -20,8 +20,11 @@ namespace spyCBlock {
         void convertData(T &dao, const std::string &locationBitcoinCore, const std::string &destinationBitcoinCoreJson);
 
         template<typename T>
-        void convertDataParallel(T &dao, const std::string  &locationBitcoinCore,
+        void convertDataParallel(T &dao, const std::string &locationBitcoinCore,
                                  const std::string &destinationBitcoinCoreJson);
+
+        template<typename T>
+        void convertChainState(T &dao, const std::string &pathLoadDirectory, const std::string &destinationDirectory);
 
         template<typename T>
         std::string extensionFile(T &dao);

@@ -21,17 +21,16 @@ const std::string GRAPH_TX = "graphtx";
 const std::string GRAPH_PUB_KEY = "graphpubkey";
 const std::string CHAINSTATE_KEY = "chainstate";
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
     int logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
 
     FLAGS_minloglevel = logLevel;
-    FLAGS_logtostderr = false;
+    FLAGS_logtostderr = true;
     google::InitGoogleLogging(std::to_string(logLevel).c_str());
     string pathLogFile = ConfiguratorSingleton::getInstance().getPathFileLog() + "/main_log.log";
     google::SetLogDestination(google::GLOG_ERROR, pathLogFile.c_str());
 
-    bool paralelExecution = ConfiguratorSingleton::getInstance().isParallelExecution();
+    bool parallelExecution = ConfiguratorSingleton::getInstance().isParallelExecution();
     string fromPath = ConfiguratorSingleton::getInstance().getPathBlockDat() + "/";
     string toPath = ConfiguratorSingleton::getInstance().getPathBlockDecode() + "/";
 
@@ -41,36 +40,36 @@ int main(int argc, char* argv[])
 
     std::string settingDecodeType = ConfiguratorSingleton::getInstance().getFormatFileDecode();
     LOG(ERROR) << "The type of decode is: " << settingDecodeType;
-    if(settingDecodeType == JSON_DECODE){
+    if (settingDecodeType == JSON_DECODE) {
         DAOJson dao;
-        if(!paralelExecution){
-          spyCBlock.convertData<DAOJson>(dao, fromPath, toPath);
-        }else{
-          spyCBlock.convertDataParallel<DAOJson>(dao, fromPath, toPath);
+        if (!parallelExecution) {
+            spyCBlock.convertData<DAOJson>(dao, fromPath, toPath);
+        } else {
+            spyCBlock.convertDataParallel<DAOJson>(dao, fromPath, toPath);
         }
         return EXIT_SUCCESS;
-    }else if (settingDecodeType == GRAPH_TX){
+    } else if (settingDecodeType == GRAPH_TX) {
         DAOTransactionsGraph dao;
-        if(!paralelExecution){
-          spyCBlock.convertData<DAOTransactionsGraph>(dao, fromPath, toPath);
-        }else{
-          spyCBlock.convertDataParallel<DAOTransactionsGraph>(dao, fromPath, toPath);
+        if (!parallelExecution) {
+            spyCBlock.convertData<DAOTransactionsGraph>(dao, fromPath, toPath);
+        } else {
+            spyCBlock.convertDataParallel<DAOTransactionsGraph>(dao, fromPath, toPath);
         }
         return EXIT_SUCCESS;
-    }else if(settingDecodeType == GRAPH_PUB_KEY){
+    } else if (settingDecodeType == GRAPH_PUB_KEY) {
         DAOManagerGraph dao;
-        if(!paralelExecution){
-          spyCBlock.convertData<DAOManagerGraph>(dao, fromPath, toPath);
-        }else{
-          spyCBlock.convertDataParallel<DAOManagerGraph>(dao, fromPath, toPath);
-        }
-        return EXIT_SUCCESS;
-    }else if(settingDecodeType == GRAPH_PUB_KEY){
-        DAOManagerGraph dao;
-        if(!paralelExecution){
+        if (!parallelExecution) {
             spyCBlock.convertData<DAOManagerGraph>(dao, fromPath, toPath);
-        }else{
-            throw "Unsupported decoding type";
+        } else {
+            spyCBlock.convertDataParallel<DAOManagerGraph>(dao, fromPath, toPath);
+        }
+        return EXIT_SUCCESS;
+    } else if (settingDecodeType == CHAINSTATE_KEY) {
+        DAOManagerGraph dao;
+        if (!parallelExecution) {
+            assertf(false, "Unsupported decoding type");
+        } else {
+            spyCBlock.convertChainState<DAOManagerGraph>(dao, fromPath, toPath);
         }
         return EXIT_SUCCESS;
     }

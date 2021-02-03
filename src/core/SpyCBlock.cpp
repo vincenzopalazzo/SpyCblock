@@ -8,11 +8,9 @@
 #include <experimental/filesystem>
 
 #include <glog/logging.h>
+#include <leveldb/db.h>
 #include "SpyCBlock.h"
 #include "../../include/progressbar/include/progressbar/progressbar.h"
-#include "../../include/progressbar/include/progressbar/statusbar.h"
-#include "../structure/block/Block.h"
-#include "../persistence/IDAOBlockchain.h"
 #include "../persistence/DAOException.h"
 #include "../persistence/graph/transactions/DAOTransactionsGraph.h"
 #include "../persistence/json/DAOJson.h"
@@ -91,8 +89,8 @@ void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore, const str
 }
 
 template<typename T>
-void
-SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, const string &destinationBitcoinCoreJson) {
+void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore,
+                                    const string &destinationBitcoinCoreJson) {
     static_assert(std::is_base_of<IDAOBlockchain, T>::value, "T must inherit from IDAOBlockchain");
 
     if (locationBitcoinCore.empty() || destinationBitcoinCoreJson.empty()) {
@@ -120,7 +118,7 @@ SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, const 
         fileCount += currentFile;
     }
 
-    #pragma omp parallel for
+#pragma omp parallel for
     for (int i = currentFile; i < fileCount; i++) {
         try {
             string pathInput = nameFileSearched(locationBitcoinCore, i);
@@ -135,7 +133,7 @@ SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, const 
             }
             isBitcoinDirectory = true;
             if (logLevel < 3 && progress != NULL) {
-                #pragma omp critical
+#pragma omp critical
                 {
                     progressbar_inc(progress);
                 }
@@ -157,6 +155,24 @@ SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore, const 
         //but in declarated how the pointer, in an better procedure delete it
         delete progress;
     }
+}
+
+template<typename T>
+void SpyCBlock::convertChainState(T &dao, const std::string &pathLoadDirectory, const std::string &destinationDirectory) {
+    LOG(WARNING) << "FROM " << pathLoadDirectory << " to " << destinationDirectory;
+    leveldb::DB* dbChainState;
+    leveldb::Options dbOptions;
+    // disable compression to avoid bitcoin chain state corruption
+    dbOptions.compression = leveldb::CompressionType::kNoCompression;
+    leveldb::Status dbStatus = leveldb::DB::Open(dbOptions, pathLoadDirectory, &dbChainState);
+    assertf(dbStatus.ok(), "Error with database");
+
+    leveldb::Iterator* it = dbChainState->NewIterator(leveldb::ReadOptions());
+    for (it->SeekToFirst(); it->Valid(); it->Next()) {
+        LOG(WARNING) << it->key().ToString() << ": "  << it->value().ToString();
+    }
+    delete it;
+    delete dbChainState;
 }
 
 //I can remove this method and add support to the library of C++17 <filesystem>
@@ -201,7 +217,6 @@ string SpyCBlock::extensionFile(T &dao) {
     }
 }
 
-
 template void SpyCBlock::convertData<DAOManagerGraph>(DAOManagerGraph &dao, const string &locationBitcoinCore,
                                                       const string &destinationBitcoinCoreJson);
 
@@ -222,11 +237,7 @@ template void SpyCBlock::convertDataParallel<DAOTransactionsGraph>(DAOTransactio
                                                                    const string &locationBitcoinCore,
                                                                    const string &destinationBitcoinCoreJson);
 
-template string SpyCBlock::exstensionFile<DAOManagerGraph>(DAOManagerGraph &dao);
 
-template string SpyCBlock::exstensionFile<DAOJson>(DAOJson &dao);
-
-template string SpyCBlock::exstensionFile<DAOTransactionsGraph>(DAOTransactionsGraph &dao);
-
-
-
+template void SpyCBlock::convertChainState<DAOManagerGraph>(DAOManagerGraph &dao,
+                                                                   const string &locationBitcoinCore,
+                                                                   const string &destinationBitcoinCoreJson);
