@@ -8,16 +8,16 @@
 #define BITCOIN_ATTRIBUTES_H
 
 #if defined(__has_cpp_attribute)
-#  if __has_cpp_attribute(nodiscard)
-#    define NODISCARD [[nodiscard]]
-#  endif
+#if __has_cpp_attribute(nodiscard)
+#define NODISCARD [[nodiscard]]
+#endif
 #endif
 #ifndef NODISCARD
-#  if defined(_MSC_VER) && _MSC_VER >= 1700
-#    define NODISCARD _Check_return_
-#  else
-#    define NODISCARD __attribute__((warn_unused_result))
-#  endif
+#if defined(_MSC_VER) && _MSC_VER >= 1700
+#define NODISCARD _Check_return_
+#else
+#define NODISCARD __attribute__((warn_unused_result))
+#endif
 #endif
 
-#endif // BITCOIN_ATTRIBUTES_H
+#endif  // BITCOIN_ATTRIBUTES_H

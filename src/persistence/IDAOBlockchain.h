@@ -11,15 +11,14 @@
 
 namespace spyCBlock {
 
-    class IDAOBlockchain {
+class IDAOBlockchain {
+ public:
+  virtual bool saveBlock(const std::string &inputPath,
+                         const std::string &outputPath) = 0;
 
-    public:
+  virtual bool saveBlockCompress(const std::string &inputPath,
+                                 const std::string &outputPath) = 0;
+};
+}  // namespace spyCBlock
 
-        virtual bool saveBlock(const std::string &inputPath, const std::string &outputPath) = 0;
-
-        virtual bool saveBlockCompress(const std::string &inputPath, const std::string &outputPath) = 0;
-
-    };
-}
-
-#endif //SPYCBLOCK_IDAOBLOCKCHAIN_H
+#endif  // SPYCBLOCK_IDAOBLOCKCHAIN_H

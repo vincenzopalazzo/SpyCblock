@@ -5,121 +5,116 @@
 #ifndef CONFIGURATORSINGLETON_H
 #define CONFIGURATORSINGLETON_H
 
-#include <string>
-#include <algorithm>
 #include <assert.h>
+
+#include <algorithm>
+#include <string>
 
 #include "../../include/cpp-properties/include/Properties.h"
 
 namespace spyCBlock {
 
-  class ConfiguratorSingleton
-  {
-    public:
+class ConfiguratorSingleton {
+ public:
+  static ConfiguratorSingleton &getInstance() {
+    static ConfiguratorSingleton SINGLETON;
 
-      static ConfiguratorSingleton& getInstance()
-      {
-        static ConfiguratorSingleton SINGLETON;
+    return SINGLETON;
+  }
 
-        return SINGLETON;
-      }
+  std::string getPathBlockDat() const;
 
-      std::string getPathBlockDat() const;
+  std::string getPathBlockDecode() const;
 
-      std::string getPathBlockDecode() const;
+  std::string getFormatFileDecode() const;
 
-      std::string getFormatFileDecode() const;
+  std::string getPathFileLog();
 
-      std::string getPathFileLog();
+  std::string getPathFileLogTest();
 
-      std::string getPathFileLogTest();
+  std::string getPathFileMockTest();
 
-      std::string getPathFileMockTest();
+  std::string getDelimiterLinkInformation();
 
-      std::string getDelimitatorLinkInformations();
+  int getStartHeightBlock();
 
-      int getStartHeightBlock();
+  // if the value of this propriety is "all" the getter will return -1 value
+  int getHowManyFileWouldBeRead();
 
-      //if the value of this propriety is "all" the getter will return -1 value
-      int getHowManyFileWouldBeRead();
+  bool isParallelExecution();
 
-      bool isParallelExecution();
+  bool isCompressionResult();
 
-      bool isCompressionResult();
+  // if the value is < 0 and > 2 the catter value result is 2 with an print
+  // error value
+  int getLevelLog();
 
-      //if the value is < 0 and > 2 the catter value result is 2 with an print error value
-      int getLevelLog();
+ protected:
+  ConfiguratorSingleton();
 
-  protected:
+ private:
+  const std::string PATH_FILE = "/conf.properties";
 
-      ConfiguratorSingleton();
+  const std::string PATH_BLOCK_DAT = "PATH_BLOCK_DAT";
 
-  private:
+  const std::string PATH_BLOCK_DECODE = "PATH_BLOCK_DECODE";
 
-      const std::string PATH_FILE = "/conf.properties";
+  const std::string FORMAT_BLOCK_DECODE = "FORMAT_BLOCK_DECODE";
 
-      const std::string PATH_BLOCK_DAT = "PATH_BLOCK_DAT";
+  const std::string PATH_FILE_LOG = "PATH_FILE_LOG";
 
-      const std::string PATH_BLOCK_DECODE = "PATH_BLOCK_DECODE";
+  const std::string LEVEL_LOG = "LEVEL_LOG";
 
-      const std::string FORMAT_BLOCK_DECODE = "FORMAT_BLOCK_DECODE";
+  const std::string PATH_FILE_LOG_TEST = "PATH_FILE_LOG_TEST";
 
-      const std::string PATH_FILE_LOG = "PATH_FILE_LOG";
+  const std::string PATH_FILE_MOCK_TEST = "PATH_FILE_MOCK_TEST";
 
-      const std::string LEVEL_LOG = "LEVEL_LOG";
+  const std::string DELIMITER_INFORMATION_LINK = "DELIMITER_INFORMATION_LINK";
 
-      const std::string PATH_FILE_LOG_TEST = "PATH_FILE_LOG_TEST";
+  const std::string NUMBER_FILE_TO_START = "NUMBER_FILE_TO_START";
 
-      const std::string PATH_FILE_MOCK_TEST = "PATH_FILE_MOCK_TEST";
+  const std::string HOW_MANY_FILES_WOULD_BE_READ =
+      "HOW_MANY_FILES_WOULD_BE_READ";
 
-      const std::string DELIMITATOR_INFORMATION_LINK = "DELIMITATOR_INFORMATION_LINK";
+  const std::string PARALLEL_EXECUTION = "PARALLEL_EXECUTION";
 
-      const std::string NUMBER_FILE_TO_START = "NUMBER_FILE_TO_START";
+  const std::string COMPRESSION_RESULT = "COMPRESSION_RESULT";
 
-      const std::string HOW_MANY_FILES_WOULD_BE_READ = "HOW_MANY_FILES_WOULD_BE_READ";
+  cppproperties::Properties configuration;
 
-      const std::string PARALEL_EXCECUTION = "PARALEL_EXCECUTION";
+  std::string getRootPath();
 
-      const std::string COMPRESSION_RESULT = "COMPRESSION_RESULT";
+  void obligatoryVariable();
 
-      cppproperties::Properties configuration;
+  // Variable proprieties obligatory
+  std::string pathBlockDat;
 
-      std::string getRootPath();
+  std::string pathBlockDecode;
 
-      void obligatoryVariable();
+  std::string formatFileDecode;
 
-      //Variable proprieties obligatory
-      std::string pathBlockDat;
+  std::string pathFileLog;
 
-      std::string pathBlockDecode;
+  std::string pathFileLogTest;
 
-      std::string formatFileDecode;
+  std::string pathFileMockTest;
 
-      std::string pathFileLog;
+  // Variable by default
+  int howManyFileWouldBeRead = -100;
 
-      std::string pathFileLogTest;
+  int levelLog = -1;
 
-      std::string pathFileMockTest;
+  inline bool isNumber(const std::string &s) {
+    return !s.empty() && std::find_if(s.begin(), s.end(), [](char c) {
+                           return !std::isdigit(c);
+                         }) == s.end();
+  }
 
-      //Variable by default
+  inline bool isBoolean(const std::string &s) {
+    return ((s == "true" || s == "TRUE") || s == "false" || s == "FALSE");
+  }
+};
 
-      int howManyFileWouldBeRead = -100;
+}  // namespace spyCBlock
 
-      int levelLog = -1;
-
-      inline bool isNumber(const std::string& s)
-      {
-          return !s.empty() && std::find_if(s.begin(),s.end(), [](char c) {
-              return !std::isdigit(c);
-            }) == s.end();
-      }
-
-      inline bool isBoolean(const std::string& s){
-        return ((s == "true" || s == "TRUE") || s == "false" || s == "FALSE");
-      }
-
-  };
-
-}
-
-#endif // CONFIGURATORSINGLETON_H
+#endif  // CONFIGURATORSINGLETON_H

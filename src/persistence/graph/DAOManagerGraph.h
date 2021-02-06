@@ -7,17 +7,15 @@
 
 #include "../IDAOBlockchain.h"
 
-namespace spyCBlock
-{
-    class DAOManagerGraph : IDAOBlockchain
-    {
-       public:
+namespace spyCBlock {
+class DAOManagerGraph : IDAOBlockchain {
+ public:
+  bool saveBlock(const std::string &inputPath,
+                 const std::string &outputPath) override;
 
-           bool saveBlock(const std::string &inputPath, const std::string &outputPath) override;
+  bool saveBlockCompress(const string &inputPath,
+                         const string &outputPath) override;
+};
+}  // namespace spyCBlock
 
-           bool saveBlockCompress(const string &inputPath, const string &outputPath) override;
-    };
-}
-
-
-#endif // DAOMANAGERGRAPH_H
+#endif  // DAOMANAGERGRAPH_H

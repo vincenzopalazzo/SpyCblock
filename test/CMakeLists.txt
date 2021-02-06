@@ -16,12 +16,9 @@ find_library(bitcoinapi 0.3 REQUIRED)
 
 #ZLIB
 find_package(ZLIB)
-
 find_package(OpenMP)
-
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
-
 
 add_executable(
 
@@ -95,10 +92,8 @@ target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES} pthread)
 ##using filesystem
 target_link_libraries(${PROJECT_NAME} stdc++fs)
 
-#bitcoin rpc lib
 target_link_libraries(${PROJECT_NAME} bitcoinapi)
 
-#ZLIB
 target_link_libraries(${PROJECT_NAME}  ${ZLIB_LIBRARIES})
 
 target_link_libraries(${PROJECT_NAME} OpenMP::OpenMP_CXX)

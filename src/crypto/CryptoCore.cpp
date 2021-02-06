@@ -2,24 +2,27 @@
 // Distributed under the Apache License Version 2.0 software license,
 // see https://www.apache.org/licenses/LICENSE-2.0.txt
 
+#include "CryptoCore.h"
+
 #include <glog/logging.h>
 
-#include "CryptoCore.h"
-#include "../crypto/UtilCrypto.h"
-#include "../../include/bitcoin-cryptography-library/cpp/Sha256Hash.hpp"
 #include "../../include/bitcoin-cryptography-library/cpp/Sha256.hpp"
+#include "../../include/bitcoin-cryptography-library/cpp/Sha256Hash.hpp"
 #include "../DefinitionMacro.h"
+#include "../crypto/UtilCrypto.h"
 
 using namespace spyCBlock;
 
-string CryptoSingleton::getHash256(string baseHash) {
-    assertf(baseHash.length() > 0, "Argument function getHash256 of CryptoSingleton is not valid");
+string CryptoSingleton::getHash256(string const &baseHash) {
+  assertf(baseHash.length() > 0,
+          "Argument function getHash256 of CryptoSingleton is not valid");
 
-    LOG(INFO) << "The baseHash is " << baseHash;
+  LOG(INFO) << "The baseHash is " << baseHash;
 
-    vector<unsigned char> vectorByte = spyCBlock::UtilCrypto::ToHexIntoVectorByte(baseHash);
-    Sha256Hash shaHash = Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
+  vector<unsigned char> vectorByte =
+      spyCBlock::UtilCrypto::FromHexToBytes(baseHash);
+  Sha256Hash shaHash =
+      Sha256::getDoubleHash(vectorByte.data(), vectorByte.size());
 
-    return shaHash.ToStringForProtocol();
+  return shaHash.ToStringForProtocol();
 }
-

@@ -2,15 +2,15 @@
 // Distributed under the Apache License Version 2.0 software license,
 // see https://www.apache.org/licenses/LICENSE-2.0.txt
 
-
 #include <gtest/gtest.h>
-#include <utility>
 #include <rapidjson/ostreamwrapper.h>
 #include <rapidjson/writer.h>
 
-#include "../src/structure/block/Block.h"
-#include "../src/persistence/DAOException.h"
+#include <utility>
+
 #include "../src/core/ConfiguratorSingleton.h"
+#include "../src/persistence/DAOException.h"
+#include "../src/structure/block/Block.h"
 
 using namespace std;
 using namespace spyCBlock;
@@ -25,197 +25,196 @@ using namespace spyCBlock;
  * C++ exception with description
  * "ReadCompactSize(): size too large: iostream error" thrown in the test body.
  *
- * The alpha version of this project reports a big problem in memory allocation and therefore this leads to a
- * subsequent rewrite of the way in which data structures are used and how memory is allocated,
- * so as to decrease the workload on processor and RAM
+ * The alpha version of this project reports a big problem in memory allocation
+ * and therefore this leads to a subsequent rewrite of the way in which data
+ * structures are used and how memory is allocated, so as to decrease the
+ * workload on processor and RAM
  *
  * This test suit init the support to Seregrated Witness transaction tipe
  *
  * @author https://github.com/vincenzopalazzo
  */
 
-//Test for the first file blk that generated exception
-TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk976)
-{
-    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+// Test for the first file blk that generated exception
+TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk976) {
+  string pathMockRoot =
+      ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot =
+      ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
 
-    FLAGS_minloglevel = 2;
-    FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_INFO, pathLogRoot.append("test_exception_compactsize_file_blk976.log").c_str());
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(
+      google::GLOG_INFO,
+      pathLogRoot.append("test_exception_compactsize_file_blk976.log").c_str());
 
-    string path = pathMockRoot +  "bitcoin/block/bug/blk976/blk00976.dat";
-    ifstream stream{path};
+  string path = pathMockRoot + "bitcoin/block/bug/blk976/blk00976.dat";
+  ifstream stream{path};
 
-    vector<Block> blocks;
-    while(stream.is_open() && !stream.eof()) {
+  vector<Block> blocks;
+  while (stream.is_open() && !stream.eof()) {
+    blocks.emplace_back(Block{});
+    Block &block = blocks.back();
+    block.decode(stream);
+  }
 
-        blocks.emplace_back(Block{});
-        Block& block = blocks.back();
-        block.decode(stream);
+  stream.close();
+  EXPECT_TRUE(blocks.size() > 120);
+
+  string pathOut = pathMockRoot + "bitcoin/block/bug/blk976/blk00976.json";
+  ofstream streamOut(pathOut);
+
+  if (streamOut.is_open()) {
+    rapidjson::OStreamWrapper wrapper(streamOut);
+    rapidjson::Writer<rapidjson::OStreamWrapper> writer(wrapper);
+
+    writer.StartObject();
+    writer.Key("blocks");
+    writer.StartArray();
+    for (Block b : blocks) {
+      b.toJson(writer);
     }
-
-    stream.close();
-    EXPECT_TRUE(blocks.size() > 120);
-
-    string pathOut = pathMockRoot + "bitcoin/block/bug/blk976/blk00976.json";
-    ofstream streamOut(pathOut);
-
-    if(streamOut.is_open()){
-
-        rapidjson::OStreamWrapper wrapper(streamOut);
-        rapidjson::Writer<rapidjson::OStreamWrapper> writer (wrapper);
-
-        writer.StartObject();
-        writer.Key("blocks");
-        writer.StartArray();
-        for(Block b : blocks)
-        {
-          b.toJson(writer);
-        }
-        writer.EndArray();
-        writer.EndObject();
-      streamOut.close();
-    }
+    writer.EndArray();
+    writer.EndObject();
+    streamOut.close();
+  }
 }
 
-//Test for the last file blk that generated exception
-TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk975)
-{
-    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
-    FLAGS_minloglevel = 2;
-    FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_FATAL, pathLogRoot.append("test_exception_compactsize_file_blk975.log").c_str());
+// Test for the last file blk that generated exception
+TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk975) {
+  string pathMockRoot =
+      ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot =
+      ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(
+      google::GLOG_FATAL,
+      pathLogRoot.append("test_exception_compactsize_file_blk975.log").c_str());
 
-    string path = pathMockRoot +  "bitcoin/block/bug/blk975/blk00975.dat";
-    ifstream stream{path};
+  string path = pathMockRoot + "bitcoin/block/bug/blk975/blk00975.dat";
+  ifstream stream{path};
 
-    vector<Block> blocks;
-    while(stream.is_open() && !stream.eof()) {
+  vector<Block> blocks;
+  while (stream.is_open() && !stream.eof()) {
+    blocks.emplace_back(Block{});
+    Block &block = blocks.back();
+    block.decode(stream);
+  }
 
-        blocks.emplace_back(Block{});
-        Block& block = blocks.back();
-        block.decode(stream);
+  stream.close();
+  EXPECT_EQ(blocks.size(), 137);
+
+  string pathOut = pathMockRoot + "bitcoin/block/bug/blk975/blk00975.json";
+  ofstream streamOut(pathOut);
+
+  if (streamOut.is_open()) {
+    rapidjson::OStreamWrapper wrapper(streamOut);
+    rapidjson::Writer<rapidjson::OStreamWrapper> writer(wrapper);
+
+    writer.StartObject();
+    writer.Key("blocks");
+    writer.StartArray();
+    for (Block b : blocks) {
+      b.toJson(writer);
     }
-
-    stream.close();
-    EXPECT_EQ(blocks.size(), 137);
-
-    string pathOut = pathMockRoot + "bitcoin/block/bug/blk975/blk00975.json";
-    ofstream streamOut(pathOut);
-
-    if(streamOut.is_open()){
-
-        rapidjson::OStreamWrapper wrapper(streamOut);
-        rapidjson::Writer<rapidjson::OStreamWrapper> writer (wrapper);
-
-        writer.StartObject();
-        writer.Key("blocks");
-        writer.StartArray();
-        for(Block b : blocks)
-        {
-          b.toJson(writer);
-        }
-        writer.EndArray();
-        writer.EndObject();
-      streamOut.close();
-    }
+    writer.EndArray();
+    writer.EndObject();
+    streamOut.close();
+  }
 }
 
-//Test for the another file blk that generated exception
-TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk977)
-{
-    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+// Test for the another file blk that generated exception
+TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk977) {
+  string pathMockRoot =
+      ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot =
+      ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
 
-    FLAGS_minloglevel = 2;
-    FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_FATAL, pathLogRoot.append("test_exception_compactsize_file_blk977.log").c_str());
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(
+      google::GLOG_FATAL,
+      pathLogRoot.append("test_exception_compactsize_file_blk977.log").c_str());
 
-    string path = pathMockRoot +  "bitcoin/block/bug/blk977/blk00977.dat";
-    ifstream stream{path};
+  string path = pathMockRoot + "bitcoin/block/bug/blk977/blk00977.dat";
+  ifstream stream{path};
 
-    vector<Block> blocks;
-    while(stream.is_open() && !stream.eof()) {
+  vector<Block> blocks;
+  while (stream.is_open() && !stream.eof()) {
+    blocks.emplace_back(Block{});
+    Block &block = blocks.back();
+    block.decode(stream);
+  }
 
-        blocks.emplace_back(Block{});
-        Block& block = blocks.back();
-        block.decode(stream);
+  stream.close();
+  EXPECT_EQ(blocks.size(), 141);
+
+  string pathOut = pathMockRoot + "bitcoin/block/bug/blk977/blk00977.json";
+  ofstream streamOut(pathOut);
+
+  if (streamOut.is_open()) {
+    rapidjson::OStreamWrapper wrapper(streamOut);
+    rapidjson::Writer<rapidjson::OStreamWrapper> writer(wrapper);
+
+    writer.StartObject();
+    writer.Key("blocks");
+    writer.StartArray();
+    for (Block b : blocks) {
+      b.toJson(writer);
     }
-
-    stream.close();
-    EXPECT_EQ(blocks.size(), 141);
-
-    string pathOut = pathMockRoot + "bitcoin/block/bug/blk977/blk00977.json";
-    ofstream streamOut(pathOut);
-
-    if(streamOut.is_open()){
-
-        rapidjson::OStreamWrapper wrapper(streamOut);
-        rapidjson::Writer<rapidjson::OStreamWrapper> writer (wrapper);
-
-        writer.StartObject();
-        writer.Key("blocks");
-        writer.StartArray();
-        for(Block b : blocks)
-        {
-          b.toJson(writer);
-        }
-        writer.EndArray();
-        writer.EndObject();
-      streamOut.close();
-    }
-
+    writer.EndArray();
+    writer.EndObject();
+    streamOut.close();
+  }
 }
 
-//Test for the another file blk that generated exception
-TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk1124)
-{
-    string pathMockRoot = ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
-    string pathLogRoot = ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
+// Test for the another file blk that generated exception
+TEST(ExceptionGenerateCompactSizeTest,
+     test_exception_compactsize_file_blk1124) {
+  string pathMockRoot =
+      ConfiguratorSingleton::getInstance().getPathFileMockTest() + "/";
+  string pathLogRoot =
+      ConfiguratorSingleton::getInstance().getPathFileLog() + "/";
 
-    FLAGS_minloglevel = 2;
-    FLAGS_logtostderr = false;
-    google::SetLogDestination(google::GLOG_FATAL, pathMockRoot.append("test_exception_compactsize_file_blk1124.log").c_str());
+  FLAGS_minloglevel = 2;
+  FLAGS_logtostderr = false;
+  google::SetLogDestination(
+      google::GLOG_FATAL,
+      pathMockRoot.append("test_exception_compactsize_file_blk1124.log")
+          .c_str());
 
-    //string path = pathMockRoot + "bitcoin/block/bug/blk1124/blk01124.dat";
-    //TODO find the bug inside the path
-    string path = "/media/vincenzo/Maxtor/BitcoinCore/node/blocks/blk01124.dat";
-    ifstream stream{path};
-    vector<Block> blocks;
-    while(stream.is_open() && !stream.eof())
-    {
+  // string path = pathMockRoot + "bitcoin/block/bug/blk1124/blk01124.dat";
+  // TODO find the bug inside the path
+  string path = "/media/vincenzo/Maxtor/BitcoinCore/node/blocks/blk01124.dat";
+  ifstream stream(path);
+  vector<Block> blocks;
+  while (stream.is_open() && !stream.eof()) {
+    blocks.emplace_back(Block{});
+    Block &block = blocks.back();
+    block.decode(stream);
+  }
 
-        blocks.emplace_back(Block{});
-        Block& block = blocks.back();
-        block.decode(stream);
+  stream.close();
+  EXPECT_EQ(blocks.size(), 127);
+
+  string pathOut = pathMockRoot + "bitcoin/block/bug/blk1124/blk01124.json";
+  ofstream streamOut(pathOut);
+
+  if (streamOut.is_open()) {
+    rapidjson::OStreamWrapper wrapper(streamOut);
+    rapidjson::Writer<rapidjson::OStreamWrapper> writer(wrapper);
+    writer.StartObject();
+
+    writer.StartObject();
+    writer.Key("blocks");
+    writer.StartArray();
+    for (Block b : blocks) {
+      b.toJson(writer);
     }
+    writer.EndArray();
+    writer.EndObject();
 
-    stream.close();
-    EXPECT_EQ(blocks.size(), 127);
-
-    string pathOut = pathMockRoot + "bitcoin/block/bug/blk1124/blk01124.json";
-    ofstream streamOut(pathOut);
-
-    if(streamOut.is_open())
-    {
-
-        rapidjson::OStreamWrapper wrapper(streamOut);
-        rapidjson::Writer<rapidjson::OStreamWrapper> writer (wrapper);
-        writer.StartObject();
-
-        writer.StartObject();
-        writer.Key("blocks");
-        writer.StartArray();
-        for(Block b : blocks)
-        {
-          b.toJson(writer);
-        }
-        writer.EndArray();
-        writer.EndObject();
-
-        streamOut.close();
-    }
-
+    streamOut.close();
+  }
 }

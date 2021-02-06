@@ -4,4 +4,4 @@
 
 #include "DAOException.h"
 
-//TODO not necessary for the moment
+// TODO not necessary for the moment

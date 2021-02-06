@@ -5,16 +5,15 @@
 #ifndef SPYCBLOCK_DAOEXCEPTION_H
 #define SPYCBLOCK_DAOEXCEPTION_H
 
-#include <string>
 #include <stdexcept>
+#include <string>
 
 namespace spyCBlock {
 
-    class DAOException : public std::runtime_error {
-    public:
-        DAOException(const std::string &cause) throw(): std::runtime_error(cause) {};
-    };
-}
+class DAOException : public std::runtime_error {
+ public:
+  DAOException(const std::string &cause) throw() : std::runtime_error(cause){};
+};
+}  // namespace spyCBlock
 
-
-#endif //SPYCBLOCK_DAOEXCEPTION_H
+#endif  // SPYCBLOCK_DAOEXCEPTION_H

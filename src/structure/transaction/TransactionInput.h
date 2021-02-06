@@ -5,57 +5,57 @@
 #ifndef PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
 #define PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
 
+#include <rapidjson/ostreamwrapper.h>
+#include <rapidjson/writer.h>
+#include <zlib.h>
+
 #include <cstdint>
 
-#include <rapidjson/writer.h>
-#include <rapidjson/ostreamwrapper.h>
-#include <zlib.h>
-#include "../type/Outpoint.h"
 #include "../../../include/spycblockrpc/src/core/graph/WrapperInformations.h"
-
-
 #include "../type/DScript.h"
+#include "../type/Outpoint.h"
 
 namespace spyCBlock {
-    class TransactionInput {
-    public:
+class TransactionInput {
+ public:
+  const DScript &getScript() const;
 
-        const DScript &getScript() const;
+  uint32_t getSequences() const;
 
-        uint32_t getSequences() const;
+  const OutPoint &getOutpoint() const;
 
-        const OutPoint &getOutpoint() const;
+  void setOutpoint(const OutPoint &outpoint);
 
-        void setOutpoint(const OutPoint &outpoint);
+  const std::string &getHashInputTransaction() const;
 
-        const std::string &getHashInputTransaction() const;
+  std::string toString();
 
-        std::string toString();
+  void decode(std::ifstream &stream);
 
-        void decode(std::ifstream &stream);
+  std::string toSerealizationForm() const;
 
-        std::string toSerealizationForm() const;
+  bool isScriptNull();
 
-        bool isScriptNull();
+  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 
-        void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+  void toGraphForm(std::ofstream &outputStream,
+                   spyCBlockRPC::WrapperInformations &wrapper);
 
-        void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+  void toTransactionsGraph(std::ofstream &outputStream,
+                           spyCBlockRPC::WrapperInformations &wrapper);
 
-        void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+  void toCompressedTransactionsGraph(
+      gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
 
-        void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
+ private:
+  OutPoint outpoint;
 
-    private:
+  DScript script;
 
-        OutPoint outpoint;
+  uint32_t sequences;
 
-        DScript script;
+  std::string hashInputTransaction;
+};
+}  // namespace spyCBlock
 
-        uint32_t sequences;
-
-        std::string hashInputTransaction;
-    };
-}
-
-#endif //PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H
+#endif  // PARSINGBLOCKCHAIN_TXINNOCOINDBASE_H

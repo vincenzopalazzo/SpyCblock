@@ -5,34 +5,33 @@
 #ifndef TRANSACTIONSRAWGRAPH_H
 #define TRANSACTIONSRAWGRAPH_H
 
-#include <string>
-#include <set>
 #include <zlib.h>
+
+#include <set>
+#include <string>
 
 #include "../../../../include/spycblockrpc/src/core/graph/ITransactionGraph.h"
 
 namespace spyCBlock {
-    class TransactionsRawGraph : spyCBlockRPC::ITransactionGraph {
-    public:
+class TransactionsRawGraph : spyCBlockRPC::ITransactionGraph {
+ public:
+  void serialize(std::ofstream &stream) override;
 
-        void serialize(std::ofstream &stream) override;
+  void buildTransaction(spyCBlockRPC::WrapperInformations &wrapper) override;
 
-        void buildTransaction(spyCBlockRPC::WrapperInformations &wrapper) override;
+  // TODO this could containt inside the interface?
+  // I think yes
+  void serialize(gzFile &file);
 
-        //TODO this could containt inside the interface?
-        //I think yes
-        void serialize(gzFile &file);
+ private:
+  std::string from;
 
-    private:
+  std::string to;
 
-        std::string from;
+  std::set<std::string> linkInformations;
 
-        std::string to;
+  std::string delimitator;
+};
+}  // namespace spyCBlock
 
-        std::set<std::string> linkInformations;
-
-        std::string delimitator;
-    };
-}
-
-#endif // TRANSACTIONSRAWGRAPH_H
+#endif  // TRANSACTIONSRAWGRAPH_H

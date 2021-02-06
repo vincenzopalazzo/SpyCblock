@@ -4,8 +4,10 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "prevector.h"
-#include "serialize.h"
+
 #include <type_traits>
+
+#include "serialize.h"
 
 // GCC 4.8 is missing some C++11 type_traits,
 // https://www.gnu.org/software/gcc/gcc-5/changes.html
@@ -16,11 +18,13 @@
 #endif
 
 struct nontrivial_t {
-    int x;
-    nontrivial_t() :x(-1) {}
-    ADD_SERIALIZE_METHODS
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {READWRITE(x);}
+  int x;
+  nontrivial_t() : x(-1) {}
+  ADD_SERIALIZE_METHODS
+  template <typename Stream, typename Operation>
+  inline void SerializationOp(Stream &s, Operation ser_action) {
+    READWRITE(x);
+  }
 };
 static_assert(!IS_TRIVIALLY_CONSTRUCTIBLE<nontrivial_t>::value,
               "expected nontrivial_t to not be trivially constructible");

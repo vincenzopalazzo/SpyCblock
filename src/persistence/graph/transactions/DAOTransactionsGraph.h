@@ -5,20 +5,19 @@
 #ifndef DAOTRANSACTIONSGRAPH_H
 #define DAOTRANSACTIONSGRAPH_H
 
-
 #include "../../IDAOBlockchain.h"
 
 namespace spyCBlock {
 
-    class DAOTransactionsGraph : IDAOBlockchain
-    {
-        public:
+class DAOTransactionsGraph : IDAOBlockchain {
+ public:
+  bool saveBlock(const std::string &inputPath,
+                 const std::string &outputPath) override;
 
-            bool saveBlock(const std::string &inputPath, const std::string &outputPath) override;
+  bool saveBlockCompress(const string &inputPath,
+                         const string &outputPath) override;
+};
 
-            bool saveBlockCompress(const string &inputPath, const string &outputPath) override;
-    };
+}  // namespace spyCBlock
 
-}
-
-#endif // DAOTRANSACTIONSGRAPH_H
+#endif  // DAOTRANSACTIONSGRAPH_H

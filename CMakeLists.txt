@@ -77,7 +77,7 @@ add_executable(
         #inlcude progressbar
         include/progressbar/bin/progressbar.c
         include/progressbar/bin/statusbar.c
-)
+        src/structure/utxo/UTXOTransaction.cpp src/structure/utxo/UTXOTransaction.h)
 
 #using glog
 target_link_libraries(${PROJECT_NAME} glog::glog)

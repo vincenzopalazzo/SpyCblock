@@ -2,27 +2,25 @@
 // Distributed under the Apache License Version 2.0 software license,
 // see https://www.apache.org/licenses/LICENSE-2.0.txt
 
-
-#include <gtest/gtest.h>
-#include <utility>
 #include <glog/logging.h>
+#include <gtest/gtest.h>
+
+#include <utility>
 
 #include "../src/core/ConfiguratorSingleton.h"
-
 #include "../src/structure/transaction/RawTransaction.h"
 
 using namespace std;
 using namespace spyCBlock;
 
 /**
-  * Unit test developed to test ConfiguratorTest
-  * @author https://github.com/vincenzopalazzo
-  *
-  */
+ * Unit test developed to test ConfiguratorTest
+ * @author https://github.com/vincenzopalazzo
+ *
+ */
 
-TEST(ConfiguratorSingletonTest, inizialize_test_with_file_config)
-{
-  //Init logger
+TEST(ConfiguratorSingletonTest, inizialize_test_with_file_config) {
+  // Init logger
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 
@@ -31,8 +29,7 @@ TEST(ConfiguratorSingletonTest, inizialize_test_with_file_config)
   ASSERT_FALSE(configuration.getPathBlockDat().empty());
 }
 
-TEST(ConfiguratorSingletonTest, test_get_height_block_to_start)
-{
+TEST(ConfiguratorSingletonTest, test_get_height_block_to_start) {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 
@@ -41,8 +38,7 @@ TEST(ConfiguratorSingletonTest, test_get_height_block_to_start)
   ASSERT_TRUE(configuration.getStartHeightBlock() >= 0);
 }
 
-TEST(ConfiguratorSingletonTest, test_get_delimitator_informations_link)
-{
+TEST(ConfiguratorSingletonTest, test_get_delimitator_informations_link) {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 
@@ -51,8 +47,7 @@ TEST(ConfiguratorSingletonTest, test_get_delimitator_informations_link)
   ASSERT_FALSE(configuration.getDelimitatorLinkInformations().empty());
 }
 
-TEST(ConfiguratorSingletonTest, test_log_level)
-{
+TEST(ConfiguratorSingletonTest, test_log_level) {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 
@@ -61,8 +56,7 @@ TEST(ConfiguratorSingletonTest, test_log_level)
   ASSERT_TRUE(configuration.getLevelLog() == 2);
 }
 
-TEST(ConfiguratorSingletonTest, test_parallel_execution)
-{
+TEST(ConfiguratorSingletonTest, test_parallel_execution) {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 
@@ -71,8 +65,7 @@ TEST(ConfiguratorSingletonTest, test_parallel_execution)
   ASSERT_FALSE(configuration.isParallelExecution());
 }
 
-TEST(ConfiguratorSingletonTest, test_compression_data)
-{
+TEST(ConfiguratorSingletonTest, test_compression_data) {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 
@@ -81,8 +74,7 @@ TEST(ConfiguratorSingletonTest, test_compression_data)
   ASSERT_FALSE(configuration.isCompressionResult());
 }
 
-TEST(ConfiguratorSingletonTest, test_how_many_file_will_be_read)
-{
+TEST(ConfiguratorSingletonTest, test_how_many_file_will_be_read) {
   FLAGS_minloglevel = 2;
   FLAGS_logtostderr = false;
 

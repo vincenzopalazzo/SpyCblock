@@ -10,18 +10,14 @@
 #include "../../util/serialize.h"
 
 namespace spyCBlock {
-    class DVarInt {
-    public:
+class DVarInt {
+ public:
+  uint64_t getValue() const;
+  void decode(std::ifstream &stream);
 
-        uint64_t getValue() const;
+ private:
+  uint64_t value;
+};
+}  // namespace spyCBlock
 
-        void decode(std::ifstream &stream);
-
-
-    private:
-
-        uint64_t value;
-    };
-}
-
-#endif //PARSINGBLOCKCHAIN_CVARINT_H
+#endif  // PARSINGBLOCKCHAIN_CVARINT_H

@@ -5,36 +5,33 @@
 #ifndef PARSINGBLOCKCHAIN_CSCRIPT_H
 #define PARSINGBLOCKCHAIN_CSCRIPT_H
 
-#include <vector>
 #include <fstream>
+#include <vector>
 
 #include "DVarInt.h"
 
 namespace spyCBlock {
-    class DScript {
-    public:
+class DScript {
+ public:
+  const std::string &getRawScriptString() const;
 
-        const std::string &getRawScriptString() const;
+  const DVarInt &getScriptLength() const;
 
-        const DVarInt &getScriptLength() const;
+  std::string getScriptToSerializationForm() const;
 
-        std::string getScriptToSerializationForm() const;
+  std::string toString();
 
-        std::string toString();
+  const std::string &getScriptString() const;
 
-        const std::string &getScriptString() const;
+  void decode(std::ifstream &stream);
 
-        void decode(std::ifstream &stream);
+ private:
+  DVarInt scriptLenght;
 
-    private:
+  std::string scriptString;
 
-        DVarInt scriptLenght;
+  std::string rawScriptString;
+};
+}  // namespace spyCBlock
 
-        std::string scriptString;
-
-        std::string rawScriptString;
-    };
-}
-
-
-#endif //PARSINGBLOCKCHAIN_CSCRIPT_H
+#endif  // PARSINGBLOCKCHAIN_CSCRIPT_H

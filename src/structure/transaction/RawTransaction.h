@@ -5,84 +5,81 @@
 #ifndef PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 #define PARSINGBLOCKCHAIN_RAWTRANSACTION_H
 
-#include <vector>
-#include <string.h>
-
 #include <glog/logging.h>
+#include <string.h>
 #include <zlib.h>
+
+#include <vector>
+
 #include "../../../include/spycblockrpc/src/core/graph/WrapperInformations.h"
 #include "../../../src/util/serialize.h"
-
-#include "TransactionOutput.h"
 #include "TransactionInput.h"
+#include "TransactionOutput.h"
 #include "TransactionWitness.h"
 
 namespace spyCBlock {
 
-    class RawTransaction {
+class RawTransaction {
+ public:
+  enum class Type { PRIMITIVE = 1, WITNESS = 2 };
 
-    public:
+  int32_t getVersion() const;
 
-        enum class Type {
-            PRIMITIVE = 1, WITNESS = 2
-        };
+  uint8_t getFlag() const;
 
-        int32_t getVersion() const;
+  uint8_t getMarker() const;
 
-        uint8_t getFlag() const;
+  const DVarInt &getNumberTxIn() const;
 
-        uint8_t getMarker() const;
+  const std::vector<TransactionInput> &getTxIn() const;
 
-        const DVarInt &getNumberTxIn() const;
+  const DVarInt &getNumberTxOut() const;
 
-        const std::vector<TransactionInput> &getTxIn() const;
+  const std::vector<TransactionOutput> &getTxOut() const;
 
-        const DVarInt &getNumberTxOut() const;
+  std::string getHashRawTransaction() const;
 
-        const std::vector<TransactionOutput> &getTxOut() const;
+  uint32_t getLockTime() const;
 
-        std::string getHashRawTransaction() const;
+  std::string toString();
 
-        uint32_t getLockTime() const;
+  void decode(std::ifstream &stream);
 
-        std::string toString();
+  std::string toSerealizationForm() const;
 
-        void decode(std::ifstream &stream);
+  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
 
-        std::string toSerealizationForm() const;
+  void toGraphForm(std::ofstream &outputStream,
+                   spyCBlockRPC::WrapperInformations &wrapper);
 
-        void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+  void toTransactionsGraph(std::ofstream &outputStream,
+                           spyCBlockRPC::WrapperInformations &wrapper);
 
-        void toGraphForm(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+  void toCompressedTransactionsGraph(
+      gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
 
-        void toTransactionsGraph(std::ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper);
+ private:
+  Type type;
 
-        void toCompressedTransactionsGraph(gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
+  int32_t version;
 
-    private:
+  uint8_t marker;
 
-        Type type;
+  uint8_t flag;
 
-        int32_t version;
+  DVarInt numberTxIn;
 
-        uint8_t marker;
+  std::vector<TransactionInput> txIn;
 
-        uint8_t flag;
+  DVarInt numberTxOut;
 
-        DVarInt numberTxIn;
+  std::vector<TransactionOutput> txOut;
 
-        std::vector<TransactionInput> txIn;
+  uint32_t lockTime;
 
-        DVarInt numberTxOut;
+  std::string hashRawTransaction;
 
-        std::vector<TransactionOutput> txOut;
-
-        uint32_t lockTime;
-
-        std::string hashRawTransaction;
-
-        std::vector<TransactionWitness> txsWitness;
-
-    };
-}
-#endif //PARSINGBLOCKCHAIN_RAWTRANSACTION_H
+  std::vector<TransactionWitness> txsWitness;
+};
+}  // namespace spyCBlock
+#endif  // PARSINGBLOCKCHAIN_RAWTRANSACTION_H

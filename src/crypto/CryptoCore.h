@@ -7,24 +7,21 @@
 
 #include <string>
 
-using namespace std;
-
+using byte = std::uint8_t;
+// Base implementation encode and decode base 64 is
+// proposed by https://github.com/mvorbrodt/blog/blob/master/src/base64.hpp
 namespace spyCBlock {
-    class CryptoSingleton {
-    public:
+class CryptoSingleton {
+ public:
+  static CryptoSingleton &getInstance() {
+    static CryptoSingleton SINGLETON;
+    return SINGLETON;
+  }
 
-        static CryptoSingleton &getIstance() {
-            static CryptoSingleton SINGLETON;
-            return SINGLETON;
-        }
+  std::string getHash256(std::string const &baseHash);
 
-        string getHash256(string baseHash);
-
-    private:
-
-        CryptoSingleton() {}
-    };
-}
-
-
-#endif // CRYPTOSINGLETON_H
+ private:
+  CryptoSingleton() = default;
+};
+}  // namespace spyCBlock
+#endif  // CRYPTOSINGLETON_H

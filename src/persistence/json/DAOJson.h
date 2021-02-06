@@ -5,24 +5,24 @@
 #ifndef DAOJSON_H
 #define DAOJSON_H
 
-#include <memory>
-
-#include <rapidjson/writer.h>
 #include <rapidjson/ostreamwrapper.h>
+#include <rapidjson/writer.h>
+
+#include <memory>
 
 #include "../IDAOBlockchain.h"
 
 namespace spyCBlock {
 
-  class DAOJson : public IDAOBlockchain
-  {
-    public:
+class DAOJson : public IDAOBlockchain {
+ public:
+  bool saveBlock(const std::string &inputPath,
+                 const std::string &outputPath) override;
 
-      bool saveBlock(const std::string &inputPath, const std::string &outputPath) override;
+  // not implemented for the moment
+  virtual bool saveBlockCompress(const string &inputPath,
+                                 const string &outputPath);
+};
 
-      //not implemented for the moment
-      virtual bool saveBlockCompress(const string &inputPath, const string &outputPath);
-  };
-
-}
-#endif // DAOJSON_H
+}  // namespace spyCBlock
+#endif  // DAOJSON_H

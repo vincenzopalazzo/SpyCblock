@@ -7,49 +7,48 @@
 #ifndef PARSINGBLOCKCHAIN_OUTPOINT_H
 #define PARSINGBLOCKCHAIN_OUTPOINT_H
 
-#include <cstdint>
 #include <stdint.h>
+
+#include <cstdint>
 
 #include "../../util/script.h"
 #include "../../util/serialize.h"
 #include "../../util/uint256.h"
 
 namespace spyCBlock {
-    class OutPoint {
-    public:
+class OutPoint {
+ public:
+  static constexpr uint32_t NULL_INDEX = std::numeric_limits<uint32_t>::max();
 
-        static constexpr uint32_t NULL_INDEX = std::numeric_limits<uint32_t>::max();
+  OutPoint() : n(NULL_INDEX) {}
 
-        OutPoint() : n(NULL_INDEX) {}
+  const uint256 &getHash() const;
 
-        const uint256 &getHash() const;
+  void setHash(const uint256 &hash);
 
-        void setHash(const uint256 &hash);
+  uint32_t getN() const;
 
-        uint32_t getN() const;
+  ADD_SERIALIZE_METHODS;
 
-        ADD_SERIALIZE_METHODS;
+  template <typename Stream, typename Operation>
+  inline void SerializationOp(Stream &s, Operation ser_action) {
+    READWRITE(hash);
+    READWRITE(n);
+  }
 
-        template<typename Stream, typename Operation>
-        inline void SerializationOp(Stream &s, Operation ser_action) {
-            READWRITE(hash);
-            READWRITE(n);
-        }
+  friend bool operator<(const OutPoint &a, const OutPoint &b);
 
-        friend bool operator<(const OutPoint &a, const OutPoint &b);
+  friend bool operator==(const OutPoint &a, const OutPoint &b);
 
-        friend bool operator==(const OutPoint &a, const OutPoint &b);
+  friend bool operator!=(const OutPoint &a, const OutPoint &b);
 
-        friend bool operator!=(const OutPoint &a, const OutPoint &b);
+  std::string ToString() const;
 
-        std::string ToString() const;
+ private:
+  uint256 hash;
 
-    private:
+  uint32_t n;
+};
+}  // namespace spyCBlock
 
-        uint256 hash;
-
-        uint32_t n;
-    };
-}
-
-#endif //PARSINGBLOCKCHAIN_OUTPOINT_H
+#endif  // PARSINGBLOCKCHAIN_OUTPOINT_H

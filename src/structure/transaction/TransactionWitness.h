@@ -7,31 +7,28 @@
 
 #include <vector>
 
-#include "../type/DVarInt.h"
 #include "../type/DScript.h"
+#include "../type/DVarInt.h"
 
 namespace spyCBlock {
-    class TransactionWitness {
-    public:
+class TransactionWitness {
+ public:
+  DVarInt getCompactSize() const;
 
-        DVarInt getCompactSize() const;
+  std::vector<DScript> getWitnessStack() const;
 
-        std::vector<DScript> getWitnessStack() const;
+  void decode(std::ifstream &stream);
 
-        void decode(std::ifstream &stream);
+  std::string toSerealizationForm() const;
 
-        std::string toSerealizationForm() const;
+  std::string toString();
 
-        std::string toString();
+ private:
+  DVarInt compactSize;
 
-    private:
+  std::vector<DScript> witnessStack;
+};
 
-        DVarInt compactSize;
+}  // namespace spyCBlock
 
-        std::vector<DScript> witnessStack;
-
-    };
-
-}
-
-#endif // TRANSACTIONWITNESS_H
+#endif  // TRANSACTIONWITNESS_H
