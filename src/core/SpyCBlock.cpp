@@ -191,7 +191,7 @@ void SpyCBlock::convertChainState(T &dao, const std::string &pathLoadDirectory,
       auto keyBytes = UtilCrypto::FromStringToByte(key);
       auto valueBytes = UtilCrypto::FromStringToByte(value);
       auto dbUtxo = UTXOTransaction();
-      dbUtxo.decode(keyBytes, valueBytes);
+      dbUtxo.decode(keyBytes, valueBytes, obfuscateKey);
     }
   }
   it.release();

@@ -38,9 +38,12 @@ class UTXOTransaction {
   std::string txId;
   int64_t vOut;
 
+  std::string extendObfuscateKey(std::string const &obfuscateKey);
+
  public:
   void decode(std::vector<unsigned char> const &dbKey,
-              std::vector<unsigned char> const &dbValue);
+              std::vector<unsigned char> const &dbValue,
+              std::string const &obfuscateKey);
 };
 }  // namespace spyCBlock
 
