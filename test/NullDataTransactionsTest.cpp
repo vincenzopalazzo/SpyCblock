@@ -51,7 +51,7 @@ TEST(NullDataTransactionTest, testNullDataTransaction) {
 
     // Find opt return
     bool containsScriptNull = false;
-    for (Block &block : blocks) {
+    for (Block& block : blocks) {
       LOG(INFO) << "The block: "
                 << block.getBlockHeader().getPreviousBlockHeaderHash().GetHex();
       for (RawTransaction rawTx : block.getRawTransactions()) {
@@ -107,7 +107,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk53) {
 
   // Find the opt return script
   bool containsScriptNull = false;
-  for (Block &block : blocks) {
+  for (Block& block : blocks) {
     for (RawTransaction rawTx : block.getRawTransactions()) {
       for (TransactionInput txInput : rawTx.getTxIn()) {
         if (txInput.isScriptNull()) {
@@ -153,7 +153,7 @@ TEST(NullDataTransactionTest, test_null_data_transaction_blk54) {
 
   // Find the opt return script
   bool containsScriptNull = false;
-  for (Block &block : blocks) {
+  for (Block& block : blocks) {
     for (RawTransaction rawTx : block.getRawTransactions()) {
       for (TransactionInput txInput : rawTx.getTxIn()) {
         if (txInput.isScriptNull()) {

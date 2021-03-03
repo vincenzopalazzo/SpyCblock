@@ -12,7 +12,7 @@
 using namespace spyCBlock;
 using namespace std;
 
-void spyCBlock::TransactionWitness::decode(std::ifstream &stream) {
+void spyCBlock::TransactionWitness::decode(std::ifstream& stream) {
   assertf(stream.is_open(), "The stream is close");
 
   LOG(WARNING) << "FINDED TRANSACTION WITNESS";
@@ -20,7 +20,7 @@ void spyCBlock::TransactionWitness::decode(std::ifstream &stream) {
   LOG(INFO) << "Compact size is: " << compactSize.getValue();
   for (int i = 0; i < static_cast<int>(compactSize.getValue()); i++) {
     this->witnessStack.emplace_back(DScript{});
-    DScript &script = witnessStack.back();
+    DScript& script = witnessStack.back();
     script.decode(stream);
     LOG(INFO) << "The raw witness script is: " << script.getRawScriptString();
   }

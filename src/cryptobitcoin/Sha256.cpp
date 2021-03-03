@@ -20,7 +20,7 @@ using std::uint8_t;
 
 Sha256::Sha256() : length(0), bufferLen(0) {}
 
-Sha256 &Sha256::append(const uint8_t bytes[], size_t len) {
+Sha256& Sha256::append(const uint8_t bytes[], size_t len) {
   assert(bytes != nullptr || len == 0);
   for (size_t i = 0; i < len; i++) {
     buffer[bufferLen] = bytes[i];

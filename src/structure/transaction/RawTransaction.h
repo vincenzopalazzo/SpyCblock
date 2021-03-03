@@ -29,13 +29,13 @@ class RawTransaction {
 
   uint8_t getMarker() const;
 
-  const DVarInt &getNumberTxIn() const;
+  const DVarInt& getNumberTxIn() const;
 
-  const std::vector<TransactionInput> &getTxIn() const;
+  const std::vector<TransactionInput>& getTxIn() const;
 
-  const DVarInt &getNumberTxOut() const;
+  const DVarInt& getNumberTxOut() const;
 
-  const std::vector<TransactionOutput> &getTxOut() const;
+  const std::vector<TransactionOutput>& getTxOut() const;
 
   std::string getHashRawTransaction() const;
 
@@ -43,20 +43,20 @@ class RawTransaction {
 
   std::string toString();
 
-  void decode(std::ifstream &stream);
+  void decode(std::ifstream& stream);
 
   std::string toSerealizationForm() const;
 
-  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper>& writerJson);
 
-  void toGraphForm(std::ofstream &outputStream,
-                   spyCBlockRPC::WrapperInformations &wrapper);
+  void toGraphForm(std::ofstream& outputStream,
+                   spyCBlockRPC::WrapperInformations& wrapper);
 
-  void toTransactionsGraph(std::ofstream &outputStream,
-                           spyCBlockRPC::WrapperInformations &wrapper);
+  void toTransactionsGraph(std::ofstream& outputStream,
+                           spyCBlockRPC::WrapperInformations& wrapper);
 
   void toCompressedTransactionsGraph(
-      gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
+      gzFile& file, spyCBlockRPC::WrapperInformations& wrapper);
 
  private:
   Type type;

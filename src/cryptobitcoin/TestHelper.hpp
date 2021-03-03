@@ -23,9 +23,9 @@ using std::vector;
 
 typedef vector<std::uint8_t> Bytes;
 
-Bytes asciiBytes(const char *str) { return Bytes(str, str + std::strlen(str)); }
+Bytes asciiBytes(const char* str) { return Bytes(str, str + std::strlen(str)); }
 
-Bytes hexBytes(const char *str) {
+Bytes hexBytes(const char* str) {
   Bytes result;
   size_t length = std::strlen(str);
   assert(length % 2 == 0);

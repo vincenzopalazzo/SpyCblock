@@ -14,7 +14,7 @@
 using namespace std;
 
 vector<unsigned char> spyCBlock::UtilCrypto::FromHexToBytes(
-    string const &hexData) {
+    string const& hexData) {
   LOG(INFO) << "The array Hex is: " << hexData;
 
   vector<unsigned char> bytes;
@@ -29,17 +29,17 @@ vector<unsigned char> spyCBlock::UtilCrypto::FromHexToBytes(
 }
 
 vector<unsigned char> spyCBlock::UtilCrypto::FromStringToByte(
-    const string &genericString) {
+    const string& genericString) {
   return vector<unsigned char>(genericString.begin(), genericString.end());
 }
 
 std::string spyCBlock::UtilCrypto::BytesLittleEndianToStringBigEndian(
-    vector<unsigned char> const &bytes) {
+    vector<unsigned char> const& bytes) {
   return UtilCrypto::BytesLittleEndianToStringBigEndian(bytes, 0, bytes.size());
 }
 
 std::string spyCBlock::UtilCrypto::BytesLittleEndianToStringBigEndian(
-    const vector<unsigned char> &bytes, std::size_t start, std::size_t end) {
+    const vector<unsigned char>& bytes, std::size_t start, std::size_t end) {
   std::vector<unsigned char> bigEndian;
   bigEndian.reserve(bytes.size());
   for (int i = end; i >= start; i--) {

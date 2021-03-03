@@ -13,17 +13,17 @@
 namespace spyCBlock {
 class DScript {
  public:
-  const std::string &getRawScriptString() const;
+  const std::string& getRawScriptString() const;
 
-  const DVarInt &getScriptLength() const;
+  const DVarInt& getScriptLength() const;
 
   std::string getScriptToSerializationForm() const;
 
   std::string toString();
 
-  const std::string &getScriptString() const;
+  const std::string& getScriptString() const;
 
-  void decode(std::ifstream &stream);
+  void decode(std::ifstream& stream);
 
  private:
   DVarInt scriptLenght;

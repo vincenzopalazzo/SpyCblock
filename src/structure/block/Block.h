@@ -28,34 +28,34 @@ class Block {
 
   int32_t getBlocksize() const;
 
-  const BlockHeader &getBlockHeader() const;
+  const BlockHeader& getBlockHeader() const;
 
-  const DVarInt &getNumberRawTransaction() const;
+  const DVarInt& getNumberRawTransaction() const;
 
-  const vector<RawTransaction> &getRawTransactions() const;
+  const std::vector<RawTransaction>& getRawTransactions() const;
 
   void setHeightBlock(int32_t heightBlock);
 
   std::string getHashBlock() const;
 
-  bool operator==(const Block &rhs) const;
+  bool operator==(const Block& rhs) const;
 
-  bool operator!=(const Block &rhs) const;
+  bool operator!=(const Block& rhs) const;
 
-  void decode(std::ifstream &stream);
+  void decode(std::ifstream& stream);
 
   std::string toSerealizationForm();
 
-  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper>& writerJson);
 
-  void toGraphForm(std::ofstream &outputStream,
-                   spyCBlockRPC::WrapperInformations &wrapper);
+  void toGraphForm(std::ofstream& outputStream,
+                   spyCBlockRPC::WrapperInformations& wrapper);
 
-  void toTransactionsGraph(std::ofstream &outputStream,
-                           spyCBlockRPC::WrapperInformations &wrapper);
+  void toTransactionsGraph(std::ofstream& outputStream,
+                           spyCBlockRPC::WrapperInformations& wrapper);
 
   void toCompressedTransactionsGraph(
-      gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
+      gzFile& file, spyCBlockRPC::WrapperInformations& wrapper);
 
   std::string toString();
 
@@ -68,11 +68,11 @@ class Block {
 
   DVarInt numberRawTransaction;
 
-  vector<RawTransaction> rawTransactions;
+  std::vector<RawTransaction> rawTransactions;
 
-  string hashBlock;
+  std::string hashBlock;
 
-  string convertMagicNumber();
+  std::string convertMagicNumber();
 };
 }  // namespace spyCBlock
 

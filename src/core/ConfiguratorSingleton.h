@@ -16,7 +16,7 @@ namespace spyCBlock {
 
 class ConfiguratorSingleton {
  public:
-  static ConfiguratorSingleton &getInstance() {
+  static ConfiguratorSingleton& getInstance() {
     static ConfiguratorSingleton SINGLETON;
 
     return SINGLETON;
@@ -104,13 +104,13 @@ class ConfiguratorSingleton {
 
   int levelLog = -1;
 
-  inline bool isNumber(const std::string &s) {
+  inline bool isNumber(const std::string& s) {
     return !s.empty() && std::find_if(s.begin(), s.end(), [](char c) {
                            return !std::isdigit(c);
                          }) == s.end();
   }
 
-  inline bool isBoolean(const std::string &s) {
+  inline bool isBoolean(const std::string& s) {
     return ((s == "true" || s == "TRUE") || s == "false" || s == "FALSE");
   }
 };

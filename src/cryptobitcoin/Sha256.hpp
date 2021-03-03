@@ -48,7 +48,7 @@ class Sha256 final {
   // Appends message bytes to this ongoing hasher, and returns this object
   // itself.
  public:
-  Sha256 &append(const std::uint8_t bytes[], std::size_t len);
+  Sha256& append(const std::uint8_t bytes[], std::size_t len);
 
   // Returns the SHA-256 hash of all the bytes seen. Destroys the state so that
   // no further append() or getHash() will be valid.

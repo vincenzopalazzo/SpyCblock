@@ -17,7 +17,7 @@ using namespace std;
 using namespace chrono;
 namespace fs = std::experimental::filesystem;
 
-bool DAOJson::saveBlock(const string &inputPath, const string &outputPath) {
+bool DAOJson::saveBlock(const string& inputPath, const string& outputPath) {
   if (inputPath.empty() || outputPath.empty()) {
     LOG(WARNING) << "Error, the input arguments are empty";
     throw DAOException("Error, the input arguments are empty");
@@ -68,8 +68,8 @@ bool DAOJson::saveBlock(const string &inputPath, const string &outputPath) {
   throw DAOException("The file input not exist " + inputPath);
 }
 
-bool DAOJson::saveBlockCompress(const string &inputPath,
-                                const string &outputPath) {
+bool DAOJson::saveBlockCompress(const string& inputPath,
+                                const string& outputPath) {
   // Do nothing
   return false;
 }

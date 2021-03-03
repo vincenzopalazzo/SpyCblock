@@ -22,25 +22,25 @@ class OutPoint {
 
   OutPoint() : n(NULL_INDEX) {}
 
-  const uint256 &getHash() const;
+  const uint256& getHash() const;
 
-  void setHash(const uint256 &hash);
+  void setHash(const uint256& hash);
 
   uint32_t getN() const;
 
   ADD_SERIALIZE_METHODS;
 
   template <typename Stream, typename Operation>
-  inline void SerializationOp(Stream &s, Operation ser_action) {
+  inline void SerializationOp(Stream& s, Operation ser_action) {
     READWRITE(hash);
     READWRITE(n);
   }
 
-  friend bool operator<(const OutPoint &a, const OutPoint &b);
+  friend bool operator<(const OutPoint& a, const OutPoint& b);
 
-  friend bool operator==(const OutPoint &a, const OutPoint &b);
+  friend bool operator==(const OutPoint& a, const OutPoint& b);
 
-  friend bool operator!=(const OutPoint &a, const OutPoint &b);
+  friend bool operator!=(const OutPoint& a, const OutPoint& b);
 
   std::string ToString() const;
 

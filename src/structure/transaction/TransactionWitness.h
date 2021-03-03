@@ -17,7 +17,7 @@ class TransactionWitness {
 
   std::vector<DScript> getWitnessStack() const;
 
-  void decode(std::ifstream &stream);
+  void decode(std::ifstream& stream);
 
   std::string toSerealizationForm() const;
 

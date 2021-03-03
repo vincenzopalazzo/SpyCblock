@@ -33,17 +33,46 @@
  */
 
 namespace spyCBlock {
+/**
+ * I noted that the serialization inside the decode method requires two
+ * different stages, and I try to summarize it here
+ * 1. Ge the transaction id and the vout
+ * 2. Read the from the value the information that is divided like
+ *      2.1: decode the transaction id and the vouot
+ *      2.2: decode the height and the coinbase
+ *      2.3: decode the amount
+ *      2.4: decode the address(es) of the UTXOs
+ *
+ *  The basic ide is is to use the chain of responsibility pattern with the list
+ * implementation, and each of the point 2.x write a handler that makes in a
+ * readable way the serialization
+ */
 class UTXOTransaction {
  private:
   std::string txId;
-  int64_t vOut;
+  uint64_t vOut;
+  uint32_t height;
+  uint32_t coinbase;
+  int64_t amount;
+  std::vector<unsigned char> obfuscateKey;
 
-  std::string extendObfuscateKey(std::string const &obfuscateKey);
+  std::vector<unsigned char> extendObfuscateKey();
 
  public:
-  void decode(std::vector<unsigned char> const &dbKey,
-              std::vector<unsigned char> const &dbValue,
-              std::string const &obfuscateKey);
+  // debug propriety
+  int64_t totoAmount = 0;
+
+  void decode(std::vector<unsigned char> const& dbKey,
+              std::vector<unsigned char> const& dbValue);
+
+  /**
+   * FIXME(vincenzopalazzo): Remove this method, move the obfuscateKey out of
+   * the structure
+   */
+  inline void clear() {
+    this->txId = "";
+    this->vOut = 0;
+  }
 };
 }  // namespace spyCBlock
 

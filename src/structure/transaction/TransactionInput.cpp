@@ -14,7 +14,7 @@
 using namespace spyCBlock;
 using namespace std;
 
-void TransactionInput::decode(std::ifstream &stream) {
+void TransactionInput::decode(std::ifstream& stream) {
   outpoint.Unserialize(stream);
   LOG(WARNING) << "Outopoint Hash: " << outpoint.getHash().GetHex();
   LOG(WARNING) << "Outopoint N: " << outpoint.getN();
@@ -47,7 +47,7 @@ bool TransactionInput::isScriptNull() {
 }
 
 void TransactionInput::toJson(
-    rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson) {
+    rapidjson::Writer<rapidjson::OStreamWrapper>& writerJson) {
   writerJson.StartObject();
 
   /*writerJson.Key("hashInputTransaction");
@@ -71,19 +71,19 @@ void TransactionInput::toJson(
   writerJson.EndObject();
 }
 
-void TransactionInput::toGraphForm(ofstream &outputStream,
-                                   spyCBlockRPC::WrapperInformations &wrapper) {
+void TransactionInput::toGraphForm(ofstream& outputStream,
+                                   spyCBlockRPC::WrapperInformations& wrapper) {
   wrapper.setHashPreviousTx(this->outpoint.getHash().GetHex());
   wrapper.setNOutpoint(this->outpoint.getN());
 }
 
 void TransactionInput::toTransactionsGraph(
-    ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper) {
+    ofstream& outputStream, spyCBlockRPC::WrapperInformations& wrapper) {
   wrapper.setFrom(this->outpoint.getHash().GetHex());
 }
 
 void TransactionInput::toCompressedTransactionsGraph(
-    gzFile &file, spyCBlockRPC::WrapperInformations &wrapper) {
+    gzFile& file, spyCBlockRPC::WrapperInformations& wrapper) {
   wrapper.setFrom(this->outpoint.getHash().GetHex());
 }
 
@@ -98,16 +98,16 @@ string TransactionInput::toString() {
 }
 
 // getter and setter
-const OutPoint &TransactionInput::getOutpoint() const { return outpoint; }
+const OutPoint& TransactionInput::getOutpoint() const { return outpoint; }
 
-void TransactionInput::setOutpoint(const OutPoint &outpoint) {
+void TransactionInput::setOutpoint(const OutPoint& outpoint) {
   TransactionInput::outpoint = outpoint;
 }
 
-const string &TransactionInput::getHashInputTransaction() const {
+const string& TransactionInput::getHashInputTransaction() const {
   return hashInputTransaction;
 }
 
 uint32_t TransactionInput::getSequences() const { return sequences; }
 
-const DScript &TransactionInput::getScript() const { return script; }
+const DScript& TransactionInput::getScript() const { return script; }

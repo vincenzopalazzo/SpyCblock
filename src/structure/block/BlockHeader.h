@@ -37,21 +37,21 @@ class BlockHeader {
 
   uint32_t getNonce() const;
 
-  const uint256 &getPreviousBlockHeaderHash() const;
+  const uint256& getPreviousBlockHeaderHash() const;
 
-  const uint256 &getMerkleRoot() const;
+  const uint256& getMerkleRoot() const;
 
-  bool operator==(const BlockHeader &rhs) const;
+  bool operator==(const BlockHeader& rhs) const;
 
-  bool operator!=(const BlockHeader &rhs) const;
+  bool operator!=(const BlockHeader& rhs) const;
 
   std::string toString();
 
-  void decode(std::ifstream &stream);
+  void decode(std::ifstream& stream);
 
   std::string toSerealizationForm();
 
-  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper>& writerJson);
 };
 }  // namespace spyCBlock
 

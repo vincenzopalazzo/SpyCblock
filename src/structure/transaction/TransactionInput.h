@@ -18,34 +18,34 @@
 namespace spyCBlock {
 class TransactionInput {
  public:
-  const DScript &getScript() const;
+  const DScript& getScript() const;
 
   uint32_t getSequences() const;
 
-  const OutPoint &getOutpoint() const;
+  const OutPoint& getOutpoint() const;
 
-  void setOutpoint(const OutPoint &outpoint);
+  void setOutpoint(const OutPoint& outpoint);
 
-  const std::string &getHashInputTransaction() const;
+  const std::string& getHashInputTransaction() const;
 
   std::string toString();
 
-  void decode(std::ifstream &stream);
+  void decode(std::ifstream& stream);
 
   std::string toSerealizationForm() const;
 
   bool isScriptNull();
 
-  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper>& writerJson);
 
-  void toGraphForm(std::ofstream &outputStream,
-                   spyCBlockRPC::WrapperInformations &wrapper);
+  void toGraphForm(std::ofstream& outputStream,
+                   spyCBlockRPC::WrapperInformations& wrapper);
 
-  void toTransactionsGraph(std::ofstream &outputStream,
-                           spyCBlockRPC::WrapperInformations &wrapper);
+  void toTransactionsGraph(std::ofstream& outputStream,
+                           spyCBlockRPC::WrapperInformations& wrapper);
 
   void toCompressedTransactionsGraph(
-      gzFile &file, spyCBlockRPC::WrapperInformations &wrapper);
+      gzFile& file, spyCBlockRPC::WrapperInformations& wrapper);
 
  private:
   OutPoint outpoint;

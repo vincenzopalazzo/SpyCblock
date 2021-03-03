@@ -16,27 +16,27 @@
 namespace spyCBlock {
 class TransactionOutput {
  public:
-  const int64_t &getNValue() const;
+  const int64_t& getNValue() const;
 
-  const DScript &getScript() const;
+  const DScript& getScript() const;
 
-  const std::string &getHashOutputTransaction() const;
+  const std::string& getHashOutputTransaction() const;
 
   std::string toString();
 
-  void decode(std::ifstream &stream);
+  void decode(std::ifstream& stream);
 
   std::string toSerealizationForm() const;
 
   bool isScriptNull();
 
-  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson);
+  void toJson(rapidjson::Writer<rapidjson::OStreamWrapper>& writerJson);
 
-  void toGraphForm(std::ofstream &outputStream,
-                   spyCBlockRPC::WrapperInformations &wrapper);
+  void toGraphForm(std::ofstream& outputStream,
+                   spyCBlockRPC::WrapperInformations& wrapper);
 
-  void toTransactionsGraph(std::ofstream &outputStream,
-                           spyCBlockRPC::WrapperInformations &wrapper);
+  void toTransactionsGraph(std::ofstream& outputStream,
+                           spyCBlockRPC::WrapperInformations& wrapper);
 
  private:
   int64_t nValue;

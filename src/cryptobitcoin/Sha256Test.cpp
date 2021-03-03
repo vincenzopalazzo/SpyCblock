@@ -22,7 +22,7 @@
 
 struct TestCase {
   bool matches;
-  const char *expectedHash;  // In byte-reversed order
+  const char* expectedHash;  // In byte-reversed order
   Bytes message;
 };
 
@@ -423,7 +423,7 @@ static void testSingleHash() {
                   "Y2ITCYWVm|3DvVpK-q{@KrP*+32ZqcMx=`(=##(#53W%[(Y)on.@<g0JO,"
                   "ic(A_nCF<@ItmGO)S^45ZWBT")},
   };
-  for (const TestCase &tc : singleCases) {
+  for (const TestCase& tc : singleCases) {
     const Sha256Hash actualHash =
         Sha256::getHash(tc.message.data(), tc.message.size());
     assert((actualHash == Sha256Hash(tc.expectedHash)) == tc.matches);
@@ -447,7 +447,7 @@ static void testDoubleHash() {
        "AD1500F261FF10B49C7A1796A36103B02322AE5DDE404141EACF018FBF1678BA",
        asciiBytes("abc")},
   };
-  for (const TestCase &tc : doubleCases) {
+  for (const TestCase& tc : doubleCases) {
     const Sha256Hash actualHash =
         Sha256::getDoubleHash(tc.message.data(), tc.message.size());
     assert((actualHash == Sha256Hash(tc.expectedHash)) == tc.matches);
@@ -459,7 +459,7 @@ static void testHmac() {
   // HMAC-SHA-256 message authentication code
   struct HmacCase {
     bool matches;
-    const char *expectedHash;  // In byte-reversed order
+    const char* expectedHash;  // In byte-reversed order
     Bytes key;
     Bytes message;
   };
@@ -510,7 +510,7 @@ static void testHmac() {
        hexBytes("0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B"),
        asciiBytes("HI There")},
   };
-  for (const HmacCase &tc : hmacCases) {
+  for (const HmacCase& tc : hmacCases) {
     const Sha256Hash actualHash = Sha256::getHmac(
         tc.key.data(), tc.key.size(), tc.message.data(), tc.message.size());
     assert((actualHash == Sha256Hash(tc.expectedHash)) == tc.matches);
@@ -518,7 +518,7 @@ static void testHmac() {
   }
 }
 
-static void ap(Sha256 &hasher, const char *msg) {
+static void ap(Sha256& hasher, const char* msg) {
   std::vector<std::uint8_t> temp(msg, msg + std::strlen(msg));
   hasher.append(temp.data(), temp.size());
 }

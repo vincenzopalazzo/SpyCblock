@@ -16,7 +16,7 @@
 using namespace spyCBlock;
 using namespace std;
 
-void BlockHeader::decode(std::ifstream &stream) {
+void BlockHeader::decode(std::ifstream& stream) {
   Unserialize(stream, version);
   LOG(INFO) << "Version block header readed: " << version;
   this->previousBlockHeaderHash.Unserialize(stream);
@@ -43,7 +43,7 @@ string BlockHeader::toSerealizationForm() {
 }
 
 void BlockHeader::toJson(
-    rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson) {
+    rapidjson::Writer<rapidjson::OStreamWrapper>& writerJson) {
   writerJson.StartObject();
 
   writerJson.Key("version");
@@ -92,7 +92,7 @@ string BlockHeader::toString() {
 string BlockHeader::convertTimeStamp() {
   char data[30];
   time_t timeToValue = time;
-  tm *tmTime = gmtime(&timeToValue);
+  tm* tmTime = gmtime(&timeToValue);
   strftime(data, 30, "%F %T", tmTime);
   string dataString = string(data);
   return dataString;
@@ -109,19 +109,19 @@ uint32_t BlockHeader::getNBits() const { return nBits; }
 
 uint32_t BlockHeader::getNonce() const { return nonce; }
 
-const uint256 &BlockHeader::getPreviousBlockHeaderHash() const {
+const uint256& BlockHeader::getPreviousBlockHeaderHash() const {
   return previousBlockHeaderHash;
 }
 
-const uint256 &BlockHeader::getMerkleRoot() const { return merkleRoot; }
+const uint256& BlockHeader::getMerkleRoot() const { return merkleRoot; }
 
-bool BlockHeader::operator==(const BlockHeader &rhs) const {
+bool BlockHeader::operator==(const BlockHeader& rhs) const {
   return version == rhs.version &&
          previousBlockHeaderHash == rhs.previousBlockHeaderHash &&
          merkleRoot == rhs.merkleRoot && time == rhs.time &&
          nBits == rhs.nBits && nonce == rhs.nonce;
 }
 
-bool BlockHeader::operator!=(const BlockHeader &rhs) const {
+bool BlockHeader::operator!=(const BlockHeader& rhs) const {
   return !(rhs == *this);
 }

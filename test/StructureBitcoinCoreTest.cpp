@@ -817,7 +817,7 @@ TEST(StructureBitcoinCoreTest, compare_type_blocks_network) {
   stream.close();
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
   google::InitGoogleLogging(argv[0]);
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

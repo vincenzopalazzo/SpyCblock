@@ -13,7 +13,7 @@ namespace spyCBlock {
 class DVarInt {
  public:
   uint64_t getValue() const;
-  void decode(std::ifstream &stream);
+  void decode(std::ifstream& stream);
 
  private:
   uint64_t value;

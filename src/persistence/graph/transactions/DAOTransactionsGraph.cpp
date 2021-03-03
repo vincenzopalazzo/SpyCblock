@@ -19,8 +19,8 @@ using namespace std;
 namespace fs = std::experimental::filesystem;
 using namespace chrono;
 
-bool spyCBlock::DAOTransactionsGraph::saveBlock(const string &inputPath,
-                                                const string &outputPath) {
+bool spyCBlock::DAOTransactionsGraph::saveBlock(const string& inputPath,
+                                                const string& outputPath) {
   if (inputPath.empty() || outputPath.empty()) {
     LOG(ERROR) << "Error, the input argument are empty";
     throw DAOException("Error, the input argument are empty");
@@ -71,7 +71,7 @@ bool spyCBlock::DAOTransactionsGraph::saveBlock(const string &inputPath,
 }
 
 bool spyCBlock::DAOTransactionsGraph::saveBlockCompress(
-    const string &inputPath, const string &outputPath) {
+    const string& inputPath, const string& outputPath) {
   if (inputPath.empty() || outputPath.empty()) {
     LOG(ERROR) << "Error, the input argument are empty";
     throw DAOException("Error, the input argument are empty");

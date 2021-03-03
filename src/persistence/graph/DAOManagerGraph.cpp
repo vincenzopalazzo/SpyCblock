@@ -17,8 +17,8 @@ using namespace std;
 namespace fs = std::experimental::filesystem;
 using namespace chrono;
 
-bool spyCBlock::DAOManagerGraph::saveBlock(const string &inputPath,
-                                           const string &outputPath) {
+bool spyCBlock::DAOManagerGraph::saveBlock(const string& inputPath,
+                                           const string& outputPath) {
   if (inputPath.empty() || outputPath.empty()) {
     LOG(ERROR) << "Error, the input argument are empty";
     throw DAOException("Error, the input argument are empty");
@@ -66,8 +66,8 @@ bool spyCBlock::DAOManagerGraph::saveBlock(const string &inputPath,
   throw DAOException("The file input not exist " + inputPath);
 }
 
-bool spyCBlock::DAOManagerGraph::saveBlockCompress(const string &inputPath,
-                                                   const string &outputPath) {
+bool spyCBlock::DAOManagerGraph::saveBlockCompress(const string& inputPath,
+                                                   const string& outputPath) {
   if (inputPath.empty() || outputPath.empty()) {
     LOG(ERROR) << "Error, the input argument are empty";
     throw DAOException("Error, the input argument are empty");

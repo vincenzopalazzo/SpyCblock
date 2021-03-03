@@ -21,11 +21,11 @@ const std::string GRAPH_TX = "graphtx";
 const std::string GRAPH_PUB_KEY = "graphpubkey";
 const std::string CHAINSTATE_KEY = "chainstate";
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   int logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
 
   FLAGS_minloglevel = logLevel;
-  FLAGS_logtostderr = true;
+  FLAGS_logtostderr = logLevel == 0;
   google::InitGoogleLogging(std::to_string(logLevel).c_str());
   string pathLogFile =
       ConfiguratorSingleton::getInstance().getPathFileLog() + "/main_log.log";

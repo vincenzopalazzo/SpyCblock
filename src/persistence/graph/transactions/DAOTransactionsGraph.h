@@ -11,11 +11,11 @@ namespace spyCBlock {
 
 class DAOTransactionsGraph : IDAOBlockchain {
  public:
-  bool saveBlock(const std::string &inputPath,
-                 const std::string &outputPath) override;
+  bool saveBlock(const std::string& inputPath,
+                 const std::string& outputPath) override;
 
-  bool saveBlockCompress(const string &inputPath,
-                         const string &outputPath) override;
+  bool saveBlockCompress(const std::string& inputPath,
+                         const std::string& outputPath) override;
 };
 
 }  // namespace spyCBlock

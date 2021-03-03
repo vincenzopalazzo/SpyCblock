@@ -45,19 +45,19 @@ class Sha256Hash final {
   // Constructs a Sha256Hash from the given 64-character byte-reversed
   // hexadecimal string. Not constant-time.
  public:
-  explicit Sha256Hash(const char *str);
+  explicit Sha256Hash(const char* str);
 
   /*---- Instance methods ----*/
 
   // Tests whether the given hash is equal to this one. Constant-time with
   // respect to both values.
  public:
-  bool operator==(const Sha256Hash &other) const;
+  bool operator==(const Sha256Hash& other) const;
 
   // Tests whether the given hash is unequal to this one. Constant-time with
   // respect to both values.
  public:
-  bool operator!=(const Sha256Hash &other) const;
+  bool operator!=(const Sha256Hash& other) const;
 
   /**
    *Convert the hash calculate in to string

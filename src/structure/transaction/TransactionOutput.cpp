@@ -15,7 +15,7 @@
 using namespace spyCBlock;
 using namespace std;
 
-void TransactionOutput::decode(ifstream &stream) {
+void TransactionOutput::decode(ifstream& stream) {
   Unserialize(stream, nValue);
   LOG(INFO) << "N value " << nValue;
   script.decode(stream);
@@ -38,7 +38,7 @@ string TransactionOutput::toSerealizationForm() const {
 }
 
 void TransactionOutput::toJson(
-    rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson) {
+    rapidjson::Writer<rapidjson::OStreamWrapper>& writerJson) {
   writerJson.StartObject();
 
   /*writerJson.Key("hashOutputTransaction");
@@ -57,7 +57,7 @@ void TransactionOutput::toJson(
 }
 
 void TransactionOutput::toGraphForm(
-    ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper) {
+    ofstream& outputStream, spyCBlockRPC::WrapperInformations& wrapper) {
   wrapper.addInformationLink(
       spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION,
       "amount: " + to_string(this->nValue));
@@ -65,7 +65,7 @@ void TransactionOutput::toGraphForm(
 }
 
 void TransactionOutput::toTransactionsGraph(
-    ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper) {
+    ofstream& outputStream, spyCBlockRPC::WrapperInformations& wrapper) {
   wrapper.addInformationLink(
       spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION,
       "amount: " +
@@ -89,10 +89,10 @@ bool TransactionOutput::isScriptNull() {  // This isn't null but containt the
 }
 
 // getter and setter
-const int64_t &TransactionOutput::getNValue() const { return nValue; }
+const int64_t& TransactionOutput::getNValue() const { return nValue; }
 
-const DScript &TransactionOutput::getScript() const { return script; }
+const DScript& TransactionOutput::getScript() const { return script; }
 
-const string &TransactionOutput::getHashOutputTransaction() const {
+const string& TransactionOutput::getHashOutputTransaction() const {
   return this->hashOutputTransaction;
 }

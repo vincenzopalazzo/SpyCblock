@@ -13,7 +13,7 @@
 
 using namespace spyCBlock;
 
-string CryptoSingleton::getHash256(string const &baseHash) {
+string CryptoSingleton::getHash256(string const& baseHash) {
   assertf(baseHash.length() > 0,
           "Argument function getHash256 of CryptoSingleton is not valid");
 

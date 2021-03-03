@@ -12,7 +12,7 @@ namespace spyCBlock {
 
 class DAOException : public std::runtime_error {
  public:
-  DAOException(const std::string &cause) throw() : std::runtime_error(cause){};
+  DAOException(const std::string& cause) throw() : std::runtime_error(cause){};
 };
 }  // namespace spyCBlock
 

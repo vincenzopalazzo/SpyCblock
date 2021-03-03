@@ -21,9 +21,9 @@ class CSHA256 {
   static const size_t OUTPUT_SIZE = 32;
 
   CSHA256();
-  CSHA256 &Write(const unsigned char *data, size_t len);
+  CSHA256& Write(const unsigned char* data, size_t len);
   void Finalize(unsigned char hash[OUTPUT_SIZE]);
-  CSHA256 &Reset();
+  CSHA256& Reset();
 
   std::string ToString();
 };
@@ -38,7 +38,7 @@ std::string SHA256AutoDetect();
  *  input:   pointer to a blocks*64 byte input buffer
  *  blocks:  the number of hashes to compute.
  */
-void SHA256D64(unsigned char *output, const unsigned char *input,
+void SHA256D64(unsigned char* output, const unsigned char* input,
                size_t blocks);
 
 #endif  // BITCOIN_CRYPTO_SHA256_H

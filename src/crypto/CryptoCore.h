@@ -13,12 +13,12 @@ using byte = std::uint8_t;
 namespace spyCBlock {
 class CryptoSingleton {
  public:
-  static CryptoSingleton &getInstance() {
+  static CryptoSingleton& getInstance() {
     static CryptoSingleton SINGLETON;
     return SINGLETON;
   }
 
-  std::string getHash256(std::string const &baseHash);
+  std::string getHash256(std::string const& baseHash);
 
  private:
   CryptoSingleton() = default;

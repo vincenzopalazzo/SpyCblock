@@ -19,7 +19,7 @@ class DAOUtilTest {
   std::vector<Block> readBlocks(
       std::experimental::filesystem::directory_entry entry);
 
-  bool isBlockFileBlk(std::experimental::filesystem::directory_entry &entry);
+  bool isBlockFileBlk(std::experimental::filesystem::directory_entry& entry);
 };
 }  // namespace spyCBlock
 

@@ -16,12 +16,12 @@ namespace spyCBlock {
 
 class DAOJson : public IDAOBlockchain {
  public:
-  bool saveBlock(const std::string &inputPath,
-                 const std::string &outputPath) override;
+  bool saveBlock(const std::string& inputPath,
+                 const std::string& outputPath) override;
 
   // not implemented for the moment
-  virtual bool saveBlockCompress(const string &inputPath,
-                                 const string &outputPath);
+  virtual bool saveBlockCompress(const std::string& inputPath,
+                                 const std::string& outputPath);
 };
 
 }  // namespace spyCBlock

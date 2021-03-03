@@ -8,7 +8,7 @@
 #include "strencodings.h"
 #include "tinyformat.h"
 
-const char *GetOpName(opcodetype opcode) {
+const char* GetOpName(opcodetype opcode) {
   switch (opcode) {
     // push value
     case OP_0:
@@ -276,7 +276,7 @@ unsigned int CScript::GetSigOpCount(bool fAccurate) const {
   return n;
 }
 
-unsigned int CScript::GetSigOpCount(const CScript &scriptSig) const {
+unsigned int CScript::GetSigOpCount(const CScript& scriptSig) const {
   if (!IsPayToScriptHash()) return GetSigOpCount(true);
 
   // This is a pay-to-script-hash scriptPubKey;
@@ -308,8 +308,8 @@ bool CScript::IsPayToWitnessScriptHash() const {
 
 // A witness program is any valid CScript that consists of a 1-byte push opcode
 // followed by a data push between 2 and 40 bytes.
-bool CScript::IsWitnessProgram(int &version,
-                               std::vector<unsigned char> &program) const {
+bool CScript::IsWitnessProgram(int& version,
+                               std::vector<unsigned char>& program) const {
   if (this->size() < 4 || this->size() > 42) {
     return false;
   }
@@ -363,9 +363,9 @@ bool CScript::HasValidOps() const {
   return true;
 }
 
-bool GetScriptOp(CScriptBase::const_iterator &pc,
-                 CScriptBase::const_iterator end, opcodetype &opcodeRet,
-                 std::vector<unsigned char> *pvchRet) {
+bool GetScriptOp(CScriptBase::const_iterator& pc,
+                 CScriptBase::const_iterator end, opcodetype& opcodeRet,
+                 std::vector<unsigned char>* pvchRet) {
   opcodeRet = OP_INVALIDOPCODE;
   if (pvchRet) pvchRet->clear();
   if (pc >= end) return false;

@@ -15,15 +15,15 @@ namespace spyCBlock {
 
 class UtilCrypto {
  public:
-  static vector<unsigned char> FromHexToBytes(string const &hexData);
+  static vector<unsigned char> FromHexToBytes(string const& hexData);
 
-  static vector<unsigned char> FromStringToByte(string const &genericString);
-
-  static std::string BytesLittleEndianToStringBigEndian(
-      std::vector<unsigned char> const &bytes);
+  static vector<unsigned char> FromStringToByte(string const& genericString);
 
   static std::string BytesLittleEndianToStringBigEndian(
-      std::vector<unsigned char> const &bytes, std::size_t start,
+      std::vector<unsigned char> const& bytes);
+
+  static std::string BytesLittleEndianToStringBigEndian(
+      std::vector<unsigned char> const& bytes, std::size_t start,
       std::size_t end);
 };
 

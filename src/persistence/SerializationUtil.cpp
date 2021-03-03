@@ -6,10 +6,13 @@
 
 #include <glog/logging.h>
 
+#include <cmath>
+
 #include "../util/endian.h"
 #include "../util/strencodings.h"
 #include "../util/uint256.h"
 
+using namespace std;
 using namespace spyCBlock;
 
 SerializationUtil::SerializationUtil() {}
@@ -17,7 +20,7 @@ SerializationUtil::SerializationUtil() {}
 string SerializationUtil::toSerializeForm(uint8_t value8) {
   string formLiteEndian;
   stringstream stream;
-  stream.write((char *)&value8, 1);
+  stream.write((char*)&value8, 1);
   formLiteEndian = HexStr(stream.str());
   LOG(INFO) << "spyCBlock::SerializationUtil: "
             << "The form convertion uint16 with endian tipe is: "
@@ -28,7 +31,7 @@ string SerializationUtil::toSerializeForm(uint8_t value8) {
 string SerializationUtil::toSerializeForm(int8_t value8) {
   string formLiteEndian;
   stringstream stream;
-  stream.write((char *)&value8, 1);
+  stream.write((char*)&value8, 1);
   formLiteEndian = HexStr(stream.str());
   LOG(INFO) << "spyCBlock::SerializationUtil: "
             << "The form convertion uint16 with endian tipe is: "
@@ -40,7 +43,7 @@ string spyCBlock::SerializationUtil::toSerializeForm(uint16_t value16) {
   string formLiteEndian;
   value16 = htole16(value16);
   stringstream stream;
-  stream.write((char *)&value16, 2);
+  stream.write((char*)&value16, 2);
   formLiteEndian = HexStr(stream.str());
   LOG(INFO) << "spyCBlock::SerializationUtil: "
             << "The form convertion uint16 with endian tipe is: "
@@ -52,7 +55,7 @@ string SerializationUtil::toSerializeForm(int16_t value16) {
   string formLiteEndian;
   value16 = htole16(value16);
   stringstream stream;
-  stream.write((char *)&value16, 2);
+  stream.write((char*)&value16, 2);
   formLiteEndian = HexStr(stream.str());
   LOG(INFO) << "spyCBlock::SerializationUtil: "
             << "The form convertion uint16 with endian tipe is: "
@@ -64,7 +67,7 @@ string spyCBlock::SerializationUtil::toSerializeForm(uint32_t value32) {
   string formLiteEndian;
   value32 = htole32(value32);
   stringstream stream;
-  stream.write((char *)&value32, 4);
+  stream.write((char*)&value32, 4);
   formLiteEndian = HexStr(stream.str());
   LOG(INFO) << "spyCBlock::SerializationUtil: "
             << "The form convertion uint16 with endian tipe is: "
@@ -76,7 +79,7 @@ string SerializationUtil::toSerializeForm(int32_t value32) {
   string formLiteEndian;
   value32 = htole32(value32);
   stringstream stream;
-  stream.write((char *)&value32, 4);
+  stream.write((char*)&value32, 4);
   formLiteEndian = HexStr(stream.str());
   LOG(INFO) << "spyCBlock::SerializationUtil: "
             << "The form convertion uint16 with endian tipe is: "
@@ -88,7 +91,7 @@ string spyCBlock::SerializationUtil::toSerializeForm(uint64_t value64) {
   string formLiteEndian;
   value64 = htole64(value64);
   stringstream stream;
-  stream.write((char *)&value64, 8);
+  stream.write((char*)&value64, 8);
   formLiteEndian = HexStr(stream.str());
   LOG(INFO) << "spyCBlock::SerializationUtil: "
             << "The form convertion uint16 with endian tipe is: "
@@ -100,7 +103,7 @@ string SerializationUtil::toSerializeForm(int64_t value64) {
   string formLiteEndian;
   value64 = htole64(value64);
   stringstream stream;
-  stream.write((char *)&value64, 8);
+  stream.write((char*)&value64, 8);
   formLiteEndian = HexStr(stream.str());
   LOG(INFO) << "spyCBlock::SerializationUtil: "
             << "The form convertion uint16 with endian tipe is: "
@@ -162,3 +165,48 @@ string SerializationUtil::toSerializeForm(uint256 value256) {
   }
   return streamReversUint256.str();
 }
+
+template <typename T>
+std::vector<unsigned char> SerializationUtil::toVarIntForm(
+    vector<unsigned char> const& bytes, T& offset) {
+  // static_assert(bytes.size() > offset, "The offset is graiter that the bytes
+  // size");
+  std::vector<unsigned char> result;
+  result.reserve(bytes.size() - offset);
+  for (std::size_t i = 0; i <= offset; i++) {
+    result.emplace_back(bytes[i]);
+    auto set = bytes[i] & 128;
+    if (set == 0) {
+      offset = result.size();
+      return result;
+    }
+  }
+  offset = 0;
+  return result;
+}
+
+template <typename T>
+T SerializationUtil::toDecompressedVarInt(T varIntValue) {
+  int64_t result;
+  if (varIntValue == 0) return 0;
+  varIntValue--;
+  auto modulo = varIntValue % 10;
+  varIntValue /= 10;
+
+  if (modulo < 9) {
+    auto moduloTwo = varIntValue % 9;
+    varIntValue /= 9;
+    result = varIntValue * 10 + moduloTwo + 1;
+  } else {
+    result = varIntValue + 1;
+  }
+
+  result =
+      static_cast<float>(result) * std::pow(10, static_cast<float>(modulo));
+
+  return static_cast<int64_t>(result);
+}
+
+template std::vector<unsigned char> SerializationUtil::toVarIntForm(
+    const vector<unsigned char>& bytes, int& offset);
+template int64_t SerializationUtil::toDecompressedVarInt(int64_t varIntValue);

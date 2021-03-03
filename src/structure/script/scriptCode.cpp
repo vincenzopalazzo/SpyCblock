@@ -4,7 +4,7 @@
 
 #include "scriptCode.h"
 
-const char *GetOpName(opcodetype opcode) {
+const char* GetOpName(opcodetype opcode) {
   switch (opcode) {
     // push value
     case OP_0:

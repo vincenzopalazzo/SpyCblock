@@ -23,8 +23,8 @@ using namespace spyCBlock;
 namespace fs = experimental::filesystem;
 
 template <typename T>
-void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore,
-                            const string &destinationBitcoinCoreJson) {
+void SpyCBlock::convertData(T& dao, const string& locationBitcoinCore,
+                            const string& destinationBitcoinCoreJson) {
   static_assert(std::is_base_of<IDAOBlockchain, T>::value,
                 "T must inherit from IDAOBlockchain");
 
@@ -37,7 +37,7 @@ void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore,
   int fileCount = numberFileInsidePath(bitcoinBlockPath);
 
   bool logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
-  progressbar *progress = NULL;
+  progressbar* progress = NULL;
 
   if (logLevel < 3) {
     progress = progressbar_new("Progress", fileCount);
@@ -94,8 +94,8 @@ void SpyCBlock::convertData(T &dao, const string &locationBitcoinCore,
 }
 
 template <typename T>
-void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore,
-                                    const string &destinationBitcoinCoreJson) {
+void SpyCBlock::convertDataParallel(T& dao, const string& locationBitcoinCore,
+                                    const string& destinationBitcoinCoreJson) {
   static_assert(std::is_base_of<IDAOBlockchain, T>::value,
                 "T must inherit from IDAOBlockchain");
 
@@ -113,7 +113,7 @@ void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore,
   int fileCount = numberFileInsidePath(bitcoinBlockPath);
   auto logLevel = ConfiguratorSingleton::getInstance().getLevelLog();
 
-  progressbar *progress = NULL;
+  progressbar* progress = NULL;
   if (logLevel >= 3) {
     progress = progressbar_new("Progress", fileCount);
   }
@@ -166,11 +166,11 @@ void SpyCBlock::convertDataParallel(T &dao, const string &locationBitcoinCore,
 }
 
 template <typename T>
-void SpyCBlock::convertChainState(T &dao, const std::string &pathLoadDirectory,
-                                  const std::string &destinationDirectory) {
+void SpyCBlock::convertChainState(T& dao, const std::string& pathLoadDirectory,
+                                  const std::string& destinationDirectory) {
   LOG(WARNING) << "FROM " << pathLoadDirectory << " to "
                << destinationDirectory;
-  leveldb::DB *dbChainState;
+  leveldb::DB* dbChainState;
   leveldb::Options dbOptions;
   // disable compression to avoid bitcoin chain state corruption
   dbOptions.compression = leveldb::CompressionType::kNoCompression;
@@ -180,26 +180,25 @@ void SpyCBlock::convertChainState(T &dao, const std::string &pathLoadDirectory,
   auto it = unique_ptr<leveldb::Iterator>(
       dbChainState->NewIterator(leveldb::ReadOptions()));
   std::string obfuscateKey;
+  auto dbUtxo = UTXOTransaction();
   for (it->SeekToFirst(); it->Valid(); it->Next()) {
-    std::string key = it->key().ToString();
-    std::string value = it->value().ToString();
+    auto key = it->key().ToString();
+    auto value = it->value().ToString();
     LOG(INFO) << "Db Key length " << key.size();
     LOG(INFO) << "Db value length " << key.size();
-    if (key == "obfuscate_key") {
-      obfuscateKey = value;
-    } else {
-      auto keyBytes = UtilCrypto::FromStringToByte(key);
-      auto valueBytes = UtilCrypto::FromStringToByte(value);
-      auto dbUtxo = UTXOTransaction();
-      dbUtxo.decode(keyBytes, valueBytes, obfuscateKey);
-    }
+    auto keyBytes = UtilCrypto::FromStringToByte(key);
+    auto valueBytes = UtilCrypto::FromStringToByte(value);
+    auto obfuscateKeyBytes = UtilCrypto::FromHexToBytes(obfuscateKey);
+    dbUtxo.decode(keyBytes, valueBytes);
+    dbUtxo.clear();
   }
   it.release();
   delete dbChainState;
+  std::cout << "Tot. amount mempool" << dbUtxo.totoAmount << "\n";
 }
 
 // I can remove this method and add support to the library of C++17 <filesystem>
-string SpyCBlock::nameFileSearched(const string &pathInput, int &currentFile) {
+string SpyCBlock::nameFileSearched(const string& pathInput, int& currentFile) {
   if (pathInput.empty()) {
     LOG(ERROR) << "Input function null";
     throw exception();
@@ -224,7 +223,7 @@ string SpyCBlock::nameFileSearched(const string &pathInput, int &currentFile) {
   return "";
 }
 
-string SpyCBlock::getNameFile(const string &path) {
+string SpyCBlock::getNameFile(const string& path) {
   LOG(INFO) << "Path File is " << path;
   string nameFile = path.substr((path.size() - 12), 8);
   LOG(WARNING) << "Name file analized is " << nameFile
@@ -234,7 +233,7 @@ string SpyCBlock::getNameFile(const string &path) {
 }
 
 template <typename T>
-string SpyCBlock::extensionFile(T &dao) {
+string SpyCBlock::extensionFile(T& dao) {
   if (std::is_base_of<DAOJson, T>::value) {
     return ".json";
   } else {
@@ -246,29 +245,29 @@ string SpyCBlock::extensionFile(T &dao) {
 }
 
 template void SpyCBlock::convertData<DAOManagerGraph>(
-    DAOManagerGraph &dao, const string &locationBitcoinCore,
-    const string &destinationBitcoinCoreJson);
+    DAOManagerGraph& dao, const string& locationBitcoinCore,
+    const string& destinationBitcoinCoreJson);
 
 template void SpyCBlock::convertData<DAOJson>(
-    DAOJson &dao, const string &locationBitcoinCore,
-    const string &destinationBitcoinCoreJson);
+    DAOJson& dao, const string& locationBitcoinCore,
+    const string& destinationBitcoinCoreJson);
 
 template void SpyCBlock::convertData<DAOTransactionsGraph>(
-    DAOTransactionsGraph &dao, const string &locationBitcoinCore,
-    const string &destinationBitcoinCoreJson);
+    DAOTransactionsGraph& dao, const string& locationBitcoinCore,
+    const string& destinationBitcoinCoreJson);
 
 template void SpyCBlock::convertDataParallel<DAOManagerGraph>(
-    DAOManagerGraph &dao, const string &locationBitcoinCore,
-    const string &destinationBitcoinCoreJson);
+    DAOManagerGraph& dao, const string& locationBitcoinCore,
+    const string& destinationBitcoinCoreJson);
 
 template void SpyCBlock::convertDataParallel<DAOJson>(
-    DAOJson &dao, const string &locationBitcoinCore,
-    const string &destinationBitcoinCoreJson);
+    DAOJson& dao, const string& locationBitcoinCore,
+    const string& destinationBitcoinCoreJson);
 
 template void SpyCBlock::convertDataParallel<DAOTransactionsGraph>(
-    DAOTransactionsGraph &dao, const string &locationBitcoinCore,
-    const string &destinationBitcoinCoreJson);
+    DAOTransactionsGraph& dao, const string& locationBitcoinCore,
+    const string& destinationBitcoinCoreJson);
 
 template void SpyCBlock::convertChainState<DAOManagerGraph>(
-    DAOManagerGraph &dao, const string &locationBitcoinCore,
-    const string &destinationBitcoinCoreJson);
+    DAOManagerGraph& dao, const string& locationBitcoinCore,
+    const string& destinationBitcoinCoreJson);

@@ -1,7 +1,0 @@
-# https://editorconfig.org/#file-format-details
-# Source: https://github.com/google/styleguide/issues/463
-[*.{cpp, hpp}]
-indent_style = space
-indent_size = 2
-trim_trailing_whitespace = true
-insert_final_newline = true

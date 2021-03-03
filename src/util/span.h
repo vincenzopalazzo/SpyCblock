@@ -16,20 +16,20 @@
  */
 template <typename C>
 class Span {
-  C *m_data;
+  C* m_data;
   std::ptrdiff_t m_size;
 
  public:
   constexpr Span() noexcept : m_data(nullptr), m_size(0) {}
-  constexpr Span(C *data, std::ptrdiff_t size) noexcept
+  constexpr Span(C* data, std::ptrdiff_t size) noexcept
       : m_data(data), m_size(size) {}
-  constexpr Span(C *data, C *end) noexcept : m_data(data), m_size(end - data) {}
+  constexpr Span(C* data, C* end) noexcept : m_data(data), m_size(end - data) {}
 
-  constexpr C *data() const noexcept { return m_data; }
-  constexpr C *begin() const noexcept { return m_data; }
-  constexpr C *end() const noexcept { return m_data + m_size; }
+  constexpr C* data() const noexcept { return m_data; }
+  constexpr C* begin() const noexcept { return m_data; }
+  constexpr C* end() const noexcept { return m_data + m_size; }
   constexpr std::ptrdiff_t size() const noexcept { return m_size; }
-  constexpr C &operator[](std::ptrdiff_t pos) const noexcept {
+  constexpr C& operator[](std::ptrdiff_t pos) const noexcept {
     return m_data[pos];
   }
 
@@ -47,22 +47,22 @@ class Span {
     return Span<C>(m_data + m_size - count, count);
   }
 
-  friend constexpr bool operator==(const Span &a, const Span &b) noexcept {
+  friend constexpr bool operator==(const Span& a, const Span& b) noexcept {
     return a.size() == b.size() && std::equal(a.begin(), a.end(), b.begin());
   }
-  friend constexpr bool operator!=(const Span &a, const Span &b) noexcept {
+  friend constexpr bool operator!=(const Span& a, const Span& b) noexcept {
     return !(a == b);
   }
-  friend constexpr bool operator<(const Span &a, const Span &b) noexcept {
+  friend constexpr bool operator<(const Span& a, const Span& b) noexcept {
     return std::lexicographical_compare(a.begin(), a.end(), b.begin(), b.end());
   }
-  friend constexpr bool operator<=(const Span &a, const Span &b) noexcept {
+  friend constexpr bool operator<=(const Span& a, const Span& b) noexcept {
     return !(b < a);
   }
-  friend constexpr bool operator>(const Span &a, const Span &b) noexcept {
+  friend constexpr bool operator>(const Span& a, const Span& b) noexcept {
     return (b < a);
   }
-  friend constexpr bool operator>=(const Span &a, const Span &b) noexcept {
+  friend constexpr bool operator>=(const Span& a, const Span& b) noexcept {
     return !(a < b);
   }
 };
@@ -85,7 +85,7 @@ constexpr Span<A> MakeSpan(A (&a)[N]) {
 template <typename V>
 constexpr Span<
     typename std::remove_pointer<decltype(std::declval<V>().data())>::type>
-MakeSpan(V &v) {
+MakeSpan(V& v) {
   return Span<
       typename std::remove_pointer<decltype(std::declval<V>().data())>::type>(
       v.data(), v.size());

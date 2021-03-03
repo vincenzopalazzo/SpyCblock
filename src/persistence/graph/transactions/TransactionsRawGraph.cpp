@@ -11,7 +11,7 @@
 using namespace std;
 using namespace spyCBlockRPC;
 
-void spyCBlock::TransactionsRawGraph::serialize(ofstream &stream) {
+void spyCBlock::TransactionsRawGraph::serialize(ofstream& stream) {
   LOG(INFO) << "************ Serialization this information ************\n";
   string serializeTransaction;
   // Serialization informations input
@@ -26,7 +26,7 @@ void spyCBlock::TransactionsRawGraph::serialize(ofstream &stream) {
 }
 
 void spyCBlock::TransactionsRawGraph::buildTransaction(
-    spyCBlockRPC::WrapperInformations &wrapper) {
+    spyCBlockRPC::WrapperInformations& wrapper) {
   string hashPreviusRawTx = wrapper.getFrom();
   LOG(WARNING) << "Script sing: " << hashPreviusRawTx;
   string hashRawTx = wrapper.getTo();
@@ -52,14 +52,14 @@ void spyCBlock::TransactionsRawGraph::buildTransaction(
   LOG(INFO) << "Numbar information link: " << linkInformations.size();
 }
 
-void spyCBlock::TransactionsRawGraph::serialize(gzFile &file) {
+void spyCBlock::TransactionsRawGraph::serialize(gzFile& file) {
   LOG(INFO) << "************ Serialization this information ************\n";
 
   string serializeTransaction;
   // Serialization informations input
   serializeTransaction += this->from;
 
-  for (auto &information : linkInformations) {
+  for (auto& information : linkInformations) {
     serializeTransaction += (this->delimitator + information);
   }
   serializeTransaction += (this->delimitator + this->to +

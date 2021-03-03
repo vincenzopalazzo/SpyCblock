@@ -22,7 +22,7 @@ string DScript::getScriptToSerializationForm() const {
   return rawScriptString.substr(0, (this->scriptLenght.getValue() * 2));
 }
 
-void DScript::decode(std::ifstream &stream) {
+void DScript::decode(std::ifstream& stream) {
   this->scriptLenght.decode(stream);
 
   char buffer[scriptLenght.getValue()];
@@ -50,8 +50,8 @@ string DScript::toString() {
 }
 
 // getter and setter
-const DVarInt &DScript::getScriptLength() const { return scriptLenght; }
+const DVarInt& DScript::getScriptLength() const { return scriptLenght; }
 
-const string &DScript::getRawScriptString() const { return rawScriptString; }
+const string& DScript::getRawScriptString() const { return rawScriptString; }
 
-const string &DScript::getScriptString() const { return scriptString; }
+const string& DScript::getScriptString() const { return scriptString; }

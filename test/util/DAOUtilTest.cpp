@@ -25,7 +25,7 @@ std::vector<spyCBlock::Block> spyCBlock::DAOUtilTest::loadBlocks(
       fs::path pathObject = pathInput;
       LOG(INFO) << "Path exits and the path is the directory, the path is:  "
                 << pathInput;
-      for (auto &p : fs::directory_iterator(pathObject)) {
+      for (auto& p : fs::directory_iterator(pathObject)) {
         LOG(INFO) << "The file examinad is: " << p;
         vector<Block> container = readBlocks(p);
 
@@ -33,7 +33,7 @@ std::vector<spyCBlock::Block> spyCBlock::DAOUtilTest::loadBlocks(
           LOG(INFO) << "I added block readed in this file " << pathInput;
           LOG(INFO) << "Dimension blockchain before join "
                     << blockchainBloks.size();
-          for (auto &block : container) {
+          for (auto& block : container) {
             blockchainBloks.emplace_back(block);
           }
           LOG(INFO) << "Dimension blockchain after join "
@@ -50,7 +50,7 @@ std::vector<spyCBlock::Block> spyCBlock::DAOUtilTest::loadBlocks(
 }
 
 bool DAOUtilTest::isBlockFileBlk(
-    experimental::filesystem::__cxx11::directory_entry &entry) {
+    experimental::filesystem::__cxx11::directory_entry& entry) {
   string pathFile = entry.path();
   string tmpPathFile(pathFile);
   LOG(INFO) << "The path in string is: " << pathFile;
@@ -74,7 +74,7 @@ std::vector<Block> DAOUtilTest::readBlocks(fs::directory_entry entry) {
     vector<Block> blocksFile;
     while (!stream.eof()) {
       blocksFile.emplace_back(Block{});
-      Block &block = blocksFile.back();
+      Block& block = blocksFile.back();
       block.decode(stream);
     }
     stream.close();

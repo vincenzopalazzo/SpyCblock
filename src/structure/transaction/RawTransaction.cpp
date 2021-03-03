@@ -17,7 +17,7 @@
 using namespace spyCBlock;
 using namespace std;
 
-void RawTransaction::decode(std::ifstream &stream) {
+void RawTransaction::decode(std::ifstream& stream) {
   Unserialize(stream, version);
   LOG(INFO) << "Version raw transaction " << version;
   this->numberTxIn.decode(stream);
@@ -45,7 +45,7 @@ void RawTransaction::decode(std::ifstream &stream) {
   txIn.reserve(numberTxIn.getValue());
   for (size_t i = 0; i < this->numberTxIn.getValue(); i++) {
     txIn.emplace_back(TransactionInput{});
-    TransactionInput &transaction = txIn.back();
+    TransactionInput& transaction = txIn.back();
     transaction.decode(stream);
   }
   this->numberTxOut.decode(stream);
@@ -57,7 +57,7 @@ void RawTransaction::decode(std::ifstream &stream) {
 
   for (size_t i = 0; i < numberTxOut.getValue(); i++) {
     txOut.emplace_back(TransactionOutput{});
-    TransactionOutput &transactionOutput = txOut.back();
+    TransactionOutput& transactionOutput = txOut.back();
     transactionOutput.decode(stream);
   }
 
@@ -65,7 +65,7 @@ void RawTransaction::decode(std::ifstream &stream) {
     txsWitness.reserve(numberTxIn.getValue());
     for (size_t i = 0; i < numberTxIn.getValue(); i++) {
       txsWitness.emplace_back(TransactionWitness{});
-      TransactionWitness &txw = txsWitness.back();
+      TransactionWitness& txw = txsWitness.back();
       txw.decode(stream);
     }
   }
@@ -131,7 +131,7 @@ string RawTransaction::toString() {
 }
 
 void RawTransaction::toJson(
-    rapidjson::Writer<rapidjson::OStreamWrapper> &writerJson) {
+    rapidjson::Writer<rapidjson::OStreamWrapper>& writerJson) {
   writerJson.StartObject();
 
   writerJson.Key("hashRawTransaction");
@@ -146,7 +146,7 @@ void RawTransaction::toJson(
   writerJson.Key("txInput");
   writerJson.StartArray();
 
-  for (TransactionInput &txInput : this->txIn) {
+  for (TransactionInput& txInput : this->txIn) {
     txInput.toJson(writerJson);
   }
 
@@ -158,7 +158,7 @@ void RawTransaction::toJson(
   writerJson.Key("txOutput");
   writerJson.StartArray();
 
-  for (TransactionOutput &txOutput : this->txOut) {
+  for (TransactionOutput& txOutput : this->txOut) {
     txOutput.toJson(writerJson);
   }
 
@@ -170,14 +170,14 @@ void RawTransaction::toJson(
   writerJson.EndObject();
 }
 
-void RawTransaction::toGraphForm(ofstream &outputStream,
-                                 spyCBlockRPC::WrapperInformations &wrapper) {
+void RawTransaction::toGraphForm(ofstream& outputStream,
+                                 spyCBlockRPC::WrapperInformations& wrapper) {
   string witness = "false";
   if (type == Type::WITNESS) {
     witness = "true";
   }
-  for (TransactionInput &txInput : this->txIn) {
-    for (TransactionOutput &txOutput : this->txOut) {
+  for (TransactionInput& txInput : this->txIn) {
+    for (TransactionOutput& txOutput : this->txOut) {
       try {
         wrapper.addInformationLink(
             spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION,
@@ -207,7 +207,7 @@ void RawTransaction::toGraphForm(ofstream &outputStream,
 }
 
 void RawTransaction::toTransactionsGraph(
-    ofstream &outputStream, spyCBlockRPC::WrapperInformations &wrapper) {
+    ofstream& outputStream, spyCBlockRPC::WrapperInformations& wrapper) {
   wrapper.setTo(this->hashRawTransaction);
 
   string witness = "false";
@@ -231,7 +231,7 @@ void RawTransaction::toTransactionsGraph(
 }
 
 void RawTransaction::toCompressedTransactionsGraph(
-    gzFile &file, spyCBlockRPC::WrapperInformations &wrapper) {
+    gzFile& file, spyCBlockRPC::WrapperInformations& wrapper) {
   wrapper.setTo(this->hashRawTransaction);
 
   string witness = "false";
@@ -242,7 +242,7 @@ void RawTransaction::toCompressedTransactionsGraph(
   // I can give the total bitcoin inside the raw transaction if sum the value
   // transaction output inside the OUTPOINT not inside the output transaction
   // contains in this raw transaction
-  for (auto &txInput : this->txIn) {
+  for (auto& txInput : this->txIn) {
     wrapper.addInformationLink(
         spyCBlockRPC::WrapperInformations::TypeInsert::TRANSACTION,
         "lockTime: " + to_string(this->lockTime));
@@ -270,13 +270,13 @@ uint8_t RawTransaction::getMarker() const { return marker; }
 
 int32_t RawTransaction::getVersion() const { return version; }
 
-const DVarInt &RawTransaction::getNumberTxIn() const { return numberTxIn; }
+const DVarInt& RawTransaction::getNumberTxIn() const { return numberTxIn; }
 
-const vector<TransactionInput> &RawTransaction::getTxIn() const { return txIn; }
+const vector<TransactionInput>& RawTransaction::getTxIn() const { return txIn; }
 
-const DVarInt &RawTransaction::getNumberTxOut() const { return numberTxOut; }
+const DVarInt& RawTransaction::getNumberTxOut() const { return numberTxOut; }
 
-const vector<TransactionOutput> &RawTransaction::getTxOut() const {
+const vector<TransactionOutput>& RawTransaction::getTxOut() const {
   return txOut;
 }
 

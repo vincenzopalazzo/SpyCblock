@@ -63,7 +63,7 @@ TEST(JsonSerializationTest, serialization_blockheader_test_one) {
 
   std::ifstream fileOut(pathMockRoot + ("bitcoin/block/blk00000.dat"));
 
-  Block *block = new Block();
+  Block* block = new Block();
 
   block->decode(fileOut);
   fileOut.close();
@@ -118,7 +118,7 @@ TEST(JsonSerializationTest, serialization_lite_block_test_one) {
 
   std::ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
 
-  Block *block = new Block();
+  Block* block = new Block();
 
   block->decode(fileOut);
   fileOut.close();
@@ -161,7 +161,7 @@ TEST(JsonSerializationTest, serialization_fat_block_test_one) {
 
   std::ifstream fileOut(pathMockRoot + "bitcoin/block/blk00000.dat");
 
-  Block *block = new Block();
+  Block* block = new Block();
 
   block->decode(fileOut);
   fileOut.close();

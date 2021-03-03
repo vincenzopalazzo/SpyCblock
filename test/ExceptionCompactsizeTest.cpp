@@ -54,7 +54,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk976) {
   vector<Block> blocks;
   while (stream.is_open() && !stream.eof()) {
     blocks.emplace_back(Block{});
-    Block &block = blocks.back();
+    Block& block = blocks.back();
     block.decode(stream);
   }
 
@@ -98,7 +98,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk975) {
   vector<Block> blocks;
   while (stream.is_open() && !stream.eof()) {
     blocks.emplace_back(Block{});
-    Block &block = blocks.back();
+    Block& block = blocks.back();
     block.decode(stream);
   }
 
@@ -143,7 +143,7 @@ TEST(ExceptionGenerateCompactSizeTest, test_exception_compactsize_file_blk977) {
   vector<Block> blocks;
   while (stream.is_open() && !stream.eof()) {
     blocks.emplace_back(Block{});
-    Block &block = blocks.back();
+    Block& block = blocks.back();
     block.decode(stream);
   }
 
@@ -191,7 +191,7 @@ TEST(ExceptionGenerateCompactSizeTest,
   vector<Block> blocks;
   while (stream.is_open() && !stream.eof()) {
     blocks.emplace_back(Block{});
-    Block &block = blocks.back();
+    Block& block = blocks.back();
     block.decode(stream);
   }
 

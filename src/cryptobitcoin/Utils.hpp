@@ -16,7 +16,7 @@
  */
 class Utils final {
  public:
-  static const char *HEX_DIGITS;
+  static const char* HEX_DIGITS;
 
   // Returns the numerical value of a hexadecimal digit character
   // (e.g. '9' -> 9, 'a' -> 10, 'B' -> 11), or -1 if the character is invalid.
@@ -32,7 +32,7 @@ class Utils final {
   // the end of an array. The function is not helpful for code that calls
   // memcpy/memmove with a known positive constant count value.
  public:
-  static void copyBytes(void *dest, const void *src, std::size_t count);
+  static void copyBytes(void* dest, const void* src, std::size_t count);
 
  public:
   static void storeBigUint32(std::uint32_t x, std::uint8_t arr[4]);

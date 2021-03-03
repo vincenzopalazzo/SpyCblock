@@ -16,19 +16,19 @@ namespace spyCBlock {
 class SpyCBlock {
  public:
   template <typename T>
-  void convertData(T &dao, const std::string &locationBitcoinCore,
-                   const std::string &destinationBitcoinCoreJson);
+  void convertData(T& dao, const std::string& locationBitcoinCore,
+                   const std::string& destinationBitcoinCoreJson);
 
   template <typename T>
-  void convertDataParallel(T &dao, const std::string &locationBitcoinCore,
-                           const std::string &destinationBitcoinCoreJson);
+  void convertDataParallel(T& dao, const std::string& locationBitcoinCore,
+                           const std::string& destinationBitcoinCoreJson);
 
   template <typename T>
-  void convertChainState(T &dao, const std::string &pathLoadDirectory,
-                         const std::string &destinationDirectory);
+  void convertChainState(T& dao, const std::string& pathLoadDirectory,
+                         const std::string& destinationDirectory);
 
   template <typename T>
-  std::string extensionFile(T &dao);
+  std::string extensionFile(T& dao);
 
   inline void setHowFileWilBeRead(int value) { this->howFileWilBeRead = value; }
 
@@ -41,9 +41,9 @@ class SpyCBlock {
  private:
   int currentFile = ConfiguratorSingleton::getInstance().getStartHeightBlock();
 
-  std::string nameFileSearched(const std::string &pathInput, int &currentFile);
+  std::string nameFileSearched(const std::string& pathInput, int& currentFile);
 
-  std::string getNameFile(const std::string &path);
+  std::string getNameFile(const std::string& path);
 
   int howFileWilBeRead =
       ConfiguratorSingleton::getInstance().getHowManyFileWouldBeRead();
@@ -51,13 +51,14 @@ class SpyCBlock {
   bool compressionForm =
       ConfiguratorSingleton::getInstance().isCompressionResult();
 
-  int numberFileInsidePath(experimental::filesystem::path path,
+  int numberFileInsidePath(std::experimental::filesystem::path path,
                            bool isChainState) {
     assertf(!path.empty(), "The path is empty");
     int fileCount = 0;
-    for (auto fileBlk : experimental::filesystem::directory_iterator(path)) {
+    for (auto fileBlk :
+         std::experimental::filesystem::directory_iterator(path)) {
       std::string fileName = fileBlk.path().filename();
-      if (!experimental::filesystem::is_directory(fileBlk)) {
+      if (!std::experimental::filesystem::is_directory(fileBlk)) {
         if (isChainState) {
           fileCount++;
         } else if (fileName.find("blk") != std::string::npos) {
@@ -68,7 +69,7 @@ class SpyCBlock {
     return fileCount;
   }
 
-  int numberFileInsidePath(experimental::filesystem::path path) {
+  int numberFileInsidePath(std::experimental::filesystem::path path) {
     return numberFileInsidePath(path, false);
   }
 };
