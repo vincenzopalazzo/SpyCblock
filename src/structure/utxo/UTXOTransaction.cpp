@@ -94,6 +94,19 @@ void spyCBlock::UTXOTransaction::decode(
     LOG(INFO) << "Amount: " << this->amount;
     this->totoAmount += this->amount;
     // stage 2.4
+    // b98276a2ec7700cbc2986ff9aed6825920aece14aa6f5382ca5580
+    //             <>
+    //
+    // nSize - byte to indicate the type or size of script - helps with compression of the script data
+    //  - https://github.com/bitcoin/bitcoin/blob/master/src/compressor.cpp
+
+    //  0  = P2PKH <- hash160 public key
+    //  1  = P2SH  <- hash160 script
+    //  2  = P2PK 02publickey <- nsize makes up part of the public key in the actual script
+    //  3  = P2PK 03publickey
+    //  4  = P2PK 04publickey (uncompressed - but has been compressed in to leveldb) y=even
+    //  5  = P2PK 04publickey (uncompressed - but has been compressed in to leveldb) y=odd
+    //  6+ = [size of the upcoming script] (subtract 6 though to get the actual size in bytes, to account for the previous 5 script types already taken)
     // TODO: Calculate the addresses
   }
 }

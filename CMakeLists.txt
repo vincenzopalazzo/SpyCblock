@@ -20,6 +20,9 @@ find_package(OpenMP)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
 
+FILE(COPY conf.properties DESTINATION "${CMAKE_BINARY_DIR}")
+FILE(COPY conf-rpc.properties DESTINATION "${CMAKE_BINARY_DIR}")
+
 add_executable(
 
         ${PROJECT_NAME}

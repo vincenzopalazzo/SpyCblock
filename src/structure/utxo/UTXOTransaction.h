@@ -35,7 +35,7 @@
 namespace spyCBlock {
 /**
  * I noted that the serialization inside the decode method requires two
- * different stages, and I try to summarize it here
+ * different stages, and I try to summarize them here
  * 1. Ge the transaction id and the vout
  * 2. Read the from the value the information that is divided like
  *      2.1: decode the transaction id and the vouot
@@ -43,7 +43,7 @@ namespace spyCBlock {
  *      2.3: decode the amount
  *      2.4: decode the address(es) of the UTXOs
  *
- *  The basic ide is is to use the chain of responsibility pattern with the list
+ *  The basic ide is to use the chain of responsibility pattern with the list
  * implementation, and each of the point 2.x write a handler that makes in a
  * readable way the serialization
  */
