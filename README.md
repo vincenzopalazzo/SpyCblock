@@ -1,4 +1,6 @@
 ![GitHub](https://img.shields.io/github/license/vincenzopalazzo/SpyCblock?color=%23ffab00&style=flat-square)
+![Matrix](https://img.shields.io/matrix/spycblock:matrix.org?label=%23spycblock%3Amatrix.org&style=flat-square)
+
 # <p align=center> :mortar_board: SpyCBlock :microscope: </p>
 
 SpyCBlock is an accademics software that analyses the blk file of Bitcoin blockchain Mainet.
@@ -82,7 +84,9 @@ Follow this [guide](#TODO)
 
 ## <p align=center> :speech_balloon: IRC channels :octocat: </p>
 
- - IRC dev channel: _#spycblock-dev_ :neckbeard:
+ - ~IRC dev channel: _#spycblock-dev_ :neckbeard:~
+
+PS: The IRC channel is deprecated in favor of the matrix channel.
 
 ## <p align=center> :beer: Buy me a beer :beer: </p>
 
