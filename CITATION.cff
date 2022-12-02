@@ -9,5 +9,5 @@ authors:
     orcid: https://orcid.org/0000-0002-6514-3569
 title: "A simple Bitcoin parser to parse the raw data files, and decode them into differents format"
 version: 1.0.0
-date-released: 2021-12-12
+date-released: 2019-12-12
 url: "https://github.com/vincenzopalazzo/SpyCBlock"
