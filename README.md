@@ -88,6 +88,21 @@ Follow this [guide](#TODO)
 
 PS: The IRC channel is deprecated in favor of the matrix channel.
 
+## Cite
+
+You can use the research work in any way you want but please cite us!
+
+```
+@software{Palazzo_A_simple_Bitcoin_2021,
+    author = {Palazzo, Vincenzo and Carlo, Sartiani},
+    month = {12},
+    title = {{A simple Bitcoin parser to parse the raw data files, and decode them into differents format}},
+    url = {https://github.com/vincenzopalazzo/SpyCBlock},
+    version = {1.0.0},
+    year = {2021}
+}
+```
+
 ## <p align=center> :beer: Buy me a beer :beer: </p>
 
 <p align=center> :beer: 39juEyTGSNfD9JHCZdQKAjkzC3yiudce7b :beer: </p>
