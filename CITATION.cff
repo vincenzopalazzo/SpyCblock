@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this thesis in any way you want, please cite it as below."
+authors:
+  - family-names: Palazzo
+    given-names: Vincenzo
+    orcid: https://orcid.org/0000-0001-7887-6350
+  - family-names: Carlo
+    given-names: Sartiani
+    orcid: https://orcid.org/0000-0002-6514-3569
+title: "A simple Bitcoin parser to parse the raw data files, and decode them into differents format"
+version: 1.0.0
+date-released: 2021-12-12
+url: "https://github.com/vincenzopalazzo/SpyCBlock"
